@@ -20,22 +20,11 @@ Esta API será construída pelos componentes do grupo 2:
 
 ### Requisitos Funcionais
 1. RF001 - **Cadastro de clientes**
-   - A API deverá possibilitar o cadastro de clientes, com seus dados pessoais. Com a opção de editá-lo posteriormente.
-      - **Atores:** Cliente
-      - **Entrada:** Deverá inserir os seguintes dados obrigatórios: Nome, Data de nascimento, telefone, endereço e e-mail. Campos opcionais: Foto, outros responsáveis pelo(s) animal(is) de estimação (nome, foto e número).
-      - **Saída:** O perfil estará gerado com as informações oferecidas.
+   - A API deverá possibilitar o cadastro de clientes, com seus dados pessoais. Com a opção de editá-lo posteriormente. O cliente deverá inserir os seguintes dados obrigatórios: Nome, Data de nascimento, telefone, endereço e e-mail. Campos opcionais: Foto, outros responsáveis pelo(s) animal(is) de estimação (nome, foto e número).
 2. RF002 - **Cadastro de animais**
-   - A API permitirá o cadastro dos animais a partir de uma conta de cliente.
-      - **Atores:** Cliente
-      - **Pré-condição:** Cliente só poderá cadastrar seu(s) animal(is) a partir de seu cadastro, já criado.
-      - **Entrada:** Para cada animal, deverá conter um cadastro com dados obrigatórios: nome, idade, espécie de animal e raça (a fim de definir o porte do animal, e consequentemente, a diferença de valor dos serviços ofertados).
-      - **Saída:** Os cadastros dos animais estarão disponíveis individualmente no cadastro de seus tutores, com suas informações.
+   - A API permitirá o cadastro dos animais a partir de uma conta de cliente. Para cada animal, deverá conter um cadastro com dados obrigatórios: nome, idade, espécie de animal e raça (a fim de definir o porte do animal, e consequentemente, a diferença de valor dos serviços ofertados).
 3. RF003 - **Agendamento de banho e tosa**
-   - Para banho e tosa no pet shop, o cliente deve agendar um horário disponível.
-      - **Atores:** Cliente
-      - **Pré-condição:** Possuir o cadastro de ao menos um animal na conta.
-      - **Entrada:** Ficha de dados com especificações do serviço e do animal (consultar imagem de check list ao final do documento como referência), como: que tipo de serviço (banho, tosa ou banho e tosa), se é preciso buscar o animal, profissionais escolhidos pelo cliente para ofertar o serviço e restrições de saúde informadas pelo dono e/ou analisadas pelo funcionário especializado.
-      - **Saída:** Finalização do agendamento com mensagem de sucesso.
+   - Para banho e tosa no pet shop, o cliente deve agendar um horário disponível e preencher a ficha de dados com especificações do serviço e do animal (consultar imagem de check list ao final do documento como referência), como: que tipo de serviço (banho, tosa ou banho e tosa), se é preciso buscar o animal, profissionais escolhidos pelo cliente para ofertar o serviço e restrições de saúde informadas pelo dono e/ou analisadas pelo funcionário especializado.
 4. RF004 - **Confirmação de agendamento**
    - Para cada agendamento realizado com sucesso a API criará evento na página principal com as informações de horário, data e descrição do serviço.
 5. RF005 - **Cancelamento ou edição do agendamento**
@@ -73,16 +62,18 @@ Esta API será construída pelos componentes do grupo 2:
 8. RN08 - O preço de cada trabalho pode variar com base no tipo de animal de estimação, tamanho ou necessidades especiais.
 
 ### Tecnologia de _Front-end_
-Angular ou React?
+React
 
 ### Tecnologia de _Back-end_
-Java (Spring Boot é uma boa)
+Java (Spring Boot)
 
 ### Tecnologia de Persistência de Dados
 Banco de dados relacional (PostgreSQL)
 
 ### Local do _Deploy_
-Pelo que pesquisei o Heroku pode ser uma boa opção para iniciantes. Obs.: possui muito material na internet (isso pode ser bom ou ruim)
+Heroku
+
+![Checklist banho e tosa](./imagens/checklist.png)
 
 ### Cronograma de Desenvolvimento
 
