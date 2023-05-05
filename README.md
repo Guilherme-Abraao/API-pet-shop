@@ -16,7 +16,7 @@ Esta API será construída pelos componentes do grupo 2:
 |202105033|Guilherme Abraão da Silva|[Guilherme-Abraao](https://github.com/Guilherme-Abraao)|
 |202105034|Gustavo Morais Medeiros|[GustavoMedeiroz](https://github.com/GustavoMedeiroz)|
 |202105039|Jonathan Felipe Viana Cardoso Prado|[JoJonathanF](https://github.com/JoJonathanF)|
-|202105056|Wendel Márcio de Oliveira Filho|[Wendel-FI](https://github.com/Wendel-FI)|
+|202105056|Grupo de Oliveira Filho|[Wendel-FI](https://github.com/Wendel-FI)|
 
 ### Requisitos Funcionais
 1. RF001 - **Cadastro de clientes**
@@ -33,9 +33,7 @@ Esta API será construída pelos componentes do grupo 2:
    - O sistema deve guardar e permitir a visualização do histórico de checklists em cada pet de um determinado cliente, a fim de assegurar o estabelecimento de eventuais problemas, evidentemente sendo possível a consulta de quais profissionais foram envolvidos em um procedimento e sob quais condições o animal foi atendido.
 7. RF007 - **Cálculo de comissão**
    - O sistema deve automaticamente calcular os valores das comissões individuais baseado no valor dos procedimentos realizados durante o mês e a taxa de comissão de cada funcionário (comissões de tosadores geralmente são maiores que as dos banhistas, por exemplo, 20% e 10%, respectivamente).
-8. RF008 - **Ofertar descontos automaticamente**
-   - O sistema deve ser capaz de oferecer descontos com base na taxa de recorrência ou número de serviços requisitados por um determinado cliente (a cargo do estabelecimento) durante o mês.
-9. RF009 - **Avaliação de serviços**
+8. RF008 - **Avaliação de serviços**
    - Os clientes devem ter a opção de avaliar e fornecer feedback sobre os serviços prestados.
 
 
@@ -62,7 +60,7 @@ Esta API será construída pelos componentes do grupo 2:
 8. RN08 - O preço de cada trabalho pode variar com base no tipo de animal de estimação, tamanho ou necessidades especiais.
 
 ### Tecnologia de _Front-end_
-React
+Angular
 
 ### Tecnologia de _Back-end_
 Java (Spring Boot)
@@ -79,4 +77,10 @@ Heroku
 
 |Iteração|Tarefa|Data Início|Data Fim|Responsável|Situação|
 |---|---|---|---|---|---|
-|1|Especificar História de Usuário 1|02/05/2023|03/05/2023|Wendel Márcio|Programada|
+|1|Planejamento|17/04/2023|05/05/2023|Grupo|Completa|
+|2|Cadastro de Funcionários|06/05/2023|19/05/2023|Grupo|Programada|
+|3|Cadastro de clientes e animais|20/05/2023|02/06/2023|Grupo|Programada|
+|4|Agendamento(banho e tosa): criação e visualização|03/06/2023|16/06/2023|Grupo|Programada|
+|5|Agendamento(banho e tosa): edição e cancelamento|17/06/2023|30/06/2023|Grupo|Programada|
+|6|Histórico|01/07/2023|21/07/2023|Grupo|Programada|
+|7|Cálculo de comissão, avaliação do serviço e deploy|22/07/2023|11/08/2023|Grupo|Programada|
