@@ -83,4 +83,4 @@ Heroku
 |4|Agendamento(banho e tosa): criação e visualização|03/06/2023|16/06/2023|Grupo|Programada|
 |5|Agendamento(banho e tosa): edição e cancelamento|17/06/2023|30/06/2023|Grupo|Programada|
 |6|Histórico|01/07/2023|21/07/2023|Grupo|Programada|
-|7|Cálculo de comissão, avaliação do serviço e deploy|22/07/2023|11/08/2023|Grupo|Programada|
+|7|Cálculo de comissão, avaliação do serviço e deploy|22/07/2023|11/08/2023|Grupo|Programada| 
