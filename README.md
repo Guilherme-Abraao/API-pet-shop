@@ -1,5 +1,5 @@
 ### cs_20232
-Repositório definido para a manutenção do controle de versão dos artefatos do projeto de construção de uma API Rest para:
+Repositório definido para a manutenção do controle de versão dos artefatos do projeto de construção de uma API Rest.
 
 ### Tema
 API Rest para o gerenciamento de trabalhos ofertados por um pet shop.
