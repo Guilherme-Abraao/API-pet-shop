@@ -3,7 +3,7 @@
 ## Histórico
 |**Versão**|**Data**|**Alteração no Documento**|**Autor**|
 |------|----|---------|-----|
-|1.0| 13/05/2023 | Criação do documento | Guilherme-Abraao |
+|1.0| 13/05/2023 | Criação do documento | [Guilherme-Abraao](https://github.com/Guilherme-Abraao) |
 |<Versão>|< data >|< descrição >|< autor >|
 
 Os requisitos funcionais foram classificados de acordo com sua prioridade, adotando-se os seguintes critérios:
