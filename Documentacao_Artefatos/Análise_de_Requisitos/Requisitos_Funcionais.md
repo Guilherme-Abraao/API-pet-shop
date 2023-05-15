@@ -4,8 +4,8 @@
 |**Versão**|**Data**|**Alteração no Documento**|**Autor**|
 |------|----|---------|-----|
 |1.0| 13/05/2023 | Criação do documento | Guilherme-Abraao |
-|1.1| 15/05/2023 | Inserção do H.U. 05 ao H.U. 13 | GabrielCamiloOliveira |
-|<Versão>|< data >|< descrição >|< autor >|
+|1.1| 15/05/2023 | Inserção do H.U. 05 ao H.U. 09 | Wendel |
+|1.2| 15/05/2023 | Inserção do H.U. 10 ao H.U. 13 | GabrielCamiloOliveira |
 
 Os requisitos funcionais foram classificados de acordo com sua prioridade, adotando-se os seguintes critérios:
 
@@ -21,15 +21,15 @@ Os requisitos funcionais foram classificados de acordo com sua prioridade, adota
 Versão: 1.0
 Prioridade: alta
 
-Como cliente do Pet Shop, quero realizar um cadastro, para acessar as funcionalidades do sistema.
+**Como** cliente do Pet Shop, **quero** realizar um cadastro, **para** acessar as funcionalidades do sistema.
 
 #### Cenário 1: 
 
-Dado que eu esteja na tela de cadastro, quando preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail, endereço e senha corretamente E clicar no botão “confirmar” então o sistema deve me informar que o cadastro foi realizado com sucesso.
+**Dado** que eu esteja na tela de cadastro, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail, endereço e senha corretamente **E** clicar no botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
 
 #### Cenário 2: 
 
-Dado que eu esteja na tela de cadastro, quando preencher algum campo inválido ou vazio E clicar no botão “confirmar” então o sistema deve me informar quais campos estão faltando ou estão incorretos. 
+**Dado** que eu esteja na tela de cadastro, **quando** preencher algum campo inválido ou vazio **E** clicar no botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos. 
 
 ---
 
@@ -38,15 +38,15 @@ Dado que eu esteja na tela de cadastro, quando preencher algum campo inválido o
 Versão: 1.0
 Prioridade: alta
 
-Como administrador, quero realizar um cadastro de um funcionário, para garantir que ele possa acessar as funcionalidades do sistema.
+**Como** administrador, **quero** realizar um cadastro de um funcionário, **para** garantir que ele possa acessar as funcionalidades do sistema.
 
 #### Cenário 1: 
 
-Dado que eu esteja na tela de cadastro de funcionários, quando preencher os campos de Nome, CPF, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha corretamente E clicar sobre o botão “confirmar” então o sistema deve me informar que o cadastro foi realizado com sucesso.
+**Dado** que eu esteja na tela de cadastro de funcionários, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
 
 #### Cenário 2: 
 
-Dado que eu esteja na tela de cadastro, quando preencher algum campo inválido ou vazio E clicar sobre o botão “confirmar” então o sistema deve me informar quais campos estão faltando ou estão incorretos. 
+**Dado** que eu esteja na tela de cadastro, **quando** preencher algum campo inválido ou vazio **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos. 
 
 ---
 
@@ -55,15 +55,15 @@ Dado que eu esteja na tela de cadastro, quando preencher algum campo inválido o
 Versão: 1.0
 Prioridade: alta
 
-Como administrador, quero realizar um cadastro de um outro administrador, para garantir que ele possa acessar as funcionalidades do sistema.
+**Como** administrador, **quero** realizar um cadastro de um outro administrador, **para** garantir que ele possa acessar as funcionalidades do sistema.
 
 #### Cenário 1: 
 
-Dado que eu esteja na tela de cadastro de funcionários, quando preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail, endereço, cargo, salário e senha corretamente E clicar sobre o botão “confirmar” então o sistema deve me informar que o cadastro foi realizado com sucesso.
+**Dado** que eu esteja na tela de cadastro de funcionários, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail, endereço, cargo, salário e senha corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
 
 #### Cenário 2: 
 
-Dado que eu esteja na tela de cadastro, quando preencher algum campo inválido ou vazio E clicar sobre o botão “confirmar” então o sistema deve me informar quais campos estão faltando ou estão incorretos. 
+**Dado** que eu esteja na tela de cadastro, **quando** preencher algum campo inválido ou vazio **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos. 
 
 ---
 
@@ -72,32 +72,33 @@ Dado que eu esteja na tela de cadastro, quando preencher algum campo inválido o
 Versão: 1.0
 Prioridade: alta
 
-Como cliente do Pet Shop, quero alterar dados cadastrais, para deixar o sistema atualizado com as informações corretas. 
+**Como** cliente do Pet Shop, **quero** alterar dados cadastrais, **para** deixar o sistema atualizado com as informações corretas. 
 
 #### Cenário 1: 
 
-Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail e senha) corretamente E clicar sobre o botão “confirmar” então o sistema deve me informar que o cadastro foi atualizado com sucesso.
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail e senha) corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi atualizado com sucesso.
 
 #### Cenário 2: 
 
-Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail e senha) deixando vazio ou incorreto E clicar sobre o botão “confirmar” então o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado. 
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail e senha) deixando vazio ou incorreto **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado. 
 
 ---
 
-### H.U. 05 - Editar cadastro (funcionário)
+
+### H.U. 05 - Editar cadastro (funcionários)
 
 Versão: 1.0
 Prioridade: alta
 
-Como administrador do Pet Shop, quero alterar dados cadastrais, para deixar o sistema atualizado com as informações corretas. 
+**Como** administrador, **quero** alterar dados cadastrais, **para** deixar o sistema atualizado com as informações corretas.
 
-#### Cenário 1: 
+#### Cenário 1:
 
-Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha) corretamente E clicar sobre o botão “confirmar” então o sistema deve me informar que o cadastro foi atualizado com sucesso.
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha) corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi atualizado com sucesso.
 
-#### Cenário 2: 
+#### Cenário 2:
 
-Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha) deixando vazio ou incorreto E clicar sobre o botão “confirmar” então o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado.
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha) deixando vazio ou incorreto **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado.
 
 ---
 
@@ -106,15 +107,15 @@ Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro
 Versão: 1.0
 Prioridade: alta
 
-Como administrador do Pet Shop, quero alterar dados cadastrais, para deixar o sistema atualizado com as informações corretas. 
+**Como** administrador do Pet Shop, **quero** alterar dados cadastrais, **para** deixar o sistema atualizado com as informações corretas. 
 
-#### Cenário 1: 
+#### Cenário 1:
 
-Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço de e-mail, cargo, salário e senha) corretamente E clicar no botão “confirmar” então o sistema deve me informar que o cadastro foi atualizado com sucesso
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço de e-mail, cargo, salário e senha) corretamente **E** clicar no botão “confirmar”, **então** o sistema deve me informar que o cadastro foi atualizado com sucesso
 
-#### Cenário 2: 
+#### Cenário 2:
 
-Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço de e-mail, cargo, salário e senha) deixando vazio ou incorreto E clicar no botão “confirmar” então o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado. 
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço de e-mail, cargo, salário e senha) deixando vazio ou incorreto **E** clicar no botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado.
 
 ---
 
@@ -123,15 +124,15 @@ Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro
 Versão: 1.0
 Prioridade: alta
 
-Como cliente do Pet Shop, quero realizar login para acessar as funcionalidades do sistema.
+**Como** cliente do Pet Shop, **quero** realizar login no sistema, **para** acessar as funcionalidades do sistema.
 
-#### Cenário 1: 
+#### Cenário 1:
 
-Dado que eu esteja na tela de login do sistema, quando preencher corretamente os campos de CPF e senha E clicar sobre o botão “realizar login”, então o sistema deve me informar que o login foi realizado com sucesso E redirecionar para o página principal.
+**Dado** que eu esteja na tela de login do sistema, **quando** preencher corretamente os campos de CPF e senha **E** clicar sobre o botão “realizar login”, **então** o sistema deve me informar que o login foi realizado com sucesso **E** redirecionar para o página principal.
 
-#### Cenário 2: 
+#### Cenário 2:
 
-Dado que eu esteja na tela de login do sistema, quando preencher os campos de CPF e senha errados ou vazios E clicar sobre o botão “realizar login”, então o sistema deve me informar que o login e a senha não correspondem. 
+**Dado** que eu esteja na tela de login do sistema, **quando** preencher os campos de CPF e senha errados ou vazios **E** clicar sobre o botão “realizar login”, **então** o sistema deve me informar que o login e a senha não correspondem.
 
 ---
 
@@ -157,15 +158,15 @@ Dado que eu esteja na tela de login do sistema, quando preencher os campos de CP
 Versão: 1.0
 Prioridade: alta
 
-Como administrador do Pet Shop, quero realizar login para acessar as funcionalidades do sistema.
+**Como** administrador do Pet Shop, **quero** realizar login, **para** acessar as funcionalidades do sistema.
 
-#### Cenário 1: 
+#### Cenário 1:
 
-Dado que eu esteja na tela de login do sistema, quando preencher corretamente os campos de CPF e senha E clicar sobre o botão “realizar login”, então o sistema deve me informar que o login foi realizado com sucesso E redirecionar para o página principal.
+**Dado** que eu esteja na tela de login do sistema, **quando** preencher corretamente os campos de CPF e senha **E** clicar sobre o botão “realizar login”, **então** o sistema deve me informar que o login foi realizado com sucesso **E** redirecionar para o página principal.
 
-#### Cenário 2: 
+#### Cenário 2:
 
-Dado que eu esteja na tela de login do sistema, quando preencher os campos de CPF e senha errados ou vazios E clicar sobre o botão “realizar login”, então o sistema deve me informar que o login e a senha não correspondem. 
+**Dado** que eu esteja na tela de login do sistema, **quando** preencher os campos de CPF e senha errados ou vazios **E** clicar sobre o botão “realizar login”, **então** o sistema deve me informar que o login e a senha não correspondem.
 
 ---
 
@@ -225,12 +226,12 @@ Dado que eu esteja logado no sistema como cliente E na tela de visualização de
 Versão: 1.0
 Prioridade: alta
 
-Como cliente, quero escolher uma data e horário disponíveis para realizar um agendamento de algum serviço para um animal cadastrado no meu perfil.
+**Como** funcionário do Pet Shop, **quero** realizar login, **para** acessar as funcionalidades do sistema.
 
 #### Cenário 1:
 
-Dado que eu esteja logado no sistema como cliente E na tela de agendamento, quando selecionar uma data e horário disponível E informar o animal e serviço(s) requisitado(s) E clicar sobre o botão “confirmar agendamento”, então o sistema deve me informar que o agendamento foi efetuado com sucesso E registrar o horário agendado como “ocupado”.
+**Dado** que eu esteja na tela de login do sistema, **quando** preencher corretamente os campos de CPF e senha **E** clicar sobre o botão “realizar login”, **então** o sistema deve me informar que o login foi realizado com sucesso **E** redirecionar para o página principal.
 
 #### Cenário 2:
 
-Dado que eu esteja logado no sistema como cliente E na tela de agendamento, quando selecionar uma data e horário indisponível, então o sistema deve me informar que já existem serviços agendados para o horário selecionado.
+**Dado** que eu esteja na tela de login do sistema, **quando** preencher os campos de CPF e senha errados ou vazios **E** clicar sobre o botão “realizar login”, **então** o sistema deve me informar que o login e a senha não correspondem.
