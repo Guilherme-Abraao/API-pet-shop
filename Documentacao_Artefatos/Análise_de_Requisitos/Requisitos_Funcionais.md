@@ -121,7 +121,7 @@ Dado que eu esteja na tela editar perfil, quando alterar algum campo do cadastro
 ### H.U. 07 - Login no sistema (cliente)
 
 Versão: 1.0
-Prioridade: 
+Prioridade: alta
 
 Como cliente do Pet Shop, quero realizar login para acessar as funcionalidades do sistema.
 
@@ -138,7 +138,7 @@ Dado que eu esteja na tela de login do sistema, quando preencher os campos de CP
 ### H.U. 08 - Login no sistema (funcionário)
 
 Versão: 1.0
-Prioridade: 
+Prioridade: alta
 
 Como funcionário do Pet Shop, quero realizar login para acessar as funcionalidades do sistema.
 
@@ -155,7 +155,7 @@ Dado que eu esteja na tela de login do sistema, quando preencher os campos de CP
 ### H.U. 09 - Login no sistema (administrador)
 
 Versão: 1.0
-Prioridade: 
+Prioridade: alta
 
 Como administrador do Pet Shop, quero realizar login para acessar as funcionalidades do sistema.
 
@@ -172,7 +172,7 @@ Dado que eu esteja na tela de login do sistema, quando preencher os campos de CP
 ### H.U. 10 - Cadastro de animais 
 
 Versão: 1.0
-Prioridade: 
+Prioridade: alta
 
 Como cliente, quero realizar um cadastro de um animal de estimação para realizar agendamentos de serviços.
 
@@ -189,7 +189,7 @@ Dado que eu esteja logado no sistema como cliente, quando preencher os campos er
 ### H.U. 11 - Editar cadastro de animais 
 
 Versão: 1.0
-Prioridade: 
+Prioridade: alta
 
 Como cliente, quero realizar um cadastro de um animal de estimação para realizar agendamentos de serviços.
 
@@ -206,7 +206,7 @@ Dado que eu esteja logado no sistema como cliente E na tela de visualização de
 ### H.U. 12 - Deletar cadastro de animais 
 
 Versão: 1.0
-Prioridade: 
+Prioridade: alta
 
 Como cliente, quero deletar um cadastro de um animal de estimação para não mostrar mais o cadastro dele. 
 
