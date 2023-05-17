@@ -2,12 +2,17 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { CpfService } from 'src/app/services/validacao-cpf.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Router } from '@angular/router';
+
+import { Cliente } from '../../interfaces/Cliente';
 
 @Component({
   selector: 'app-form-cadastro-usuario',
   templateUrl: './form-cadastro-usuario.component.html',
   styleUrls: ['./form-cadastro-usuario.component.css'],
 })
+
 export class FormCadastroUsuarioComponent implements OnInit {
   @Input() btnText!: string;
   @Input() titulo!: string;
@@ -16,7 +21,7 @@ export class FormCadastroUsuarioComponent implements OnInit {
   faTimes = faTimes;
   cpfValido: boolean = false;
 
-  constructor() {}
+  constructor(private usuarioService: UsuarioService) {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
@@ -68,5 +73,20 @@ export class FormCadastroUsuarioComponent implements OnInit {
       return;
     }
     return 1;
+  }
+
+  async createHandler(cliente: Cliente) {
+    const formData = new FormData();
+
+    formData.append('nome', cliente.nome);
+    formData.append('cpf', cliente.cpf);
+    formData.append('dataNascimento', cliente.dataNascimento);
+    formData.append('telefone', cliente.telefone);
+    formData.append('email', cliente.email);
+    formData.append('senha', cliente.senha);
+    formData.append('confirmacaoSenha', cliente.confirmacaoSenha);
+
+    await this.usuarioService.createCliente(formData).subscribe();
+
   }
 }
