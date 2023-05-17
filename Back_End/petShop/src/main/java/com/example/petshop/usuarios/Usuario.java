@@ -24,7 +24,7 @@ public class Usuario {
     private Long id;
     private String nome;
     private String email;
-    private String endereco;
+//    private String endereco;
     private LocalDate dataNascimento;
 //    @Transient
 //    private int idade;
