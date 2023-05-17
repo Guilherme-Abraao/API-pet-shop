@@ -16,7 +16,7 @@ export class FormCadastroUsuarioComponent implements OnInit {
   faTimes = faTimes;
   cpfValido: boolean = false;
 
-  constructor(private cpfService: CpfService) {}
+  constructor() {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
@@ -34,10 +34,10 @@ export class FormCadastroUsuarioComponent implements OnInit {
   }
 
   /* Errado e imcompleto*/
-  verificarCpf(): boolean {
+  /* verificarCpf(): boolean {
     const cpfValue = this.userForm.get('cpf')!.value;
     return !this.cpfService.validarCpf(cpfValue);
-  }
+  } */ 
 
   /* GETs dos itens do formulário */
 
