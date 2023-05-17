@@ -8,6 +8,7 @@ import { FormCadastroUsuarioComponent } from './components/singular-components/f
 import { MensagensSistemaComponent } from './components/singular-components/mensagens-sistema/mensagens-sistema.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { CadastroUsuarioComponent } from './components/pages/cadastro-usuario/cadastro-usuario.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CadastroUsuarioComponent } from './components/pages/cadastro-usuario/ca
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
