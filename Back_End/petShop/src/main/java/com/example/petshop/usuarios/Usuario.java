@@ -24,6 +24,9 @@ public class Usuario {
     private Long id;
     private String nome;
     private String email;
+    private String CPF;
+    private String Telefone;
+    private String senha;
 //    private String endereco;
     private LocalDate dataNascimento;
 //    @Transient
@@ -32,7 +35,16 @@ public class Usuario {
     public Usuario() {
     }
 
-//    Caso queira mostrar a idade
+    public Usuario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.email = email;
+        this.CPF = CPF;
+        Telefone = telefone;
+        this.senha = senha;
+        this.dataNascimento = dataNascimento;
+    }
+
+    //    Caso queira mostrar a idade
 //    public int getIdade() {
 //        return Period.between(this.dataNascimento, LocalDate.now()).getYears();
 //    }
