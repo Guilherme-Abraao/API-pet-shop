@@ -21,8 +21,22 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public void registerNewUser(@RequestBody Usuario usuario) {
+    public void adicionarNovoUsuario(@RequestBody Usuario usuario) {
         usuarioService.adicionarNovoUsuario(usuario);
+    }
+
+    @DeleteMapping(path = "{usuarioId}")
+    public void deleteUsuario(@PathVariable("usuarioId") Long usuarioId) {
+        usuarioService.deleteUsuario(usuarioId);
+    }
+
+    @PutMapping(path = "{usuarioId}")
+    public void atualizarUsuario(
+            @PathVariable("usuarioId") Long usuarioId,
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String email
+    ) {
+        usuarioService.atualizarUsuario(usuarioId, nome, email);
     }
 
 }
