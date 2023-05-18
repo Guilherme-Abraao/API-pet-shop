@@ -16,7 +16,7 @@ Esta API será construída pelos componentes do grupo 2:
 |202105033|Guilherme Abraão da Silva|[Guilherme-Abraao](https://github.com/Guilherme-Abraao)|
 |202105034|Gustavo Morais Medeiros|[GustavoMedeiroz](https://github.com/GustavoMedeiroz)|
 |202105039|Jonathan Felipe Viana Cardoso Prado|[JoJonathanF](https://github.com/JoJonathanF)|
-|202105056|Wendel Márcio de Oliveira Filho|[Wendel-FI](https://github.com/Wendel-FI)|
+|202105056|Wendel Márcio de Oliveira Filho|[Wendel-Fl](https://github.com/Wendel-Fl)|
 
 ### Requisitos Funcionais
 1. RF001 - **Cadastro de clientes**
