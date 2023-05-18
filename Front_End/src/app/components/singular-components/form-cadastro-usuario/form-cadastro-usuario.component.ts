@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { CpfService } from 'src/app/services/validacao-cpf.service';
@@ -16,6 +16,8 @@ import { Cliente } from '../../interfaces/Cliente';
 export class FormCadastroUsuarioComponent implements OnInit {
   @Input() btnText!: string;
   @Input() titulo!: string;
+
+  @Output() onSubmit = new EventEmitter<Cliente>();
 
   userForm!: FormGroup;
   faTimes = faTimes;
@@ -72,10 +74,11 @@ export class FormCadastroUsuarioComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    return 1;
+    
+    this.onSubmit.emit(this.userForm.value);
   }
 
-  async createHandler(cliente: Cliente) {
+  async createdHandler(cliente: Cliente) {
     const formData = new FormData();
 
     formData.append('nome', cliente.nome);
