@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
+import { Cliente } from '../components/interfaces/Cliente';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
+  /* Criar Cliente no sistema */
   createCliente(formData: FormData): Observable<FormData> {
     return this.http.post<FormData>(this.apiUrl, formData);
   }
