@@ -23,8 +23,6 @@ export class NewClientComponent implements OnInit{
   async createdHandler(cliente: Cliente){
     const formData = new FormData();
 
-    
-
     formData.append("nome", cliente.nome); 
     formData.append("cpf", cliente.cpf); 
     formData.append("dataNascimento", cliente.dataNascimento); 
@@ -35,7 +33,7 @@ export class NewClientComponent implements OnInit{
   
   /* ENVIAR para o SERVICE */
 
-  // await this.usuarioService.createCliente(formData).subscribe();
+  await this.usuarioService.createCliente(formData).subscribe();
   
   /* Mensagem */
   this.messagemService.add('Cadastro realizado com sucesso!'); 
