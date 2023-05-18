@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../interfaces/Cliente';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { MensagemService } from 'src/app/services/mensagem.service';
 
 @Component({
   selector: 'app-new-client',
@@ -14,13 +15,15 @@ export class NewClientComponent implements OnInit{
   btnText = 'Confirmar';
   titulo = 'Criar Conta'; 
 
-  constructor(private usuarioService: UsuarioService){ }
+  constructor(private usuarioService: UsuarioService, private messagemService: MensagemService){ }
   ngOnInit(): void {
   }
 
   /* Metodo assincrono para enviar para API */
   async createdHandler(cliente: Cliente){
     const formData = new FormData();
+
+    
 
     formData.append("nome", cliente.nome); 
     formData.append("cpf", cliente.cpf); 
@@ -32,10 +35,10 @@ export class NewClientComponent implements OnInit{
   
   /* ENVIAR para o SERVICE */
 
-  await this.usuarioService.createCliente(formData).subscribe();
+  // await this.usuarioService.createCliente(formData).subscribe();
   
-
   /* Mensagem */
+  this.messagemService.add('Cadastro realizado com sucesso!'); 
 
   /* Redirect */
 
