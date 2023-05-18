@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.Period;
 
 @Data
 @Entity
@@ -27,7 +26,6 @@ public class Usuario {
     private String CPF;
     private String Telefone;
     private String senha;
-//    private String endereco;
     private LocalDate dataNascimento;
 //    @Transient
 //    private int idade;

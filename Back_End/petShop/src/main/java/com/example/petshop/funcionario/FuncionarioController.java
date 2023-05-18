@@ -28,5 +28,19 @@ public class FuncionarioController {
         funcionarioService.adicionarNovoFuncionario(funcionario);
     }
 
+    @DeleteMapping(path = "{funcionarioId}")
+    public void deleteFuncionario(@PathVariable("funcionarioId") Long funcionarioId) {
+        funcionarioService.deleteFuncionario(funcionarioId);
+    }
+
+    @PutMapping(path = "{funcionarioId}")
+    public void atualizarFuncionario(
+            @PathVariable("funcionarioId") Long funcionarioId,
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String email
+    ) {
+        funcionarioService.atualizarFuncionario(funcionarioId, nome, email);
+    }
+
 
 }
