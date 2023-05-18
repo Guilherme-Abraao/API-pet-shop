@@ -9,14 +9,15 @@ import { MensagemService } from 'src/app/services/mensagem.service';
 })
 export class MensagensSistemaComponent implements OnInit{
 
-  constructor(public mensagemService: MensagemService){
+  faTimes = faTimes; 
 
+  constructor(public mensagemService: MensagemService){
   }
 
   ngOnInit(): void {
     
   }
 
-  faTimes = faTimes; 
+  
 
 }
