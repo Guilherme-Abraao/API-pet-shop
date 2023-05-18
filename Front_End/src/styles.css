@@ -6,6 +6,11 @@
     
 }
 
-
+@font-face {
+    font-family: 'Poppins';
+    src: url('src/assets/fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+  }
+  /* importação da fonte */
   
   

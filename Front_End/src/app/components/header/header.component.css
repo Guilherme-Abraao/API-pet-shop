@@ -1,0 +1,28 @@
+nav {
+    background-color: #d9d9d9;
+    padding: 30px
+}
+/* barra de navegação */
+
+nav ul {
+    float: right;
+    list-style-type: none;
+}
+/* posição do texto */
+
+ul li {
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    bottom: 10px;
+}
+/* posição do texto */
+
+li a{
+    color: #194389;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Poppins';
+    
+}
+/* características do texto */
