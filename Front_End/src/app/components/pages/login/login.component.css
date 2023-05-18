@@ -1,0 +1,79 @@
+/* Título */
+h1 {
+    font-family: 'Poppins';
+    font-weight: 700;
+    text-align: center;
+    color: #194389;
+    margin-bottom: 1em;
+  }
+  
+  /* Todo o form */
+  form {
+    width: 450px;
+    background-color: #fdc333;
+    border-radius: 0.5em;
+    padding-block: 2em;
+    padding-inline: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    bottom: -200px;
+    height: 350px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+  }
+  
+  /* Cada item do form */
+  .form-group input {
+    padding: 0.8em;
+    color: #194389;
+    font-size: 1em;
+    border: none;
+    border-radius: 0.5em;
+  }
+  
+  .form-group input:hover {
+    background-color: #f2f2f2;
+  }
+  
+  input::placeholder {
+    color: #194389;
+  }
+  
+  /* Ao clicar em um item do form */
+  input[type="text"]:focus {
+    background-color: #f2f2f2;
+    color: #194389;
+    outline-color: #637aa1;
+  }
+  
+  /* Botão confirmar */
+  input[type="submit"] {
+    background-color: #194389;
+    color: #ffffff;
+    border: none;
+    padding: 0.6em 2em;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: 0.4s;
+    border-radius: 15px;
+    position: relative;
+    bottom: -25px;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  /* Campos de Validação */
+  
+  .validation-error p {
+    color: #dc3545;
+    margin-top: 0.4em;
+    border-left: 3px solid #dc3545;
+    padding-left: 0.2em;
+  }
+  
