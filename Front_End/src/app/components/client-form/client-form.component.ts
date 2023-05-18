@@ -1,14 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { CpfService } from 'src/app/services/validacao-cpf.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Router } from '@angular/router';
+
+import { AppComponent } from 'src/app/app.component';
+
+import { Cliente } from '../interfaces/Cliente';
 
 @Component({
-  selector: 'app-form-cadastro-usuario',
-  templateUrl: './form-cadastro-usuario.component.html',
-  styleUrls: ['./form-cadastro-usuario.component.css'],
+  selector: 'app-client-form',
+  templateUrl: './client-form.component.html',
+  styleUrls: ['./client-form.component.css'],
 })
-export class FormCadastroUsuarioComponent implements OnInit {
+
+export class ClientFormComponent implements OnInit {
+  @Output() onSubmit = new EventEmitter<Cliente>();
+
   @Input() btnText!: string;
   @Input() titulo!: string;
 
@@ -16,13 +25,11 @@ export class FormCadastroUsuarioComponent implements OnInit {
   faTimes = faTimes;
   cpfValido: boolean = false;
 
-  constructor() {}
+  constructor(private usuarioService: UsuarioService) {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
     this.userForm = new FormGroup({
-      id: new FormControl(''),
-      role: new FormControl(''),
       nome: new FormControl('', [Validators.required]),
       cpf: new FormControl('', [Validators.required]),
       dataNascimento: new FormControl('', [Validators.required]),
@@ -67,6 +74,15 @@ export class FormCadastroUsuarioComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    return 1;
+    
+    console.log(this.userForm.value);
+    this.onSubmit.emit(this.userForm.value);
   }
+
+  /*async createdHandler(cliente: Cliente) {
+
+    console.log('deu bom');
+   
+
+  }*/
 }

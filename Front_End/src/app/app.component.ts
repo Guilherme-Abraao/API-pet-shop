@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
 
-  btnText = 'Confirmar';
-  titulo = 'Criar Conta'; 
-
   title = 'Front_End';
 
   constructor(){ }
