@@ -7,20 +7,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
-import { FormCadastroUsuarioComponent } from './components/singular-components/form-cadastro-usuario/form-cadastro-usuario.component';
 import { MensagensSistemaComponent } from './components/singular-components/mensagens-sistema/mensagens-sistema.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { CadastroUsuarioComponent } from './components/pages/cadastro-usuario/cadastro-usuario.component';
+import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './components/pages/home/home.component';
+
+import { ClientFormComponent } from './components/client-form/client-form.component';
+import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    FormCadastroUsuarioComponent,
     MensagensSistemaComponent,
     LoginComponent,
-    CadastroUsuarioComponent
+    HomeComponent,
+    HeaderComponent,
+    ClientFormComponent,
+    NewClientComponent
   ],
   imports: [
     BrowserModule,

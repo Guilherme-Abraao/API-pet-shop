@@ -2,11 +2,10 @@ package com.example.petshop.usuarios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/petshop/usuario")
+@RequestMapping(path = "api/petshop/cliente")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -22,8 +21,22 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public void registerNewUser(@RequestBody Usuario usuario) {
+    public void adicionarNovoUsuario(@RequestBody Usuario usuario) {
         usuarioService.adicionarNovoUsuario(usuario);
+    }
+
+    @DeleteMapping(path = "{usuarioId}")
+    public void deleteUsuario(@PathVariable("usuarioId") Long usuarioId) {
+        usuarioService.deleteUsuario(usuarioId);
+    }
+
+    @PutMapping(path = "{usuarioId}")
+    public void atualizarUsuario(
+            @PathVariable("usuarioId") Long usuarioId,
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String email
+    ) {
+        usuarioService.atualizarUsuario(usuarioId, nome, email);
     }
 
 }

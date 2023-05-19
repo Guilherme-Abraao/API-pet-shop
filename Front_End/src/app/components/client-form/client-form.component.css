@@ -1,6 +1,6 @@
 /* Título */
 h1 {
-  font-style: normal;
+  font-family: 'Poppins';
   font-weight: 700;
   text-align: center;
   color: #194389;
@@ -15,6 +15,9 @@ form {
   border-radius: 0.5em;
   padding-block: 2em;
   padding-inline: 3em;
+  position: relative;
+  bottom: -95px;
+  right: 200px;
 }
 
 .form-group {
