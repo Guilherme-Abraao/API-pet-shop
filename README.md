@@ -1,5 +1,5 @@
 ### cs_20232
-Repositório definido para a manutenção do controle de versão dos artefatos do projeto de construção de uma API Rest para:
+Repositório definido para a manutenção do controle de versão dos artefatos do projeto de construção de uma API Rest.
 
 ### Tema
 API Rest para o gerenciamento de trabalhos ofertados por um pet shop.
@@ -16,7 +16,7 @@ Esta API será construída pelos componentes do grupo 2:
 |202105033|Guilherme Abraão da Silva|[Guilherme-Abraao](https://github.com/Guilherme-Abraao)|
 |202105034|Gustavo Morais Medeiros|[GustavoMedeiroz](https://github.com/GustavoMedeiroz)|
 |202105039|Jonathan Felipe Viana Cardoso Prado|[JoJonathanF](https://github.com/JoJonathanF)|
-|202105056|Grupo de Oliveira Filho|[Wendel-FI](https://github.com/Wendel-FI)|
+|202105056|Wendel Márcio de Oliveira Filho|[Wendel-Fl](https://github.com/Wendel-Fl)|
 
 ### Requisitos Funcionais
 1. RF001 - **Cadastro de clientes**
@@ -83,4 +83,4 @@ Heroku
 |4|Agendamento(banho e tosa): criação e visualização|03/06/2023|16/06/2023|Grupo|Programada|
 |5|Agendamento(banho e tosa): edição e cancelamento|17/06/2023|30/06/2023|Grupo|Programada|
 |6|Histórico|01/07/2023|21/07/2023|Grupo|Programada|
-|7|Cálculo de comissão, avaliação do serviço e deploy|22/07/2023|11/08/2023|Grupo|Programada|
+|7|Cálculo de comissão, avaliação do serviço e deploy|22/07/2023|11/08/2023|Grupo|Programada| 
