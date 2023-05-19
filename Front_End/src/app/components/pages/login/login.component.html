@@ -1,1 +1,22 @@
-<p>login works!</p>
+<form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm" >
+    <h1>{{ "Login" }}</h1>
+  
+    <div class="form-group">
+      <input type="text" placeholder="CPF" formControlName="cpf" required />
+    </div>
+  
+    <div class="form-group">
+      <input
+        type="password"
+        placeholder="Senha"
+        formControlName="senha"
+        required
+      />
+    </div>
+    
+    <input type="submit" value="Confirmar" />
+</form>
+
+<img src="/assets/images/pata2.png" alt="image" class="pata2"/>
+<img src="/assets/images/pata3.png" alt="image" class="pata3"/>
+

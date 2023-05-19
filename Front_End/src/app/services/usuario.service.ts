@@ -12,7 +12,7 @@ export class UsuarioService {
 
   /* private baseApiUrl = environment.baseApiUrl; */ 
   private baseApiUrl = 'http://localhost:8080/api/petshop';
-  private apiUrl = `${this.baseApiUrl}/cliente`;
+  private apiUrl = `${this.baseApiUrl}api/usuario`;
 
   constructor(private http: HttpClient) { }
 
