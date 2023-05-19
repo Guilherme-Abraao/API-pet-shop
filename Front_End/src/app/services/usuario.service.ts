@@ -17,8 +17,8 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   /* Criar Cliente no sistema */
-  createCliente(formData: FormData): Observable<FormData> {
-    return this.http.post<FormData>(this.apiUrl, formData);
+  createCliente(cliente: any): Observable<any>{
+    return this.http.post<any>(this.apiUrl, cliente);
   }
 
 }

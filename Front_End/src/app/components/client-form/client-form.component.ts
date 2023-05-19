@@ -4,28 +4,32 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { CpfService } from 'src/app/services/validacao-cpf.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
-
 import { AppComponent } from 'src/app/app.component';
-
 import { Cliente } from '../interfaces/Cliente';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MensagemService } from 'src/app/services/mensagem.service';
 
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
   styleUrls: ['./client-form.component.css'],
 })
-
 export class ClientFormComponent implements OnInit {
-  @Output() onSubmit = new EventEmitter<Cliente>();
+  /* Enviar para o componente pai - New-Cliente */
+  @Output() onSubmit = new EventEmitter<String>();
 
+  /* Receber do componente pai - New-Cliente */
   @Input() btnText!: string;
   @Input() titulo!: string;
 
+  /* FormGroup do formulario e fatimes é um ícone*/
   userForm!: FormGroup;
   faTimes = faTimes;
-  cpfValido: boolean = false;
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService, 
+              private http: HttpClient, 
+              private messagemService: MensagemService, 
+              private cpfService: CpfService) {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
@@ -40,14 +44,7 @@ export class ClientFormComponent implements OnInit {
     });
   }
 
-  /* Errado e imcompleto*/
-  /* verificarCpf(): boolean {
-    const cpfValue = this.userForm.get('cpf')!.value;
-    return !this.cpfService.validarCpf(cpfValue);
-  } */ 
-
   /* GETs dos itens do formulário */
-
   get nome() {
     return this.userForm.get('nome')!;
   }
@@ -70,19 +67,30 @@ export class ClientFormComponent implements OnInit {
     return this.userForm.get('confirmacaoSenha')!;
   }
 
+  /* Submissão do formulário */ 
   submit() {
-    if (this.userForm.invalid) {
+    if (this.userForm.invalid) { // Se for inválido invalida a submissão
       return;
     }
-    
-    console.log(this.userForm.value);
-    this.onSubmit.emit(this.userForm.value);
+
+    /* Criando um FormData com o formulário completo válidado*/
+    if (this.userForm.valid) {
+      const formData = {
+        nome: this.userForm.value.nome,
+        cpf: this.userForm.value.cpf,
+        dataNascimento: this.userForm.value.dataNascimento,
+        telefone: this.userForm.value.telefone,
+        email: this.userForm.value.email,
+        senha: this.userForm.value.senha,
+        confirmacaoSenha: this.userForm.value.confirmacaoSenha,
+      };
+
+      /* Transformando em JSON */
+      const jsonData = JSON.stringify(formData);
+
+      /* Enviando JSON para o componente pai - NewClient*/
+      this.onSubmit.emit(jsonData);
+    }
   }
 
-  /*async createdHandler(cliente: Cliente) {
-
-    console.log('deu bom');
-   
-
-  }*/
 }
