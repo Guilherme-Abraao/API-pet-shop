@@ -2,6 +2,7 @@ package com.example.petshop.funcionario;
 
 import com.example.petshop.usuarios.Usuario;
 import com.example.petshop.usuarios.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public void registerNewUser(@RequestBody Funcionario funcionario) {
+    public void registerNewUser(@RequestBody @Valid Funcionario funcionario) {
         funcionarioService.adicionarNovoFuncionario(funcionario);
     }
 
