@@ -12,13 +12,13 @@ export class UsuarioService {
 
   /* private baseApiUrl = environment.baseApiUrl; */ 
   private baseApiUrl = 'http://localhost:8080/api/petshop';
-  private apiUrl = `${this.baseApiUrl}api/usuario`;
+  private apiUrl = `${this.baseApiUrl}/cliente`;
 
   constructor(private http: HttpClient) { }
 
   /* Criar Cliente no sistema */
-  createCliente(formData: FormData): Observable<FormData> {
-    return this.http.post<FormData>(this.apiUrl, formData);
+  createCliente(cliente: any): Observable<any>{
+    return this.http.post<any>(this.apiUrl, cliente);
   }
 
 }
