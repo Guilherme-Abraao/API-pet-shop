@@ -1,11 +1,9 @@
-
-<app-client-form 
-    [btnText]="btnText" 
+<div class="form-img">
+  <app-client-form
+    [btnText]="btnText"
     [titulo]="titulo"
     (onSubmit)="createdHandler($event)"
->
-</app-client-form>
-
-<h2>
-    <img src="/assets/images/dog.png" alt="image">
-</h2>
+  >
+  </app-client-form>
+    <img src="/assets/images/dog.png" alt="image" class="dog-client-form"/>
+</div>
