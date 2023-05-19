@@ -1,7 +1,13 @@
 package com.example.petshop.usuarios;
 
+import com.example.petshop.validation.constraints.Senha;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
@@ -21,11 +27,23 @@ public class Usuario {
             generator = "usuario_sequence"
     )
     private Long id;
+    @NotBlank
+    @Pattern(regexp = "^[A-Z]+(.)*")
     private String nome;
+    @NotBlank
+    @Email
     private String email;
+    @NotBlank
+    @CPF
     private String CPF;
+    @NotBlank
     private String Telefone;
+    @NotBlank
+    //Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
+    //Documentos envolvidos estão na pasta validation.
+    @Senha
     private String senha;
+    @NotNull
     private LocalDate dataNascimento;
 //    @Transient
 //    private int idade;
