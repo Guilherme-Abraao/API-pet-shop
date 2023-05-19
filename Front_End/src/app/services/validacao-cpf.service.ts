@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class CpfService {
   constructor() {}
 
-  validarCpf(cpf: string): boolean {
+  validarCpf(cpf: any): boolean {
     // Remova qualquer formatação do CPF (como pontos e traços)
     cpf = cpf.replace(/\D/g, '');
 
