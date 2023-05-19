@@ -27,26 +27,30 @@ public class Usuario {
             generator = "usuario_sequence"
     )
     private Long id;
-    @NotBlank
+
+    @NotBlank(message = "name.not.blank")
     @Pattern(regexp = "^[A-Z]+(.)*")
     private String nome;
-    @NotBlank
-    @Email
+
+    @NotBlank(message = "email.not.blank")
+    @Email(message = "email.not.valid")
     private String email;
-    @NotBlank
-    @CPF
+
+    @NotBlank(message = "cpf.not.blank")
+    @CPF(message = "cpf.not.valid")
     private String CPF;
-    @NotBlank
+
+    @NotBlank(message = "telefone.not.blank")
     private String Telefone;
-    @NotBlank
+
+    @NotBlank(message = "senha.not.blank")
     //Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
     //Documentos envolvidos estão na pasta validation.
-    @Senha
+    @Senha(message = "senha.not.valid")
     private String senha;
-    @NotNull
+
+    @NotNull(message = "dataNascimento.not.null")
     private LocalDate dataNascimento;
-//    @Transient
-//    private int idade;
 
     public Usuario() {
     }
@@ -59,9 +63,4 @@ public class Usuario {
         this.senha = senha;
         this.dataNascimento = dataNascimento;
     }
-
-    //    Caso queira mostrar a idade
-//    public int getIdade() {
-//        return Period.between(this.dataNascimento, LocalDate.now()).getYears();
-//    }
 }
