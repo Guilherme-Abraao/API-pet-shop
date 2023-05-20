@@ -23,7 +23,7 @@ export class NewClientComponent implements OnInit{
   /* Metodo assincrono para enviar para API */
   async createdHandler(cliente: any){
     
-    // const jsonData = JSON.parse(JSON.stringify(cliente));
+    const jsonData = JSON.stringify(cliente);
 
     // console.log(JSON.parse(JSON.stringify(cliente)));
 
