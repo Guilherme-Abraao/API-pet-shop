@@ -16,9 +16,7 @@ import { MensagemService } from 'src/app/services/mensagem.service';
 })
 export class ClientFormComponent implements OnInit {
   /* Enviar para o componente pai - New-Cliente */
-  @Output() onSubmit = new EventEmitter<String>();
-
-  @Output() jsonAtualizado: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onSubmit = new EventEmitter<Cliente>();
 
   /* Receber do componente pai - New-Cliente */
   @Input() btnText!: string;
@@ -84,18 +82,11 @@ export class ClientFormComponent implements OnInit {
         telefone: this.userForm.value.telefone,
         email: this.userForm.value.email,
         senha: this.userForm.value.senha,
-        // confirmacaoSenha: this.userForm.value.confirmacaoSenha,
+        confirmacaoSenha: this.userForm.value.confirmacaoSenha,
       };
 
-      /* Transformando em JSON */
-      // const jsonData = JSON.stringify(formData);
-
-      /* Enviando JSON para o componente pai - NewClient*/
-      // console.log(jsonData);
-      // this.onSubmit.emit(jsonData);
-
-      console.log(formData);
-      // this.onSubmit.emit(formData); 
+      // console.log(this.userForm.value);
+      this.onSubmit.emit(this.userForm.value); 
     }
   }
 

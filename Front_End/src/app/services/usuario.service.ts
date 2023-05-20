@@ -18,7 +18,8 @@ export class UsuarioService {
 
   /* Criar Cliente no sistema */
   createCliente(cliente: any): Observable<any>{
-    return this.http.post<any>(this.apiUrl, cliente);
+    const result = this.http.post(this.apiUrl, cliente, {headers: {'Content-type': 'aplication/json'}});
+    return result;
   }
 
 }
