@@ -1,9 +1,8 @@
-<div class="message" *ngIf="mensagemService.message">
+<div class="message" *ngIf="mensagemService.message"> 
     <div class="message-header">
-      <h2>Mensagem do Sistema:</h2>
+      <p>{{ mensagemService.message }}</p>
       <button class="clear" (click)="mensagemService.clear()">
-        <fa-icon [icon]="faTimes"></fa-icon>
+        <img src="/assets/images/botao-sair-branco.png" alt="image"/>
       </button>
     </div>
-    <p>{{ mensagemService.message }}</p>
   </div>

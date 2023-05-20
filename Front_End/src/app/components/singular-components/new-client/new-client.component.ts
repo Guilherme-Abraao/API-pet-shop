@@ -22,23 +22,21 @@ export class NewClientComponent implements OnInit{
 
   /* Metodo assincrono para enviar para API */
   async createdHandler(cliente: any){
-    const clienteJSON = {
-      nome: cliente.nome,
-      cpf: cliente.cpf,
-      dataNascimento: cliente.dataNascimento,
-      email: cliente.email,
-      telefone: cliente.telefone,
-      senha: cliente.senha
-    };
+    
+    // const jsonData = JSON.parse(JSON.stringify(cliente));
+
+    // console.log(JSON.parse(JSON.stringify(cliente)));
+
+    await this.usuarioService.createCliente(cliente).subscribe();
     
 
     /* Transformando em JSON */
-    const jsonData: object = JSON.parse(JSON.stringify(clienteJSON));
+    // const jsonData: object = JSON.parse(JSON.stringify(clienteJSON));
 
     // console.log(jsonData);
   
   /* ENVIAR para o SERVICE um JSON*/
-  await this.usuarioService.createCliente(jsonData).subscribe();
+  
   
   /* Mensagem de retorno do sistema */
   this.messagemService.add('Cadastro realizado com sucesso!'); 
