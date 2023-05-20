@@ -28,12 +28,17 @@ export class NewClientComponent implements OnInit{
       dataNascimento: cliente.dataNascimento,
       email: cliente.email,
       telefone: cliente.telefone,
-      senha: cliente.senha,
-      confirmacaoSenha: cliente.confirmacaoSenha
+      senha: cliente.senha
     };
+    
+
+    /* Transformando em JSON */
+    const jsonData: object = JSON.parse(JSON.stringify(clienteJSON));
+
+    // console.log(jsonData);
   
   /* ENVIAR para o SERVICE um JSON*/
-  await this.usuarioService.createCliente(clienteJSON).subscribe();
+  await this.usuarioService.createCliente(jsonData).subscribe();
   
   /* Mensagem de retorno do sistema */
   this.messagemService.add('Cadastro realizado com sucesso!'); 

@@ -18,6 +18,8 @@ export class ClientFormComponent implements OnInit {
   /* Enviar para o componente pai - New-Cliente */
   @Output() onSubmit = new EventEmitter<String>();
 
+  @Output() jsonAtualizado: EventEmitter<any> = new EventEmitter<any>();
+
   /* Receber do componente pai - New-Cliente */
   @Input() btnText!: string;
   @Input() titulo!: string;
@@ -82,14 +84,18 @@ export class ClientFormComponent implements OnInit {
         telefone: this.userForm.value.telefone,
         email: this.userForm.value.email,
         senha: this.userForm.value.senha,
-        confirmacaoSenha: this.userForm.value.confirmacaoSenha,
+        // confirmacaoSenha: this.userForm.value.confirmacaoSenha,
       };
 
       /* Transformando em JSON */
-      const jsonData = JSON.stringify(formData);
+      // const jsonData = JSON.stringify(formData);
 
       /* Enviando JSON para o componente pai - NewClient*/
-      this.onSubmit.emit(jsonData);
+      // console.log(jsonData);
+      // this.onSubmit.emit(jsonData);
+
+      console.log(formData);
+      // this.onSubmit.emit(formData); 
     }
   }
 
