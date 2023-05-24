@@ -1,37 +1,61 @@
-
 /* barra de navegação */
 nav {
-    padding: 30px
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
 }
 
 /* posição do texto */
-nav ul {
-    float: right;
-    list-style-type: none;
+nav ul, h2 {
+  float: right;
+  list-style-type: none;
 }
 
 /* posição do texto */
-ul li {
-    display: inline-block;
-    padding: 10px;
-    position: relative;
-    bottom: 10px;
+ul li{
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  bottom: 10px;
 }
 
 /* características do texto */
-li a{
-    color: #194389;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: 'Poppins'; 
+li a, h2 {
+  color: #194389;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Poppins";
 }
 
-li a:hover{
-    color: #FDC333;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: 'Poppins'; 
+h2:hover, li a:hover {
+  color: #fdc333;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Poppins";
+}
+
+li a:hover {
+    border-bottom: 3px solid #fdc333;
+  }
+
+/* Logo e escrito PetShop */
+.brand,
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1em;
+}
+
+.brand img {
+  width: 40px;
+  margin-right: 0.6em;
+}
+
+.brand h2 {
+  transition: 0.4s;
+  margin-left: 0.5em;
 }
 

@@ -12,6 +12,7 @@ import { MensagemService } from 'src/app/services/mensagem.service';
 })
 export class NewClientComponent implements OnInit{
 
+  /* Textos dinâmicos para o formulário */
   btnText = 'Confirmar';
   titulo = 'Criar Conta'; 
 
@@ -20,22 +21,24 @@ export class NewClientComponent implements OnInit{
   }
 
   /* Metodo assincrono para enviar para API */
-  async createdHandler(cliente: Cliente){
-    const formData = new FormData();
+  async createdHandler(cliente: any){
+    
+    const jsonData = JSON.stringify(cliente);
 
-    formData.append("nome", cliente.nome); 
-    formData.append("cpf", cliente.cpf); 
-    formData.append("dataNascimento", cliente.dataNascimento); 
-    formData.append("email", cliente.email); 
-    formData.append("telefone", cliente.telefone); 
-    formData.append("senha", cliente.senha); 
-    formData.append("confirmacaoSenha", cliente.confirmacaoSenha); 
-  
-  /* ENVIAR para o SERVICE */
+    // console.log(JSON.parse(JSON.stringify(cliente)));
 
-  await this.usuarioService.createCliente(formData).subscribe();
+    await this.usuarioService.createCliente(cliente).subscribe();
+    
+
+    /* Transformando em JSON */
+    // const jsonData: object = JSON.parse(JSON.stringify(clienteJSON));
+
+    // console.log(jsonData);
   
-  /* Mensagem */
+  /* ENVIAR para o SERVICE um JSON*/
+  
+  
+  /* Mensagem de retorno do sistema */
   this.messagemService.add('Cadastro realizado com sucesso!'); 
 
   /* Redirect */

@@ -8,6 +8,7 @@ footer {
   justify-content: center;
   padding: 40px;
   width: 100%;
+  border-top: 5px solid #FDC333;
 }
 
 footer h3 {
@@ -21,4 +22,9 @@ h3, p{
 footer span {
   font-weight: bold;
   color: #FDC333;
+}
+
+.pata22{
+  position: relative;
+  right: 20%;
 }

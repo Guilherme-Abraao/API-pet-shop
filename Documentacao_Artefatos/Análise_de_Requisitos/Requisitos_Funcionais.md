@@ -6,6 +6,7 @@
 |1.0| 13/05/2023 | Criação do documento | Guilherme-Abraao |
 |1.1| 15/05/2023 | Inserção do H.U. 05 ao H.U. 09 | Wendel-Fl |
 |1.2| 15/05/2023 | Inserção do H.U. 10 ao H.U. 13 | GabrielCamiloOliveira |
+|1.3| 19/05/2023 | Remoção dos campos de endereço | GabrielCamiloOliveira |
 
 Os requisitos funcionais foram classificados de acordo com sua prioridade, adotando-se os seguintes critérios:
 
@@ -25,7 +26,7 @@ Prioridade: alta
 
 #### Cenário 1: 
 
-**Dado** que eu esteja na tela de cadastro, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail, endereço e senha corretamente **E** clicar no botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
+**Dado** que eu esteja na tela de cadastro, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail e senha corretamente **E** clicar no botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
 
 #### Cenário 2: 
 
@@ -42,7 +43,7 @@ Prioridade: alta
 
 #### Cenário 1: 
 
-**Dado** que eu esteja na tela de cadastro de funcionários, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
+**Dado** que eu esteja na tela de cadastro de funcionários, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail, cargo, salário e senha corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
 
 #### Cenário 2: 
 
@@ -59,7 +60,7 @@ Prioridade: alta
 
 #### Cenário 1: 
 
-**Dado** que eu esteja na tela de cadastro de funcionários, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail, endereço, cargo, salário e senha corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
+**Dado** que eu esteja na tela de cadastro de funcionários, **quando** preencher os campos de Nome, CPF, data de nascimento, telefone, endereço de e-mail, cargo, salário e senha corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi realizado com sucesso.
 
 #### Cenário 2: 
 
@@ -76,11 +77,11 @@ Prioridade: alta
 
 #### Cenário 1: 
 
-**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail e senha) corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi atualizado com sucesso.
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço de e-mail e senha) corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi atualizado com sucesso.
 
 #### Cenário 2: 
 
-**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail e senha) deixando vazio ou incorreto **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado. 
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço de e-mail e senha) deixando vazio ou incorreto **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado. 
 
 ---
 
@@ -94,11 +95,11 @@ Prioridade: alta
 
 #### Cenário 1:
 
-**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha) corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi atualizado com sucesso.
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço de e-mail, cargo, salário e senha) corretamente **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar que o cadastro foi atualizado com sucesso.
 
 #### Cenário 2:
 
-**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço, endereço de e-mail, cargo, salário e senha) deixando vazio ou incorreto **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado.
+**Dado** que eu esteja na tela editar perfil, **quando** alterar algum campo do cadastro (Nome, data de nascimento, telefone, endereço de e-mail, cargo, salário e senha) deixando vazio ou incorreto **E** clicar sobre o botão “confirmar”, **então** o sistema deve me informar quais campos estão faltando ou estão incorretos, além de mostrar que o cadastro não foi atualizado.
 
 ---
 
