@@ -18,7 +18,17 @@ export class UsuarioService {
 
   /* Criar Cliente no sistema */
   createCliente(cliente: any): Observable<any>{
-    return this.http.post<any>(this.apiUrl, cliente);
+    const data = {
+      nome: cliente.nome,
+      cpf: cliente.cpf,
+      dataNascimento: cliente.dataNascimento,
+      telefone: cliente.telefone,
+      email: cliente.email,
+      senha: cliente.senha,
+      // confirmacaoSenha: cliente.confirmacaoSenha
+    };
+    const result = this.http.post(this.apiUrl, data);
+    return result;
   }
 
 }

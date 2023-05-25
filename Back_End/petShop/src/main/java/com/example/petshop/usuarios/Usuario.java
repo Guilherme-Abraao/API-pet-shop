@@ -38,7 +38,7 @@ public class Usuario {
 
     @NotBlank(message = "cpf.not.blank")
     @CPF(message = "cpf.not.valid")
-    private String CPF;
+    private String cpf;
 
     @NotBlank(message = "telefone.not.blank")
     private String Telefone;
@@ -49,6 +49,12 @@ public class Usuario {
     @Senha(message = "senha.not.valid")
     private String senha;
 
+//    @NotBlank(message = "senha.not.blank")
+//    //Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
+//    //Documentos envolvidos estão na pasta validation.
+////    @Senha(message = "senha.not.valid")
+//    private String confirmacaoSenha;
+
     @NotNull(message = "dataNascimento.not.null")
     private LocalDate dataNascimento;
 
@@ -58,9 +64,19 @@ public class Usuario {
     public Usuario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento) {
         this.nome = nome;
         this.email = email;
-        this.CPF = CPF;
+        this.cpf = cpf;
         Telefone = telefone;
         this.senha = senha;
         this.dataNascimento = dataNascimento;
     }
+
+//    public Usuario(String nome, String email, String cpf, String telefone, String senha, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
+//        this.nome = nome;
+//        this.email = email;
+//        this.cpf = cpf;
+//        Telefone = telefone;
+//        this.senha = senha;
+//        this.confirmacaoSenha = confirmacaoSenha;
+//        this.dataNascimento = dataNascimento;
+//    }
 }
