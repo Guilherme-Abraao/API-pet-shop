@@ -1,5 +1,6 @@
-package com.example.petshop.usuarios;
+package com.example.petshop.repository;
 
+import com.example.petshop.base.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

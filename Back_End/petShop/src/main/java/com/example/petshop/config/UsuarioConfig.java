@@ -1,4 +1,4 @@
-package com.example.petshop.usuarios;
+package com.example.petshop.config;
 
 import org.springframework.context.annotation.Configuration;
 

@@ -1,4 +1,4 @@
-package com.example.petshop.usuarios;
+package com.example.petshop.base;
 
 import com.example.petshop.validation.constraints.Senha;
 import jakarta.persistence.*;
@@ -70,6 +70,7 @@ public class Usuario {
         this.dataNascimento = dataNascimento;
     }
 
+//    Para quando for usar confirmacaoSenha
 //    public Usuario(String nome, String email, String cpf, String telefone, String senha, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
 //        this.nome = nome;
 //        this.email = email;
