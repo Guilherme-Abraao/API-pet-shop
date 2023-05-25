@@ -5,7 +5,6 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { ClientFormComponent } from './components/client-form/client-form.component';
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
 
-
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'cliente', component: NewClientComponent},

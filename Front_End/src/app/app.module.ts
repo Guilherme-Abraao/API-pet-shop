@@ -25,7 +25,7 @@ import { NewClientComponent } from './components/singular-components/new-client/
     HomeComponent,
     HeaderComponent,
     ClientFormComponent,
-    NewClientComponent
+    NewClientComponent,
   ],
   imports: [
     BrowserModule,
