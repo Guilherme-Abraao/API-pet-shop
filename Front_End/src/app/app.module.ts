@@ -15,6 +15,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 
 import { ClientFormComponent } from './components/client-form/client-form.component';
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
+import { PerfilComponent } from './components/pages/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NewClientComponent } from './components/singular-components/new-client/
     HeaderComponent,
     ClientFormComponent,
     NewClientComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
