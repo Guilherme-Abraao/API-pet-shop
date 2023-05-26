@@ -7,14 +7,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
 @Data
 @Entity
-@Table
-public class Usuario {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Usuario {
 
     @Id
     @SequenceGenerator(
@@ -58,10 +60,7 @@ public class Usuario {
     @NotNull(message = "dataNascimento.not.null")
     private LocalDate dataNascimento;
 
-    public Usuario() {
-    }
-
-    public Usuario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento) {
+    public Usuario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
