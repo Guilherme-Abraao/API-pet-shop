@@ -15,8 +15,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Usuario {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Usuario {
 
     @Id
     @SequenceGenerator(
