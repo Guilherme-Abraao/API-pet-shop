@@ -1,7 +1,7 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Usuario;
-import com.example.petshop.service.UsuarioService;
+import com.example.petshop.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/petshop/cliente")
-public class UsuarioController {
+public class ClienteController {
 
-    private final UsuarioService usuarioService;
+    private final ClienteService usuarioService;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService) {
+    public ClienteController(ClienteService usuarioService) {
         this.usuarioService = usuarioService;
     }
 
