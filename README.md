@@ -78,7 +78,7 @@ Heroku
 |Iteração|Tarefa|Data Início|Data Fim|Responsável|Situação|
 |---|---|---|---|---|---|
 |1|Planejamento|17/04/2023|05/05/2023|Grupo|Completa|
-|2|Cadastro de Funcionários|06/05/2023|19/05/2023|Grupo|Programada|
+|2|Cadastro de Funcionários|06/05/2023|19/05/2023|Grupo|Completa|
 |3|Cadastro de clientes e animais|20/05/2023|02/06/2023|Grupo|Programada|
 |4|Agendamento(banho e tosa): criação e visualização|03/06/2023|16/06/2023|Grupo|Programada|
 |5|Agendamento(banho e tosa): edição e cancelamento|17/06/2023|30/06/2023|Grupo|Programada|

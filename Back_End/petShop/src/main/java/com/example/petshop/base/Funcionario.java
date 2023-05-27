@@ -1,7 +1,5 @@
-package com.example.petshop.funcionario;
+package com.example.petshop.base;
 
-import com.example.petshop.usuarios.Usuario;
-import com.example.petshop.validation.constraints.Senha;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
