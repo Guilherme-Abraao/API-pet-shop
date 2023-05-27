@@ -1,4 +1,4 @@
-package com.example.petshop.usuarios;
+package com.example.petshop.base;
 
 import com.example.petshop.validation.constraints.Senha;
 import jakarta.persistence.*;
@@ -7,13 +7,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
 @Data
 @Entity
-@Table
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 
     @Id
@@ -59,6 +61,7 @@ public class Usuario {
     private LocalDate dataNascimento;
 
 <<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/Usuario.java
+<<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/Usuario.java
     public Usuario() {
     }
 
@@ -66,6 +69,13 @@ public class Usuario {
 =======
     public Usuario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento) {
 >>>>>>> parent of 67731d8... Merge pull request #48 from gilmarUFG/guilherme:Back_End/petShop/src/main/java/com/example/petshop/base/Usuario.java
+=======
+
+    //    Falta analisar como iremos diferenciar os tipos de usuário
+    //    private TipoUsuario tipoUsuario;
+
+    public Usuario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento) {
+>>>>>>> main:Back_End/petShop/src/main/java/com/example/petshop/base/Usuario.java
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -74,6 +84,7 @@ public class Usuario {
         this.dataNascimento = dataNascimento;
     }
 
+//    Para quando for usar confirmacaoSenha
 //    public Usuario(String nome, String email, String cpf, String telefone, String senha, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
 //        this.nome = nome;
 //        this.email = email;

@@ -1,5 +1,6 @@
-package com.example.petshop.usuarios;
+package com.example.petshop.repository;
 
+<<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/UsuarioRepository.java
 <<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/UsuarioRepository.java
 =======
 import com.example.petshop.base.Administrador;
@@ -7,16 +8,22 @@ import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.Usuario;
 >>>>>>> parent of 67731d8... Merge pull request #48 from gilmarUFG/guilherme:Back_End/petShop/src/main/java/com/example/petshop/repository/UsuarioRepository.java
+=======
+import com.example.petshop.base.*;
+>>>>>>> main:Back_End/petShop/src/main/java/com/example/petshop/repository/UsuarioRepository.java
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("SELECT u FROM Usuario u WHERE u.email = ?1")
     Optional<Usuario> findUsuarioByEmail(String email);
+<<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/UsuarioRepository.java
 <<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/UsuarioRepository.java
 =======
 
@@ -29,4 +36,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("SELECT adm FROM Administrador adm WHERE adm.email = ?1")
     Optional<Administrador> findAdministradorByEmail(String email);
 >>>>>>> parent of 67731d8... Merge pull request #48 from gilmarUFG/guilherme:Back_End/petShop/src/main/java/com/example/petshop/repository/UsuarioRepository.java
+=======
+
+>>>>>>> main:Back_End/petShop/src/main/java/com/example/petshop/repository/UsuarioRepository.java
 }
