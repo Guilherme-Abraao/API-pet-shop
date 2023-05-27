@@ -60,7 +60,9 @@ public class Usuario {
     @NotNull(message = "dataNascimento.not.null")
     private LocalDate dataNascimento;
 
-    private TipoUsuario tipoUsuario;
+
+    //    Falta analisar como iremos diferenciar os tipos de usuário
+    //    private TipoUsuario tipoUsuario;
 
     public Usuario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento) {
         this.nome = nome;
