@@ -29,7 +29,7 @@ public class ClienteController {
     }
 
 //    Encontrar apenas um usuário
-    @GetMapping(path = "/find/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Cliente> getClienteById(@PathVariable("id") Long id) {
         Cliente cliente = clienteService.findClienteById(id);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
