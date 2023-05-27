@@ -8,6 +8,7 @@ import { AppComponent } from 'src/app/app.component';
 import { Cliente } from '../interfaces/Cliente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MensagemService } from 'src/app/services/mensagem.service';
+import { Response } from '../interfaces/MensagemSistema';
 
 @Component({
   selector: 'app-client-form',
@@ -26,6 +27,7 @@ export class ClientFormComponent implements OnInit {
   userForm!: FormGroup;
   faTimes = faTimes;
 
+  /* Construtor chamando os serviços */
   constructor(private usuarioService: UsuarioService, 
               private http: HttpClient, 
               private messagemService: MensagemService, 
@@ -70,24 +72,30 @@ export class ClientFormComponent implements OnInit {
   /* Submissão do formulário */ 
   submit() {
     if (this.userForm.invalid) { // Se for inválido invalida a submissão
-      return;
+      return this.messagemService.add('Formulário Inválido, verifique se os dados estão corretos!'); ;
+    }
+
+    if (this.userForm.value.senha != this.userForm.value.confirmacaoSenha) { // Se for inválido invalida a submissão
+      return this.messagemService.add('As senhas devem ser iguais!'); ;
     }
 
     /* Criando um FormData com o formulário completo válidado*/
-    if (this.userForm.valid) {
-      const formData = {
-        nome: this.userForm.value.nome,
-        cpf: this.userForm.value.cpf,
-        dataNascimento: this.userForm.value.dataNascimento,
-        telefone: this.userForm.value.telefone,
-        email: this.userForm.value.email,
-        senha: this.userForm.value.senha,
-        confirmacaoSenha: this.userForm.value.confirmacaoSenha,
-      };
-
-      // console.log(this.userForm.value);
-      this.onSubmit.emit(this.userForm.value); 
+    if(this.userForm.value.senha == this.userForm.value.confirmacaoSenha){
+      if (this.userForm.valid) {
+        const formData = {
+          nome: this.userForm.value.nome,
+          cpf: this.userForm.value.cpf,
+          dataNascimento: this.userForm.value.dataNascimento,
+          telefone: this.userForm.value.telefone,
+          email: this.userForm.value.email,
+          senha: this.userForm.value.senha,
+        };
+  
+        // console.log(this.userForm.value);
+        this.onSubmit.emit(this.userForm.value); 
+      }
     }
+    
   }
 
 }
