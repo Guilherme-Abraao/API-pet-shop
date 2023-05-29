@@ -49,10 +49,10 @@ public class ClienteService {
     }
 
     @Transactional
-    public Cliente atualizarCliente(Long usuarioId, String nome, String email) {
-        Cliente cliente = clienteRepository.findById(usuarioId)
+    public Cliente atualizarCliente(Long clienteId, String nome, String email) {
+        Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new IllegalStateException(
-                        "Cliente com id " + usuarioId + " não existe."
+                        "Cliente com id " + clienteId + " não existe."
                 ));
 
         if (nome != null &&
