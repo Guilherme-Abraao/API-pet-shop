@@ -38,8 +38,8 @@ public class Usuario {
     @Email(message = "email.not.valid")
     private String email;
 
-    @NotBlank(message = "cpf.not.blank")
-    @CPF(message = "cpf.not.valid")
+//    @NotBlank(message = "cpf.not.blank")
+//    @CPF(message = "cpf.not.valid")
     private String cpf;
 
     @NotBlank(message = "telefone.not.blank")
