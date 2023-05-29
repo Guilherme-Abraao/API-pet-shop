@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../interfaces/Cliente';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-client',
@@ -16,33 +17,27 @@ export class NewClientComponent implements OnInit{
   btnText = 'Confirmar';
   titulo = 'Criar Conta'; 
 
-  constructor(private usuarioService: UsuarioService, private messagemService: MensagemService){ }
+  constructor(private usuarioService: UsuarioService, 
+              private messagemService: MensagemService,  
+              private router: Router){ }
+              
   ngOnInit(): void {
   }
 
   /* Metodo assincrono para enviar para API */
   async createdHandler(cliente: any){
     
+    /* Mudando tipo de dado para JSON */
     const jsonData = JSON.stringify(cliente);
 
-    // console.log(JSON.parse(JSON.stringify(cliente)));
-
+    /* Enviando cliente para o Service */
     await this.usuarioService.createCliente(cliente).subscribe();
-    
-
-    /* Transformando em JSON */
-    // const jsonData: object = JSON.parse(JSON.stringify(clienteJSON));
-
-    // console.log(jsonData);
   
-  /* ENVIAR para o SERVICE um JSON*/
-  
-  
-  /* Mensagem de retorno do sistema */
-  this.messagemService.add('Cadastro realizado com sucesso!'); 
+    /* Mensagem de retorno do sistema */
+    this.messagemService.add('Cadastro realizado com sucesso!'); 
 
-  /* Redirect */
-
+    /* Redirect */
+    this.router.navigate(['/login']);
   }
 
 }

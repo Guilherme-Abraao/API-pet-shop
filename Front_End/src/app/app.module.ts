@@ -15,6 +15,8 @@ import { HomeComponent } from './components/pages/home/home.component';
 
 import { ClientFormComponent } from './components/client-form/client-form.component';
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
+import { PerfilComponent } from './components/pages/perfil/perfil.component';
+import { ClientFormColumnComponent } from './components/client-form-column/client-form-column.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { NewClientComponent } from './components/singular-components/new-client/
     HomeComponent,
     HeaderComponent,
     ClientFormComponent,
-    NewClientComponent
+    NewClientComponent,
+    PerfilComponent,
+    ClientFormColumnComponent,
   ],
   imports: [
     BrowserModule,
