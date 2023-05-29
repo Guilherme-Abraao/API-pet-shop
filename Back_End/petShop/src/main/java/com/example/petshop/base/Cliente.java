@@ -18,7 +18,7 @@ public class Cliente extends Usuario {
         super(nome, email, cpf, telefone, senha, dataNascimento);
     }
 
-    public Animal adicionarAnimal(Animal animal) {
+    public void adicionarAnimal(Animal animal) {
         animais.add(animal);
     }
 }
