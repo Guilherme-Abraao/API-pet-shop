@@ -11,6 +11,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/pages/home/home.component';
+import { AuthService } from './services/auth.service';
 
 import { ClientFormComponent } from './components/client-form/client-form.component';
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
@@ -28,7 +29,7 @@ import { ClientFormColumnComponent } from './components/client-form-column/clien
     ClientFormComponent,
     NewClientComponent,
     PerfilComponent,
-    ClientFormColumnComponent,
+    ClientFormColumnComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,7 @@ import { ClientFormColumnComponent } from './components/client-form-column/clien
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

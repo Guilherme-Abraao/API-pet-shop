@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { CpfService } from 'src/app/services/validacao-cpf.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
@@ -30,8 +29,7 @@ export class ClientFormComponent implements OnInit {
   /* Construtor chamando os serviços */
   constructor(private usuarioService: UsuarioService, 
               private http: HttpClient, 
-              private messagemService: MensagemService, 
-              private cpfService: CpfService) {}
+              private messagemService: MensagemService) {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
