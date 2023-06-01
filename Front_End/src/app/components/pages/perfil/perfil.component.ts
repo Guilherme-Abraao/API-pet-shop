@@ -26,9 +26,11 @@ export class PerfilComponent implements OnInit{
       /* Precisa transformar em JSON para funcionar */
       this.jsonData = item;
       this.cliente = this.jsonData;
+
+      this.cliente2 = this.cliente;
     });
 
-    this.cliente2 = this.cliente;
+    
     
   }
 
