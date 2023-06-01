@@ -1,7 +1,6 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.Cliente;
 import com.example.petshop.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +40,15 @@ public class ClienteController {
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "{ClienteId}")
-    public ResponseEntity<Cliente> deleteCliente(@PathVariable("ClienteId") Long ClienteId) {
+    @DeleteMapping(path = "{clienteId}")
+    public ResponseEntity<Cliente> deleteCliente(@PathVariable("clienteId") Long ClienteId) {
         clienteService.deleteCliente(ClienteId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "{ClienteId}")
+    @PutMapping(path = "{clienteId}")
     public ResponseEntity<Cliente> atualizarCliente(
-            @PathVariable("ClienteId") Long clienteId,
+            @PathVariable("clienteId") Long clienteId,
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String email
     ) {
