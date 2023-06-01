@@ -2,6 +2,7 @@ package com.example.petshop.repository;
 
 import net.bytebuddy.asm.Advice;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -24,6 +25,11 @@ class FuncionarioRepositoryTest {
 
     @Autowired
     private FuncionarioRepository underTest;
+
+    @AfterEach
+    void tearDown() {
+        underTest.deleteAll();
+    }
 
     @Test
     void TestfindFuncionarioByEmail() {
