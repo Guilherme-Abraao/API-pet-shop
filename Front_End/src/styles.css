@@ -1,16 +1,114 @@
+
+/* Todos componentes*/ 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    color: #444;
-    
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
+/* Título */
+h1 {
+  font-family: "Poppins"; 
+  text-align: center;
+  color: #194389;
+  margin-bottom: 1em; /* Espaço após o título */
+}
+
+/* Todo o form */
+form {
+  width: 35em;
+  margin: 0 auto; /* Centralizar */
+  background-color: #fdc333;
+  border-radius: 0.5em;
+  padding-block: 3%; /* Espaço antes do título e depois do botão */
+  padding-inline: 4%; /* Distância entre a lateral e os itens do forms */
+  position: relative; 
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em; /* Distância entre os itens do menu*/
+}
+
+/* Cada item do form */
+.form-group input {
+  padding: 0.8em;
+  color: #194389;
+  font-size: 1em;
+  border: none;
+  border-radius: 0.5em;
+}
+
+.form-group input[type="text"] {
+  width: 100%;
+  height: 3.38em;
+  background-color: #ffffff;
+  color: #194389;
+}
+
+.form-group input:hover {
+  background-color: #f2f2f2;
+}
+
+input::placeholder {
+  color: #194389;
+}
+
+/* Ao clicar em um item do form */
+input[type="text"]:hover {
+  background-color: #f2f2f2;
+  color: #194389;
+  outline-color: #637aa1;
+}
+
+input[type="password"]:hover {
+  background-color: #f2f2f2;
+  color: #194389;
+  outline-color: #637aa1;
+}
+
+input[type="password"] {
+  padding: 1em;
+}
+
+input[type="date"]:hover {
+  background-color: #f2f2f2;
+  color: #194389;
+  outline-color: #637aa1;
+}
+
+input[type="date"] {
+  padding: 1.2em;
+}
+
+/* Botão confirmar */
+input[type="submit"] {
+  background-color: #194389;
+  color: #ffffff;
+  border: none;
+  padding: 0.6em 2em;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: 0.4s;
+  border-radius: 15px;
+
+  display: block;
+  text-align: center;
+  margin: 0 auto; /* Centralizar */
+}
+
+/* Campos de Validação */
+.validation-error p {
+  color: #dc3545;
+  margin-top: 0.4em;
+  border-left: 3px solid #dc3545;
+  padding-left: 0.2em;
+}
+
+/* Importação da fonte */
 @font-face {
-    font-family: 'Poppins';
-    src: url('src/assets/fonts/Poppins-Regular.ttf') format('truetype');
-    font-weight: normal;
-  }
-  /* importação da fonte */
-  
-  
+  font-family: "Poppins";
+  src: url("src/assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+}

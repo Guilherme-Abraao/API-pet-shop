@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +14,8 @@ import { HomeComponent } from './components/pages/home/home.component';
 
 import { ClientFormComponent } from './components/client-form/client-form.component';
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
+import { PerfilComponent } from './components/pages/perfil/perfil.component';
+import { ClientFormColumnComponent } from './components/client-form-column/client-form-column.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { NewClientComponent } from './components/singular-components/new-client/
     HomeComponent,
     HeaderComponent,
     ClientFormComponent,
-    NewClientComponent
+    NewClientComponent,
+    PerfilComponent,
+    ClientFormColumnComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,44 @@
+
+<h1>{{ titulo }}</h1>
+
+<form *ngIf="cliente">
+  <h2> Dados do Cadastro  </h2>
+
+  <div class="linha">
+    <div class="column1">
+      <div class="form-group">
+        <label class="labels"> Nome: </label>
+        <label class="dados"> {{ cliente.nome }} </label>
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> CPF: </label>
+        <label class="dados"> {{ cliente.cpf }} </label>
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> Data de Nascimento: </label>
+        <label class="dados"> {{ cliente.dataNascimento }} </label>
+      </div>
+    </div>
+
+    <div class="column2">
+      <div class="form-group">
+        <label class="labels"> Telefone: </label>
+        <label class="dados"> {{ cliente.telefone }} </label>
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> E-mail: </label>
+        <label class="dados"> {{ cliente.email }} </label>
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> Senha: </label>
+        <label class="dados"> {{ cliente.senha }} </label>
+      </div>
+    </div>
+  </div>
+
+  <input type="submit" value="{{ btnText }}" />
+</form>

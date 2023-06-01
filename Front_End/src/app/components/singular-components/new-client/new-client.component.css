@@ -1,8 +1,14 @@
-h2 img {
-    width: 430px;
-    float: right;
-    position: absolute;
-    bottom: 250px;
-    right: 400px;
+.form-img{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    padding-bottom: 3em;
 }
-/* posição da imagem */
+
+.dog-client-form {
+    width: 29.5em;
+    height: 31em;
+    margin-left: 14em;
+    
+}

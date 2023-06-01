@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../interfaces/Cliente';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-client',
@@ -12,34 +13,31 @@ import { MensagemService } from 'src/app/services/mensagem.service';
 })
 export class NewClientComponent implements OnInit{
 
+  /* Textos dinâmicos para o formulário */
   btnText = 'Confirmar';
   titulo = 'Criar Conta'; 
 
-  constructor(private usuarioService: UsuarioService, private messagemService: MensagemService){ }
+  constructor(private usuarioService: UsuarioService, 
+              private messagemService: MensagemService,  
+              private router: Router){ }
+              
   ngOnInit(): void {
   }
 
   /* Metodo assincrono para enviar para API */
-  async createdHandler(cliente: Cliente){
-    const formData = new FormData();
+  async createdHandler(cliente: any){
+    
+    /* Mudando tipo de dado para JSON */
+    const jsonData = JSON.stringify(cliente);
 
-    formData.append("nome", cliente.nome); 
-    formData.append("cpf", cliente.cpf); 
-    formData.append("dataNascimento", cliente.dataNascimento); 
-    formData.append("email", cliente.email); 
-    formData.append("telefone", cliente.telefone); 
-    formData.append("senha", cliente.senha); 
-    formData.append("confirmacaoSenha", cliente.confirmacaoSenha); 
+    /* Enviando cliente para o Service */
+    await this.usuarioService.createCliente(cliente).subscribe();
   
-  /* ENVIAR para o SERVICE */
+    /* Mensagem de retorno do sistema */
+    this.messagemService.add('Cadastro realizado com sucesso!'); 
 
-  await this.usuarioService.createCliente(formData).subscribe();
-  
-  /* Mensagem */
-  this.messagemService.add('Cadastro realizado com sucesso!'); 
-
-  /* Redirect */
-
+    /* Redirect */
+    this.router.navigate(['/login']);
   }
 
 }
