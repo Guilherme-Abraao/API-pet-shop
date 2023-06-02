@@ -26,11 +26,17 @@ public class ClienteService {
     }
 
 
-    public Cliente adicionarCliente(Cliente cliente) {
-        Optional<Cliente> clienteOptional = clienteRepository.findClienteByEmail(cliente.getEmail());
-        if (clienteOptional.isPresent()) {
-            throw new IllegalStateException("email já existe");
+    public Cliente adicionarCliente(Cliente cliente) throws UserNotFoundException {
+        Optional<Cliente> clienteEmailOptional = clienteRepository.findClienteByEmail(cliente.getEmail());
+        if (clienteEmailOptional.isPresent()) {
+            throw new UserNotFoundException("email já existe");
         }
+
+        Optional<Cliente> clienteCpfOptional = clienteRepository.findClienteByCpf(cliente.getCpf());
+        if (clienteCpfOptional.isPresent()) {
+            throw new UserNotFoundException("O CPF informado já existe.");
+        }
+
         return clienteRepository.save(cliente);
     }
 
@@ -67,7 +73,7 @@ public class ClienteService {
                 !Objects.equals(cliente.getEmail(), email)) {
             Optional<Cliente> clienteOptional = clienteRepository.findClienteByEmail(email);
             if (clienteOptional.isPresent()) {
-                throw new IllegalStateException("Email já existe.");
+                throw new UserNotFoundException("Email já existe.");
             }
             cliente.setEmail(email);
         }

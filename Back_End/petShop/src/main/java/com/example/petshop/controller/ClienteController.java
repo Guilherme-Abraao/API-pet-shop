@@ -37,7 +37,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> adicionarCliente(@RequestBody @Valid Cliente cliente) {
+    public ResponseEntity<Cliente> adicionarCliente(@RequestBody @Valid Cliente cliente) throws UserNotFoundException {
         Cliente novoCliente = clienteService.adicionarCliente(cliente);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
