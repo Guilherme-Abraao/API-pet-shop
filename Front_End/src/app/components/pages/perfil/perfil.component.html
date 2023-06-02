@@ -1,3 +1,16 @@
 
 
-<app-client-form [btnText]="btnText" [titulo]="titulo"></app-client-form>
+<div class="cliente" *ngIf="cliente">
+    <h1> {{ cliente.id }}     </h1>
+    <h1> {{ cliente.nome }}     </h1>
+</div>
+
+<app-client-form-column 
+    [btnText]="btnText"
+    [titulo]="titulo"
+    [cliente]="cliente"
+    
+    >
+</app-client-form-column>
+
+

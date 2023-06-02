@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -8,34 +9,30 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   
-  momentForm!: FormGroup;
+  userForm!: FormGroup;
   faTimes = faTimes;
-  cpfValido: boolean = false;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
-    this.momentForm = new FormGroup({
-      id: new FormControl(''),
+    this.userForm = new FormGroup({
       cpf: new FormControl('', [Validators.required]),
       senha: new FormControl('', [Validators.required]),
     });
   }
 
   get cpf() {
-    return this.momentForm.get('cpf')!;
+    return this.userForm.get('cpf')!;
   }
   get senha() {
-    return this.momentForm.get('senha')!;
+    return this.userForm.get('senha')!;
   }
 
   submit() {
-    if (this.momentForm.invalid) {
-      return;
-    }
-    return 1;
+    // console.log(this.userForm.value);
+
+    this.authService.login(this.userForm.value)
 }
 }

@@ -1,4 +1,4 @@
-package com.example.petshop.config;
+/* package com.example.petshop.config;
 
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.repository.FuncionarioRepository;
@@ -53,4 +53,4 @@ public class FuncionarioConfig {
             );
         };
     }
-}
+} */
