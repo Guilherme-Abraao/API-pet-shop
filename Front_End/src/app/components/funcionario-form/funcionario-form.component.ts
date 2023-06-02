@@ -1,23 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { MensagemService } from 'src/app/services/mensagem.service';
 import { CpfService } from 'src/app/services/validacao-cpf.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Funcionario } from '../interfaces/Funcionario';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-import { Cliente } from '../interfaces/Cliente';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MensagemService } from 'src/app/services/mensagem.service';
 import { Response } from '../interfaces/MensagemSistema';
+import { FuncionarioService } from 'src/app/services/funcionario.service';
 
 @Component({
-  selector: 'app-client-form',
-  templateUrl: './client-form.component.html',
-  styleUrls: ['./client-form.component.css'],
+  selector: 'app-funcionario-form',
+  templateUrl: './funcionario-form.component.html',
+  styleUrls: ['./funcionario-form.component.css']
 })
-export class ClientFormComponent implements OnInit {
+export class FuncionarioFormComponent implements OnInit{
   /* Enviar para o componente pai - New-Cliente */
-  @Output() onSubmit = new EventEmitter<Cliente>();
+  @Output() onSubmit = new EventEmitter<Funcionario>();
 
   /* Receber do componente pai - New-Cliente */
   @Input() btnText!: string;
@@ -28,7 +28,7 @@ export class ClientFormComponent implements OnInit {
   faTimes = faTimes;
 
   /* Construtor chamando os serviços */
-  constructor(private usuarioService: UsuarioService,
+  constructor(private funcionarioService: FuncionarioService,
               private http: HttpClient,
               private messagemService: MensagemService,
               private cpfService: CpfService) {}
@@ -43,6 +43,8 @@ export class ClientFormComponent implements OnInit {
       email: new FormControl('', [Validators.required]),
       senha: new FormControl('', [Validators.required]),
       confirmacaoSenha: new FormControl('', [Validators.required]),
+      salario: new FormControl('', [Validators.required]),
+      cargo: new FormControl('', [Validators.required]),
     });
   }
 
@@ -68,8 +70,14 @@ export class ClientFormComponent implements OnInit {
   get confirmacaoSenha() {
     return this.userForm.get('confirmacaoSenha')!;
   }
+  get salario() {
+    return this.userForm.get('salario')!;
+  }
+  get cargo() {
+    return this.userForm.get('cargo')!;
+  }
 
-  /* Submissão do formulário */ 
+  /* Submissão do formulário */
   submit() {
     if (this.userForm.invalid) { // Se for inválido invalida a submissão
       return this.messagemService.add('Formulário Inválido, verifique se os dados estão corretos!'); ;
@@ -89,13 +97,14 @@ export class ClientFormComponent implements OnInit {
           telefone: this.userForm.value.telefone,
           email: this.userForm.value.email,
           senha: this.userForm.value.senha,
+          cargo: this.userForm.value.cargo,
+          salario: this.userForm.value.salario,
         };
   
         // console.log(this.userForm.value);
-        this.onSubmit.emit(this.userForm.value); 
+        this.onSubmit.emit(this.userForm.value);
       }
     }
     
   }
-
 }

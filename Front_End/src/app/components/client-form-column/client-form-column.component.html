@@ -1,41 +1,75 @@
-
-<h1>{{ titulo }}</h1>
-
-<form *ngIf="cliente">
-  <h2> Dados do Cadastro  </h2>
+<form>
+  <h1>{{ titulo }}</h1>
 
   <div class="linha">
     <div class="column1">
       <div class="form-group">
-        <label class="labels"> Nome: </label>
-        <label class="dados"> {{ cliente.nome }} </label>
+        <input
+          type="text"
+          placeholder="{{ cliente.nome }}"
+          formControlName="nome"
+          required readonly
+        />
+        <div class="validation-error">
+          <p>O nome é obrigatório.</p>
+        </div>
       </div>
 
       <div class="form-group">
-        <label class="labels"> CPF: </label>
-        <label class="dados"> {{ cliente.cpf }} </label>
+        <input
+          type="text"
+          placeholder="{{ cliente.cpf }}"
+          formControlName="cpf"
+          required readonly
+        />
+        <div class="validation-error">
+          <p>O CPF é obrigatório.</p>
+        </div>
       </div>
 
       <div class="form-group">
-        <label class="labels"> Data de Nascimento: </label>
-        <label class="dados"> {{ cliente.dataNascimento }} </label>
+        <input type="text" placeholder="{{ cliente.dataNascimento }}" formControlName="Data" required readonly />
+        <div id="date" class="validation-error">
+          <p>A data é obrigatória.</p>
+        </div>
       </div>
     </div>
 
     <div class="column2">
       <div class="form-group">
-        <label class="labels"> Telefone: </label>
-        <label class="dados"> {{ cliente.telefone }} </label>
+        <input
+          type="text"
+          placeholder="{{ cliente.telefone }}"
+          formControlName="telefone"
+          required readonly
+        />
+        <div class="validation-error">
+          <p>O telefone é obrigatório.</p>
+        </div>
       </div>
 
       <div class="form-group">
-        <label class="labels"> E-mail: </label>
-        <label class="dados"> {{ cliente.email }} </label>
+        <input
+          type="text"
+          placeholder="{{ cliente.email }}"
+          formControlName="email"
+          required readonly
+        />
+        <div class="validation-error">
+          <p>O E-mail é obrigatório.</p>
+        </div>
       </div>
 
       <div class="form-group">
-        <label class="labels"> Senha: </label>
-        <label class="dados"> {{ cliente.senha }} </label>
+        <input
+          type="password"
+          placeholder="{{ cliente.senha }}"
+          formControlName="senha"
+          required readonly
+        />
+        <div class="validation-error">
+          <p>A senha é obrigatória.</p>
+        </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-export interface Cliente {
+export interface Funcionario {
     id?: number;
     role?: string;
     nome: string;
@@ -7,5 +7,7 @@ export interface Cliente {
     senha:string;
     dataNascimento: string;
     telefone: string;
+    cargo: string;
+    salario: string;
 }
 

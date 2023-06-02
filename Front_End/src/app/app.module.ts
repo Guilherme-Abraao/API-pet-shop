@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,10 @@ import { ClientFormComponent } from './components/client-form/client-form.compon
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
 import { ClientFormColumnComponent } from './components/client-form-column/client-form-column.component';
+import { NewFuncionarioComponent } from './components/singular-components/new-funcionario/new-funcionario.component';
+import { FuncionarioFormComponent } from './components/funcionario-form/funcionario-form.component';
+import { NewAnimalComponent } from './components/singular-components/new-animal/new-animal.component';
+import { AnimalFormComponent } from './components/animal-form/animal-form.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,10 @@ import { ClientFormColumnComponent } from './components/client-form-column/clien
     NewClientComponent,
     PerfilComponent,
     ClientFormColumnComponent,
+    NewFuncionarioComponent,
+    FuncionarioFormComponent,
+    NewAnimalComponent,
+    AnimalFormComponent,
   ],
   imports: [
     BrowserModule,
