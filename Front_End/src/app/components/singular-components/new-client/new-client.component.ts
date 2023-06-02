@@ -3,6 +3,7 @@ import { Cliente } from '../../interfaces/Cliente';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-new-client',
@@ -29,13 +30,17 @@ export class NewClientComponent implements OnInit{
     const jsonData = JSON.stringify(cliente);
 
     /* Enviando cliente para o Service */
-    await this.usuarioService.createCliente(cliente).subscribe();
-  
-    /* Mensagem de retorno do sistema */
-    this.messagemService.add('Cadastro realizado com sucesso!');
-
-    /* Redirect */
-    this.router.navigate(['/login']);
+    this.usuarioService.createCliente(cliente)
+    .pipe(
+      catchError((error) => {
+        this.messagemService.add('Erro ao criar o cliente: ' + error.error.message);
+        throw error;
+      })
+    )
+    .subscribe(() => {
+      this.messagemService.add('Cadastro realizado com sucesso!');
+      this.router.navigate(['/login']);
+    });
   }
 
 }
