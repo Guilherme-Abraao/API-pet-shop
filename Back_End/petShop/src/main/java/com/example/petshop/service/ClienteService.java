@@ -1,6 +1,7 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cliente;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,25 +34,25 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public void deleteCliente(Long usuarioId) {
-        boolean exists = clienteRepository.existsById(usuarioId);
+    public void deleteCliente(Long clienteId) throws UserNotFoundException {
+        boolean exists = clienteRepository.existsById(clienteId);
         if (!exists) {
-            throw new IllegalStateException("Cliente com id " + usuarioId + " não existe.");
+            throw new UserNotFoundException("Cliente com id " + clienteId + " não existe.");
         }
-        clienteRepository.deleteById(usuarioId);
+        clienteRepository.deleteById(clienteId);
     }
 
-    public Cliente findClienteById(Long id) {
+    public Cliente findClienteById(Long id) throws UserNotFoundException {
         return clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException(
+                .orElseThrow(() -> new UserNotFoundException(
                         "Cliente com id " + id + " não existe."
                 ));
     }
 
     @Transactional
-    public Cliente atualizarCliente(Long clienteId, String nome, String email) {
+    public Cliente atualizarCliente(Long clienteId, String nome, String email) throws UserNotFoundException {
         Cliente cliente = clienteRepository.findById(clienteId)
-                .orElseThrow(() -> new IllegalStateException(
+                .orElseThrow(() -> new UserNotFoundException(
                         "Cliente com id " + clienteId + " não existe."
                 ));
 
