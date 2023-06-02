@@ -1,0 +1,8 @@
+<div class="message" *ngIf="mensagemService.message"> 
+    <div class="message-header">
+      <p>{{ mensagemService.message }}</p>
+      <button class="clear" (click)="mensagemService.clear()">
+        <img src="/assets/images/botao-sair-branco.png" alt="image"/>
+      </button>
+    </div>
+  </div>
