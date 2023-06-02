@@ -17,6 +17,7 @@ import { ClientFormComponent } from './components/client-form/client-form.compon
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
 import { ClientFormColumnComponent } from './components/client-form-column/client-form-column.component';
+import { AuthGuardService } from './guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ClientFormColumnComponent } from './components/client-form-column/clien
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

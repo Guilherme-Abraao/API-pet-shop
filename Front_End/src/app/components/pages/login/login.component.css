@@ -21,3 +21,11 @@ form {
   bottom: 30%;
 }
 
+a{
+  display: flex; 
+  justify-content: center;
+  padding-top: 1em;
+  
+  color: #194389;
+}
+
