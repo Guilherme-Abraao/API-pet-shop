@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MensagemService } from 'src/app/services/mensagem.service';
-import { CpfService } from 'src/app/services/validacao-cpf.service';
 import { Funcionario } from '../interfaces/Funcionario';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
@@ -30,8 +29,8 @@ export class FuncionarioFormComponent implements OnInit{
   /* Construtor chamando os serviços */
   constructor(private funcionarioService: FuncionarioService,
               private http: HttpClient,
-              private messagemService: MensagemService,
-              private cpfService: CpfService) {}
+              private messagemService: MensagemService
+              ) {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
