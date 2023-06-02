@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,9 +10,17 @@ export class AppComponent implements OnInit{
 
   title = 'Front_End';
 
-  constructor(){ }
+  mostrarMenu: boolean = false;
+
+  constructor(private authService: AuthService){ 
+
+  }
+
+
   ngOnInit(): void {
-    
+    this.authService.mostrarMenuEmitter.subscribe(
+      mostrar => this.mostrarMenu = mostrar 
+    );
   }
 
 }
