@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UsuarioService {
 
-  /* private baseApiUrl = environment.baseApiUrl; */ 
+  /* private baseApiUrl = environment.baseApiUrl; */
 
   /* Base da API*/
   private baseApiUrl = 'http://localhost:8080/api/petshop';

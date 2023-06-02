@@ -1,5 +1,3 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../interfaces/Cliente';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -15,10 +13,10 @@ export class NewClientComponent implements OnInit{
 
   /* Textos dinâmicos para o formulário */
   btnText = 'Confirmar';
-  titulo = 'Criar Conta'; 
+  titulo = 'Criar Conta';
 
-  constructor(private usuarioService: UsuarioService, 
-              private messagemService: MensagemService,  
+  constructor(private usuarioService: UsuarioService,
+              private messagemService: MensagemService,
               private router: Router){ }
               
   ngOnInit(): void {
@@ -34,7 +32,7 @@ export class NewClientComponent implements OnInit{
     await this.usuarioService.createCliente(cliente).subscribe();
   
     /* Mensagem de retorno do sistema */
-    this.messagemService.add('Cadastro realizado com sucesso!'); 
+    this.messagemService.add('Cadastro realizado com sucesso!');
 
     /* Redirect */
     this.router.navigate(['/login']);

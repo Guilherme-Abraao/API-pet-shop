@@ -9,7 +9,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   
   userForm!: FormGroup;
   faTimes = faTimes;
