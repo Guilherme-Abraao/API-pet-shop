@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../components/interfaces/MensagemSistema';
-import { Cliente } from '../components/interfaces/Cliente';
 import { environment } from 'src/environments/environment';
+import { Animal } from '../components/interfaces/Animal';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class AnimalService {
 
   /* private baseApiUrl = environment.baseApiUrl; */
 
@@ -16,29 +16,26 @@ export class UsuarioService {
   private baseApiUrl = 'http://localhost:8080/api/petshop';
 
   /* Especificando */
-  private apiUrl = `${this.baseApiUrl}/cliente`;
+  private apiUrl = `${this.baseApiUrl}/animal`;
 
   constructor(private http: HttpClient) { }
 
-  /* Criar Cliente no sistema */
-  createCliente(cliente: any): Observable<any>{
+  /* Criar Animal no sistema */
+  createAnimal(animal: any): Observable<any>{
     const data = {
-      nome: cliente.nome,
-      cpf: cliente.cpf,
-      dataNascimento: cliente.dataNascimento,
-      telefone: cliente.telefone,
-      email: cliente.email,
-      senha: cliente.senha,
-      // confirmacaoSenha: cliente.confirmacaoSenha
+      nome: animal.nome,
+      dataNascimento: animal.dataNascimento,
+      especie: animal.especie,
+      raca: animal.raca,
     };
     const result = this.http.post(this.apiUrl, data);
     return result;
   }
 
-  /* Pegar um Cliente no sistema pelo ID */
-  getCliente(id: number): Observable<Response<Cliente>> {
+  /* Pegar um Animal no sistema pelo ID */
+  getAnimal(id: number): Observable<Response<Animal>> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Response<Cliente>>(url);
+    return this.http.get<Response<Animal>>(url);
   }
 
 }

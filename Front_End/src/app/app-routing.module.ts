@@ -5,12 +5,16 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { ClientFormComponent } from './components/client-form/client-form.component';
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
+import { NewFuncionarioComponent } from './components/singular-components/new-funcionario/new-funcionario.component';
+import { NewAnimalComponent } from './components/singular-components/new-animal/new-animal.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'cliente', component: NewClientComponent},
   {path: 'login', component: LoginComponent},
   {path: 'perfil', component: PerfilComponent},
+  {path: 'funcionario', component: NewFuncionarioComponent},
+  {path: 'animal', component: NewAnimalComponent},
 ];
 
 @NgModule({
