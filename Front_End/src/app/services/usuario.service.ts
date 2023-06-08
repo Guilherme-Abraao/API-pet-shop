@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { Response } from '../components/interfaces/MensagemSistema';
 import { Cliente } from '../components/interfaces/Cliente';
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  /* private baseApiUrl = environment.baseApiUrl; */ 
+  /* private baseApiUrl = environment.baseApiUrl; */
 
   /* Base da API*/
   private baseApiUrl = 'http://localhost:8080/api/petshop';
@@ -40,5 +41,14 @@ export class UsuarioService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Response<Cliente>>(url);
   }
+
+  /* Pegar um Cliente no sistema pelo cpf e senha, levemente codificados em base64 */
+  getClienteLogin(cpf: string, senha: string): Observable<Response<Cliente>> {
+    var cpfCodificado = btoa(cpf);
+    var senhaCodificada = btoa(senha);
+    const url = `${this.apiUrl}/${cpfCodificado}-${senhaCodificada}`;
+    return this.http.get<Response<Cliente>>(url);
+  }
+  
 
 }

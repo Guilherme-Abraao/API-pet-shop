@@ -12,7 +12,6 @@
       <input type="text" placeholder="CPF" formControlName="cpf" required />
       <div *ngIf="cpf.invalid && formDir.submitted" class="validation-error">
         <p>O CPF é obrigatório.</p>
-        <p>O CPF é inválido.</p>
       </div>
     </div>
   
@@ -23,7 +22,6 @@
         class="validation-error"
       >
         <p>A data é obrigatória.</p>
-        <p>A data é inválida.</p>
       </div>
     </div>
   
@@ -36,7 +34,6 @@
       />
       <div *ngIf="telefone.invalid && formDir.submitted" class="validation-error">
         <p>O telefone é obrigatório.</p>
-        <p>O telefone é inválido.</p>
       </div>
     </div>
   
@@ -44,7 +41,6 @@
       <input type="text" placeholder="E-mail" formControlName="email" required />
       <div *ngIf="email.invalid && formDir.submitted" class="validation-error">
         <p>O E-mail é obrigatório.</p>
-        <p>O E-mail é inválido.</p>
       </div>
     </div>
   
@@ -57,8 +53,6 @@
       />
       <div *ngIf="senha.invalid && formDir.submitted" class="validation-error">
         <p>A senha é obrigatória.</p>
-        <p>A senha é inválida.</p>
-        <p>A senha é não tem entre 6 e 10 caracteres.</p>
       </div>
     </div>
   

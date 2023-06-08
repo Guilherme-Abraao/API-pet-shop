@@ -1,16 +1,15 @@
 package com.example.petshop.base;
 
 import com.example.petshop.validation.constraints.Senha;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
+import org.hibernate.validator.constraints.br.CPF;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.Data;
+import jakarta.validation.constraints.Email;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.br.CPF;
-
+import jakarta.persistence.*;
 import java.time.LocalDate;
+import lombok.Data;
 
 @NoArgsConstructor
 @Data
@@ -30,25 +29,25 @@ public class Usuario {
     )
     private Long id;
 
-    @NotBlank(message = "name.not.blank")
+    @NotBlank(message = "{name.not.blank}")
     @Pattern(regexp = "^[A-Z]+(.)*")
     private String nome;
 
-    @NotBlank(message = "email.not.blank")
-    @Email(message = "email.not.valid")
+    @NotBlank(message = "{email.not.blank}")
+    @Email(message = "{email.not.valid}")
     private String email;
 
-    @NotBlank(message = "cpf.not.blank")
-    @CPF(message = "cpf.not.valid")
+    @NotBlank(message = "{cpf.not.blank}")
+    @CPF(message = "{cpf.not.valid}")
     private String cpf;
 
-    @NotBlank(message = "telefone.not.blank")
-    private String Telefone;
+    @NotBlank(message = "{telefone.not.blank}")
+    private String telefone;
 
-    @NotBlank(message = "senha.not.blank")
+    @NotBlank(message = "{senha.not.blank}")
     //Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
     //Documentos envolvidos estão na pasta validation.
-    @Senha(message = "senha.not.valid")
+    @Senha(message = "{senha.not.valid}")
     private String senha;
 
 //    @NotBlank(message = "senha.not.blank")
@@ -57,7 +56,7 @@ public class Usuario {
 ////    @Senha(message = "senha.not.valid")
 //    private String confirmacaoSenha;
 
-    @NotNull(message = "dataNascimento.not.null")
+    @NotNull(message = "{dataNascimento.not.null}")
     private LocalDate dataNascimento;
 
 <<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/Usuario.java
@@ -79,7 +78,7 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-        Telefone = telefone;
+        this.telefone = telefone;
         this.senha = senha;
         this.dataNascimento = dataNascimento;
     }

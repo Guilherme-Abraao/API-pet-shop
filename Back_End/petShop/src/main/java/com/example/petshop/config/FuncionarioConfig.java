@@ -1,8 +1,5 @@
-package com.example.petshop.config;
+/* package com.example.petshop.config;
 
-<<<<<<< HEAD
-public class FuncionarioConfig {
-=======
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.repository.FuncionarioRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -56,5 +53,4 @@ public class FuncionarioConfig {
             );
         };
     }
->>>>>>> main
-}
+} */
