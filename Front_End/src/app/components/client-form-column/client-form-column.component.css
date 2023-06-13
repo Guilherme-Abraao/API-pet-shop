@@ -1,9 +1,12 @@
+
+/* Tamanho do forms e distancia do footer */
 form {
   display: block;
   width: 78em;
-
+  margin-bottom: 3em;
 }
 
+/* deixar uma coluna do lado da outra */
 .linha {
   display: flex;
 }
@@ -18,7 +21,20 @@ form {
   margin-left: 10px;
 }
 
-.form-group input[type="date"] {
-  width: 100%;
-  height: 3.38em;
+/* Label estáticos */
+.labels{
+  padding-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.form-group{
+  margin-bottom: 1.5em;
+}
+
+/* Titulo 2 */
+h2 {
+  font-family: "Poppins"; 
+  text-align: center;
+  color: #194389;
+  margin-bottom: 1em; /* Espaço após o título */
 }

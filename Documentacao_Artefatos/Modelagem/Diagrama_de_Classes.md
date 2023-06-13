@@ -2,7 +2,7 @@
 
 #
 
-![Diagrama de Classes Construção de softaware drawio (1)](https://github.com/gilmarUFG/cs20231_g2/assets/69056768/fea782c7-eecf-425f-9c46-f768458814bb)
+![Diagrama de Classes Construção de softaware drawio (2)](https://github.com/JoJonathanF/cs-2023-1/assets/69056768/2535cb98-9323-4f25-afbb-43dff99239dd)
 #
 
 Link para visualisar/editar diagrama de classes: [Link](https://app.diagrams.net/#G1MkUXS6Yvq-4Oqwuwmartd-497Bj9RBXY)

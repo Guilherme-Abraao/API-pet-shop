@@ -1,6 +1,7 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cliente;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.ClienteRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -49,7 +50,7 @@ class ClienteServiceTest {
 
     @Test
 
-    void ConssegueadicionarCliente() {
+    void ConssegueadicionarCliente() throws UserNotFoundException {
 
 
         //given

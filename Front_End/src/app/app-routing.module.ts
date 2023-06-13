@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { ClientFormComponent } from './components/client-form/client-form.component';
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
 
@@ -16,13 +15,15 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'perfil',
-    canActivate: [
-      AuthGuardService,
-    ] /* Impedir de acessar se não tiver cadastrado */,
-    component: PerfilComponent,
+      canActivate: [AuthGuardService], /* Impedir de acessar se não tiver cadastrado */
+      component: PerfilComponent,
   },
-  { path: 'funcionario', component: NewFuncionarioComponent },
-  { path: 'animal', component: NewAnimalComponent },
+  { path: 'funcionario', 
+      canActivate: [AuthGuardService], 
+      component: NewFuncionarioComponent },
+  { path: 'animal', 
+      canActivate: [AuthGuardService], 
+      component: NewAnimalComponent },
 ];
 
 @NgModule({

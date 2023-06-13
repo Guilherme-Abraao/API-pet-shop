@@ -20,8 +20,7 @@ export class AuthGuardService {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | boolean {
-    // Implemente a lógica da guarda de rota aqui
-    // Retorne true se a rota pode ser ativada, ou false/UrlTree para redirecionar para outra rota
+    
     if (this.authService.usuarioEstaAutenticado()) {
       return true;
     }
