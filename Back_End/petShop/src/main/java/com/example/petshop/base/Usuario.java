@@ -9,6 +9,10 @@ import jakarta.validation.constraints.Email;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import lombok.Data;
 
 @NoArgsConstructor
@@ -71,6 +75,7 @@ public class Usuario {
         this.senha = senha;
         this.dataNascimento = dataNascimento;
     }
+
 
 //    Para quando for usar confirmacaoSenha
 //    public Usuario(String nome, String email, String cpf, String telefone, String senha, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
