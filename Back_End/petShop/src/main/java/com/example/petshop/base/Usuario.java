@@ -1,25 +1,29 @@
 package com.example.petshop.base;
 
 import com.example.petshop.validation.constraints.Senha;
-import org.hibernate.validator.constraints.br.CPF;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Email;
-import lombok.NoArgsConstructor;
-import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDate;
+import java.util.Collection;
 
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario {
+public class Usuario implements UserDetails {
 
     @Id
     @SequenceGenerator(
@@ -48,43 +52,83 @@ public class Usuario {
     @NotBlank(message = "{telefone.not.blank}")
     private String telefone;
 
+    private String username;
+
     @NotBlank(message = "{senha.not.blank}")
     //Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
     //Documentos envolvidos estão na pasta validation.
     @Senha(message = "{senha.not.valid}")
-    private String senha;
+    private String password;
 
-//    @NotBlank(message = "senha.not.blank")
-//    //Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
-//    //Documentos envolvidos estão na pasta validation.
-////    @Senha(message = "senha.not.valid")
-//    private String confirmacaoSenha;
+    /*@NotBlank(message = "senha.not.blank")
+    Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
+    Documentos envolvidos estão na pasta validation.
+    @Senha(message = "senha.not.valid")
+    private String confirmacaoSenha;*/
 
     @NotNull(message = "{dataNascimento.not.null}")
     private LocalDate dataNascimento;
 
 
-    //    Falta analisar como iremos diferenciar os tipos de usuário
-    //    private TipoUsuario tipoUsuario;
+        /*Falta analisar como iremos diferenciar os tipos de usuário
+        private TipoUsuario tipoUsuario;*/
 
-    public Usuario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento) {
+    /*public Usuario(String nome, String email, String cpf, String telefone, String password, LocalDate dataNascimento) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.senha = senha;
+        this.password = password;
         this.dataNascimento = dataNascimento;
+    }*/
+
+    /*    Para quando for usar confirmacaoSenha
+    public Usuario(String nome, String email, String cpf, String telefone, String password, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        Telefone = telefone;
+        this.password = password;
+        this.confirmacaoSenha = confirmacaoSenha;
+        this.dataNascimento = dataNascimento;
+    }*/
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return role.getAuthorities();
     }
 
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
-//    Para quando for usar confirmacaoSenha
-//    public Usuario(String nome, String email, String cpf, String telefone, String senha, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
-//        this.nome = nome;
-//        this.email = email;
-//        this.cpf = cpf;
-//        Telefone = telefone;
-//        this.senha = senha;
-//        this.confirmacaoSenha = confirmacaoSenha;
-//        this.dataNascimento = dataNascimento;
-//    }
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 }

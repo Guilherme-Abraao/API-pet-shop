@@ -1,4 +1,5 @@
 package com.example.petshop.service;
+
 import com.example.petshop.dto.UsuarioDTO;
 import com.example.petshop.dto.UsuarioDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import com.example.petshop.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import com.example.petshop.base.Usuario;
+
 import java.util.Optional;
 import java.util.Objects;
 import java.util.List;
@@ -31,6 +33,14 @@ public class UsuarioService {
                 .collect(Collectors.toList());
     }
 
+    public UsuarioDTO findUsuarioById(Long id) throws UserNotFoundException {
+        return usuarioRepository.findById(id)
+                .map(usuarioDTOMapper)
+                .orElseThrow(() -> new UserNotFoundException(
+                        "Usuario com id " + id + " não existe."
+                ));
+    }
+
     public Usuario adicionarUsuario(Usuario usuario) throws UserNotFoundException {
         Optional<Usuario> usuarioEmailOptional = usuarioRepository.findUsuarioByEmail(usuario.getEmail());
         if (usuarioEmailOptional.isPresent()) {
@@ -51,13 +61,6 @@ public class UsuarioService {
             throw new UserNotFoundException("Usuario com id " + usuarioId + " não existe.");
         }
         usuarioRepository.deleteById(usuarioId);
-    }
-
-    public UsuarioDTO findUsuarioById(Long id) throws UserNotFoundException {
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(
-                        "Usuario com id " + id + " não existe."
-                ));
     }
 
     @Transactional
