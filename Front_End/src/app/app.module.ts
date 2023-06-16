@@ -23,6 +23,7 @@ import { NewFuncionarioComponent } from './components/singular-components/new-fu
 import { FuncionarioFormComponent } from './components/funcionario-form/funcionario-form.component';
 import { NewAnimalComponent } from './components/singular-components/new-animal/new-animal.component';
 import { AnimalFormComponent } from './components/animal-form/animal-form.component';
+import { AgendamentoComponent } from './components/pages/agendamento/agendamento.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AnimalFormComponent } from './components/animal-form/animal-form.compon
     FuncionarioFormComponent,
     NewAnimalComponent,
     AnimalFormComponent,
+    AgendamentoComponent,
   ],
   imports: [
     BrowserModule,

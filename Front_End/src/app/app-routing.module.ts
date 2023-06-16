@@ -8,10 +8,12 @@ import { PerfilComponent } from './components/pages/perfil/perfil.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { NewFuncionarioComponent } from './components/singular-components/new-funcionario/new-funcionario.component';
 import { NewAnimalComponent } from './components/singular-components/new-animal/new-animal.component';
+import { AgendamentoComponent } from './components/pages/agendamento/agendamento.component';
 
 const routes: Routes = [
   { path: '', canActivate: [AuthGuardService], component: HomeComponent },
   { path: 'cliente', component: NewClientComponent },
+  { path: 'agendamento', component: AgendamentoComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'perfil',

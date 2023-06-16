@@ -30,7 +30,6 @@ export class UsuarioService {
       telefone: cliente.telefone,
       email: cliente.email,
       senha: cliente.senha,
-      // confirmacaoSenha: cliente.confirmacaoSenha
     };
     const result = this.http.post(this.apiUrl, data);
     return result;
