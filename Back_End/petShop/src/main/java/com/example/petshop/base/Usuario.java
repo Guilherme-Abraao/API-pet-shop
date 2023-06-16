@@ -1,5 +1,6 @@
 package com.example.petshop.base;
 
+import com.example.petshop.token.Token;
 import com.example.petshop.validation.constraints.Senha;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -55,16 +57,8 @@ public class Usuario implements UserDetails {
     private String username;
 
     @NotBlank(message = "{senha.not.blank}")
-    //Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
-    //Documentos envolvidos estão na pasta validation.
     @Senha(message = "{senha.not.valid}")
     private String password;
-
-    /*@NotBlank(message = "senha.not.blank")
-    Validação para senha já criada, porém ainda não funciona(tentar descobrir o pq).
-    Documentos envolvidos estão na pasta validation.
-    @Senha(message = "senha.not.valid")
-    private String confirmacaoSenha;*/
 
     @NotNull(message = "{dataNascimento.not.null}")
     private LocalDate dataNascimento;
@@ -95,6 +89,9 @@ public class Usuario implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -22,9 +22,9 @@ public class Funcionario extends Usuario {
     public Funcionario(){
     }
 
-    public Funcionario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento, String cargo, Double salario) {
+    /*public Funcionario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento, String cargo, Double salario) {
         super(nome, email, CPF, telefone, senha, dataNascimento);
         this.cargo = cargo;
         this.salario = salario;
-    }
+    }*/
 }

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Entity
 public class Administrador extends Funcionario{
 
-    public Administrador(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento, String cargo, Double salario) {
+    /*public Administrador(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento, String cargo, Double salario) {
         super(nome, email, CPF, telefone, senha, dataNascimento, cargo, salario);
-    }
+    }*/
 }
