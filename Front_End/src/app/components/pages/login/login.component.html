@@ -1,4 +1,6 @@
-<form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm" >
+
+
+<form (ngSubmit)="submit()" [formGroup]="userForm" #formDir="ngForm" >
     <h1>{{ "Login" }}</h1>
   
     <div class="form-group">
@@ -15,6 +17,8 @@
     </div>
     
     <input type="submit" value="Confirmar" />
+
+    <label> <a href="/cliente"> ou Cadastre-se clicando aqui </a>  </label>
 </form>
 
 <img src="/assets/images/pata2.png" alt="image" class="pata2"/>

@@ -7,6 +7,7 @@ import com.example.petshop.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,6 +21,10 @@ public class AnimalService {
     public AnimalService(ClienteRepository clienteRepository, AnimalRepository animalRepository) {
         this.clienteRepository = clienteRepository;
         this.animalRepository = animalRepository;
+    }
+
+    public List<Animal> getAnimais() {
+        return animalRepository.findAll();
     }
 
     public Animal cadastrarAnimal(Animal animal, Long clienteId) {

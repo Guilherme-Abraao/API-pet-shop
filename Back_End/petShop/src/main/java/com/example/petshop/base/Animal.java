@@ -1,5 +1,6 @@
 package com.example.petshop.base;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,10 +35,10 @@ public class Animal {
     @Column(name = "idade")
     private int idade;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(
-            name = "cliente_id",
-            nullable = false
+            name = "cliente_id"
     )
     private Cliente cliente;
 

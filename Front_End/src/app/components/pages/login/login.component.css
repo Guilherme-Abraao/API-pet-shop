@@ -1,7 +1,7 @@
 form {
   justify-content: center;
   align-items: center;
-  margin-top: 3em;
+  margin-top: 10%;
 }
 
 /* Pata Azul */
@@ -19,5 +19,13 @@ form {
   right: 82.94%;
   top: 53.47%;
   bottom: 30%;
+}
+
+a{
+  display: flex; 
+  justify-content: center;
+  padding-top: 1em;
+  
+  color: #194389;
 }
 
