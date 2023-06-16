@@ -1,19 +1,13 @@
 package com.example.petshop.base;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static com.example.petshop.base.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {
-    CLIENTE(Collections.emptySet()),
+    CLIENTE,
+    FUNCIONARIO,
+    ADMINISTRADOR
+    /*CLIENTE(Collections.emptySet()),
     FUNCIONARIO(
             Set.of(
                     FUN_READ,
@@ -45,5 +39,5 @@ public enum Role {
                 .collect(Collectors.toList());
         authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
         return authorities;
-    }
+    }*/
 }

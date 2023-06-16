@@ -1,12 +1,9 @@
 package com.example.petshop.config;
 
-import com.example.petshop.auth.AuthenticationRequest;
-import com.example.petshop.auth.AuthenticationService;
-import com.example.petshop.auth.RegisterRequest;
+import com.example.petshop.base.Administrador;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.Role;
-import com.example.petshop.base.Usuario;
+import com.example.petshop.base.Funcionario;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -44,7 +41,7 @@ public class ClienteConfig {
         return bean;
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner commandLineRunner(AuthenticationService service) {
         return args -> {
             var bruce = RegisterRequest.builder()
@@ -83,24 +80,22 @@ public class ClienteConfig {
                     .build();
             System.out.println("Employee token::" + service.register(billy).getAccessToken());
         };
-    }
+    }*/
 
-    /*@Bean
+    @Bean
     CommandLineRunner commandLineRunner(UsuarioRepository usuarioRepository, AnimalRepository animalRepository) {
         return args -> {
-            var bruce = Usuario.builder()
-                    .nome("Bruce")
-                    .email("bruce.wayne@gmail.com")
-                    .cpf("71561133051")
-                    .telefone("(11) 42852-9122")
-                    .username("bruce")
-                    .password("1l5O0mb4AN")
-                    .dataNascimento(LocalDate.of(2000, JANUARY, 25))
-                    .role(ADMINISTRADOR)
-                    .build();
-            System.out.println("Admin token::");
+            Cliente bruce = new Cliente(
+                    "Bruce",
+                    "bruce.wayne@gmail.com",
+                    "71561133051",
+                    "(11) 42852-9122",
+                    "1l5O0mb4AN",
+                    LocalDate.of(2000, JANUARY, 25),
+                    CLIENTE
+            );
 
-            *//*Animal floquinho = new Animal(
+            Animal floquinho = new Animal(
                     "Floquinho",
                     15,
                     bruce
@@ -109,68 +104,51 @@ public class ClienteConfig {
                     "Jararaca",
                     14,
                     bruce
-            );*//*
+            );
 
-           *//* Cliente barry = new Cliente(
+            Funcionario barry = new Funcionario(
                     "Barry",
                     "barry.allen@gmail.com",
                     "14180500086",
                     "(62) 22097-8318",
                     "PuZfPjDQo6",
-                    LocalDate.of(1995, JULY, 14)
-            );*//*
+                    LocalDate.of(1995, JULY, 14),
+                    FUNCIONARIO,
+                    "recepcionista",
+                    1045.65
+            );
 
-            var barry = Usuario.builder()
-                    .nome("Barry")
-                    .email("barry.allen@gmail.com")
-                    .cpf("14180500086")
-                    .telefone("(62) 22097-8318")
-                    .username("barry")
-                    .password("PuZfPjDQo6")
-                    .dataNascimento(LocalDate.of(1995, JULY, 14))
-                    .role(CLIENTE)
-                    .build();
-            System.out.println("Client token::");
-
-            *//*Animal luke = new Animal(
+            /*Animal luke = new Animal(
                     "Luke",
                     5,
                     barry
-            );*//*
+            );*/
 
-            *//*Cliente billy = new Cliente(
+            Administrador billy = new Administrador(
                     "Billy",
                     "billy.batson@gmail.com",
                     "38060025090",
                     "(62) 39020-1931",
                     "iihzNM37gF",
-                    LocalDate.of(1998, Month.MARCH, 24)
-            );*//*
+                    LocalDate.of(1998, Month.MARCH, 24),
+                    ADMINISTRADOR,
+                    "gerente",
+                    2046.00
+            );
 
-            var billy = Usuario.builder()
-                    .nome("Billy")
-                    .email("billy.batson@gmail.com")
-                    .cpf("38060025090")
-                    .telefone("(62) 22097-8318")
-                    .username("billy")
-                    .password("iihzNM37gF")
-                    .dataNascimento(LocalDate.of(1995, JULY, 14))
-                    .role(FUNCIONARIO)
-                    .build();
-            System.out.println("Employee token::");
-
-            *//*Animal hector = new Animal(
+            /*Animal hector = new Animal(
                     "Hector",
                     8,
                     billy
-            );*//*
+            );*/
             usuarioRepository.saveAll(
                     List.of(bruce, barry, billy)
             );
-            *//*animalRepository.saveAll(
-                    List.of(floquinho, jararaca, luke, hector)
-            );*//*
+            animalRepository.saveAll(
+                    List.of(floquinho, jararaca)
+            );
 
-        };*/
+        };
     }
+}
 

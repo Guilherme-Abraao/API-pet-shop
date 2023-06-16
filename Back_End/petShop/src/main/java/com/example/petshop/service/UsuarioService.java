@@ -1,45 +1,30 @@
 package com.example.petshop.service;
 
-import com.example.petshop.dto.UsuarioDTO;
-import com.example.petshop.dto.UsuarioDTOMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.petshop.base.Usuario;
 import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.UsuarioRepository;
-import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
-import com.example.petshop.base.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.Objects;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-    private final UsuarioDTOMapper usuarioDTOMapper;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioDTOMapper usuarioDTOMapper) {
+    public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
-        this.usuarioDTOMapper = usuarioDTOMapper;
     }
 
-    public List<UsuarioDTO> getUsuarios() {
-        return usuarioRepository.findAll()
-                .stream()
-                .map(usuarioDTOMapper)
-                .collect(Collectors.toList());
+    public List<Usuario> getUsuarios() {
+        return usuarioRepository.findAll();
     }
 
-    public UsuarioDTO findUsuarioById(Long id) throws UserNotFoundException {
-        return usuarioRepository.findById(id)
-                .map(usuarioDTOMapper)
-                .orElseThrow(() -> new UserNotFoundException(
-                        "Usuario com id " + id + " não existe."
-                ));
-    }
 
     public Usuario adicionarUsuario(Usuario usuario) throws UserNotFoundException {
         Optional<Usuario> usuarioEmailOptional = usuarioRepository.findUsuarioByEmail(usuario.getEmail());
@@ -61,6 +46,13 @@ public class UsuarioService {
             throw new UserNotFoundException("Usuario com id " + usuarioId + " não existe.");
         }
         usuarioRepository.deleteById(usuarioId);
+    }
+
+    public Usuario findUsuarioById(Long id) throws UserNotFoundException {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(
+                        "Usuario com id " + id + " não existe."
+                ));
     }
 
     @Transactional

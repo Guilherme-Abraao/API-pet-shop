@@ -1,7 +1,6 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Usuario;
-import com.example.petshop.dto.UsuarioDTO;
 import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -25,15 +24,15 @@ public class UsuarioController {
 
     //    Encontrar todos os usuários
     @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios() {
-        List<UsuarioDTO> usuarios = usuarioService.getUsuarios();
+    public ResponseEntity<List<Usuario>> getAllUsuarios() {
+        List<Usuario> usuarios = usuarioService.getUsuarios();
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 
     //    Encontrar apenas um usuário
     @GetMapping(path = "/{id}")
-    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable("id") Long id) throws UserNotFoundException {
-        UsuarioDTO usuario = usuarioService.findUsuarioById(id);
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) throws UserNotFoundException {
+        Usuario usuario = usuarioService.findUsuarioById(id);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
