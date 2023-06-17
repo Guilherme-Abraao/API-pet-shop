@@ -1,25 +1,25 @@
 package com.example.petshop.validation;
 
-import com.example.petshop.validation.constraints.Senha;
+import com.example.petshop.validation.constraints.Password;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class SenhaValidation implements ConstraintValidator<Senha, String> {
+public class PasswordValidation implements ConstraintValidator<Password, String> {
 
     @Override
-    public void initialize(Senha constraintAnnotation) {
+    public void initialize(Password constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(String senha, ConstraintValidatorContext context) {
-        if (senha.length() < 6) return false;
+    public boolean isValid(String password, ConstraintValidatorContext context) {
+        if (password.length() < 6) return false;
 
         boolean achouNumero = false;
         boolean achouMaiuscula = false;
         boolean achouMinuscula = false;
         boolean achouSimbolo = false;
-        for (char c : senha.toCharArray()) {
+        for (char c : password.toCharArray()) {
             if (c >= '0' && c <= '9') {
                 achouNumero = true;
             } else if (c >= 'A' && c <= 'Z') {

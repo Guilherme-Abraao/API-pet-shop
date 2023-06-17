@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = SenhaValidation.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Senha {
+public @interface Password {
     String message() default "Senha inválida";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
