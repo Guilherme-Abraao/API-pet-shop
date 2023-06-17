@@ -95,6 +95,26 @@ public class ClienteConfig {
                     CLIENTE
             );
 
+            Cliente hector = new Cliente(
+                    "Hector",
+                    "hector@gmail.com",
+                    "08174858130",
+                    "(11) 42852-9122",
+                    "1l5O0mb4AN",
+                    LocalDate.of(2000, JANUARY, 25),
+                    CLIENTE
+            );
+
+            Cliente aquiles = new Cliente(
+                    "Aquiles",
+                    "aquiles@gmail.com",
+                    "70494074108",
+                    "(11) 42852-9122",
+                    "1l5O0mb4AN",
+                    LocalDate.of(2000, JANUARY, 25),
+                    CLIENTE
+            );
+
             Animal floquinho = new Animal(
                     "Floquinho",
                     15,
@@ -118,22 +138,20 @@ public class ClienteConfig {
                     1045.65
             );
 
-            /*Animal luke = new Animal(
+            Animal luke = new Animal(
                     "Luke",
                     5,
-                    barry
-            );*/
+                    bruce
+            );
 
-            Administrador billy = new Administrador(
+            Cliente billy = new Cliente(
                     "Billy",
                     "billy.batson@gmail.com",
                     "38060025090",
                     "(62) 39020-1931",
                     "iihzNM37gF",
                     LocalDate.of(1998, Month.MARCH, 24),
-                    ADMINISTRADOR,
-                    "gerente",
-                    2046.00
+                    CLIENTE
             );
 
             /*Animal hector = new Animal(
@@ -142,10 +160,10 @@ public class ClienteConfig {
                     billy
             );*/
             usuarioRepository.saveAll(
-                    List.of(bruce, barry, billy)
+                    List.of(bruce, barry, billy, hector, aquiles)
             );
             animalRepository.saveAll(
-                    List.of(floquinho, jararaca)
+                    List.of(floquinho, jararaca, luke)
             );
 
         };

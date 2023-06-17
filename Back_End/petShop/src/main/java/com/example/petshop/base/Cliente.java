@@ -20,12 +20,12 @@ public class Cliente extends Usuario {
     @OneToMany(mappedBy = "cliente")
     private List<Animal> animais;
 
-    public Cliente(String nome, String email, String cpf, String telefone, String password, LocalDate dataNascimento, Role role) {
-        super(nome, email, cpf, telefone, password, dataNascimento, role);
+    public Cliente(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento, Role role) {
+        super(nome, email, cpf, telefone, senha, dataNascimento, role);
     }
 
-    public Cliente(String nome, String email, String cpf, String telefone, String password, LocalDate dataNascimento, Role role, List<Animal> animais) {
-        super(nome, email, cpf, telefone, password, dataNascimento, role);
+    public Cliente(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento, Role role, List<Animal> animais) {
+        super(nome, email, cpf, telefone, senha, dataNascimento, role);
         this.animais = animais;
     }
 

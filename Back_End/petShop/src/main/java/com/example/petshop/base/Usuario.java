@@ -50,7 +50,7 @@ public class Usuario {
 
     @NotBlank(message = "{senha.not.blank}")
     @Senha(message = "{senha.not.valid}")
-    private String password;
+    private String senha;
 
     @NotNull(message = "{dataNascimento.not.null}")
     private LocalDate dataNascimento;
@@ -67,8 +67,8 @@ public class Usuario {
     }
 
     @Override
-    public String getPassword() {
-        return password;
+    public String getsenha() {
+        return senha;
     }
 
     @Override
@@ -100,23 +100,23 @@ public class Usuario {
         /*Falta analisar como iremos diferenciar os tipos de usuário
         private TipoUsuario tipoUsuario;*/
 
-    public Usuario(String nome, String email, String cpf, String telefone, String password, LocalDate dataNascimento, Role role) {
+    public Usuario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento, Role role) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.password = password;
+        this.senha = senha;
         this.dataNascimento = dataNascimento;
         this.role = role;
     }
 
     /*    Para quando for usar confirmacaoSenha
-    public Usuario(String nome, String email, String cpf, String telefone, String password, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
+    public Usuario(String nome, String email, String cpf, String telefone, String senha, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         Telefone = telefone;
-        this.password = password;
+        this.senha = senha;
         this.confirmacaoSenha = confirmacaoSenha;
         this.dataNascimento = dataNascimento;
     }*/

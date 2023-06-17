@@ -33,10 +33,10 @@ public class AnimalService {
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();
             animal.setCliente(cliente);
-            animalRepository.save(animal);
+        } else {
+            throw new IllegalStateException("Cliente com id " + clienteId + " não existe");
         }
-
-        throw new IllegalStateException("Cliente com id " + clienteId + " não existe");
+        return animalRepository.save(animal);
     }
 
     public void deleteAnimal(Long animalId) {

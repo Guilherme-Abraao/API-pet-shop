@@ -2,7 +2,7 @@ package com.example.petshop.base;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public enum Role {
     CLIENTE,
     FUNCIONARIO,
