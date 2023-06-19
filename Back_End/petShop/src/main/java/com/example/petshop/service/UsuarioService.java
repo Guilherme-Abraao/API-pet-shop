@@ -25,6 +25,12 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    public Usuario findUsuarioById(Long id) throws UserNotFoundException {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(
+                        "Usuario com id " + id + " não existe."
+                ));
+    }
 
     public Usuario adicionarUsuario(Usuario usuario) throws UserNotFoundException {
         Optional<Usuario> usuarioEmailOptional = usuarioRepository.findUsuarioByEmail(usuario.getEmail());
@@ -46,13 +52,6 @@ public class UsuarioService {
             throw new UserNotFoundException("Usuario com id " + usuarioId + " não existe.");
         }
         usuarioRepository.deleteById(usuarioId);
-    }
-
-    public Usuario findUsuarioById(Long id) throws UserNotFoundException {
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(
-                        "Usuario com id " + id + " não existe."
-                ));
     }
 
     @Transactional

@@ -120,11 +120,6 @@ public class ClienteConfig {
                     15,
                     bruce
             );
-            Animal jararaca = new Animal(
-                    "Jararaca",
-                    14,
-                    bruce
-            );
 
             Funcionario barry = new Funcionario(
                     "Barry",
@@ -153,6 +148,11 @@ public class ClienteConfig {
                     LocalDate.of(1998, Month.MARCH, 24),
                     CLIENTE
             );
+            Animal soneca = new Animal(
+                    "Soneca",
+                    9,
+                    billy
+            );
 
             /*Animal hector = new Animal(
                     "Hector",
@@ -163,7 +163,7 @@ public class ClienteConfig {
                     List.of(bruce, barry, billy, hector, aquiles)
             );
             animalRepository.saveAll(
-                    List.of(floquinho, jararaca, luke)
+                    List.of(floquinho, soneca, luke)
             );
 
         };
