@@ -25,9 +25,11 @@ public class ApplicationExceptionHandler {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(UserNotFoundException.class)
-    public Map<String, String> handleBusinessException(UserNotFoundException ex) {
+    public Map<String, String> handleBusinessException(MethodArgumentNotValidException ex) {
         Map<String, String> errorMap = new HashMap<>();
-        errorMap.put("errorMessage", ex.getMessage());
+        ex.getBindingResult().getFieldErrors().forEach((error) -> {
+            errorMap.put(error.getField(), error.getDefaultMessage());
+        });
         return errorMap;
     }
 

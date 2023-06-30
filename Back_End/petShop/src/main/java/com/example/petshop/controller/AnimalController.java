@@ -1,6 +1,8 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Animal;
+import com.example.petshop.base.Usuario;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import com.example.petshop.service.AnimalService;
@@ -29,16 +31,22 @@ public class AnimalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Animal>> getAllAnimais() {
+    public ResponseEntity<List<Animal>> getAllAnimais() throws UserNotFoundException {
         List<Animal> animais = animalService.getAnimais();
         return new ResponseEntity<>(animais, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Animal> getAnimalById(@PathVariable("id") Long id) throws UserNotFoundException {
+        Animal animal = animalService.findAnimalById(id);
+        return new ResponseEntity<>(animal, HttpStatus.OK);
     }
 
     @PostMapping(path = "/cliente/{clienteId}")
     public ResponseEntity<Animal> cadastrarAnimal(
             @RequestBody Animal animal,
             @PathVariable Long clienteId
-    ) {
+    ) throws UserNotFoundException {
         Animal novoAnimal = animalService.cadastrarAnimal(animal, clienteId);
         return new ResponseEntity<>(novoAnimal, HttpStatus.CREATED);
     }
