@@ -34,6 +34,9 @@ public class Animal {
     @NotNull
     @Column(name = "idade")
     private int idade;
+    /*
+    * Declarar data de nascimento, espécie e raça
+    * */
 
     @JsonIgnore
     @ManyToOne

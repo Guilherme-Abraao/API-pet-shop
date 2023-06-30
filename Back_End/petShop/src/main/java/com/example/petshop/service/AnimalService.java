@@ -2,6 +2,8 @@ package com.example.petshop.service;
 
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
+import com.example.petshop.base.Usuario;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +29,23 @@ public class AnimalService {
         return animalRepository.findAll();
     }
 
-    public Animal cadastrarAnimal(Animal animal, Long clienteId) {
+    public Animal findAnimalById(Long animalId) throws UserNotFoundException {
+        return animalRepository.findById(animalId)
+                .orElseThrow(() -> new UserNotFoundException(
+                        "Animal com id " + animalId + " não existe."
+                ));
+    }
+
+    public Animal cadastrarAnimal(Animal animal, Long clienteId) throws UserNotFoundException {
         Optional<Cliente> clienteOptional = clienteRepository.findById(clienteId);
 
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();
             animal.setCliente(cliente);
-            animalRepository.save(animal);
+        } else {
+            throw new UserNotFoundException("Cliente com id " + clienteId + " não existe");
         }
-
-        throw new IllegalStateException("Cliente com id " + clienteId + " não existe");
+        return animalRepository.save(animal);
     }
 
     public void deleteAnimal(Long animalId) {
@@ -47,13 +56,6 @@ public class AnimalService {
         }
 
         animalRepository.deleteById(animalId);
-    }
-
-    public Animal findAnimalById(Long animalId) {
-        return animalRepository.findById(animalId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Animal com id " + animalId + " não existe."
-                ));
     }
 
 //    Falta realizar testes com esse método

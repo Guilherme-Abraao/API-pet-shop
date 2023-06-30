@@ -1,6 +1,7 @@
 package com.example.petshop.repository;
 
 import com.example.petshop.base.Funcionario;
+import com.example.petshop.base.Role;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
+import static com.example.petshop.base.Role.FUNCIONARIO;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
@@ -35,6 +37,7 @@ class AdministradorRepositoryTest {
                 "(62) 28362-4799",
                 "8r0A8nTjHx",
                 LocalDate.of(1980, Month.MARCH, 17),
+                FUNCIONARIO,
                 "gerente",
                 10000.00
         );
