@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../../interfaces/Cliente';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { MensagemService } from 'src/app/services/mensagem.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
+import { MensagemService } from 'src/app/services/mensagem.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-new-client',
