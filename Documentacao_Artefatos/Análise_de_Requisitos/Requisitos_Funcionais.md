@@ -7,6 +7,7 @@
 |1.1| 15/05/2023 | Inserção do H.U. 05 ao H.U. 09 | Wendel-Fl |
 |1.2| 15/05/2023 | Inserção do H.U. 10 ao H.U. 13 | GabrielCamiloOliveira |
 |1.3| 19/05/2023 | Remoção dos campos de endereço | GabrielCamiloOliveira |
+|1.4| 30/06/2023 | Inserção do H.U. 14 ao H.U. 17 | GustavoMedeiroz |
 
 Os requisitos funcionais foram classificados de acordo com sua prioridade, adotando-se os seguintes critérios:
 
@@ -236,3 +237,65 @@ Prioridade: alta
 #### Cenário 2:
 
 **Dado** que eu esteja logado no sistema como cliente **E** na tela de agendamento, **quando** selecionar uma data e horário indisponível, **então** o sistema deve me informar que já existem serviços agendados para o horário selecionado.
+
+--- 
+
+### H.U. 14 - Visualização de Agendamento
+
+Versão: 1.0
+Prioridade: alta
+
+**Como** cliente, **quero** visualizar os agendamentos de serviços feitos por mim **para** confirmar o agendamento e não me esquecer do horário e data.
+
+#### Cenário 1: 
+**Dado** que eu esteja logado no sistema como cliente **E** estiver na tela inicial **E** possuir um agendamento marcado **então** o sistema deve me informar todos os agendamentos futuros que foram feitos para os animais cadastrados em meu perfil.
+
+#### Cenário 2: 
+**Dado** que eu esteja logado no sistema como cliente **E** estiver na tela inicial **E** não possuir ao menos um agendamento marcado **então** o sistema deve me informar que não há agendamentos futuros marcados.
+
+#### Cenário 3:
+**Dado** que eu esteja logado no sistema **como** cliente **E** estiver na tela inicial **E** possui um agendamento que não foi realizado **então** o sistema deve me informar que o agendamento não foi realizado.
+
+---
+
+### H.U. 15 - Visualização de Agendamento para funcionário
+
+Versão: 1.0
+Prioridade: alta
+
+**Como** funcionário, **quero** visualizar os agendamentos de serviços destinados a mim **para** me inteirar dos horários.
+
+#### Cenário 1: 
+**Dado** que eu esteja logado no sistema **como** funcionário **E** estiver na tela inicial **E** possuir um agendamento marcado **então** o sistema deve me informar todos os agendamentos futuros com a descrição do serviço e informações de horário, data e cliente (incluindo o animal).
+
+#### Cenário 2: 
+**Dado** que eu esteja logado no sistema **como** funcionário **E** estiver na tela inicial **E** não possuir ao menos um agendamento marcado **então** o sistema deve me informar que não há agendamentos de serviços.
+
+#### Cenário 3:
+**Dado** que eu esteja logado no sistema **como** funcionário **E** estiver na tela inicial **E** possui um agendamento atrasado **então** o sistema deve me informar que o agendamento não foi realizado e o número do cliente para contato.
+
+---
+
+### H.U. 16 - Edição de Agendamento
+
+Versão: 1.0
+Prioridade: alta
+
+**Como** cliente, **quero** conseguir editar o agendamento já feito **para** alterar informações, datas e horários passador de forma errada.
+
+#### Cenário 1: 
+**Dado** que eu tenha feito um agendamento **E** estiver na tela inicial **E** verificar informação gravada de forma errada **então** o sistema deve disponibilizar a edição do agendamento.
+
+
+---
+
+### H.U. 17 - Cancelamento de Agendamento
+
+Versão: 1.0
+Prioridade: alta
+
+**Como** cliente, **quero** ter a possibilidade de cancelar o agendamento **para** evitar pagar o serviço de forma a não utiliza-lo e não deixar horário vago no petshop.
+
+#### Cenário 1: 
+**Dado** que eu tenha feito um agendamento **E** queira cancelar o agendamento feito **então** o sistema deve disponibilizar o cancelamento até 12 horas antes do horário e data marcados.
+
