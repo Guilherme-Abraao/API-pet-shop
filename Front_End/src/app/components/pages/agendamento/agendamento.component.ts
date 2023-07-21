@@ -18,8 +18,8 @@ export class AgendamentoComponent {
   agendamentoForm!: FormGroup;
 
   /* Construtor chamando os serviços */
-  constructor(private agendamentoService: AgendamentoService, 
-    private http: HttpClient, 
+  constructor(private agendamentoService: AgendamentoService,
+    private http: HttpClient,
     private messagemService: MensagemService,
     private router: Router) {}
 
@@ -45,7 +45,7 @@ export class AgendamentoComponent {
     });
   }
 
-  /* Submissão do formulário */ 
+  /* Submissão do formulário */
   submit() {
     if (this.agendamentoForm.invalid) { // Se for inválido invalida a submissão
       return this.messagemService.add('Formulário Inválido, verifique se os dados estão corretos!'); ;

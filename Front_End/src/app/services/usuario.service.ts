@@ -49,5 +49,16 @@ export class UsuarioService {
     return this.http.get<Response<Cliente>>(url);
   }
   
-
+  updateCliente(cliente: any): Observable<any>{
+    const data = {
+      nome: cliente.nome,
+      cpf: cliente.cpf,
+      dataNascimento: cliente.dataNascimento,
+      telefone: cliente.telefone,
+      email: cliente.email,
+      senha: cliente.senha,
+    };
+    const result = this.http.put(this.apiUrl, data);
+    return result;
+  }
 }
