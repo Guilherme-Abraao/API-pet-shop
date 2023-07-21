@@ -24,6 +24,12 @@ import { FuncionarioFormComponent } from './components/funcionario-form/funciona
 import { NewAnimalComponent } from './components/singular-components/new-animal/new-animal.component';
 import { AnimalFormComponent } from './components/animal-form/animal-form.component';
 import { AgendamentoComponent } from './components/pages/agendamento/agendamento.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import { ClientFormUpdateComponent } from './components/client-form-update/client-form-update.component';
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AgendaService, TimelineViewsService, TimelineMonthService } from '@syncfusion/ej2-angular-schedule';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { UpdateClientComponent } from './components/singular-components/update-client/update-client.component'
 
 @NgModule({
   declarations: [
@@ -42,6 +48,9 @@ import { AgendamentoComponent } from './components/pages/agendamento/agendamento
     NewAnimalComponent,
     AnimalFormComponent,
     AgendamentoComponent,
+    ClientFormUpdateComponent,
+    CalendarioComponent,
+    UpdateClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,8 +59,11 @@ import { AgendamentoComponent } from './components/pages/agendamento/agendamento
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    ScheduleModule, RecurrenceEditorModule,
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService, TimelineViewsService, TimelineMonthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
