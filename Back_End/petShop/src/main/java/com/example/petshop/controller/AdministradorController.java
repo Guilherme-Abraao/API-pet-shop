@@ -25,29 +25,35 @@ public class AdministradorController {
     //    Encontrar todos os funcionários
     @GetMapping
 //    @PreAuthorize("hasRole('admin:read')")
-    public ResponseEntity<List<Administrador>> getAllAdministradors() {
-        List<Administrador> Administradors = administradorService.getAdministradores();
-        return new ResponseEntity<>(Administradors, HttpStatus.OK);
+    public ResponseEntity<List<Administrador>> getAllAdministradores() {
+        List<Administrador> administradores = administradorService.getAdministradores();
+        return new ResponseEntity<>(administradores, HttpStatus.OK);
     }
 
     //    Encontrar apenas um funcionário
     @GetMapping(path = "/find/{id}")
 //    @PreAuthorize("hasRole('admin:read')")
-    public ResponseEntity<Administrador> getAdministradorById(@PathVariable("id") Long id) {
-        Administrador Administrador = administradorService.findAdministradorById(id);
-        return new ResponseEntity<>(Administrador, HttpStatus.OK);
+    public ResponseEntity<Administrador> getAdministradorById(
+            @PathVariable("id") Long id
+    ) {
+        Administrador administrador = administradorService.findAdministradorById(id);
+        return new ResponseEntity<>(administrador, HttpStatus.OK);
     }
 
     @PostMapping
 //    @PreAuthorize("hasRole('admin:create')")
-    public ResponseEntity<Administrador> adicionarAdministrador(@RequestBody @Valid Administrador administrador) {
+    public ResponseEntity<Administrador> adicionarAdministrador(
+            @RequestBody @Valid Administrador administrador
+    ) {
         Administrador novoAdministrador = administradorService.adicionarAdministrador(administrador);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "{administradorId}")
 //    @PreAuthorize("hasRole('admin:delete')")
-    public ResponseEntity<Administrador> deleteAdministrador(@PathVariable("administradorId") Long AdministradorId) {
+    public ResponseEntity<Administrador> deleteAdministrador(
+            @PathVariable("administradorId") Long AdministradorId
+    ) {
         administradorService.deleteAdministrador(AdministradorId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

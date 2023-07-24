@@ -29,19 +29,25 @@ public class FuncionarioController {
 
     //    Encontrar apenas um funcionário
     @GetMapping(path = "/find/{id}")
-    public ResponseEntity<Funcionario> getFuncionarioById(@PathVariable("id") Long id) {
+    public ResponseEntity<Funcionario> getFuncionarioById(
+            @PathVariable("id") Long id
+    ) {
         Funcionario Funcionario = funcionarioService.findFuncionarioById(id);
         return new ResponseEntity<>(Funcionario, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Funcionario> adicionarFuncionario(@RequestBody @Valid Funcionario funcionario) {
+    public ResponseEntity<Funcionario> adicionarFuncionario(
+            @RequestBody @Valid Funcionario funcionario
+    ) {
         Funcionario novoFuncionario = funcionarioService.adicionarFuncionario(funcionario);
         return new ResponseEntity<>(novoFuncionario, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "{funcionarioId}")
-    public ResponseEntity<Funcionario> deleteFuncionario(@PathVariable("funcionarioId") Long FuncionarioId) {
+    public ResponseEntity<Funcionario> deleteFuncionario(
+            @PathVariable("funcionarioId") Long FuncionarioId
+    ) {
         funcionarioService.deleteFuncionario(FuncionarioId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
