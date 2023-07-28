@@ -31,19 +31,25 @@ public class ClienteController {
 
 //    Encontrar apenas um usuário
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Cliente> getClienteById(@PathVariable("id") Long id) throws UserNotFoundException {
+    public ResponseEntity<Cliente> getClienteById(
+            @PathVariable("id") Long id
+    ) throws UserNotFoundException {
         Cliente cliente = clienteService.findClienteById(id);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> adicionarCliente(@RequestBody @Valid Cliente cliente) throws UserNotFoundException {
+    public ResponseEntity<Cliente> adicionarCliente(
+            @RequestBody @Valid Cliente cliente
+    ) throws UserNotFoundException {
         Cliente novoCliente = clienteService.adicionarCliente(cliente);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "{clienteId}")
-    public ResponseEntity<Cliente> deleteCliente(@PathVariable("clienteId") Long ClienteId) throws UserNotFoundException {
+    public ResponseEntity<Cliente> deleteCliente(
+            @PathVariable("clienteId") Long ClienteId
+    ) throws UserNotFoundException {
         clienteService.deleteCliente(ClienteId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
