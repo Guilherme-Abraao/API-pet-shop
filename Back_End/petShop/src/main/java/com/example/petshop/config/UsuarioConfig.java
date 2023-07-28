@@ -4,8 +4,7 @@ import com.example.petshop.base.Administrador;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
-import com.example.petshop.repository.AnimalRepository;
-import com.example.petshop.repository.UsuarioRepository;
+import com.example.petshop.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -13,16 +12,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
 import static com.example.petshop.base.Role.*;
-import static java.time.Month.JANUARY;
-import static java.time.Month.JULY;
+import static java.time.LocalDate.*;
+import static java.time.Month.*;
 
 @Configuration
-public class ClienteConfig {
+public class UsuarioConfig {
 
     @Bean
     public MessageSource messageSource() {
@@ -41,49 +39,13 @@ public class ClienteConfig {
         return bean;
     }
 
-    /*@Bean
-    CommandLineRunner commandLineRunner(AuthenticationService service) {
-        return args -> {
-            var bruce = RegisterRequest.builder()
-                    .nome("Bruce")
-                    .email("bruce.wayne@gmail.com")
-                    .cpf("71561133051")
-                    .telefone("(11) 42852-9122")
-                    .username("bruce")
-                    .password("1l5O0mb4AN")
-                    .dataNascimento(LocalDate.of(2000, JANUARY, 25))
-                    .role(ADMINISTRADOR)
-                    .build();
-            System.out.println("Admin token::" + service.register(bruce).getAccessToken());
-
-            var barry = RegisterRequest.builder()
-                    .nome("Barry")
-                    .email("barry.allen@gmail.com")
-                    .cpf("14180500086")
-                    .telefone("(62) 22097-8318")
-                    .username("barry")
-                    .password("PuZfPjDQo6")
-                    .dataNascimento(LocalDate.of(1995, JULY, 14))
-                    .role(CLIENTE)
-                    .build();
-            System.out.println("Client token::" + service.register(barry).getAccessToken());
-
-            var billy = RegisterRequest.builder()
-                    .nome("Billy")
-                    .email("billy.batson@gmail.com")
-                    .cpf("38060025090")
-                    .telefone("(62) 22097-8318")
-                    .username("billy")
-                    .password("iihzNM37gF")
-                    .dataNascimento(LocalDate.of(1995, JULY, 14))
-                    .role(FUNCIONARIO)
-                    .build();
-            System.out.println("Employee token::" + service.register(billy).getAccessToken());
-        };
-    }*/
-
     @Bean
-    CommandLineRunner commandLineRunner(UsuarioRepository usuarioRepository, AnimalRepository animalRepository) {
+    CommandLineRunner commandLineRunner(
+            ClienteRepository clienteRepository,
+            FuncionarioRepository funcionarioRepository,
+            AdministradorRepository administradorRepository,
+            AnimalRepository animalRepository
+    ) {
         return args -> {
             Cliente bruce = new Cliente(
                     "Bruce",
@@ -91,7 +53,7 @@ public class ClienteConfig {
                     "71561133051",
                     "(11) 42852-9122",
                     "1l5O0mb4AN",
-                    LocalDate.of(2000, JANUARY, 25),
+                    of(2000, JANUARY, 25),
                     CLIENTE
             );
 
@@ -101,8 +63,15 @@ public class ClienteConfig {
                     "08174858130",
                     "(11) 42852-9122",
                     "1l5O0mb4AN",
-                    LocalDate.of(2000, JANUARY, 25),
+                    of(2000, JANUARY, 25),
                     CLIENTE
+            );
+
+            Animal fumaca = new Animal(
+                    "Hector",
+                    of(2013, OCTOBER, 10),
+                    "Akita",
+                    hector
             );
 
             Cliente aquiles = new Cliente(
@@ -111,13 +80,14 @@ public class ClienteConfig {
                     "70494074108",
                     "(11) 42852-9122",
                     "1l5O0mb4AN",
-                    LocalDate.of(2000, JANUARY, 25),
+                    of(2000, JANUARY, 25),
                     CLIENTE
             );
 
             Animal floquinho = new Animal(
                     "Floquinho",
-                    15,
+                    of(2015, FEBRUARY, 13),
+                    "Basset hound",
                     bruce
             );
 
@@ -127,7 +97,7 @@ public class ClienteConfig {
                     "14180500086",
                     "(62) 22097-8318",
                     "PuZfPjDQo6",
-                    LocalDate.of(1995, JULY, 14),
+                    of(1995, JULY, 14),
                     FUNCIONARIO,
                     "recepcionista",
                     1045.65
@@ -135,7 +105,8 @@ public class ClienteConfig {
 
             Animal luke = new Animal(
                     "Luke",
-                    5,
+                    of(2014, NOVEMBER, 5),
+                    "Basenji",
                     bruce
             );
 
@@ -144,26 +115,36 @@ public class ClienteConfig {
                     "billy.batson@gmail.com",
                     "38060025090",
                     "(62) 39020-1931",
-                    "iihzNM37gF",
-                    LocalDate.of(1998, Month.MARCH, 24),
+                    "ihzNM37gF",
+                    of(1998, Month.MARCH, 24),
                     CLIENTE
             );
             Animal soneca = new Animal(
                     "Soneca",
-                    9,
+                    of(2010, APRIL, 15),
+                    "American Bully",
                     billy
             );
 
-            /*Animal hector = new Animal(
-                    "Hector",
-                    8,
-                    billy
-            );*/
-            usuarioRepository.saveAll(
-                    List.of(bruce, barry, billy, hector, aquiles)
+            Administrador clark = new Administrador(
+                    "Clark",
+                    "clark.kent@gmail.com",
+                    "83463261065",
+                    "(62) 3731-6206",
+                    "abcder",
+                    of(1972, AUGUST, 3),
+                    ADMINISTRADOR,
+                    "gerente",
+                    10000.00
             );
+
+            clienteRepository.saveAll(
+                    List.of(bruce, billy, hector, aquiles)
+            );
+            funcionarioRepository.save(barry);
+            administradorRepository.save(clark);
             animalRepository.saveAll(
-                    List.of(floquinho, soneca, luke)
+                    List.of(floquinho, soneca, luke, fumaca)
             );
 
         };

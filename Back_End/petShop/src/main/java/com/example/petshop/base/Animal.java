@@ -4,13 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.Period;
 
 @NoArgsConstructor
 @Entity
 @Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@AllArgsConstructor
 @Table(name = "Animal")
 public class Animal {
 
@@ -33,10 +38,12 @@ public class Animal {
 
     @NotNull
     @Column(name = "idade")
+    @Transient
     private int idade;
-    /*
-    * Declarar data de nascimento, espécie e raça
-    * */
+
+    private LocalDate dataNascimento;
+
+    private String raca;
 
     @JsonIgnore
     @ManyToOne
@@ -45,9 +52,14 @@ public class Animal {
     )
     private Cliente cliente;
 
-    public Animal(String nome, int idade, Cliente cliente) {
+    public Animal(String nome, LocalDate dataNascimento, String raca, Cliente cliente) {
         this.nome = nome;
-        this.idade = idade;
+        this.dataNascimento = dataNascimento;
+        this.raca = raca;
         this.cliente = cliente;
+    }
+
+    public int getIdade() {
+        return Period.between(this.dataNascimento, LocalDate.now()).getYears();
     }
 }
