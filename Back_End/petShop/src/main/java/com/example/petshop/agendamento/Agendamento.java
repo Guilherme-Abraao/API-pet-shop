@@ -2,6 +2,7 @@ package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
+import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.Servico;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -25,6 +26,13 @@ public class Agendamento {
     @JsonIgnore
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "funcionario_id", nullable = false)
+    private Funcionario funcionario;
+
+
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

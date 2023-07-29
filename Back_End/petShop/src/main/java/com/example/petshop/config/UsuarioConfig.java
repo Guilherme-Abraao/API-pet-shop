@@ -75,11 +75,25 @@ public class UsuarioConfig {
                     "Akita",
                     hector
             );
+
+            Funcionario barry = new Funcionario(
+                    "Barry",
+                    "barry.allen@gmail.com",
+                    "14180500086",
+                    "(62) 22097-8318",
+                    "PuZfPjDQo6",
+                    of(1995, JULY, 14),
+                    FUNCIONARIO,
+                    "recepcionista",
+                    1045.65
+            );
+
             AgendamentoRequest agendamentoRequest = new AgendamentoRequest(
                     hector, // Cliente
                     fumaca, // Animal
                     LocalDateTime.of(2023, JUNE, 10, 14, 30), // Data e hora do agendamento
-                    Servico.BANHO // Serviço a ser realizado
+                    Servico.BANHO, // Serviço a ser realizado,
+                    barry
             );
 
             Cliente aquiles = new Cliente(
@@ -99,17 +113,7 @@ public class UsuarioConfig {
                     bruce
             );
 
-            Funcionario barry = new Funcionario(
-                    "Barry",
-                    "barry.allen@gmail.com",
-                    "14180500086",
-                    "(62) 22097-8318",
-                    "PuZfPjDQo6",
-                    of(1995, JULY, 14),
-                    FUNCIONARIO,
-                    "recepcionista",
-                    1045.65
-            );
+
 
             Animal luke = new Animal(
                     "Luke",
