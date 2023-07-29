@@ -1,5 +1,6 @@
 package com.example.petshop.base;
 
+import com.example.petshop.agendamento.Agendamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -10,13 +11,13 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 @NoArgsConstructor
 @Entity
 @Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @AllArgsConstructor
-@Table(name = "Animal")
 public class Animal {
 
     @Id
@@ -51,6 +52,9 @@ public class Animal {
             name = "cliente_id"
     )
     private Cliente cliente;
+
+    @OneToMany(mappedBy = "animal")
+    private List<Agendamento> agendamentos;
 
     public Animal(String nome, LocalDate dataNascimento, String raca, Cliente cliente) {
         this.nome = nome;

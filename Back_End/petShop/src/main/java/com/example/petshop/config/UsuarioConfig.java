@@ -1,9 +1,9 @@
 package com.example.petshop.config;
 
-import com.example.petshop.base.Administrador;
-import com.example.petshop.base.Animal;
-import com.example.petshop.base.Cliente;
-import com.example.petshop.base.Funcionario;
+import com.example.petshop.agendamento.AgendamentoRepository;
+import com.example.petshop.agendamento.AgendamentoRequest;
+import com.example.petshop.agendamento.AgendamentoService;
+import com.example.petshop.base.*;
 import com.example.petshop.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.MessageSource;
@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
@@ -44,7 +45,8 @@ public class UsuarioConfig {
             ClienteRepository clienteRepository,
             FuncionarioRepository funcionarioRepository,
             AdministradorRepository administradorRepository,
-            AnimalRepository animalRepository
+            AnimalRepository animalRepository,
+            AgendamentoService agendamentoService
     ) {
         return args -> {
             Cliente bruce = new Cliente(
@@ -68,10 +70,16 @@ public class UsuarioConfig {
             );
 
             Animal fumaca = new Animal(
-                    "Hector",
+                    "Fumaça",
                     of(2013, OCTOBER, 10),
                     "Akita",
                     hector
+            );
+            AgendamentoRequest agendamentoRequest = new AgendamentoRequest(
+                    hector, // Cliente
+                    fumaca, // Animal
+                    LocalDateTime.of(2023, JUNE, 10, 14, 30), // Data e hora do agendamento
+                    Servico.BANHO // Serviço a ser realizado
             );
 
             Cliente aquiles = new Cliente(
@@ -116,7 +124,7 @@ public class UsuarioConfig {
                     "38060025090",
                     "(62) 39020-1931",
                     "ihzNM37gF",
-                    of(1998, Month.MARCH, 24),
+                    of(1998, MARCH, 24),
                     CLIENTE
             );
             Animal soneca = new Animal(
@@ -146,6 +154,7 @@ public class UsuarioConfig {
             animalRepository.saveAll(
                     List.of(floquinho, soneca, luke, fumaca)
             );
+            agendamentoService.agendarServico(agendamentoRequest);
 
         };
     }

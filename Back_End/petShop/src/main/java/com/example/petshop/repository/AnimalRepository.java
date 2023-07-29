@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
-    @Query("SELECT animal FROM Cliente.animais animal WHERE animal.nome = ?1")
-    Optional<Cliente> findAnimalByName(String name);
+    /*@Query("SELECT animal FROM Cliente.animais animal WHERE animal.nome = ?1")
+    Optional<Cliente> findAnimalByName(String name);*/
 
 }
