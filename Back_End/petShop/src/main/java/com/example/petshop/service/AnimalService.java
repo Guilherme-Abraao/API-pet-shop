@@ -58,7 +58,7 @@ public class AnimalService {
         animalRepository.deleteById(animalId);
     }
 
-//    Falta realizar testes com esse método
+   //Falta realizar testes com esse método
     public Animal atualizarAnimal(Long animalId, Long clienteId, String nome, Cliente cliente) {
         Animal animal = animalRepository.findById(animalId)
                 .orElseThrow(() -> new IllegalStateException(
