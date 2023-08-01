@@ -19,8 +19,8 @@ import java.util.List;
 @Table
 public class Funcionario extends Usuario {
 
-    @NotBlank
-    private String cargo;
+    @Enumerated(EnumType.STRING)
+    private Cargo cargo;
     @NotNull
     private Double salario;
 
@@ -28,7 +28,7 @@ public class Funcionario extends Usuario {
     private List<Agendamento> agendamentos;
 
 
-    public Funcionario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento, Role role, String cargo, Double salario) {
+    public Funcionario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento, Role role, Cargo cargo, Double salario) {
         super(nome, email, CPF, telefone, senha, dataNascimento, role);
         this.cargo = cargo;
         this.salario = salario;

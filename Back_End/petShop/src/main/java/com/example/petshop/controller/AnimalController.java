@@ -31,7 +31,7 @@ public class AnimalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Animal>> getAllAnimais() throws UserNotFoundException {
+    public ResponseEntity<List<Animal>> getAllAnimais() {
         List<Animal> animais = animalService.getAnimais();
         return new ResponseEntity<>(animais, HttpStatus.OK);
     }

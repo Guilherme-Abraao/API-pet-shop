@@ -1,5 +1,6 @@
 package com.example.petshop.repository;
 
+import com.example.petshop.base.Cargo;
 import com.example.petshop.base.Role;
 import net.bytebuddy.asm.Advice;
 import org.assertj.core.api.Assertions;
@@ -18,6 +19,7 @@ import java.time.Month;
 import java.util.Date;
 import java.util.Optional;
 
+import static com.example.petshop.base.Cargo.*;
 import static com.example.petshop.base.Role.FUNCIONARIO;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,7 +49,7 @@ class FuncionarioRepositoryTest {
                 "Senha123",
                 LocalDate.of(1969, Month.APRIL,20),
                 FUNCIONARIO,
-                "Banhista",
+                auxiliarVeterinario,
                 2000.00
         );
 

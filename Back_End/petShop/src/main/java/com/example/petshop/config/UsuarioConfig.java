@@ -1,8 +1,8 @@
 package com.example.petshop.config;
 
-import com.example.petshop.agendamento.AgendamentoRepository;
 import com.example.petshop.agendamento.AgendamentoRequest;
 import com.example.petshop.agendamento.AgendamentoService;
+import com.example.petshop.agendamento.Servico;
 import com.example.petshop.base.*;
 import com.example.petshop.repository.*;
 import org.springframework.boot.CommandLineRunner;
@@ -13,9 +13,10 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.List;
 
+import static com.example.petshop.agendamento.Servico.*;
+import static com.example.petshop.base.Cargo.*;
 import static com.example.petshop.base.Role.*;
 import static java.time.LocalDate.*;
 import static java.time.Month.*;
@@ -84,16 +85,16 @@ public class UsuarioConfig {
                     "PuZfPjDQo6",
                     of(1995, JULY, 14),
                     FUNCIONARIO,
-                    "recepcionista",
+                    recepcionistaVeterinario,
                     1045.65
             );
 
             AgendamentoRequest agendamentoRequest = new AgendamentoRequest(
                     hector, // Cliente
+                    barry, // Funcionario
                     fumaca, // Animal
-                    LocalDateTime.of(2023, JUNE, 10, 14, 30), // Data e hora do agendamento
-                    Servico.BANHO, // Serviço a ser realizado,
-                    barry
+                    banho, // Serviço a ser realizado,
+                    LocalDateTime.of(2023, JUNE, 10, 14, 30) // Data e hora do agendamento
             );
 
             Cliente aquiles = new Cliente(
@@ -146,7 +147,7 @@ public class UsuarioConfig {
                     "abcder",
                     of(1972, AUGUST, 3),
                     ADMINISTRADOR,
-                    "gerente",
+                    gerentePetshop,
                     10000.00
             );
 
