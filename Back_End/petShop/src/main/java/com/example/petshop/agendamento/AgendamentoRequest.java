@@ -33,15 +33,15 @@ public class AgendamentoRequest {
     public AgendamentoRequest(
             Cliente cliente,
             Funcionario funcionario,
-            Servico servico,
             Animal animal,
+            Servico servico,
             LocalDateTime dataHora,
             String observacoes
     ) {
         this.cliente = cliente;
         this.funcionario = funcionario;
-        this.servico = servico;
         this.animal = animal;
+        this.servico = servico;
         this.dataHora = dataHora;
         this.observacoes = observacoes;
     }

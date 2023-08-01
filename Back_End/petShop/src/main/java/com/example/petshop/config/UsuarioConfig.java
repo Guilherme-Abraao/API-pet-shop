@@ -19,6 +19,7 @@ import static com.example.petshop.agendamento.Servico.*;
 import static com.example.petshop.base.Cargo.*;
 import static com.example.petshop.base.Role.*;
 import static java.time.LocalDate.*;
+import static java.time.LocalDateTime.*;
 import static java.time.Month.*;
 
 @Configuration
@@ -89,12 +90,13 @@ public class UsuarioConfig {
                     1045.65
             );
 
-            AgendamentoRequest agendamentoRequest = new AgendamentoRequest(
+            AgendamentoRequest agendamentoFumaca = new AgendamentoRequest(
                     hector, // Cliente
                     barry, // Funcionario
                     fumaca, // Animal
                     banho, // Serviço a ser realizado,
-                    LocalDateTime.of(2023, JUNE, 10, 14, 30) // Data e hora do agendamento
+                    of(2023, JUNE, 10, 14, 30), // Data e hora do agendamento
+                    "Ele tem carrapicho."
             );
 
             Cliente aquiles = new Cliente(
@@ -114,7 +116,14 @@ public class UsuarioConfig {
                     bruce
             );
 
-
+            AgendamentoRequest agendamentoFloquinho = new AgendamentoRequest(
+                    bruce,
+                    barry,
+                    floquinho,
+                    tosaAlta,
+                    of(2023, AUGUST, 15, 13, 30),
+                    "Ele gosta de salada de fruta, mas tem que usar a entonação do James"
+            );
 
             Animal luke = new Animal(
                     "Luke",
@@ -159,7 +168,8 @@ public class UsuarioConfig {
             animalRepository.saveAll(
                     List.of(floquinho, soneca, luke, fumaca)
             );
-            agendamentoService.agendarServico(agendamentoRequest);
+            agendamentoService.agendarServico(agendamentoFumaca);
+            agendamentoService.agendarServico(agendamentoFloquinho);
 
         };
     }
