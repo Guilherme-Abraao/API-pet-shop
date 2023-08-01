@@ -33,6 +33,7 @@ public class AgendamentoService {
         agendamento.setServico(request.getServico());
         agendamento.setAnimal(request.getAnimal());
         agendamento.setDataHora(request.getDataHora());
+        agendamento.setFuncionario(request.getFuncionario());
 
         // Salve o agendamento no banco de dados
         return agendamentoRepository.save(agendamento);
