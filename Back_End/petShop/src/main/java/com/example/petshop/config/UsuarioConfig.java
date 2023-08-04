@@ -13,6 +13,8 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.example.petshop.agendamento.Servico.*;
@@ -89,12 +91,13 @@ public class UsuarioConfig {
                     1045.65
             );
 
-            AgendamentoRequest agendamentoRequest = new AgendamentoRequest(
-                    hector, // Cliente
-                    barry, // Funcionario
+            AgendamentoRequest agendarFumaca = new AgendamentoRequest(
+                    hector,
+                    barry,
+                    List.of(banho, tosaAlta),
                     fumaca, // Animal
-                    banho, // Serviço a ser realizado,
-                    LocalDateTime.of(2023, JUNE, 10, 14, 30) // Data e hora do agendamento
+                    LocalDateTime.of(2023, JUNE, 10, 14, 30),
+                    "Teste"
             );
 
             Cliente aquiles = new Cliente(
@@ -113,6 +116,15 @@ public class UsuarioConfig {
                     "Basset hound",
                     bruce
             );
+
+            /*AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
+                    aquiles,
+                    barry,
+                    List.of(hidratacao, unha),
+                    floquinho,
+                    LocalDateTime.of(2023, JUNE, 10, 14, 30),
+                    "Nada a declarar"
+            );*/
 
 
 
@@ -159,7 +171,7 @@ public class UsuarioConfig {
             animalRepository.saveAll(
                     List.of(floquinho, soneca, luke, fumaca)
             );
-            agendamentoService.agendarServico(agendamentoRequest);
+            agendamentoService.agendarServico(agendarFumaca);
 
         };
     }

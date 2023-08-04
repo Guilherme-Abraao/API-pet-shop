@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,7 +34,7 @@ public class Agendamento {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Servico servico;
+    private List<Servico> servicos;
 
     @ManyToOne
     @JsonIgnore
@@ -45,7 +46,5 @@ public class Agendamento {
 
     @Column
     private String observacoes;
-
-    // Outros campos e métodos construtores, getters e setters
 }
 

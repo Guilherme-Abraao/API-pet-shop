@@ -30,7 +30,7 @@ public class AgendamentoService {
         // Crie um objeto Agendamento a partir dos dados da requisição
         Agendamento agendamento = new Agendamento();
         agendamento.setCliente(request.getCliente());
-        agendamento.setServico(request.getServico());
+        agendamento.setServicos(request.getServicos());
         agendamento.setAnimal(request.getAnimal());
         agendamento.setDataHora(request.getDataHora());
         agendamento.setFuncionario(request.getFuncionario());
