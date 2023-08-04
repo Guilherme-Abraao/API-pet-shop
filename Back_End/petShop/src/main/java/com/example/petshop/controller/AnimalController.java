@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/petshop/animais")
+@RequestMapping(path = "api/petshop/animal")
 public class AnimalController {
 
     private final AnimalService animalService;
@@ -31,7 +31,7 @@ public class AnimalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Animal>> getAllAnimais() throws UserNotFoundException {
+    public ResponseEntity<List<Animal>> getAllAnimais() {
         List<Animal> animais = animalService.getAnimais();
         return new ResponseEntity<>(animais, HttpStatus.OK);
     }

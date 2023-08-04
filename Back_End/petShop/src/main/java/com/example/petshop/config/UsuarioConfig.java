@@ -1,8 +1,8 @@
 package com.example.petshop.config;
 
-import com.example.petshop.agendamento.AgendamentoRepository;
 import com.example.petshop.agendamento.AgendamentoRequest;
 import com.example.petshop.agendamento.AgendamentoService;
+import com.example.petshop.agendamento.Servico;
 import com.example.petshop.base.*;
 import com.example.petshop.repository.*;
 import org.springframework.boot.CommandLineRunner;
@@ -13,11 +13,13 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.List;
 
+import static com.example.petshop.agendamento.Servico.*;
+import static com.example.petshop.base.Cargo.*;
 import static com.example.petshop.base.Role.*;
 import static java.time.LocalDate.*;
+import static java.time.LocalDateTime.*;
 import static java.time.Month.*;
 
 @Configuration
@@ -75,11 +77,26 @@ public class UsuarioConfig {
                     "Akita",
                     hector
             );
-            AgendamentoRequest agendamentoRequest = new AgendamentoRequest(
+
+            Funcionario barry = new Funcionario(
+                    "Barry",
+                    "barry.allen@gmail.com",
+                    "14180500086",
+                    "(62) 22097-8318",
+                    "PuZfPjDQo6",
+                    of(1995, JULY, 14),
+                    FUNCIONARIO,
+                    recepcionistaVeterinario,
+                    1045.65
+            );
+
+            AgendamentoRequest agendamentoFumaca = new AgendamentoRequest(
                     hector, // Cliente
+                    barry, // Funcionario
                     fumaca, // Animal
-                    LocalDateTime.of(2023, JUNE, 10, 14, 30), // Data e hora do agendamento
-                    Servico.BANHO // Serviço a ser realizado
+                    banho, // Serviço a ser realizado,
+                    of(2023, JUNE, 10, 14, 30), // Data e hora do agendamento
+                    "Ele tem carrapicho."
             );
 
             Cliente aquiles = new Cliente(
@@ -99,16 +116,13 @@ public class UsuarioConfig {
                     bruce
             );
 
-            Funcionario barry = new Funcionario(
-                    "Barry",
-                    "barry.allen@gmail.com",
-                    "14180500086",
-                    "(62) 22097-8318",
-                    "PuZfPjDQo6",
-                    of(1995, JULY, 14),
-                    FUNCIONARIO,
-                    "recepcionista",
-                    1045.65
+            AgendamentoRequest agendamentoFloquinho = new AgendamentoRequest(
+                    bruce,
+                    barry,
+                    floquinho,
+                    tosaAlta,
+                    of(2023, AUGUST, 15, 13, 30),
+                    "Ele gosta de salada de fruta, mas tem que usar a entonação do James"
             );
 
             Animal luke = new Animal(
@@ -142,7 +156,7 @@ public class UsuarioConfig {
                     "abcder",
                     of(1972, AUGUST, 3),
                     ADMINISTRADOR,
-                    "gerente",
+                    gerentePetshop,
                     10000.00
             );
 
@@ -154,7 +168,8 @@ public class UsuarioConfig {
             animalRepository.saveAll(
                     List.of(floquinho, soneca, luke, fumaca)
             );
-            agendamentoService.agendarServico(agendamentoRequest);
+            agendamentoService.agendarServico(agendamentoFumaca);
+            agendamentoService.agendarServico(agendamentoFloquinho);
 
         };
     }

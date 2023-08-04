@@ -55,13 +55,13 @@ public class AdministradorService {
                 ));
 
         if (nome != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(funcionario.getNome(), nome)) {
             funcionario.setNome(nome);
         }
 
         if (email != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(funcionario.getEmail(), email)) {
             Optional<Administrador> funcionarioOptional = administradorRepository.findAdministradorByEmail(email);
             if (funcionarioOptional.isPresent()) {

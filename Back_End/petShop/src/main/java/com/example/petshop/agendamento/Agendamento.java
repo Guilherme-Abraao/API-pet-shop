@@ -2,7 +2,7 @@ package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.Servico;
+import com.example.petshop.base.Funcionario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,6 +26,11 @@ public class Agendamento {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "funcionario_id", nullable = false)
+    private Funcionario funcionario;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Servico servico;
@@ -37,6 +42,9 @@ public class Agendamento {
 
     @Column(nullable = false)
     private LocalDateTime dataHora;
+
+    @Column
+    private String observacoes;
 
     // Outros campos e métodos construtores, getters e setters
 }
