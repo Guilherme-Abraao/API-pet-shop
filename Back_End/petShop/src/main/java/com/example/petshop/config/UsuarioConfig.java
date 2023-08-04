@@ -21,6 +21,7 @@ import static com.example.petshop.agendamento.Servico.*;
 import static com.example.petshop.base.Cargo.*;
 import static com.example.petshop.base.Role.*;
 import static java.time.LocalDate.*;
+import static java.time.LocalDateTime.*;
 import static java.time.Month.*;
 
 @Configuration
@@ -97,7 +98,7 @@ public class UsuarioConfig {
                     List.of(banho, tosaAlta),
                     fumaca, // Animal
                     LocalDateTime.of(2023, JUNE, 10, 14, 30),
-                    "Teste"
+                    "Ele tem carrapicho."
             );
 
             Cliente aquiles = new Cliente(
@@ -116,7 +117,6 @@ public class UsuarioConfig {
                     "Basset hound",
                     bruce
             );
-
             /*AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
                     aquiles,
                     barry,
@@ -125,8 +125,6 @@ public class UsuarioConfig {
                     LocalDateTime.of(2023, JUNE, 10, 14, 30),
                     "Nada a declarar"
             );*/
-
-
 
             Animal luke = new Animal(
                     "Luke",

@@ -4,6 +4,7 @@ import com.example.petshop.exception.HorarioJaAgendadoException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class AgendamentoService {
@@ -34,6 +35,7 @@ public class AgendamentoService {
         agendamento.setAnimal(request.getAnimal());
         agendamento.setDataHora(request.getDataHora());
         agendamento.setFuncionario(request.getFuncionario());
+        agendamento.setObservacoes(request.getObservacoes());
 
         // Salve o agendamento no banco de dados
         return agendamentoRepository.save(agendamento);
@@ -44,6 +46,10 @@ public class AgendamentoService {
                 .orElseThrow(() -> new IllegalStateException(
                         "Agendamento com id " + id + " não existe."
                 ));
+    }
+
+    public List<Agendamento> getAgendamentos() {
+        return agendamentoRepository.findAll();
     }
 
     // Implemente outros métodos de serviço conforme necessário, como atualizar e cancelar agendamentos, obter todos os agendamentos de um cliente, etc.
