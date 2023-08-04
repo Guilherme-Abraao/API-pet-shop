@@ -1,5 +1,6 @@
 package com.example.petshop.repository;
 
+import com.example.petshop.base.Cargo;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.Role;
 import org.assertj.core.api.Assertions;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
+import static com.example.petshop.base.Cargo.*;
 import static com.example.petshop.base.Role.FUNCIONARIO;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +40,7 @@ class AdministradorRepositoryTest {
                 "8r0A8nTjHx",
                 LocalDate.of(1980, Month.MARCH, 17),
                 FUNCIONARIO,
-                "gerente",
+                gerentePetshop,
                 10000.00
         );
 

@@ -1,6 +1,7 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Funcionario;
+import com.example.petshop.base.Role;
 import com.example.petshop.repository.FuncionarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import static com.example.petshop.base.Role.FUNCIONARIO;
 
 @Service
 public class FuncionarioService {
@@ -29,6 +32,9 @@ public class FuncionarioService {
         if (funcionarioOptional.isPresent()) {
             throw new IllegalStateException("email já existe");
         }
+
+        funcionario.setRole(FUNCIONARIO);
+
         return funcionarioRepository.save(funcionario);
     }
 
@@ -55,13 +61,13 @@ public class FuncionarioService {
                 ));
 
         if (nome != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(funcionario.getNome(), nome)) {
             funcionario.setNome(nome);
         }
 
         if (email != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(funcionario.getEmail(), email)) {
             Optional<Funcionario> funcionarioOptional = funcionarioRepository.findFuncionarioByEmail(email);
             if (funcionarioOptional.isPresent()) {

@@ -1,6 +1,7 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cliente;
+import com.example.petshop.base.Role;
 import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import static com.example.petshop.base.Role.*;
 
 @Service
 public class ClienteService {
@@ -37,6 +40,8 @@ public class ClienteService {
             throw new UserNotFoundException("O CPF informado já existe.");
         }
 
+        cliente.setRole(CLIENTE);
+
         return clienteRepository.save(cliente);
     }
 
@@ -63,13 +68,13 @@ public class ClienteService {
                 ));
 
         if (nome != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(cliente.getNome(), nome)) {
             cliente.setNome(nome);
         }
 
         if (email != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(cliente.getEmail(), email)) {
             Optional<Cliente> clienteOptional = clienteRepository.findClienteByEmail(email);
             if (clienteOptional.isPresent()) {

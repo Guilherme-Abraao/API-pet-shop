@@ -62,13 +62,13 @@ public class UsuarioService {
                 ));
 
         if (nome != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(usuario.getNome(), nome)) {
             usuario.setNome(nome);
         }
 
         if (email != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(usuario.getEmail(), email)) {
             Optional<Usuario> usuarioOptional = usuarioRepository.findUsuarioByEmail(email);
             if (usuarioOptional.isPresent()) {

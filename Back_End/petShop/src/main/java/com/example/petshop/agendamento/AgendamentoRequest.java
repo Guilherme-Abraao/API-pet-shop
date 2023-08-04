@@ -3,7 +3,6 @@ package com.example.petshop.agendamento;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
-import com.example.petshop.base.Servico;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -11,17 +10,40 @@ import java.time.LocalDateTime;
 @Data
 public class AgendamentoRequest {
     private Cliente cliente;
+    private Funcionario funcionario;
     private Servico servico;
     private Animal animal;
     private LocalDateTime dataHora;
-    private Funcionario funcionario;
+    private String observacoes;
 
-    public AgendamentoRequest(Cliente cliente, Animal animal, LocalDateTime dataHora, Servico servico, Funcionario funcionario) {
+    public AgendamentoRequest(
+            Cliente cliente,
+            Funcionario funcionario,
+            Animal animal,
+            Servico servico,
+            LocalDateTime dataHora
+    ) {
         this.cliente = cliente;
-        this.animal = animal;
-        this.dataHora = dataHora;
-        this.servico = servico;
         this.funcionario = funcionario;
+        this.animal = animal;
+        this.servico = servico;
+        this.dataHora = dataHora;
+    }
+
+    public AgendamentoRequest(
+            Cliente cliente,
+            Funcionario funcionario,
+            Animal animal,
+            Servico servico,
+            LocalDateTime dataHora,
+            String observacoes
+    ) {
+        this.cliente = cliente;
+        this.funcionario = funcionario;
+        this.animal = animal;
+        this.servico = servico;
+        this.dataHora = dataHora;
+        this.observacoes = observacoes;
     }
 }
 
