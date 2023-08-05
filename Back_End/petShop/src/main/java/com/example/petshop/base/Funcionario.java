@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.example.petshop.base.Role.*;
+
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Data

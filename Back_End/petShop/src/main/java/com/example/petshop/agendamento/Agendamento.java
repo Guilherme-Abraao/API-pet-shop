@@ -3,6 +3,7 @@ package com.example.petshop.agendamento;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,7 @@ public class Agendamento {
     private Funcionario funcionario;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @JoinColumn(name = "agendamento_id")
     private List<Servico> servicos;
 
     @ManyToOne
@@ -41,6 +42,7 @@ public class Agendamento {
     @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     @Column(nullable = false)
     private LocalDateTime dataHora;
 
