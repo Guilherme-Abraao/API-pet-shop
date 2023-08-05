@@ -30,8 +30,8 @@ public class AgendamentoController {
     }
 
     @PostMapping(path = "/agendar")
-    public ResponseEntity<Agendamento> agendarServico(@RequestBody AgendamentoRequest request) {
-        Agendamento agendamento = agendamentoService.agendarServico(request);
+    public ResponseEntity<List<Agendamento>> agendarServicos(@RequestBody List<AgendamentoRequest> requests) {
+        List<Agendamento> agendamento = agendamentoService.agendarServicos(requests);
         return new ResponseEntity<>(agendamento, HttpStatus.CREATED);
     }
 

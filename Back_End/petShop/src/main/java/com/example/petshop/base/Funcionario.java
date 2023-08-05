@@ -30,9 +30,36 @@ public class Funcionario extends Usuario {
     private List<Agendamento> agendamentos;
 
 
-    public Funcionario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento, Role role, Cargo cargo, Double salario) {
-        super(nome, email, CPF, telefone, senha, dataNascimento, role);
+    public Funcionario(
+            String nome, 
+            String email, 
+            String cpf, 
+            String telefone, 
+            String senha, 
+            LocalDate dataNascimento, 
+            Cargo cargo, 
+            @NotNull Double salario
+    ) {
+        super(nome, email, cpf, telefone, senha, dataNascimento, FUNCIONARIO);
         this.cargo = cargo;
         this.salario = salario;
     }
+
+    public Funcionario(
+            String nome,
+            String email,
+            String cpf,
+            String telefone,
+            String senha, LocalDate dataNascimento,
+            Role role,
+            Cargo cargo,
+            @NotNull Double salario
+    ) {
+        super(nome, email, cpf, telefone, senha, dataNascimento, role);
+        this.cargo = cargo;
+        this.salario = salario;
+    }
+
+    //    public Funcionario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento, Role role, Cargo cargo, Double salario) {
+//    }
 }

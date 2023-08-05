@@ -5,6 +5,7 @@ import com.example.petshop.exception.AgendamentoException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,30 +27,32 @@ public class AgendamentoService {
         return quantidadeAgendamentos > 0;
     }
 
-    public Agendamento agendarServico(AgendamentoRequest request) {
+    public List<Agendamento> agendarServicos(List<AgendamentoRequest> requests) {
+        List<Agendamento> agendamentos = new ArrayList<>();
 
-        LocalDateTime horario = request.getDataHora();
-        Funcionario funcionario = request.getFuncionario();
+        for (AgendamentoRequest request : requests) {
+            LocalDateTime horario = request.getDataHora();
+            Funcionario funcionario = request.getFuncionario();
 
-//        if (horarioJaAgendado(horario)) {
-//            throw new AgendamentoException("O horário já está agendado.");
-//        }
+            if (agendamentoExisteParaFuncionario(funcionario, horario)) {
+                throw new AgendamentoException("O funcionário já possui um agendamento neste horário.");
+            }
 
-        if (agendamentoExisteParaFuncionario(funcionario, horario)) {
-            throw new AgendamentoException("O funcionário já possui um agendamento neste horário.");
+            // Crie um objeto Agendamento a partir dos dados da requisição
+            Agendamento agendamento = new Agendamento();
+            agendamento.setCliente(request.getCliente());
+            agendamento.setFuncionario(request.getFuncionario());
+            agendamento.setServicos(request.getServicos());
+            agendamento.setAnimal(request.getAnimal());
+            agendamento.setDataHora(request.getDataHora());
+            agendamento.setObservacoes(request.getObservacoes());
+
+            agendamentos.add(agendamento);
+
         }
 
-        // Crie um objeto Agendamento a partir dos dados da requisição
-        Agendamento agendamento = new Agendamento();
-        agendamento.setCliente(request.getCliente());
-        agendamento.setFuncionario(request.getFuncionario());
-        agendamento.setServicos(request.getServicos());
-        agendamento.setAnimal(request.getAnimal());
-        agendamento.setDataHora(request.getDataHora());
-        agendamento.setObservacoes(request.getObservacoes());
-
         // Salve o agendamento no banco de dados
-        return agendamentoRepository.save(agendamento);
+        return agendamentoRepository.saveAll(agendamentos);
     }
 
     public Agendamento obterAgendamentoPorId(Long id) {
