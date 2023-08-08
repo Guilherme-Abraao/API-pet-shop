@@ -2,6 +2,7 @@ package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.exception.AgendamentoException;
+import com.example.petshop.exception.ApplicationExceptionHandler;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
