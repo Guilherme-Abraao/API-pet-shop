@@ -8,31 +8,39 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationException(MethodArgumentNotValidException ex) {
-        Map<String, String> errorMap = new HashMap<>();
+    /*@ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        body.put("status", HttpStatus.NOT_FOUND);
 
-        ex.getBindingResult().getFieldErrors().forEach((error) -> {
-            errorMap.put(error.getField(), error.getDefaultMessage());
-        });
-        return errorMap;
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }*/
+
+    @ExceptionHandler(value = {AgendamentoException.class})
+    public ResponseEntity<Object> handleAgendamentoException(AgendamentoException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        body.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(UserNotFoundException.class)
-    public Map<String, String> handleBusinessException(MethodArgumentNotValidException ex) {
-        Map<String, String> errorMap = new HashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach((error) -> {
-            errorMap.put(error.getField(), error.getDefaultMessage());
-        });
-        return errorMap;
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        body.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
