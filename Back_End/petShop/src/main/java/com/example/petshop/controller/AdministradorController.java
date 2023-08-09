@@ -31,7 +31,7 @@ public class AdministradorController {
     }
 
     //    Encontrar apenas um funcionário
-    @GetMapping(path = "/find/{id}")
+    @GetMapping(path = "/{id}")
 //    @PreAuthorize("hasRole('admin:read')")
     public ResponseEntity<Administrador> getAdministradorById(
             @PathVariable("id") Long id
@@ -40,7 +40,7 @@ public class AdministradorController {
         return new ResponseEntity<>(administrador, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(path = "/cadastrarAdministrador")
 //    @PreAuthorize("hasRole('admin:create')")
     public ResponseEntity<Administrador> adicionarAdministrador(
             @RequestBody @Valid Administrador administrador
@@ -49,7 +49,7 @@ public class AdministradorController {
         return new ResponseEntity<>(novoAdministrador, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "{administradorId}")
+    @DeleteMapping(path = "/{administradorId}")
 //    @PreAuthorize("hasRole('admin:delete')")
     public ResponseEntity<Administrador> deleteAdministrador(
             @PathVariable("administradorId") Long AdministradorId
@@ -58,7 +58,7 @@ public class AdministradorController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "{administradorId}")
+    @PutMapping(path = "/{administradorId}")
 //    @PreAuthorize("hasRole('admin:update')")
     public ResponseEntity<Administrador> atualizarAdministrador(
             @PathVariable("administradorId") Long administradorId,

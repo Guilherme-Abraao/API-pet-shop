@@ -1,12 +1,10 @@
 package com.example.petshop.base;
 
-import lombok.RequiredArgsConstructor;
-
 //@RequiredArgsConstructor
 public enum Role {
-    CLIENTE,
-    FUNCIONARIO,
-    ADMINISTRADOR
+    USER,
+    FUNC,
+    ADMIN
     /*CLIENTE(Collections.emptySet()),
     FUNCIONARIO(
             Set.of(

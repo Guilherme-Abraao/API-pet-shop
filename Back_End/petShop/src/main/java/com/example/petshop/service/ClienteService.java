@@ -1,7 +1,6 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.Role;
 import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.example.petshop.base.Role.*;
+import static com.example.petshop.base.Role.USER;
 
 @Service
 public class ClienteService {
@@ -28,6 +27,12 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
+    public Cliente findClienteById(Long id) throws UserNotFoundException {
+        return clienteRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(
+                        "Cliente com id " + id + " não existe."
+                ));
+    }
 
     public Cliente adicionarCliente(Cliente cliente) throws UserNotFoundException {
         Optional<Cliente> clienteEmailOptional = clienteRepository.findClienteByEmail(cliente.getEmail());
@@ -40,9 +45,23 @@ public class ClienteService {
             throw new UserNotFoundException("O CPF informado já existe.");
         }
 
-        cliente.setRole(CLIENTE);
+        cliente.setRole(USER);
 
         return clienteRepository.save(cliente);
+    }
+
+    public Cliente login(String email, String senha) throws UserNotFoundException {
+//        String email = loginRequest.getEmail();
+//        String senha = loginRequest.getSenha();
+
+        Cliente cliente = clienteRepository.findClienteByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("Email não encontrado."));
+
+        if (!Objects.equals(cliente.getSenha(), senha)) {
+            throw new UserNotFoundException("Senha incorreta.");
+        }
+
+        return cliente;
     }
 
     public void deleteCliente(Long clienteId) throws UserNotFoundException {
@@ -51,13 +70,6 @@ public class ClienteService {
             throw new UserNotFoundException("Cliente com id " + clienteId + " não existe.");
         }
         clienteRepository.deleteById(clienteId);
-    }
-
-    public Cliente findClienteById(Long id) throws UserNotFoundException {
-        return clienteRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(
-                        "Cliente com id " + id + " não existe."
-                ));
     }
 
     @Transactional

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.example.petshop.base.Role.CLIENTE;
+import static com.example.petshop.base.Role.USER;
 
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
@@ -34,7 +34,7 @@ public class Cliente extends Usuario {
             String senha,
             LocalDate dataNascimento
     ) {
-        super(nome, email, cpf, telefone, senha, dataNascimento, CLIENTE);
+        super(nome, email, cpf, telefone, senha, dataNascimento, USER);
     }
 
     public Cliente(
@@ -46,7 +46,7 @@ public class Cliente extends Usuario {
             LocalDate dataNascimento,
             List<Animal> animais
     ) {
-        super(nome, email, cpf, telefone, senha, dataNascimento, CLIENTE);
+        super(nome, email, cpf, telefone, senha, dataNascimento, USER);
         this.animais = animais;
     }
 

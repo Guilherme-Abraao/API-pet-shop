@@ -1,7 +1,6 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Funcionario;
-import com.example.petshop.base.Role;
 import com.example.petshop.repository.FuncionarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.example.petshop.base.Role.FUNCIONARIO;
+import static com.example.petshop.base.Role.FUNC;
 
 @Service
 public class FuncionarioService {
@@ -33,7 +32,7 @@ public class FuncionarioService {
             throw new IllegalStateException("email já existe");
         }
 
-        funcionario.setRole(FUNCIONARIO);
+        funcionario.setRole(FUNC);
 
         return funcionarioRepository.save(funcionario);
     }

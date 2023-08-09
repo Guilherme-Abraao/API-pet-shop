@@ -2,9 +2,7 @@ package com.example.petshop.base;
 
 import com.example.petshop.agendamento.Agendamento;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -40,7 +38,7 @@ public class Funcionario extends Usuario {
             Cargo cargo, 
             @NotNull Double salario
     ) {
-        super(nome, email, cpf, telefone, senha, dataNascimento, FUNCIONARIO);
+        super(nome, email, cpf, telefone, senha, dataNascimento, FUNC);
         this.cargo = cargo;
         this.salario = salario;
     }

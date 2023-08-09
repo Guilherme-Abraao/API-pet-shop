@@ -7,17 +7,14 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.assertj.core.api.Assertions;
 
 import java.time.LocalDate;
 import java.time.Month;
 
-import static com.example.petshop.base.Role.CLIENTE;
+import static com.example.petshop.base.Role.USER;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -61,8 +58,7 @@ class ClienteServiceTest {
                 "38060025090",
                 "(62) 39020-1931",
                 "iihzNM37gF",
-                LocalDate.of(1998, Month.MARCH, 24),
-                CLIENTE
+                LocalDate.of(1998, Month.MARCH, 24)
         );
 
         //when
