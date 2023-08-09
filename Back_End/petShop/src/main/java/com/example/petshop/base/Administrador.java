@@ -2,13 +2,11 @@ package com.example.petshop.base;
 
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import static com.example.petshop.base.Role.ADMINISTRADOR;
+import static com.example.petshop.base.Role.ADMIN;
 
 @NoArgsConstructor
 @Entity
@@ -23,6 +21,6 @@ public class Administrador extends Funcionario{
             Cargo cargo,
             @NotNull Double salario
     ) {
-        super(nome, email, cpf, telefone, senha, dataNascimento, ADMINISTRADOR, cargo, salario);
+        super(nome, email, cpf, telefone, senha, dataNascimento, ADMIN, cargo, salario);
     }
 }

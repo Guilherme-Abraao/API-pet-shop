@@ -1,6 +1,7 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Cliente;
+import com.example.petshop.base.LoginRequest;
 import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.service.ClienteService;
 import jakarta.validation.Valid;
@@ -38,7 +39,7 @@ public class ClienteController {
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(path = "/cadastrarCliente")
     public ResponseEntity<Cliente> adicionarCliente(
             @RequestBody @Valid Cliente cliente
     ) throws UserNotFoundException {
@@ -46,7 +47,20 @@ public class ClienteController {
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "{clienteId}")
+    @PostMapping(path = "/{email}/{senha}")
+    public ResponseEntity<Cliente> login(
+            @RequestBody LoginRequest loginRequest,
+            @PathVariable("email") String email,
+            @PathVariable("senha") String senha
+    ) throws UserNotFoundException {
+        Cliente cliente = clienteService.login(
+                loginRequest.setEmail(email),
+                loginRequest.setSenha(senha)
+        );
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/{clienteId}")
     public ResponseEntity<Cliente> deleteCliente(
             @PathVariable("clienteId") Long ClienteId
     ) throws UserNotFoundException {
@@ -54,7 +68,7 @@ public class ClienteController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "{clienteId}")
+    @PutMapping(path = "/{clienteId}")
     public ResponseEntity<Cliente> atualizarCliente(
             @PathVariable("clienteId") Long clienteId,
             @RequestParam(required = false) String nome,

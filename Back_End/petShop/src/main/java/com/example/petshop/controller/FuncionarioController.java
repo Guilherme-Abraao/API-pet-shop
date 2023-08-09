@@ -28,7 +28,7 @@ public class FuncionarioController {
     }
 
     //    Encontrar apenas um funcionário
-    @GetMapping(path = "/find/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Funcionario> getFuncionarioById(
             @PathVariable("id") Long id
     ) {
@@ -36,7 +36,7 @@ public class FuncionarioController {
         return new ResponseEntity<>(Funcionario, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(path = "/cadastrarFuncionario")
     public ResponseEntity<Funcionario> adicionarFuncionario(
             @RequestBody @Valid Funcionario funcionario
     ) {
@@ -44,7 +44,7 @@ public class FuncionarioController {
         return new ResponseEntity<>(novoFuncionario, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "{funcionarioId}")
+    @DeleteMapping(path = "/{funcionarioId}")
     public ResponseEntity<Funcionario> deleteFuncionario(
             @PathVariable("funcionarioId") Long FuncionarioId
     ) {
@@ -52,7 +52,7 @@ public class FuncionarioController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "{funcionarioId}")
+    @PutMapping(path = "/{funcionarioId}")
     public ResponseEntity<Funcionario> atualizarFuncionario(
             @PathVariable("funcionarioId") Long funcionarioId,
             @RequestParam(required = false) String nome,

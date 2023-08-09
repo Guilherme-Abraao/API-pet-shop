@@ -42,7 +42,7 @@ public class AnimalController {
         return new ResponseEntity<>(animal, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/cliente/{clienteId}")
+    @PostMapping(path = "/cadastrarAnimal/{clienteId}")
     public ResponseEntity<Animal> cadastrarAnimal(
             @RequestBody Animal animal,
             @PathVariable Long clienteId
