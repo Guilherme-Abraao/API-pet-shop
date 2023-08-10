@@ -41,11 +41,9 @@ export class UsuarioService {
     return this.http.get<Response<Cliente>>(url);
   }
 
-  /* Pegar um Cliente no sistema pelo cpf e senha, levemente codificados em base64 */
-  getClienteLogin(cpf: string, senha: string): Observable<Response<Cliente>> {
-    var cpfCodificado = btoa(cpf);
-    var senhaCodificada = btoa(senha);
-    const url = `${this.apiUrl}/${cpfCodificado}-${senhaCodificada}`;
+  /* Pegar um Cliente no sistema pelo email e senha */
+  getClienteLogin(email: string, senha: string): Observable<Response<Cliente>> {
+    const url = `${this.apiUrl}/${email}-${senha}`;
     return this.http.get<Response<Cliente>>(url);
   }
   

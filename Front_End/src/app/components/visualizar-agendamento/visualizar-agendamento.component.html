@@ -1,39 +1,31 @@
+<h2> Visualizar Dados dos Agendamentos  </h2>
 
-<form (ngSubmit)="submit()" [formGroup]="agendamentoForm">
-
-    <h2> Agende um horário para seu Pet!  </h2>
-
+<form>  
   <div class="linha">
     <div class="column1">
         <div class="form-group">
             <label class="labels">Data do Agendamento: </label>
-            <input type="date" formControlName="dataAgendamento" required />
+            <input type="input" formControlName="dataAgendamento" required />
         </div>
     </div>
 
     <div class="column2">
       <div class="form-group">
-        <label class="labels">Qual o horário da visita? </label>
-        <input class="horario" type="time" formControlName="horario" required>
+        <label class="labels">Horário da visita? </label>
+        <input type="input" formControlName="horario" required>
       </div>
     </div>
 
     <div class="column3">
         <div class="form-group">
-            <label class="labels">Qual fofura vai vir?</label>
-            <select class="comboBoxAnimais" name="frutas" formControlName="animal" required>
-                <option value="maca">Maçã</option>
-                <option value="laranja">Laranja</option>
-                <option value="banana">Banana</option>
-                <option value="uva">Uva</option>
-              </select>
+          <label class="labels">Pet que vai vir: </label>
+          <input type="input" formControlName="animal" required>
         </div>
       </div>
-
   </div>
 
   <div class="servicos">
-    <label class="labels"> Selecione os serviços que deseja: </label>
+    <label class="labels"> Serviços requisitados </label>
 
     <div class="checkBoxs">
         <input type="checkbox" id="banho" formControlName="banho" value="banho">
@@ -70,11 +62,17 @@
   </div>
 
   <div class="observacao">
-    <label class="labels">Observações:</label>
-    <textarea class="obs" formControlName="obs" rows="3" cols="140%"></textarea>
+    <label class="labels">Observações: </label>
+    <textarea class="obs" formControlName="obs" rows="3" cols="120%"></textarea>
   </div>
 
-  <input type="submit" value="Confirmar" />
-</form>
+    <div class="form-group">
+      <label class="labels">Funcionário: </label>
+      <input type="input" formControlName="funcionario" required>
+    </div>
 
-<app-visualizar-agendamento></app-visualizar-agendamento>
+    <div class="botoes">
+      <input class="botao1" type="submit" value="Editar" />
+      <input class="botao2" type="submit" value="Excluir" />
+    </div>
+</form>
