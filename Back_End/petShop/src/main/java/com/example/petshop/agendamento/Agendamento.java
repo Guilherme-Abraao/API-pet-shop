@@ -34,7 +34,7 @@ public class Agendamento {
     private Funcionario funcionario;
 
     @Enumerated(EnumType.STRING)
-    @JoinColumn(name = "agendamento_id")
+    @JoinColumn(name = "servicos")
     private List<Servico> servicos;
 
     @ManyToOne

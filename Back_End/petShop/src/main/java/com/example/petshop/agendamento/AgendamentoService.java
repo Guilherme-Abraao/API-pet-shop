@@ -67,6 +67,14 @@ public class AgendamentoService {
         return agendamentoRepository.findAll();
     }
 
-    // Implemente outros métodos de serviço conforme necessário, como atualizar e cancelar agendamentos, obter todos os agendamentos de um cliente, etc.
+    public void deleteAgendamento(Long agendamentoId) throws AgendamentoException {
+        boolean exists = agendamentoRepository.existsById(agendamentoId);
+
+        if (!exists) {
+            throw new AgendamentoException("Agendamento com id " + agendamentoId + " não existe.");
+        }
+
+        agendamentoRepository.deleteById(agendamentoId);
+    }
 }
 

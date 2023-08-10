@@ -35,5 +35,12 @@ public class AgendamentoController {
         return new ResponseEntity<>(agendamento, HttpStatus.CREATED);
     }
 
-    // Outros endpoints para atualizar e cancelar agendamentos, bem como obter todos os agendamentos do cliente, por exemplo.
+    @DeleteMapping(path = "/{agendamentoId}")
+    public ResponseEntity<Agendamento> deletarAgendamento(
+            @PathVariable("agendamentoId") Long agendamentoId
+    ) {
+        agendamentoService.deleteAgendamento(agendamentoId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

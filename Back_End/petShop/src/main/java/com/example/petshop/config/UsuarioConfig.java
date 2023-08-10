@@ -114,7 +114,7 @@ public class UsuarioConfig {
             Cliente hector = new Cliente(
                     "Hector",
                     "hector@gmail.com",
-                    "08174858130",
+                    "07228319001",
                     "(11) 42852-9122",
                     "1l5O0mb4AN",
                     of(2000, JANUARY, 25)
@@ -131,7 +131,7 @@ public class UsuarioConfig {
                     hector,
                     barry,
                     List.of(banho, dentes),
-                    fumaca, // Animal
+                    fumaca,
                     LocalDateTime.of(2023, JUNE, 10, 14, 30),
                     "Ele tem carrapicho."
             );

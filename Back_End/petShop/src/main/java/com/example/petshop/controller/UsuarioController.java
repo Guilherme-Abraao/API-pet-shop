@@ -1,7 +1,8 @@
 package com.example.petshop.controller;
 
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.base.Usuario;
-import com.example.petshop.exception.UserNotFoundException;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +32,19 @@ public class UsuarioController {
 
     //    Encontrar apenas um usuário
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) throws UserNotFoundException {
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) throws UserException {
         Usuario usuario = usuarioService.findUsuarioById(id);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> adicionarUsuario(@RequestBody @Valid Usuario usuario) throws UserNotFoundException {
-        Usuario novoUsuario = usuarioService.adicionarUsuario(usuario);
+    public ResponseEntity<Usuario> adicionarUsuario(@RequestBody @Valid RegisterRequest registerRequest) throws UserException {
+        Usuario novoUsuario = usuarioService.adicionarUsuario(registerRequest);
         return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "{usuarioId}")
-    public ResponseEntity<Usuario> deleteUsuario(@PathVariable("usuarioId") Long UsuarioId) throws UserNotFoundException {
+    public ResponseEntity<Usuario> deleteUsuario(@PathVariable("usuarioId") Long UsuarioId) throws UserException {
         usuarioService.deleteUsuario(UsuarioId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -53,7 +54,7 @@ public class UsuarioController {
             @PathVariable("usuarioId") Long usuarioId,
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String email
-    ) throws UserNotFoundException {
+    ) throws UserException {
         Usuario novoUsuario = usuarioService.atualizarUsuario(usuarioId, nome, email);
         return new ResponseEntity<>(novoUsuario, HttpStatus.OK);
     }

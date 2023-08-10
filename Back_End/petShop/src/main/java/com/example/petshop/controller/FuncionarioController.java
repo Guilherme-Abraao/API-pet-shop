@@ -1,6 +1,8 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Funcionario;
+import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.service.FuncionarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,23 +33,23 @@ public class FuncionarioController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Funcionario> getFuncionarioById(
             @PathVariable("id") Long id
-    ) {
+    ) throws UserException {
         Funcionario Funcionario = funcionarioService.findFuncionarioById(id);
         return new ResponseEntity<>(Funcionario, HttpStatus.OK);
     }
 
     @PostMapping(path = "/cadastrarFuncionario")
     public ResponseEntity<Funcionario> adicionarFuncionario(
-            @RequestBody @Valid Funcionario funcionario
-    ) {
-        Funcionario novoFuncionario = funcionarioService.adicionarFuncionario(funcionario);
+            @RequestBody @Valid RegisterRequest registerRequest
+            ) throws UserException {
+        Funcionario novoFuncionario = funcionarioService.adicionarFuncionario(registerRequest);
         return new ResponseEntity<>(novoFuncionario, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{funcionarioId}")
     public ResponseEntity<Funcionario> deleteFuncionario(
             @PathVariable("funcionarioId") Long FuncionarioId
-    ) {
+    ) throws UserException {
         funcionarioService.deleteFuncionario(FuncionarioId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -57,7 +59,7 @@ public class FuncionarioController {
             @PathVariable("funcionarioId") Long funcionarioId,
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String email
-    ) {
+    ) throws UserException {
         Funcionario novoFuncionario = funcionarioService.atualizarFuncionario(funcionarioId, nome, email);
         return new ResponseEntity<>(novoFuncionario, HttpStatus.OK);
     }
