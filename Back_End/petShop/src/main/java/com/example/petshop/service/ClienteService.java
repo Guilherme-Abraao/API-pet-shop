@@ -1,7 +1,8 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.exception.UserNotFoundException;
+import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,55 +28,60 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente findClienteById(Long id) throws UserNotFoundException {
+    public Cliente findClienteById(Long id) throws UserException {
         return clienteRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(
+                .orElseThrow(() -> new UserException(
                         "Cliente com id " + id + " não existe."
                 ));
     }
 
-    public Cliente adicionarCliente(Cliente cliente) throws UserNotFoundException {
-        Optional<Cliente> clienteEmailOptional = clienteRepository.findClienteByEmail(cliente.getEmail());
+    public Cliente adicionarCliente(RegisterRequest registerRequest) throws UserException {
+        Optional<Cliente> clienteEmailOptional = clienteRepository.findClienteByEmail(registerRequest.getEmail());
         if (clienteEmailOptional.isPresent()) {
-            throw new UserNotFoundException("email já existe");
+            throw new UserException("O email informado já existe");
         }
 
-        Optional<Cliente> clienteCpfOptional = clienteRepository.findClienteByCpf(cliente.getCpf());
+        Optional<Cliente> clienteCpfOptional = clienteRepository.findClienteByCpf(registerRequest.getCpf());
         if (clienteCpfOptional.isPresent()) {
-            throw new UserNotFoundException("O CPF informado já existe.");
+            throw new UserException("O CPF informado já existe.");
         }
 
+        Cliente cliente = new Cliente();
+        cliente.setNome(registerRequest.getNome());
+        cliente.setEmail(registerRequest.getEmail());
+        cliente.setCpf(registerRequest.getCpf());
+        cliente.setTelefone(registerRequest.getTelefone());
+        cliente.setSenha(registerRequest.getSenha());
+        cliente.setDataNascimento(registerRequest.getDataNascimento());
         cliente.setRole(USER);
 
         return clienteRepository.save(cliente);
     }
 
-    public Cliente login(String email, String senha) throws UserNotFoundException {
-//        String email = loginRequest.getEmail();
-//        String senha = loginRequest.getSenha();
+    public Cliente login(String email, String senha) throws UserException {
 
         Cliente cliente = clienteRepository.findClienteByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException("Email não encontrado."));
+                .orElseThrow(() -> new UserException("Email não encontrado."));
 
         if (!Objects.equals(cliente.getSenha(), senha)) {
-            throw new UserNotFoundException("Senha incorreta.");
+            throw new UserException("Senha incorreta.");
         }
 
         return cliente;
     }
 
-    public void deleteCliente(Long clienteId) throws UserNotFoundException {
+    public void deleteCliente(Long clienteId) throws UserException {
         boolean exists = clienteRepository.existsById(clienteId);
         if (!exists) {
-            throw new UserNotFoundException("Cliente com id " + clienteId + " não existe.");
+            throw new UserException("Cliente com id " + clienteId + " não existe.");
         }
         clienteRepository.deleteById(clienteId);
     }
 
     @Transactional
-    public Cliente atualizarCliente(Long clienteId, String nome, String email) throws UserNotFoundException {
+    public Cliente atualizarCliente(Long clienteId, String nome, String email) throws UserException {
         Cliente cliente = clienteRepository.findById(clienteId)
-                .orElseThrow(() -> new UserNotFoundException(
+                .orElseThrow(() -> new UserException(
                         "Cliente com id " + clienteId + " não existe."
                 ));
 
@@ -90,7 +96,7 @@ public class ClienteService {
                 !Objects.equals(cliente.getEmail(), email)) {
             Optional<Cliente> clienteOptional = clienteRepository.findClienteByEmail(email);
             if (clienteOptional.isPresent()) {
-                throw new UserNotFoundException("Email já existe.");
+                throw new UserException("Email já existe.");
             }
             cliente.setEmail(email);
         }

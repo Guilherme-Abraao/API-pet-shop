@@ -1,5 +1,7 @@
 package com.example.petshop.controller;
 import com.example.petshop.base.Administrador;
+import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.service.AdministradorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/petshop/administrador")
-//@PreAuthorize("hasRole('ADMIN')")
 public class AdministradorController {
 
     private final AdministradorService administradorService;
@@ -24,7 +25,6 @@ public class AdministradorController {
 
     //    Encontrar todos os funcionários
     @GetMapping
-//    @PreAuthorize("hasRole('admin:read')")
     public ResponseEntity<List<Administrador>> getAllAdministradores() {
         List<Administrador> administradores = administradorService.getAdministradores();
         return new ResponseEntity<>(administradores, HttpStatus.OK);
@@ -32,39 +32,35 @@ public class AdministradorController {
 
     //    Encontrar apenas um funcionário
     @GetMapping(path = "/{id}")
-//    @PreAuthorize("hasRole('admin:read')")
     public ResponseEntity<Administrador> getAdministradorById(
             @PathVariable("id") Long id
-    ) {
+    ) throws UserException {
         Administrador administrador = administradorService.findAdministradorById(id);
         return new ResponseEntity<>(administrador, HttpStatus.OK);
     }
 
     @PostMapping(path = "/cadastrarAdministrador")
-//    @PreAuthorize("hasRole('admin:create')")
     public ResponseEntity<Administrador> adicionarAdministrador(
-            @RequestBody @Valid Administrador administrador
-    ) {
-        Administrador novoAdministrador = administradorService.adicionarAdministrador(administrador);
+            @RequestBody @Valid RegisterRequest registerRequest
+    ) throws UserException {
+        Administrador novoAdministrador = administradorService.adicionarAdministrador(registerRequest);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{administradorId}")
-//    @PreAuthorize("hasRole('admin:delete')")
     public ResponseEntity<Administrador> deleteAdministrador(
             @PathVariable("administradorId") Long AdministradorId
-    ) {
+    ) throws UserException {
         administradorService.deleteAdministrador(AdministradorId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping(path = "/{administradorId}")
-//    @PreAuthorize("hasRole('admin:update')")
     public ResponseEntity<Administrador> atualizarAdministrador(
             @PathVariable("administradorId") Long administradorId,
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String email
-    ) {
+    ) throws UserException {
         Administrador novoAdministrador = administradorService.atualizarAdministrador(administradorId, nome, email);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.OK);
     }

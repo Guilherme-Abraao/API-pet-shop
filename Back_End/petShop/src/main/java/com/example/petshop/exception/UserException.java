@@ -1,11 +1,11 @@
 package com.example.petshop.exception;
 
-public class UserNotFoundException extends Exception {
-    public UserNotFoundException(String message) {
+public class UserException extends Exception {
+    public UserException(String message) {
         super(message);
     }
 
-    public UserNotFoundException(String message, Throwable cause) {
+    public UserException(String message, Throwable cause) {
         super(message, cause);
     }
 }
