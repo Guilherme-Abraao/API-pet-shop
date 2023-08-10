@@ -21,8 +21,8 @@ export class PerfilComponent implements OnInit{
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    /* Passa o ID no lugar do 3 */
-    this.usuarioService.getCliente(3).subscribe((item) => {
+    /* Passar o ID no lugar do 4 */
+    this.usuarioService.getCliente(4).subscribe((item) => {
       /* Precisa transformar em JSON para funcionar */
       this.jsonData = item;
       this.cliente = this.jsonData;
