@@ -2,6 +2,7 @@ package com.example.petshop.service;
 
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +28,23 @@ public class AnimalService {
         return animalRepository.findAll();
     }
 
-    public Animal cadastrarAnimal(Animal animal, Long clienteId) {
+    public Animal findAnimalById(Long animalId) throws UserException {
+        return animalRepository.findById(animalId)
+                .orElseThrow(() -> new UserException(
+                        "Animal com id " + animalId + " não existe."
+                ));
+    }
+
+    public Animal cadastrarAnimal(Animal animal, Long clienteId) throws UserException {
         Optional<Cliente> clienteOptional = clienteRepository.findById(clienteId);
 
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();
             animal.setCliente(cliente);
-            animalRepository.save(animal);
+        } else {
+            throw new UserException("Cliente com id " + clienteId + " não existe");
         }
-
-        throw new IllegalStateException("Cliente com id " + clienteId + " não existe");
+        return animalRepository.save(animal);
     }
 
     public void deleteAnimal(Long animalId) {
@@ -49,14 +57,7 @@ public class AnimalService {
         animalRepository.deleteById(animalId);
     }
 
-    public Animal findAnimalById(Long animalId) {
-        return animalRepository.findById(animalId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Animal com id " + animalId + " não existe."
-                ));
-    }
-
-//    Falta realizar testes com esse método
+   //Falta realizar testes com esse método
     public Animal atualizarAnimal(Long animalId, Long clienteId, String nome, Cliente cliente) {
         Animal animal = animalRepository.findById(animalId)
                 .orElseThrow(() -> new IllegalStateException(

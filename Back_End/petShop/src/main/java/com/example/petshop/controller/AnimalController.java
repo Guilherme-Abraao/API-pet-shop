@@ -1,6 +1,7 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Animal;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import com.example.petshop.service.AnimalService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/petshop/animais")
+@RequestMapping(path = "api/petshop/animal")
 public class AnimalController {
 
     private final AnimalService animalService;
@@ -34,11 +35,17 @@ public class AnimalController {
         return new ResponseEntity<>(animais, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/cliente/{clienteId}")
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Animal> getAnimalById(@PathVariable("id") Long id) throws UserException {
+        Animal animal = animalService.findAnimalById(id);
+        return new ResponseEntity<>(animal, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/cadastrarAnimal/{clienteId}")
     public ResponseEntity<Animal> cadastrarAnimal(
             @RequestBody Animal animal,
             @PathVariable Long clienteId
-    ) {
+    ) throws UserException {
         Animal novoAnimal = animalService.cadastrarAnimal(animal, clienteId);
         return new ResponseEntity<>(novoAnimal, HttpStatus.CREATED);
     }

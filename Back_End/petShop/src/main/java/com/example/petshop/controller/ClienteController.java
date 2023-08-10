@@ -1,7 +1,8 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.exception.UserNotFoundException;
+import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,29 +32,48 @@ public class ClienteController {
 
 //    Encontrar apenas um usuário
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Cliente> getClienteById(@PathVariable("id") Long id) throws UserNotFoundException {
+    public ResponseEntity<Cliente> getClienteById(
+            @PathVariable("id") Long id
+    ) throws UserException {
         Cliente cliente = clienteService.findClienteById(id);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Cliente> adicionarCliente(@RequestBody @Valid Cliente cliente) throws UserNotFoundException {
-        Cliente novoCliente = clienteService.adicionarCliente(cliente);
+//    Login
+    @GetMapping(path = "/{email}/{senha}")
+    public ResponseEntity<Cliente> login(
+            @PathVariable("email") String email,
+            @PathVariable("senha") String senha
+    ) throws UserException {
+        Cliente cliente = clienteService.login(email, senha);
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
+    }
+
+//    Cadastrar um cliente
+    @PostMapping(path = "/cadastrarCliente")
+    public ResponseEntity<Cliente> adicionarCliente(
+            @RequestBody @Valid RegisterRequest registerRequest
+            ) throws UserException {
+        Cliente novoCliente = clienteService.adicionarCliente(registerRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "{clienteId}")
-    public ResponseEntity<Cliente> deleteCliente(@PathVariable("clienteId") Long ClienteId) throws UserNotFoundException {
+//    Deletar um cliente
+    @DeleteMapping(path = "/{clienteId}")
+    public ResponseEntity<Cliente> deleteCliente(
+            @PathVariable("clienteId") Long ClienteId
+    ) throws UserException {
         clienteService.deleteCliente(ClienteId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "{clienteId}")
+//    Atualizar um cliente
+    @PutMapping(path = "/{clienteId}")
     public ResponseEntity<Cliente> atualizarCliente(
             @PathVariable("clienteId") Long clienteId,
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String email
-    ) throws UserNotFoundException {
+    ) throws UserException {
         Cliente novoCliente = clienteService.atualizarCliente(clienteId, nome, email);
         return new ResponseEntity<>(novoCliente, HttpStatus.OK);
     }

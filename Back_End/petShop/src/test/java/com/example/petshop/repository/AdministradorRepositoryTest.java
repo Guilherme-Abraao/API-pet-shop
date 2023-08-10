@@ -11,7 +11,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.example.petshop.base.Cargo.*;
+import static com.example.petshop.base.Role.FUNC;
 
 @DataJpaTest
 class AdministradorRepositoryTest {
@@ -35,7 +36,7 @@ class AdministradorRepositoryTest {
                 "(62) 28362-4799",
                 "8r0A8nTjHx",
                 LocalDate.of(1980, Month.MARCH, 17),
-                "gerente",
+                gerentePetshop,
                 10000.00
         );
 
