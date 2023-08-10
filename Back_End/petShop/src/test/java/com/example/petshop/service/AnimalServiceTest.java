@@ -2,8 +2,7 @@ package com.example.petshop.service;
 
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.RegisterRequest;
-import com.example.petshop.exception.UserException;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.time.Month;
 
+import static com.example.petshop.base.Role.USER;
 import static java.time.LocalDate.of;
 import static java.time.Month.APRIL;
 
@@ -64,7 +64,7 @@ class AnimalServiceTest {
 
     @Test
 
-    void cadastrarAnimal() throws UserException {
+    void cadastrarAnimal() throws UserNotFoundException {
         //given
 
         Cliente billy = new Cliente(
@@ -76,24 +76,17 @@ class AnimalServiceTest {
                 LocalDate.of(1998, Month.MARCH, 24)
         );
 
-        RegisterRequest registerBilly = new RegisterRequest();
-        registerBilly.setNome(billy.getNome());
-        registerBilly.setEmail(billy.getEmail());
-        registerBilly.setCpf(billy.getCpf());
-        registerBilly.setTelefone(billy.getTelefone());
-        registerBilly.setSenha(billy.getSenha());
-        registerBilly.setDataNascimento(billy.getDataNascimento());
-
         Animal soneca = new Animal(
                 "Soneca",
                 of(2010, APRIL, 15),
+                "Cachorro",
                 "American Bully",
                 billy
         );
 
         //when
 
-        underTestClient.adicionarCliente(registerBilly);
+        underTestClient.adicionarCliente(billy);
         underTestAnimal.cadastrarAnimal(soneca,billy.getId());
 
         //then
