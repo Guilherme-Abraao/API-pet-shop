@@ -71,7 +71,7 @@ public class ClienteController {
     }
 
 //    Deletar um cliente
-    @DeleteMapping(path = "/{clienteId}")
+    @DeleteMapping(path = "/deletarCliente/{clienteId}")
     public ResponseEntity<Cliente> deleteCliente(
             @PathVariable("clienteId") Long ClienteId
     ) throws UserException {
@@ -80,13 +80,12 @@ public class ClienteController {
     }
 
 //    Atualizar um cliente
-    @PutMapping(path = "/{clienteId}")
+    @PutMapping(path = "/atualizarCliente/{clienteId}")
     public ResponseEntity<Cliente> atualizarCliente(
             @PathVariable("clienteId") Long clienteId,
-            @RequestParam(required = false) String nome,
-            @RequestParam(required = false) String email
+            @RequestBody RegisterRequest registerRequest
     ) throws UserException {
-        Cliente novoCliente = clienteService.atualizarCliente(clienteId, nome, email);
+        Cliente novoCliente = clienteService.atualizarCliente(clienteId, registerRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.OK);
     }
 
