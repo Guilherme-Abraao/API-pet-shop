@@ -2,7 +2,7 @@ package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.exception.AgendamentoException;
-import com.example.petshop.exception.ApplicationExceptionHandler;
+import com.example.petshop.exception.BodyException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -45,7 +45,7 @@ public class AgendamentoService {
             agendamento.setFuncionario(request.getFuncionario());
             agendamento.setServicos(request.getServicos());
             agendamento.setAnimal(request.getAnimal());
-            agendamento.setDataHora(request.getDataHora());
+            agendamento.setDataHoraStart(request.getDataHora());
             agendamento.setObservacoes(request.getObservacoes());
 
             agendamentos.add(agendamento);
@@ -58,7 +58,7 @@ public class AgendamentoService {
 
     public Agendamento obterAgendamentoPorId(Long id) {
         return agendamentoRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException(
+                .orElseThrow(() -> new AgendamentoException(
                         "Agendamento com id " + id + " não existe."
                 ));
     }

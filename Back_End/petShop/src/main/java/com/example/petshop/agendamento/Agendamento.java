@@ -44,9 +44,18 @@ public class Agendamento {
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     @Column(nullable = false)
-    private LocalDateTime dataHora;
+    private LocalDateTime dataHoraStart;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @Column(nullable = false)
+    @Transient
+    private LocalDateTime dataHoraEnd;
 
     @Column
     private String observacoes;
+
+    public LocalDateTime getDataHoraEnd() {
+        return dataHoraStart.plusMinutes(30);
+    }
 }
 
