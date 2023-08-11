@@ -21,9 +21,9 @@ export class PerfilComponent implements OnInit{
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-
     /* Requisição GET para buscar os dados do Usuario e mostrar no Perfil dele*/
     this.usuarioService.getCliente(id).subscribe((item) => {
+
       this.jsonData = item;
       this.cliente = this.jsonData;
     });

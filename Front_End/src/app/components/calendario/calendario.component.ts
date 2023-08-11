@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService, AgendaService, ResizeService, DragAndDropService } from '@syncfusion/ej2-angular-schedule';
+import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService, AgendaService, ResizeService, DragAndDropService, WorkHoursModel } from '@syncfusion/ej2-angular-schedule';
 
 @Component({
   selector: 'app-calendario',
   providers: [DayService, WeekService, WorkWeekService, MonthService, AgendaService, ResizeService, DragAndDropService],
   //template de calendário
-  template: `<ejs-schedule width='100%' height='550px' [timeFormat]="timeFormat"
-  [eventSettings]="eventSettings" [dateFormat]="dateFormat" > </ejs-schedule>`,
+  template: `<ejs-schedule width='100%' height='550px' [timeFormat]="timeFormat"[eventSettings]="eventSettings" [dateFormat]="dateFormat" startHour='08:00' endHour='18:00'> </ejs-schedule>`,
 
 })
 export class CalendarioComponent {
@@ -15,7 +14,7 @@ export class CalendarioComponent {
   //formatos de data e horário do calendário
   public dateFormat: string = "dd/MM/yyyy";
   public timeFormat: string = "HH:mm";
-
+  public timeScaleModel = {enable: true, interval: 30, slotCount: 2};
   
   //cria um array de objetos que será lido pelo EventSettings para gerar os Appointments, como nos exemplos abaixo
   public data: object[] = [
@@ -27,7 +26,7 @@ export class CalendarioComponent {
       EndTime: new Date(2023,5,20,8,30),
       Serviço: 'Banho e Hidratação',
       Raça: 'Corgi',
-      Funcionário: 'Felipe',
+      Funcionário: 'Patrick',
       Observações: 'Serviços: Banho e Hidratação \n Raça: Corgi \n Funcionário: Felipe \n Objetos deixados: nenhum\n ',
       
     },
