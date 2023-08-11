@@ -181,7 +181,9 @@ public class UsuarioConfig {
             animalRepository.saveAll(
                     List.of(floquinho, soneca, luke, fumaca)
             );
-            agendamentoService.agendarServicos(List.of(agendarFumaca, agendarFloquinho));
+            agendamentoService.agendarServicos(
+                    List.of(agendarFloquinho, agendarFumaca)
+            );
 
         };
     }

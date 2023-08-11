@@ -2,7 +2,6 @@ package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.exception.AgendamentoException;
-import com.example.petshop.exception.BodyException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -28,11 +27,13 @@ public class AgendamentoService {
         return quantidadeAgendamentos > 0;
     }
 
-    public List<Agendamento> agendarServicos(List<AgendamentoRequest> requests) {
+    public List<Agendamento> agendarServicos(
+            List<AgendamentoRequest> requests
+    ) {
         List<Agendamento> agendamentos = new ArrayList<>();
 
         for (AgendamentoRequest request : requests) {
-            LocalDateTime horario = request.getDataHora();
+            LocalDateTime horario = request.getStartTime();
             Funcionario funcionario = request.getFuncionario();
 
             if (agendamentoExisteParaFuncionario(funcionario, horario)) {
@@ -45,7 +46,7 @@ public class AgendamentoService {
             agendamento.setFuncionario(request.getFuncionario());
             agendamento.setServicos(request.getServicos());
             agendamento.setAnimal(request.getAnimal());
-            agendamento.setDataHoraStart(request.getDataHora());
+            agendamento.setStartTime(request.getStartTime());
             agendamento.setObservacoes(request.getObservacoes());
 
             agendamentos.add(agendamento);
