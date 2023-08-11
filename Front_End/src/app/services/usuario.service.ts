@@ -43,7 +43,7 @@ export class UsuarioService {
 
   /* Pegar um Cliente no sistema pelo email e senha */
   getClienteLogin(email: string, senha: string): Observable<Response<Cliente>> {
-    const url = `${this.apiUrl}/${email}-${senha}`;
+    const url = `${this.apiUrl}/${email}/${senha}`;
     return this.http.get<Response<Cliente>>(url);
   }
   
