@@ -6,6 +6,7 @@ import { catchError } from 'rxjs';
 import { AgendamentoService } from 'src/app/services/agendamento.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Cliente } from '../../interfaces/Cliente';
 
 @Component({
   selector: 'app-agendamento',
@@ -17,11 +18,18 @@ export class AgendamentoComponent {
   /* FormGroup do formulario */
   agendamentoForm!: FormGroup;
 
+  /* Um cliente do tipo cliente para pegar os dados do Login,json para auxiliar */
+  cliente?: Cliente; 
+  jsonData: any;
+  Animais:string[]=['']; 
+
   /* Construtor chamando os serviços */
   constructor(private agendamentoService: AgendamentoService,
     private http: HttpClient,
     private messagemService: MensagemService,
-    private router: Router) {}
+    private router: Router,
+    private usuarioService: UsuarioService
+    ) {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
@@ -42,6 +50,16 @@ export class AgendamentoComponent {
       dentes: new FormControl(''),
 
       obs: new FormControl('', [Validators.required]),
+    });
+
+    /* Pegar dados de quem fez login no sistema e armazenando em cliente*/
+    const id = this.usuarioService.getUserId()
+    this.usuarioService.getCliente(id).subscribe((item) => {
+
+      this.jsonData = item;
+      this.cliente = this.jsonData;
+
+      
     });
   }
 
@@ -90,7 +108,6 @@ export class AgendamentoComponent {
           this.router.navigate(['/home']);
         });
       }
-    
   }
 
 }
