@@ -34,19 +34,16 @@ export class AuthService {
     if(this.cliente){
 
       this.usuarioAutenticado = true;
-
       this.mostrarMenuEmitter.emit(true);
-
-      window.localStorage.setItem(this.cliente.role, 'role-usuario');
-      window.localStorage.setItem(this.cliente.id.toString(), 'id-usuario');
-
-      this.router.navigate(['/perfil/' + this.cliente.id]);
+      this.usuarioService.setUserId(this.cliente.id);
+      this.router.navigate(['/perfil']);
 
     } else {
-
+      /* Esá ocorrendo um bug, poi precisa clicar duas vezes no botão para 
+      this.cliente ser true e no primeiro cliue ele é falso*/
       this.usuarioAutenticado = false;
       this.mostrarMenuEmitter.emit(false);
-      this.MensagemService.add("Cadastro não encontrado, verifique se os dados estão corretos ou cadastra-se!") 
+      // this.MensagemService.add("Cadastro não encontrado, verifique se os dados estão corretos ou cadastra-se!") 
     } 
   }
 

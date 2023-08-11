@@ -20,8 +20,10 @@ export class PerfilComponent implements OnInit{
   constructor(private usuarioService: UsuarioService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    /* const id = Number(this.route.snapshot.paramMap.get('id')); */ 
     /* Requisição GET para buscar os dados do Usuario e mostrar no Perfil dele*/
+    const id = this.usuarioService.getUserId();
+
     this.usuarioService.getCliente(id).subscribe((item) => {
 
       this.jsonData = item;
@@ -29,6 +31,6 @@ export class PerfilComponent implements OnInit{
     });
 
     this.cliente2 = this.cliente;
-    
   }
+
 }
