@@ -45,7 +45,7 @@ export class NewAnimalComponent implements OnInit {
     const jsonData = JSON.stringify(animal);
 
     /* Enviando animal para o Service */
-    await this.animalService.createAnimal(animal).subscribe();
+    await this.animalService.createAnimal(animal, this.id).subscribe();
   
     /* Mensagem de retorno do sistema */
     this.messagemService.add('Cadastro realizado com sucesso!');
