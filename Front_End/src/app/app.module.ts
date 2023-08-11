@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/pages/home/home.component';
 import { AuthService } from './services/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 import { ClientFormComponent } from './components/client-form/client-form.component';
 import { NewClientComponent } from './components/singular-components/new-client/new-client.component';
@@ -29,7 +30,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { ClientFormUpdateComponent } from './components/client-form-update/client-form-update.component';
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AgendaService, TimelineViewsService, TimelineMonthService } from '@syncfusion/ej2-angular-schedule';
 import { CalendarioComponent } from './components/calendario/calendario.component';
-import { UpdateClientComponent } from './components/singular-components/update-client/update-client.component'
+import { UpdateClientComponent } from './components/singular-components/update-client/update-client.component';
+import { VisualizarAgendamentoComponent } from './components/visualizar-agendamento/visualizar-agendamento.component'
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { UpdateClientComponent } from './components/singular-components/update-c
     ClientFormUpdateComponent,
     CalendarioComponent,
     UpdateClientComponent,
+    VisualizarAgendamentoComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,9 @@ import { UpdateClientComponent } from './components/singular-components/update-c
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
-    ScheduleModule, RecurrenceEditorModule,
+    ScheduleModule, 
+    RecurrenceEditorModule,
+    AuthModule
   ],
   providers: [AuthService, AuthGuardService, DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService, TimelineViewsService, TimelineMonthService],
   bootstrap: [AppComponent],

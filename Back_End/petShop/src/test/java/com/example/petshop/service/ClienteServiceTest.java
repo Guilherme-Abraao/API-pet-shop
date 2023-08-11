@@ -1,23 +1,20 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.exception.UserNotFoundException;
+import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.ClienteRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.assertj.core.api.Assertions;
 
 import java.time.LocalDate;
 import java.time.Month;
 
-import static com.example.petshop.base.Role.CLIENTE;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -51,7 +48,7 @@ class ClienteServiceTest {
 
     @Test
 
-    void ConssegueadicionarCliente() throws UserNotFoundException {
+    void ConssegueadicionarCliente() throws UserException {
 
 
         //given
@@ -61,12 +58,19 @@ class ClienteServiceTest {
                 "38060025090",
                 "(62) 39020-1931",
                 "iihzNM37gF",
-                LocalDate.of(1998, Month.MARCH, 24),
-                CLIENTE
+                LocalDate.of(1998, Month.MARCH, 24)
         );
 
+        RegisterRequest registerCliente = new RegisterRequest();
+        registerCliente.setNome(cliente.getNome());
+        registerCliente.setEmail(cliente.getEmail());
+        registerCliente.setCpf(cliente.getCpf());
+        registerCliente.setTelefone(cliente.getTelefone());
+        registerCliente.setSenha(cliente.getSenha());
+        registerCliente.setDataNascimento(cliente.getDataNascimento());
+
         //when
-        underTest.adicionarCliente(cliente);
+        underTest.adicionarCliente(registerCliente);
 
         //then
         ArgumentCaptor<Cliente> clienteArgumentCaptor = ArgumentCaptor.forClass(Cliente.class);

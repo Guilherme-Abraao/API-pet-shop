@@ -3,6 +3,7 @@ package com.example.petshop.agendamento;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -32,20 +34,19 @@ public class Agendamento {
     private Funcionario funcionario;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Servico servico;
+    @JoinColumn(name = "servicos")
+    private List<Servico> servicos;
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     @Column(nullable = false)
     private LocalDateTime dataHora;
 
     @Column
     private String observacoes;
-
-    // Outros campos e métodos construtores, getters e setters
 }
 

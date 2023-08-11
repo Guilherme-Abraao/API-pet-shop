@@ -29,11 +29,18 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamento);
     }
 
-    @PostMapping
-    public ResponseEntity<Agendamento> agendarServico(@RequestBody AgendamentoRequest request) {
-        Agendamento agendamento = agendamentoService.agendarServico(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(agendamento);
+    @PostMapping(path = "/agendar")
+    public ResponseEntity<List<Agendamento>> agendarServicos(@RequestBody List<AgendamentoRequest> requests) {
+        List<Agendamento> agendamento = agendamentoService.agendarServicos(requests);
+        return new ResponseEntity<>(agendamento, HttpStatus.CREATED);
     }
 
-    // Outros endpoints para atualizar e cancelar agendamentos, bem como obter todos os agendamentos do cliente, por exemplo.
+    @DeleteMapping(path = "/{agendamentoId}")
+    public ResponseEntity<Agendamento> deletarAgendamento(
+            @PathVariable("agendamentoId") Long agendamentoId
+    ) {
+        agendamentoService.deleteAgendamento(agendamentoId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

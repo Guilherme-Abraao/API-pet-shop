@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Cliente } from '../interfaces/Cliente';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
 
 }

@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.example.petshop.base.Role.USER;
+
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,12 +26,27 @@ public class Cliente extends Usuario {
     @OneToMany(mappedBy = "cliente")
     private List<Agendamento> agendamentos;
 
-    public Cliente(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento, Role role) {
-        super(nome, email, cpf, telefone, senha, dataNascimento, role);
+    public Cliente(
+            String nome,
+            String email,
+            String cpf,
+            String telefone,
+            String senha,
+            LocalDate dataNascimento
+    ) {
+        super(nome, email, cpf, telefone, senha, dataNascimento, USER);
     }
 
-    public Cliente(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento, Role role, List<Animal> animais) {
-        super(nome, email, cpf, telefone, senha, dataNascimento, role);
+    public Cliente(
+            String nome,
+            String email,
+            String cpf,
+            String telefone,
+            String senha,
+            LocalDate dataNascimento,
+            List<Animal> animais
+    ) {
+        super(nome, email, cpf, telefone, senha, dataNascimento, USER);
         this.animais = animais;
     }
 
