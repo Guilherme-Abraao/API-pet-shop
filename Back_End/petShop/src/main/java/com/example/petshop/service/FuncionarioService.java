@@ -1,5 +1,6 @@
 package com.example.petshop.service;
 
+import com.example.petshop.base.Cargo;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
@@ -8,8 +9,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import static com.example.petshop.base.Role.FUNC;
@@ -66,29 +67,63 @@ public class FuncionarioService {
     @Transactional
     public Funcionario atualizarFuncionario(
             Long funcionarioId,
-            String nome,
-            String email
+            RegisterRequest registerRequest
     ) throws UserException {
         Funcionario funcionario = funcionarioRepository.findById(funcionarioId)
                 .orElseThrow(() -> new UserException(
-                        "Funcionário com id " + funcionarioId + " não existe."
+                        "Funcionario com id " + funcionarioId + " não existe."
                 ));
 
-        if (nome != null &&
-                !email.isEmpty() &&
-                !Objects.equals(funcionario.getNome(), nome)) {
+        String nome = registerRequest.getNome();
+        String email = registerRequest.getEmail();
+        String cpf = registerRequest.getCpf();
+        String telefone = registerRequest.getTelefone();
+        String senha = registerRequest.getSenha();
+        LocalDate dataNascimento = registerRequest.getDataNascimento();
+        Cargo cargo = registerRequest.getCargo();
+        Double salario = registerRequest.getSalario();
+
+
+        if (nome != null && !nome.isEmpty()) {
             funcionario.setNome(nome);
         }
 
-        if (email != null &&
-                !email.isEmpty() &&
-                !Objects.equals(funcionario.getEmail(), email)) {
+        if (email != null && !email.isEmpty()) {
             Optional<Funcionario> funcionarioOptional = funcionarioRepository.findFuncionarioByEmail(email);
-            if (funcionarioOptional.isPresent()) {
+            if (funcionarioOptional.isPresent() && !funcionarioOptional.get().getId().equals(funcionarioId)) {
                 throw new UserException("Email já existe.");
             }
             funcionario.setEmail(email);
         }
+
+        if (cpf != null && !cpf.isEmpty()) {
+            Optional<Funcionario> funcionarioOptional = funcionarioRepository.findFuncionarioByCpf(cpf);
+            if (funcionarioOptional.isPresent() && !funcionarioOptional.get().getId().equals(funcionarioId)) {
+                throw new UserException("CPF já existe.");
+            }
+            funcionario.setCpf(cpf);
+        }
+
+        if (telefone != null && !telefone.isEmpty()) {
+            funcionario.setTelefone(telefone);
+        }
+
+        if (senha != null && !senha.isEmpty()) {
+            funcionario.setSenha(senha);
+        }
+
+        if (dataNascimento != null) {
+            funcionario.setDataNascimento(dataNascimento);
+        }
+
+        if (cargo != null) {
+            funcionario.setCargo(cargo);
+        }
+
+        if (salario != null) {
+            funcionario.setSalario(salario);
+        }
+
         return funcionarioRepository.save(funcionario);
     }
 }

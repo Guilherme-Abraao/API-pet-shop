@@ -1,6 +1,8 @@
 package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Cliente;
+import com.example.petshop.exception.BodyException;
+import com.example.petshop.exception.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,9 @@ public class AgendamentoController {
     }
 
     @PostMapping(path = "/agendar")
-    public ResponseEntity<List<Agendamento>> agendarServicos(@RequestBody List<AgendamentoRequest> requests) {
+    public ResponseEntity<List<Agendamento>> agendarServicos(
+            @RequestBody List<AgendamentoRequest> requests
+    ) throws BodyException {
         List<Agendamento> agendamento = agendamentoService.agendarServicos(requests);
         return new ResponseEntity<>(agendamento, HttpStatus.CREATED);
     }

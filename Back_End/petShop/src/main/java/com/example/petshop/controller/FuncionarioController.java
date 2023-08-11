@@ -57,10 +57,9 @@ public class FuncionarioController {
     @PutMapping(path = "/{funcionarioId}")
     public ResponseEntity<Funcionario> atualizarFuncionario(
             @PathVariable("funcionarioId") Long funcionarioId,
-            @RequestParam(required = false) String nome,
-            @RequestParam(required = false) String email
+            @RequestBody RegisterRequest registerRequest
     ) throws UserException {
-        Funcionario novoFuncionario = funcionarioService.atualizarFuncionario(funcionarioId, nome, email);
+        Funcionario novoFuncionario = funcionarioService.atualizarFuncionario(funcionarioId, registerRequest);
         return new ResponseEntity<>(novoFuncionario, HttpStatus.OK);
     }
 
