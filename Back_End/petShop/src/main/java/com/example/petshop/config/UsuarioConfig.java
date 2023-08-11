@@ -97,20 +97,6 @@ public class UsuarioConfig {
                     of(2000, JANUARY, 25)
             );
 
-            Animal floquinho = new Animal(
-                    "Floquinho",
-                    of(2015, FEBRUARY, 13),
-                    "Basset hound",
-                    bruce
-            );
-
-            Animal luke = new Animal(
-                    "Luke",
-                    of(2014, NOVEMBER, 5),
-                    "Basenji",
-                    bruce
-            );
-
             Cliente hector = new Cliente(
                     "Hector",
                     "hector@gmail.com",
@@ -118,22 +104,6 @@ public class UsuarioConfig {
                     "(11) 42852-9122",
                     "1l5O0mb4AN",
                     of(2000, JANUARY, 25)
-            );
-
-            Animal fumaca = new Animal(
-                    "Fumaça",
-                    of(2013, OCTOBER, 10),
-                    "Akita",
-                    hector
-            );
-
-            AgendamentoRequest agendarFumaca = new AgendamentoRequest(
-                    hector,
-                    barry,
-                    List.of(banho, dentes),
-                    fumaca,
-                    LocalDateTime.of(2023, JUNE, 10, 14, 30),
-                    "Ele tem carrapicho."
             );
 
             Cliente aquiles = new Cliente(
@@ -145,14 +115,6 @@ public class UsuarioConfig {
                     of(2000, JANUARY, 25)
             );
 
-            AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    aquiles,
-                    barry,
-                    List.of(hidratacao, unha),
-                    floquinho,
-                    LocalDateTime.of(2023, JUNE, 10, 13, 30)
-            );
-
             Cliente billy = new Cliente(
                     "Billy",
                     "billy.batson@gmail.com",
@@ -162,22 +124,11 @@ public class UsuarioConfig {
                     of(1998, MARCH, 24)
             );
 
-            Animal soneca = new Animal(
-                    "Soneca",
-                    of(2010, APRIL, 15),
-                    "American Bully",
-                    billy
-            );
-
             administradorRepository.save(clark);
             funcionarioRepository.saveAll(List.of(barry, james));
             clienteRepository.saveAll(
                     List.of(bruce, billy, hector, aquiles)
             );
-            animalRepository.saveAll(
-                    List.of(floquinho, soneca, luke, fumaca)
-            );
-            agendamentoService.agendarServicos(List.of(agendarFumaca, agendarFloquinho));
 
         };
     }

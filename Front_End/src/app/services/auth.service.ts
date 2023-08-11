@@ -1,3 +1,4 @@
+import { MensagemService } from './mensagem.service';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Cliente } from '../components/interfaces/Cliente';
 import { Router } from '@angular/router';
@@ -14,7 +15,8 @@ export class AuthService {
   private usuarioAutenticado: boolean = false;
 
   constructor(private router: Router,
-              private usuarioService: UsuarioService 
+              private usuarioService: UsuarioService,
+              private MensagemService: MensagemService 
     ) { }
 
   jsonData: any;
@@ -32,18 +34,17 @@ export class AuthService {
     if(this.cliente){
 
       this.usuarioAutenticado = true;
-
       this.mostrarMenuEmitter.emit(true);
-
-      this.router.navigate(['/cliente']);
+      this.usuarioService.setUserId(this.cliente.id);
+      this.router.navigate(['/perfil']);
 
     } else {
-
+      /* Esá ocorrendo um bug, poi precisa clicar duas vezes no botão para 
+      this.cliente ser true e no primeiro cliue ele é falso*/
       this.usuarioAutenticado = false;
       this.mostrarMenuEmitter.emit(false);
-      this.router.navigate(['/login']);
-      
-    }
+      // this.MensagemService.add("Cadastro não encontrado, verifique se os dados estão corretos ou cadastra-se!") 
+    } 
   }
 
   usuarioEstaAutenticado(){

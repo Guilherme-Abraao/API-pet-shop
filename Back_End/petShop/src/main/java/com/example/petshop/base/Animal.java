@@ -45,6 +45,7 @@ public class Animal {
     private LocalDate dataNascimento;
 
     private String raca;
+    private String especie;
 
     @JsonIgnore
     @ManyToOne
@@ -56,9 +57,10 @@ public class Animal {
     @OneToMany(mappedBy = "animal")
     private List<Agendamento> agendamentos;
 
-    public Animal(String nome, LocalDate dataNascimento, String raca, Cliente cliente) {
+    public Animal(String nome, LocalDate dataNascimento, String especie, String raca, Cliente cliente) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
+        this.especie = especie;
         this.raca = raca;
         this.cliente = cliente;
     }
