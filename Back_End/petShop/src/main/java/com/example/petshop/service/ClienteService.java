@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -79,27 +80,51 @@ public class ClienteService {
     }
 
     @Transactional
-    public Cliente atualizarCliente(Long clienteId, String nome, String email) throws UserException {
+    public Cliente atualizarCliente(Long clienteId, RegisterRequest registerRequest) throws UserException {
         Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new UserException(
                         "Cliente com id " + clienteId + " não existe."
                 ));
 
-        if (nome != null &&
-                !email.isEmpty() &&
-                !Objects.equals(cliente.getNome(), nome)) {
+        String nome = registerRequest.getNome();
+        String email = registerRequest.getEmail();
+        String cpf = registerRequest.getCpf();
+        String telefone = registerRequest.getTelefone();
+        String senha = registerRequest.getSenha();
+        LocalDate dataNascimento = registerRequest.getDataNascimento();
+
+        if (nome != null && !nome.isEmpty()) {
             cliente.setNome(nome);
         }
 
-        if (email != null &&
-                !email.isEmpty() &&
-                !Objects.equals(cliente.getEmail(), email)) {
+        if (email != null && !email.isEmpty()) {
             Optional<Cliente> clienteOptional = clienteRepository.findClienteByEmail(email);
-            if (clienteOptional.isPresent()) {
+            if (clienteOptional.isPresent() && !clienteOptional.get().getId().equals(clienteId)) {
                 throw new UserException("Email já existe.");
             }
             cliente.setEmail(email);
         }
+
+        if (cpf != null && !cpf.isEmpty()) {
+            Optional<Cliente> clienteOptional = clienteRepository.findClienteByCpf(cpf);
+            if (clienteOptional.isPresent() && !clienteOptional.get().getId().equals(clienteId)) {
+                throw new UserException("CPF já existe.");
+            }
+            cliente.setCpf(cpf);
+        }
+
+        if (telefone != null && !telefone.isEmpty()) {
+            cliente.setTelefone(telefone);
+        }
+
+        if (senha != null && !senha.isEmpty()) {
+            cliente.setSenha(senha);
+        }
+
+        if (dataNascimento != null) {
+            cliente.setDataNascimento(dataNascimento);
+        }
+
         return clienteRepository.save(cliente);
     }
 }

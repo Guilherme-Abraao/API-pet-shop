@@ -1,6 +1,7 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Animal;
+import com.example.petshop.base.AnimalRegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
@@ -43,10 +44,28 @@ public class AnimalController {
 
     @PostMapping(path = "/cadastrarAnimal/{clienteId}")
     public ResponseEntity<Animal> cadastrarAnimal(
-            @RequestBody Animal animal,
+            @RequestBody AnimalRegisterRequest animal,
             @PathVariable Long clienteId
     ) throws UserException {
         Animal novoAnimal = animalService.cadastrarAnimal(animal, clienteId);
         return new ResponseEntity<>(novoAnimal, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(path = "/deletarAnimal/{animalId}")
+    public ResponseEntity<Animal> deletarAnimal(
+            @PathVariable("animalId") Long animalId
+    ) {
+        animalService.deletarAnimal(animalId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/atualizarAnimal/{animalId}/{clienteId}")
+    public ResponseEntity<Animal> atualizarAnimal(
+            @PathVariable("animalId") Long animalId,
+            @PathVariable("clienteId") Long clienteId,
+            @RequestBody AnimalRegisterRequest animal
+    ) {
+        Animal animalAtualizado = animalService.atualizarAnimal(animalId, clienteId, animal);
+        return new ResponseEntity<>(animalAtualizado, HttpStatus.OK);
     }
 }

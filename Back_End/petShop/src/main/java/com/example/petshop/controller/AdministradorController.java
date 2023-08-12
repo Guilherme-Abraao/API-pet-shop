@@ -58,10 +58,9 @@ public class AdministradorController {
     @PutMapping(path = "/{administradorId}")
     public ResponseEntity<Administrador> atualizarAdministrador(
             @PathVariable("administradorId") Long administradorId,
-            @RequestParam(required = false) String nome,
-            @RequestParam(required = false) String email
+            @RequestBody RegisterRequest registerRequest
     ) throws UserException {
-        Administrador novoAdministrador = administradorService.atualizarAdministrador(administradorId, nome, email);
+        Administrador novoAdministrador = administradorService.atualizarAdministrador(administradorId, registerRequest);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.OK);
     }
 

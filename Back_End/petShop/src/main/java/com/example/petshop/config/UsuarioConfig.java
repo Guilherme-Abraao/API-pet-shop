@@ -101,6 +101,7 @@ public class UsuarioConfig {
                     "Floquinho",
                     of(2015, FEBRUARY, 13),
                     "Basset hound",
+                    "Cachorro",
                     bruce
             );
 
@@ -108,6 +109,7 @@ public class UsuarioConfig {
                     "Luke",
                     of(2014, NOVEMBER, 5),
                     "Basenji",
+                    "Cachorro",
                     bruce
             );
 
@@ -124,6 +126,7 @@ public class UsuarioConfig {
                     "Fumaça",
                     of(2013, OCTOBER, 10),
                     "Akita",
+                    "Cachorro",
                     hector
             );
 
@@ -166,6 +169,7 @@ public class UsuarioConfig {
                     "Soneca",
                     of(2010, APRIL, 15),
                     "American Bully",
+                    "Cachorro",
                     billy
             );
 
