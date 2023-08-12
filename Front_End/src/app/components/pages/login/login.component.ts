@@ -18,20 +18,20 @@ export class LoginComponent implements OnInit {
   /* Inicialização do formulário */
   ngOnInit(): void {
     this.userForm = new FormGroup({
-      cpf: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
       senha: new FormControl('', [Validators.required]),
     });
   }
 
-  get cpf() {
-    return this.userForm.get('cpf')!;
+  get email() {
+    return this.userForm.get('email')!;
   }
   get senha() {
     return this.userForm.get('senha')!;
   }
 
   submit() {
-    // console.log(this.userForm.value);
     this.authService.login(this.userForm.value)
-}
+  }
+  
 }

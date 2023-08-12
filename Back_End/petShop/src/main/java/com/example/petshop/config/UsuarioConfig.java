@@ -101,6 +101,7 @@ public class UsuarioConfig {
                     "Floquinho",
                     of(2015, FEBRUARY, 13),
                     "Basset hound",
+                    "Cachorro",
                     bruce
             );
 
@@ -108,6 +109,7 @@ public class UsuarioConfig {
                     "Luke",
                     of(2014, NOVEMBER, 5),
                     "Basenji",
+                    "Cachorro",
                     bruce
             );
 
@@ -124,14 +126,15 @@ public class UsuarioConfig {
                     "Fumaça",
                     of(2013, OCTOBER, 10),
                     "Akita",
+                    "Cachorro",
                     hector
             );
 
             AgendamentoRequest agendarFumaca = new AgendamentoRequest(
-                    hector,
-                    barry,
+                    hector.getId(),
+                    barry.getId(),
                     List.of(banho, dentes),
-                    fumaca,
+                    fumaca.getId(),
                     LocalDateTime.of(2023, JUNE, 10, 14, 30),
                     "Ele tem carrapicho."
             );
@@ -146,10 +149,10 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    aquiles,
-                    barry,
+                    aquiles.getId(),
+                    barry.getId(),
                     List.of(hidratacao, unha),
-                    floquinho,
+                    floquinho.getId(),
                     LocalDateTime.of(2023, JUNE, 10, 13, 30)
             );
 
@@ -166,6 +169,7 @@ public class UsuarioConfig {
                     "Soneca",
                     of(2010, APRIL, 15),
                     "American Bully",
+                    "Cachorro",
                     billy
             );
 
@@ -177,7 +181,8 @@ public class UsuarioConfig {
             animalRepository.saveAll(
                     List.of(floquinho, soneca, luke, fumaca)
             );
-            agendamentoService.agendarServicos(List.of(agendarFumaca, agendarFloquinho));
+            agendamentoService.agendarServicos(List.of(agendarFloquinho, agendarFumaca));
+//            agendamentoService.agendarServicos(agendarFumaca);
 
         };
     }

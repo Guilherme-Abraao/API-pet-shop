@@ -1,8 +1,10 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Animal;
+import com.example.petshop.base.AnimalRegisterRequest;
 import com.example.petshop.base.Cliente;
-import com.example.petshop.exception.UserNotFoundException;
+import com.example.petshop.base.CliRequest;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.time.Month;
 
-import static com.example.petshop.base.Role.USER;
 import static java.time.LocalDate.of;
 import static java.time.Month.APRIL;
 
@@ -64,7 +65,7 @@ class AnimalServiceTest {
 
     @Test
 
-    void cadastrarAnimal() throws UserNotFoundException {
+    void cadastrarAnimal() throws UserException {
         //given
 
         Cliente billy = new Cliente(
@@ -76,6 +77,14 @@ class AnimalServiceTest {
                 LocalDate.of(1998, Month.MARCH, 24)
         );
 
+        CliRequest registerBilly = new CliRequest();
+        registerBilly.setNome(billy.getNome());
+        registerBilly.setEmail(billy.getEmail());
+        registerBilly.setCpf(billy.getCpf());
+        registerBilly.setTelefone(billy.getTelefone());
+        registerBilly.setSenha(billy.getSenha());
+        registerBilly.setDataNascimento(billy.getDataNascimento());
+
         Animal soneca = new Animal(
                 "Soneca",
                 of(2010, APRIL, 15),
@@ -84,10 +93,17 @@ class AnimalServiceTest {
                 billy
         );
 
+        AnimalRegisterRequest registerSoneca = new AnimalRegisterRequest();
+        registerSoneca.setNome(soneca.getNome());
+        registerSoneca.setDataNascimento(soneca.getDataNascimento());
+        registerSoneca.setEspecie(soneca.getEspecie());
+        registerSoneca.setRaca(soneca.getRaca());
+        registerSoneca.setCliente(soneca.getCliente());
+
         //when
 
-        underTestClient.adicionarCliente(billy);
-        underTestAnimal.cadastrarAnimal(soneca,billy.getId());
+        underTestClient.adicionarCliente(registerBilly);
+        underTestAnimal.cadastrarAnimal(registerSoneca, billy.getId());
 
         //then
 

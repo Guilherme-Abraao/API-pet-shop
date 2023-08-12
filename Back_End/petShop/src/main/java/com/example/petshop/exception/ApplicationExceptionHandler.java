@@ -11,15 +11,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
 
-    /*@ExceptionHandler(UserException.class)
-    public ResponseEntity<Object> handleUserNotFoundException(UserException ex) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
-        body.put("status", HttpStatus.NOT_FOUND);
-
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
-    }*/
-
     @ExceptionHandler(value = {AgendamentoException.class})
     public ResponseEntity<Object> handleAgendamentoException(AgendamentoException ex) {
         Map<String, Object> body = new HashMap<>();
@@ -38,15 +29,14 @@ public class ApplicationExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /*@ExceptionHandler(value = {BodyException.class})
+    public ResponseEntity<Object> handleBodyException(BodyException ex) {
 
-    /*@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(AgendamentoException.class)
-    public Map<String, String> handleBusinessException(MethodArgumentNotValidException ex) {
-        Map<String, String> errorMap = new HashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach((error) -> {
-            errorMap.put(error.getField(), error.getDefaultMessage());
-        });
-        return errorMap;
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        body.put("status", HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }*/
 
 }
