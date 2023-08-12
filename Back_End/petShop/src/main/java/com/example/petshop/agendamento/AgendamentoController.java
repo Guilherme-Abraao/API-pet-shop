@@ -1,6 +1,8 @@
 package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Cliente;
+import com.example.petshop.exception.BodyException;
+import com.example.petshop.exception.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +31,20 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamento);
     }
 
-    @PostMapping
-    public ResponseEntity<Agendamento> agendarServico(@RequestBody AgendamentoRequest request) {
-        Agendamento agendamento = agendamentoService.agendarServico(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(agendamento);
+    @PostMapping(path = "/agendar")
+    public ResponseEntity<List<Agendamento>> agendarServicos(
+            @RequestBody List<AgendamentoRequest> requests
+    ) throws BodyException {
+        List<Agendamento> agendamento = agendamentoService.agendarServicos(requests);
+        return new ResponseEntity<>(agendamento, HttpStatus.CREATED);
     }
 
-    // Outros endpoints para atualizar e cancelar agendamentos, bem como obter todos os agendamentos do cliente, por exemplo.
+    @DeleteMapping(path = "/{agendamentoId}")
+    public ResponseEntity<Agendamento> deletarAgendamento(
+            @PathVariable("agendamentoId") Long agendamentoId
+    ) {
+        agendamentoService.deleteAgendamento(agendamentoId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

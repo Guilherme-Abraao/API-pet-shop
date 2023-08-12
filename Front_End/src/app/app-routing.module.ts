@@ -21,12 +21,11 @@ const routes: Routes = [
   
   {
     path: 'perfil',
-      canActivate: [AuthGuardService], /* Impedir de acessar se não tiver cadastrado */
       component: PerfilComponent,
   },
   {
     path: 'editar-perfil',
-      canActivate: [AuthGuardService],
+      canActivate: [AuthGuardService],// Proteger rotas
       component: UpdateClientComponent,
   },
   { path: 'funcionario',
@@ -34,7 +33,6 @@ const routes: Routes = [
       component: NewFuncionarioComponent },
 
   { path: 'animal',
-      canActivate: [AuthGuardService],
       component: NewAnimalComponent },
   
   { path: 'tabela-agendamentos',  /* A tabela de agendamentos só pode ser acessada por funcionários */
