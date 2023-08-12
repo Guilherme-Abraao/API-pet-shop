@@ -1,7 +1,7 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Funcionario;
-import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.base.EmployeeRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.service.FuncionarioService;
 import jakarta.validation.Valid;
@@ -40,9 +40,9 @@ public class FuncionarioController {
 
     @PostMapping(path = "/cadastrarFuncionario")
     public ResponseEntity<Funcionario> adicionarFuncionario(
-            @RequestBody @Valid RegisterRequest registerRequest
+            @RequestBody @Valid EmployeeRequest employeeRequest
             ) throws UserException {
-        Funcionario novoFuncionario = funcionarioService.adicionarFuncionario(registerRequest);
+        Funcionario novoFuncionario = funcionarioService.adicionarFuncionario(employeeRequest);
         return new ResponseEntity<>(novoFuncionario, HttpStatus.CREATED);
     }
 
@@ -57,9 +57,9 @@ public class FuncionarioController {
     @PutMapping(path = "/{funcionarioId}")
     public ResponseEntity<Funcionario> atualizarFuncionario(
             @PathVariable("funcionarioId") Long funcionarioId,
-            @RequestBody RegisterRequest registerRequest
+            @RequestBody EmployeeRequest employeeRequest
     ) throws UserException {
-        Funcionario novoFuncionario = funcionarioService.atualizarFuncionario(funcionarioId, registerRequest);
+        Funcionario novoFuncionario = funcionarioService.atualizarFuncionario(funcionarioId, employeeRequest);
         return new ResponseEntity<>(novoFuncionario, HttpStatus.OK);
     }
 

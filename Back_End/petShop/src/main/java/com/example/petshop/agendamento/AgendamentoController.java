@@ -35,7 +35,9 @@ public class AgendamentoController {
     public ResponseEntity<List<Agendamento>> agendarServicos(
             @RequestBody List<AgendamentoRequest> requests
     ) throws BodyException {
-        List<Agendamento> agendamento = agendamentoService.agendarServicos(requests);
+        List<Agendamento> agendamento = agendamentoService.agendarServicos(
+                requests
+        );
         return new ResponseEntity<>(agendamento, HttpStatus.CREATED);
     }
 

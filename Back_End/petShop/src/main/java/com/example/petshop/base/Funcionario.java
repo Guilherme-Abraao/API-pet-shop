@@ -24,7 +24,7 @@ public class Funcionario extends Usuario {
     @NotNull
     private Double salario;
 
-    @OneToMany(mappedBy = "funcionario")
+    @OneToMany(mappedBy = "funcionarioId")
     private List<Agendamento> agendamentos;
 
 

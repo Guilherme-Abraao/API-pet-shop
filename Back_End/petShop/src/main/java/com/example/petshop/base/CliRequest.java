@@ -11,13 +11,11 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class CliRequest {
     private String nome;
     private String email;
     private String cpf;
     private String telefone;
     private String senha;
     private LocalDate dataNascimento;
-    private Cargo cargo;
-    private Double salario;
 }
