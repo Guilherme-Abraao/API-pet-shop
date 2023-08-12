@@ -54,7 +54,7 @@ public class Animal {
     )
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "animal")
+    @OneToMany(mappedBy = "animalId")
     private List<Agendamento> agendamentos;
 
     public Animal(String nome, LocalDate dataNascimento, String especie, String raca, Cliente cliente) {

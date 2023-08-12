@@ -14,24 +14,24 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AgendamentoRequest {
-    private Cliente cliente;
-    private Funcionario funcionario;
+    private Long clienteId;
+    private Long funcionarioId;
     private List<Servico> servicos;
-    private Animal animal;
-    private LocalDateTime StartTime;
+    private Long animalId;
+    private LocalDateTime dataHoraStart;
     private String observacoes;
 
     public AgendamentoRequest(
-            Cliente cliente,
-            Funcionario funcionario,
+            Long clienteId,
+            Long funcionarioId,
             List<Servico> servicos,
-            Animal animal,
-            LocalDateTime StartTime) {
-        this.cliente = cliente;
-        this.funcionario = funcionario;
+            Long animalId,
+            LocalDateTime dataHoraStart) {
+        this.clienteId = clienteId;
+        this.funcionarioId = funcionarioId;
         this.servicos = servicos;
-        this.animal = animal;
-        this.StartTime = StartTime;
+        this.animalId = animalId;
+        this.dataHoraStart = dataHoraStart;
     }
 }
 

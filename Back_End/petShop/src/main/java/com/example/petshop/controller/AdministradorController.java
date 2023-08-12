@@ -1,13 +1,12 @@
 package com.example.petshop.controller;
 import com.example.petshop.base.Administrador;
-import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.base.EmployeeRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.service.AdministradorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,9 +40,9 @@ public class AdministradorController {
 
     @PostMapping(path = "/cadastrarAdministrador")
     public ResponseEntity<Administrador> adicionarAdministrador(
-            @RequestBody @Valid RegisterRequest registerRequest
+            @RequestBody @Valid EmployeeRequest employeeRequest
     ) throws UserException {
-        Administrador novoAdministrador = administradorService.adicionarAdministrador(registerRequest);
+        Administrador novoAdministrador = administradorService.adicionarAdministrador(employeeRequest);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.CREATED);
     }
 
@@ -58,9 +57,9 @@ public class AdministradorController {
     @PutMapping(path = "/{administradorId}")
     public ResponseEntity<Administrador> atualizarAdministrador(
             @PathVariable("administradorId") Long administradorId,
-            @RequestBody RegisterRequest registerRequest
+            @RequestBody EmployeeRequest employeeRequest
     ) throws UserException {
-        Administrador novoAdministrador = administradorService.atualizarAdministrador(administradorId, registerRequest);
+        Administrador novoAdministrador = administradorService.atualizarAdministrador(administradorId, employeeRequest);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.OK);
     }
 

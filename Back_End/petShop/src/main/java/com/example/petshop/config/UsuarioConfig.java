@@ -131,10 +131,10 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFumaca = new AgendamentoRequest(
-                    hector,
-                    barry,
+                    hector.getId(),
+                    barry.getId(),
                     List.of(banho, dentes),
-                    fumaca,
+                    fumaca.getId(),
                     LocalDateTime.of(2023, JUNE, 10, 14, 30),
                     "Ele tem carrapicho."
             );
@@ -149,10 +149,10 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    aquiles,
-                    barry,
+                    aquiles.getId(),
+                    barry.getId(),
                     List.of(hidratacao, unha),
-                    floquinho,
+                    floquinho.getId(),
                     LocalDateTime.of(2023, JUNE, 10, 13, 30)
             );
 
@@ -181,9 +181,8 @@ public class UsuarioConfig {
             animalRepository.saveAll(
                     List.of(floquinho, soneca, luke, fumaca)
             );
-            agendamentoService.agendarServicos(
-                    List.of(agendarFloquinho, agendarFumaca)
-            );
+            agendamentoService.agendarServicos(List.of(agendarFloquinho, agendarFumaca));
+//            agendamentoService.agendarServicos(agendarFumaca);
 
         };
     }

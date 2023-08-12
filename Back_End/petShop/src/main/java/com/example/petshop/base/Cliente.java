@@ -23,7 +23,7 @@ public class Cliente extends Usuario {
     @OneToMany(mappedBy = "cliente")
     private List<Animal> animais;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "clienteId")
     private List<Agendamento> agendamentos;
 
     public Cliente(
