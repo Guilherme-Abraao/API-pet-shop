@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -25,7 +26,8 @@ export class HeaderComponent {
   constructor(
     private messagemService: MensagemService,
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class HeaderComponent {
   }
 
   logout(){
-    this.mostrarMenuEmitter.emit(false);
+    this.authService.mostrarMenuEmitter.emit(false);
     this.usuarioService.setUserId(0);
   }
 

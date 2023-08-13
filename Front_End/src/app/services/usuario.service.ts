@@ -1,10 +1,8 @@
+import { Cliente } from 'src/app/components/interfaces/Cliente';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../components/interfaces/MensagemSistema';
-import { Cliente } from '../components/interfaces/Cliente';
-import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +55,12 @@ export class UsuarioService {
     };
     const result = this.http.put(this.apiUrl, data);
     return result;
+  }
+
+  /* Deeletar um animal de cliente */
+  deleteAnimal(cliente: Cliente, idAnimal: number): Observable<any>{
+    const url = `${this.apiUrl}/${cliente.id}/${idAnimal}`;
+    return this.http.delete<Response<Cliente>>(url);
   }
 
   /* Armazenar o ID do usuário para Navegar com os dados dele*/

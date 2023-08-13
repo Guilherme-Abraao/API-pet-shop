@@ -58,8 +58,6 @@ export class AgendamentoComponent {
 
       this.jsonData = item;
       this.cliente = this.jsonData;
-
-      
     });
   }
 
