@@ -93,7 +93,37 @@ public class FuncionarioServiceTest {
         assertThrows(UserException.class, () -> funcionarioService.findFuncionarioById(funcionarioId));
     }
 
-    // Teste para atualizar Funcionario
+    @Test
+    void atualizarFuncionario_ValidRequest_Success() throws UserException {
+        Long funcionarioId = 1L;
+        RegisterRequest request = new RegisterRequest();
+        request.setNome("Novo Nome");
+        request.setEmail("novo.email@example.com");
+        request.setCpf("12345678901");
+
+        Funcionario existingFuncionario = new Funcionario();
+        existingFuncionario.setId(funcionarioId);
+        existingFuncionario.setEmail("antigo.email@example.com");
+        existingFuncionario.setCpf("98765432101");
+
+        when(funcionarioRepository.findById(funcionarioId)).thenReturn(Optional.of(existingFuncionario));
+        when(funcionarioRepository.findFuncionarioByEmail(request.getEmail())).thenReturn(Optional.empty());
+        when(funcionarioRepository.findFuncionarioByCpf(request.getCpf())).thenReturn(Optional.empty());
+        when(funcionarioRepository.save(any(Funcionario.class))).thenReturn(existingFuncionario);
+
+        Funcionario updatedFuncionario = funcionarioService.atualizarFuncionario(funcionarioId, request);
+
+        assertNotNull(updatedFuncionario);
+        assertEquals(request.getNome(), updatedFuncionario.getNome());
+        assertEquals(request.getEmail(), updatedFuncionario.getEmail());
+        assertEquals(request.getCpf(), updatedFuncionario.getCpf());
+
+        verify(funcionarioRepository, times(1)).findById(funcionarioId);
+        verify(funcionarioRepository, times(1)).findFuncionarioByEmail(request.getEmail());
+        verify(funcionarioRepository, times(1)).findFuncionarioByCpf(request.getCpf());
+        verify(funcionarioRepository, times(1)).save(any(Funcionario.class));
+    }
+
 
     private RegisterRequest createSampleRegisterRequest() {
         RegisterRequest request = new RegisterRequest();
