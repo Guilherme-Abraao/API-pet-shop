@@ -12,7 +12,6 @@ import { catchError } from 'rxjs/operators';
 export class UsuarioService {
 
   /* private baseApiUrl = environment.baseApiUrl; */
-
   /* Base da API*/
   private baseApiUrl = 'http://localhost:8080/api/petshop';
 
@@ -41,13 +40,36 @@ export class UsuarioService {
     return this.http.get<Response<Cliente>>(url);
   }
 
-  /* Pegar um Cliente no sistema pelo cpf e senha, levemente codificados em base64 */
-  getClienteLogin(cpf: string, senha: string): Observable<Response<Cliente>> {
-    var cpfCodificado = btoa(cpf);
-    var senhaCodificada = btoa(senha);
-    const url = `${this.apiUrl}/${cpfCodificado}-${senhaCodificada}`;
+  /* Pegar um Cliente no sistema pelo email e senha */
+  getClienteLogin(email: string, senha: string): Observable<Response<Cliente>> {
+    const url = `${this.apiUrl}/${email}/${senha}`;
     return this.http.get<Response<Cliente>>(url);
   }
   
+  updateCliente(cliente: any): Observable<any>{
+    const data = {
+      nome: cliente.nome,
+      cpf: cliente.cpf,
+      dataNascimento: cliente.dataNascimento,
+      telefone: cliente.telefone,
+      email: cliente.email,
+      senha: cliente.senha,
+    };
+    const result = this.http.put(this.apiUrl, data);
+    return result;
+  }
+
+  /* Armazenar o ID do usuário para Navegar com os dados dele*/
+  private userId: number=0;
+
+  setUserId(id: number) {
+    this.userId = id;
+  }
+
+  getUserId() {
+    return this.userId;
+  }
+
+
 
 }

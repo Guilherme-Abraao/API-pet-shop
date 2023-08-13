@@ -1,21 +1,27 @@
 #box1 {
   background: rgb(248, 216, 146);
-  border-radius: 25px;
+  border-radius: 4em;
 }
 
 h2 {
   color: #194389;
-  font-size: 60px;
-  margin: 30px;
+  font-size: 3.75em;
+  margin: 1em;
+  bottom: 0.8em;
+  src: url("src/assets/fonts/Poppins-Bold.ttf") format("truetype");
+  position: relative;
 }
 h3 {
   font-style: italic;
-  left: 34px;
+  left: 4em;
+  bottom: 6em;
+  font-family: Poppins;
   position: relative;
-  bottom: 12px;
 }
+
 #t1 {
   color: #e6a910ef;
+  src: url("src/assets/fonts/Poppins-Bold.ttf") format("truetype");
 }
 
 /* Botão de agendamento */
@@ -23,23 +29,24 @@ h3 {
   background-color: #4285dd;
   border: none;
   color: white;
-  padding: 15px 60px;
+  padding: 0.9375em 3.75em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1em;
   font-family: Poppins;
-  border-radius: 30px;
-  left: 35px;
-  margin: 15px;
-  position: absolute;
+  border-radius: 1.875em;
+  left: 3.5em;
+  margin: 1em;
+  bottom: 7em;
+  position: relative;
 }
 
 /* Imagem */
 .dog-home {
   width: 35em;
   height: 36em;
-  margin-left: 540px;
-  bottom: 380px;
+  margin-left: 33.75em;
+  bottom: 37.8em;
   position: relative;
 }

@@ -1,6 +1,6 @@
 export interface Cliente {
-    id?: number;
-    role?: string;
+    id: number;
+    role: string;
     nome: string;
     email: string;
     cpf: string;

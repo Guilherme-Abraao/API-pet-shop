@@ -10,12 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.context.annotation.PropertySource;
 
 import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@Builder
+@PropertySource("classpath:messages.properties")
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -50,7 +51,7 @@ public class Usuario {
 
     @NotBlank(message = "{senha.not.blank}")
     @Senha(message = "{senha.not.valid}")
-    private String password;
+    private String senha;
 
     @NotNull(message = "{dataNascimento.not.null}")
     private LocalDate dataNascimento;
@@ -58,67 +59,22 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-/*    @OneToMany(mappedBy = "usuario")
-    private List<Token> tokens;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return role.getAuthorities();
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }*/
-
-
-        /*Falta analisar como iremos diferenciar os tipos de usuário
-        private TipoUsuario tipoUsuario;*/
-
-    public Usuario(String nome, String email, String cpf, String telefone, String password, LocalDate dataNascimento, Role role) {
+    public Usuario(
+            String nome,
+            String email,
+            String cpf,
+            String telefone,
+            String senha,
+            @NotNull LocalDate dataNascimento,
+            Role role
+    ) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.password = password;
+        this.senha = senha;
         this.dataNascimento = dataNascimento;
         this.role = role;
     }
-
-    /*    Para quando for usar confirmacaoSenha
-    public Usuario(String nome, String email, String cpf, String telefone, String password, String confirmacaoSenha, @NotNull(message = "dataNascimento.not.null") LocalDate dataNascimento) {
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        Telefone = telefone;
-        this.password = password;
-        this.confirmacaoSenha = confirmacaoSenha;
-        this.dataNascimento = dataNascimento;
-    }*/
 
 }

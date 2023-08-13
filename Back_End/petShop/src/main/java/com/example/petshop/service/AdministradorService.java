@@ -1,14 +1,20 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Administrador;
+import com.example.petshop.base.Cargo;
+import com.example.petshop.base.CliRequest;
+import com.example.petshop.base.EmployeeRequest;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AdministradorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
+import static com.example.petshop.base.Role.ADMIN;
 
 @Service
 public class AdministradorService {
@@ -24,51 +30,101 @@ public class AdministradorService {
         return administradorRepository.findAll();
     }
 
-    public Administrador adicionarAdministrador(Administrador funcionario) {
-        Optional<Administrador> funcionarioOptional = administradorRepository.findAdministradorByEmail(funcionario.getEmail());
-        if (funcionarioOptional.isPresent()) {
-            throw new IllegalStateException("email já existe");
+    public Administrador adicionarAdministrador(EmployeeRequest employeeRequest) throws UserException {
+        Optional<Administrador> administradorOptional = administradorRepository.findAdministradorByEmail(employeeRequest.getEmail());
+        if (administradorOptional.isPresent()) {
+            throw new UserException("O email informado já existe");
         }
-        return administradorRepository.save(funcionario);
+
+        Administrador admin = new Administrador();
+        admin.setNome(employeeRequest.getNome());
+        admin.setEmail(employeeRequest.getEmail());
+        admin.setCpf(employeeRequest.getCpf());
+        admin.setTelefone(employeeRequest.getTelefone());
+        admin.setSenha(employeeRequest.getSenha());
+        admin.setDataNascimento(employeeRequest.getDataNascimento());
+        admin.setRole(ADMIN);
+        admin.setCargo(employeeRequest.getCargo());
+        admin.setSalario(employeeRequest.getSalario());
+
+        return administradorRepository.save(admin);
     }
 
-    public void deleteAdministrador(Long funcionarioId) {
-        boolean exists = administradorRepository.existsById(funcionarioId);
+    public void deleteAdministrador(Long administradorId) throws UserException {
+        boolean exists = administradorRepository.existsById(administradorId);
         if (!exists) {
-            throw new IllegalStateException("Funcionário com id " + funcionarioId + " não existe.");
+            throw new UserException("Funcionário com id " + administradorId + " não existe.");
         }
-        administradorRepository.deleteById(funcionarioId);
+        administradorRepository.deleteById(administradorId);
     }
 
-    public Administrador findAdministradorById(Long id) {
+    public Administrador findAdministradorById(Long id) throws UserException {
         return administradorRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException(
+                .orElseThrow(() -> new UserException(
                         "Funcionário com id " + id + " não existe."
                 ));
     }
 
     @Transactional
-    public Administrador atualizarAdministrador(Long funcionarioId, String nome, String email) {
-        Administrador funcionario = administradorRepository.findById(funcionarioId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Funcionário com id " + funcionarioId + " não existe."
+    public Administrador atualizarAdministrador(
+            Long administradorId,
+            EmployeeRequest employeeRequest
+    ) throws UserException {
+        Administrador administrador = administradorRepository.findById(administradorId)
+                .orElseThrow(() -> new UserException(
+                        "Administrador com id " + administradorId + " não existe."
                 ));
 
-        if (nome != null &&
-                email.length() > 0 &&
-                !Objects.equals(funcionario.getNome(), nome)) {
-            funcionario.setNome(nome);
+        String nome = employeeRequest.getNome();
+        String email = employeeRequest.getEmail();
+        String cpf = employeeRequest.getCpf();
+        String telefone = employeeRequest.getTelefone();
+        String senha = employeeRequest.getSenha();
+        LocalDate dataNascimento = employeeRequest.getDataNascimento();
+        Cargo cargo = employeeRequest.getCargo();
+        Double salario = employeeRequest.getSalario();
+
+
+        if (nome != null && !nome.isEmpty()) {
+            administrador.setNome(nome);
         }
 
-        if (email != null &&
-                email.length() > 0 &&
-                !Objects.equals(funcionario.getEmail(), email)) {
-            Optional<Administrador> funcionarioOptional = administradorRepository.findAdministradorByEmail(email);
-            if (funcionarioOptional.isPresent()) {
-                throw new IllegalStateException("Email já existe.");
+        if (email != null && !email.isEmpty()) {
+            Optional<Administrador> administradorOptional = administradorRepository.findAdministradorByEmail(email);
+            if (administradorOptional.isPresent() && !administradorOptional.get().getId().equals(administradorId)) {
+                throw new UserException("Email já existe.");
             }
-            funcionario.setEmail(email);
+            administrador.setEmail(email);
         }
-        return administradorRepository.save(funcionario);
+
+        if (cpf != null && !cpf.isEmpty()) {
+            Optional<Administrador> administradorOptional = administradorRepository.findAdministradorByCpf(cpf);
+            if (administradorOptional.isPresent() && !administradorOptional.get().getId().equals(administradorId)) {
+                throw new UserException("CPF já existe.");
+            }
+            administrador.setCpf(cpf);
+        }
+
+        if (telefone != null && !telefone.isEmpty()) {
+            administrador.setTelefone(telefone);
+        }
+
+        if (senha != null && !senha.isEmpty()) {
+            administrador.setSenha(senha);
+        }
+
+        if (dataNascimento != null) {
+            administrador.setDataNascimento(dataNascimento);
+        }
+
+        if (cargo != null) {
+            administrador.setCargo(cargo);
+        }
+
+        if (salario != null) {
+            administrador.setSalario(salario);
+        }
+
+        return administradorRepository.save(administrador);
     }
 }

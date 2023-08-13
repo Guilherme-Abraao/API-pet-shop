@@ -7,11 +7,37 @@
         <h2>Cerberus Paw</h2>
       </a>
     <ul>
-        <li><a [routerLink]="['/cliente']">Cliente</a></li>
-        <li><a [routerLink]="['/funcionario']">Funcionários</a></li>
-        <li><a [routerLink]="['/animal']">Animais</a></li>
-        <li><a [routerLink]="['/']">Home</a></li>
-        <li><a [routerLink]="['/perfil']">Perfil</a></li>
-        <li><a [routerLink]="['/agendamento']">Agendamento</a></li>
+        <div *ngIf="cliente && validarCliente()">
+            <li><a [routerLink]="['/animal']">Animais</a></li>
+        </div>
+
+        <div *ngIf="cliente && validarCliente()">
+            <li><a [routerLink]="['/']">Home</a></li>
+        </div>
+
+        <div *ngIf="funcionario && validarFuncionario()">
+            <li><a [routerLink]="['/']">Home</a></li>
+        </div>
+
+        <div *ngIf="cliente && !validarCliente()">
+            <li><a [routerLink]="['/funcionario/:id']">Funcionários</a></li>
+        </div>
+
+        <div *ngIf="cliente && validarCliente()">
+            <li><a [routerLink]="['/perfil']">Perfil</a></li>
+        </div>
+
+        <div *ngIf="cliente && validarCliente()">
+            <li><a [routerLink]="['/agendamento']">Agendamento</a></li>
+        </div>
+
+        <div *ngIf="cliente && !validarCliente()">
+            <li><a [routerLink]="['/tabela-agendamentos']">Tabela de agendamentos</a></li> <!--temporário-->
+        </div>
+
+        <div *ngIf="funcionario && validarFuncionario()">
+            <li><a [routerLink]="['/tabela-agendamentos']">Tabela de agendamentos</a></li> <!--temporário-->
+        </div>
     </ul>
+    
 </nav>

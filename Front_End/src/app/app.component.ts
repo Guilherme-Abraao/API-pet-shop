@@ -12,14 +12,13 @@ export class AppComponent implements OnInit{
 
   mostrarMenu: boolean = false;
 
-  constructor(private authService: AuthService){ 
+  constructor(private authService: AuthService){
 
   }
 
-
   ngOnInit(): void {
     this.authService.mostrarMenuEmitter.subscribe(
-      mostrar => this.mostrarMenu = mostrar 
+      mostrar => this.mostrarMenu = mostrar
     );
   }
 

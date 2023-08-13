@@ -1,5 +1,6 @@
 package com.example.petshop.base;
 
+import com.example.petshop.agendamento.Agendamento;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import static com.example.petshop.base.Role.USER;
 
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
@@ -20,12 +23,30 @@ public class Cliente extends Usuario {
     @OneToMany(mappedBy = "cliente")
     private List<Animal> animais;
 
-    public Cliente(String nome, String email, String cpf, String telefone, String password, LocalDate dataNascimento, Role role) {
-        super(nome, email, cpf, telefone, password, dataNascimento, role);
+    @OneToMany(mappedBy = "clienteId")
+    private List<Agendamento> agendamentos;
+
+    public Cliente(
+            String nome,
+            String email,
+            String cpf,
+            String telefone,
+            String senha,
+            LocalDate dataNascimento
+    ) {
+        super(nome, email, cpf, telefone, senha, dataNascimento, USER);
     }
 
-    public Cliente(String nome, String email, String cpf, String telefone, String password, LocalDate dataNascimento, Role role, List<Animal> animais) {
-        super(nome, email, cpf, telefone, password, dataNascimento, role);
+    public Cliente(
+            String nome,
+            String email,
+            String cpf,
+            String telefone,
+            String senha,
+            LocalDate dataNascimento,
+            List<Animal> animais
+    ) {
+        super(nome, email, cpf, telefone, senha, dataNascimento, USER);
         this.animais = animais;
     }
 

@@ -2,7 +2,6 @@ package com.example.petshop.repository;
 
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.Role;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
-import static com.example.petshop.base.Role.CLIENTE;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.example.petshop.base.Role.USER;
 
 @DataJpaTest
 class ClienteRepositoryTest {
@@ -38,8 +36,7 @@ class ClienteRepositoryTest {
                 "14180500086",
                 "(62) 22097-8318",
                 "PuZfPjDQo6",
-                LocalDate.of(1995, Month.JULY, 14),
-                CLIENTE
+                LocalDate.of(1995, Month.JULY, 14)
         );
 
         underTest.save(cliente);
