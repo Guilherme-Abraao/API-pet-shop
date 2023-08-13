@@ -30,12 +30,10 @@
         this.cliente = this.jsonData;
     
         if (this.cliente) {
-          this.usuarioAutenticado = true;
           this.mostrarMenuEmitter.emit(true);
           this.usuarioService.setUserId(this.cliente.id);
           this.router.navigate(['/perfil']);
         } else {
-          this.usuarioAutenticado = false;
           this.mostrarMenuEmitter.emit(false);
         }
       });

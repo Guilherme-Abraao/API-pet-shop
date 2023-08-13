@@ -16,7 +16,7 @@
         </div>
 
         <div *ngIf="cliente && !validarCliente()">
-            <li><a [routerLink]="['/funcionario/:id']">Funcionários</a></li>
+            <li><a [routerLink]="['/funcionario']">Funcionários</a></li>
         </div>
 
         <div *ngIf="cliente && validarCliente()">
