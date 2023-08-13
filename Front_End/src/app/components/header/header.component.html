@@ -12,7 +12,7 @@
         </div>
 
         <div *ngIf="cliente && validarCliente()">
-            <li><a [routerLink]="['/']">Home</a></li>
+            <li><a [routerLink]="['/home']">Home</a></li>
         </div>
 
         <div *ngIf="cliente && !validarCliente()">
@@ -32,7 +32,7 @@
         </div>
 
         <div (click)="logout()" *ngIf="cliente && validarCliente()">
-            <li><a [routerLink]="['/login']">Sair</a></li>
+            <li><a [routerLink]="['']">Sair</a></li>
         </div>
     </ul>
     

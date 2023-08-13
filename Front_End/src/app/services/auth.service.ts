@@ -31,9 +31,11 @@
     
         if (this.cliente) {
           this.mostrarMenuEmitter.emit(true);
+          this.usuarioAutenticado = true; 
           this.usuarioService.setUserId(this.cliente.id);
           this.router.navigate(['/perfil']);
         } else {
+          this.usuarioAutenticado = false; 
           this.mostrarMenuEmitter.emit(false);
         }
       });
@@ -43,5 +45,10 @@
     usuarioEstaAutenticado(){
       return this.usuarioAutenticado;
     }
+
+    setUsuarioAutenticado(valor: boolean) {
+      this.usuarioAutenticado = valor;
+    }
+
 
   }
