@@ -1,7 +1,7 @@
 
 
 
-<nav>
+<nav *ngIf="cliente && validarCliente()">
     <a class="brand" routerLink="/">
         <img src="/assets/images/pata2.png" alt="image" class="logo"/>
         <h2>Cerberus Paw</h2>
@@ -29,6 +29,10 @@
 
         <div *ngIf="cliente && !validarCliente()">
             <li><a [routerLink]="['/tabela-agendamentos']">Tabela de agendamentos</a></li> <!--temporário-->
+        </div>
+
+        <div (click)="logout()" *ngIf="cliente && validarCliente()">
+            <li><a [routerLink]="['/login']">Sair</a></li>
         </div>
     </ul>
     
