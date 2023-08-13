@@ -3,8 +3,6 @@ package com.example.petshop.agendamento;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,24 +14,24 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AgendamentoRequest {
-    private Cliente cliente;
-    private Funcionario funcionario;
+    private Long clienteId;
+    private Long funcionarioId;
     private List<Servico> servicos;
-    private Animal animal;
-    private LocalDateTime dataHora;
+    private Long animalId;
+    private LocalDateTime dataHoraStart;
     private String observacoes;
 
     public AgendamentoRequest(
-            Cliente cliente,
-            Funcionario funcionario,
+            Long clienteId,
+            Long funcionarioId,
             List<Servico> servicos,
-            Animal animal,
-            LocalDateTime dataHora) {
-        this.cliente = cliente;
-        this.funcionario = funcionario;
+            Long animalId,
+            LocalDateTime dataHoraStart) {
+        this.clienteId = clienteId;
+        this.funcionarioId = funcionarioId;
         this.servicos = servicos;
-        this.animal = animal;
-        this.dataHora = dataHora;
+        this.animalId = animalId;
+        this.dataHoraStart = dataHoraStart;
     }
 }
 

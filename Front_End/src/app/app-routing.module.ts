@@ -12,32 +12,53 @@ import { AgendamentoComponent } from './components/pages/agendamento/agendamento
 import { ScheduleComponent } from '@syncfusion/ej2-angular-schedule';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { UpdateClientComponent } from './components/singular-components/update-client/update-client.component';
+import { LogoutComponent } from './components/pages/logout/logout.component';
 
 const routes: Routes = [
-  { path: '', canActivate: [AuthGuardService], component: HomeComponent },
+  { path: 'home', canActivate: [AuthGuardService], component: HomeComponent },
   { path: 'cliente', component: NewClientComponent },
-  { path: 'agendamento', component: AgendamentoComponent },
-  { path: 'login', component: LoginComponent },
-  
+  {
+    path: 'agendamento',
+    canActivate: [AuthGuardService], // Proteger rotas
+    component: AgendamentoComponent,
+  },
+  {
+    path: '',
+    component: LoginComponent,
+  },
+  {
+    path: 'logout',
+    canActivate: [AuthGuardService], // Proteger rotas
+    component: LogoutComponent,
+  },
+
   {
     path: 'perfil',
-      component: PerfilComponent,
+    canActivate: [AuthGuardService], // Proteger rotas
+    component: PerfilComponent,
   },
   {
     path: 'editar-perfil',
-      canActivate: [AuthGuardService],// Proteger rotas
-      component: UpdateClientComponent,
+    canActivate: [AuthGuardService], // Proteger rotas
+    component: UpdateClientComponent,
   },
-  { path: 'funcionario',
-      canActivate: [AuthGuardService],
-      component: NewFuncionarioComponent },
+  {
+    path: 'funcionario',
+    canActivate: [AuthGuardService],
+    component: NewFuncionarioComponent,
+  },
 
-  { path: 'animal',
-      component: NewAnimalComponent },
-  
-  { path: 'tabela-agendamentos',  /* A tabela de agendamentos só pode ser acessada por funcionários */
-      canActivate: [AuthGuardService],
-      component: CalendarioComponent },
+  {
+    path: 'animal',
+    canActivate: [AuthGuardService], // Proteger rotas
+    component: NewAnimalComponent,
+  },
+
+  {
+    path: 'tabela-agendamentos' /* A tabela de agendamentos só pode ser acessada por funcionários */,
+    canActivate: [AuthGuardService],
+    component: CalendarioComponent,
+  },
 ];
 
 @NgModule({

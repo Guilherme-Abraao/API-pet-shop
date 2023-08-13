@@ -1,8 +1,12 @@
+import { Servico } from "./Servico";
+
 export interface Agendamento {
     id?: number;
-    dataAgendamento: string;
-    horario: string; 
-    animal: string; 
+    dataHoraStart: string;
+    horario: string;
+    animal: string;
+    //idAnimal: number; Para passar id do animal ao criar agendamento?
+    servicos: Servico[];
     banho: boolean;
     hidratacao: boolean;
     desembolo: boolean;
@@ -13,6 +17,6 @@ export interface Agendamento {
     tosaTesoura: boolean;
     unha: boolean;
     dentes: boolean;
-    obs: boolean;
+    observacoes: string;
 }
 

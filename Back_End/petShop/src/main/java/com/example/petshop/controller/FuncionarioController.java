@@ -1,5 +1,6 @@
 package com.example.petshop.controller;
 
+import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
@@ -36,6 +37,16 @@ public class FuncionarioController {
     ) throws UserException {
         Funcionario Funcionario = funcionarioService.findFuncionarioById(id);
         return new ResponseEntity<>(Funcionario, HttpStatus.OK);
+    }
+
+    //    Login
+    @GetMapping(path = "/{email}/{senha}")
+    public ResponseEntity<Funcionario> login(
+            @PathVariable("email") String email,
+            @PathVariable("senha") String senha
+    ) throws UserException {
+        Funcionario funcionario = funcionarioService.login(email, senha);
+        return new ResponseEntity<>(funcionario, HttpStatus.OK);
     }
 
     @PostMapping(path = "/cadastrarFuncionario")
