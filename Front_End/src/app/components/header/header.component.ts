@@ -65,6 +65,7 @@ export class HeaderComponent {
 
   logout(){
     this.authService.mostrarMenuEmitter.emit(false);
+    this.authService.setUsuarioAutenticado(false);
     this.usuarioService.setUserId(0);
   }
 

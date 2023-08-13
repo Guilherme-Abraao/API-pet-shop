@@ -17,7 +17,9 @@ export class AnimalViewComponent {
     
   }
 
-  excluirAnimal(){
-    this.usuarioService.deleteAnimal(this.cliente, 1); 
+  excluirAnimal(idAnimal: number){
+    console.log("teste");
+    console.log(idAnimal);
+    this.usuarioService.deleteAnimal(this.cliente, idAnimal); 
   }
 }

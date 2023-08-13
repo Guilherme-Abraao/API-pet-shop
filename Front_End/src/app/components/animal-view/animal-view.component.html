@@ -29,7 +29,7 @@
         <input class="dados" type="text" value="{{ animal.idade }}" readonly />
       </div>
 
-      <input (click)="excluirAnimal()" type="submit" value="Excluir"/>
+      <input (click)="excluirAnimal(animal.id)" type="submit" value="Excluir"/>
     </form>
   </div>
 </div>

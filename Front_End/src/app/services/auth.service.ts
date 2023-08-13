@@ -8,62 +8,66 @@ import { FuncionarioService } from './funcionario.service';
 import { Funcionario } from '../components/interfaces/Funcionario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
   private usuarioAutenticado: boolean = false;
 
-  constructor(private router: Router,
-              private usuarioService: UsuarioService,
-              private mensagemService: MensagemService,
-              private funcionarioService: FuncionarioService,
-    ) { }
+  constructor(
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private mensagemService: MensagemService,
+    private funcionarioService: FuncionarioService
+  ) {}
 
   jsonData: any;
   cliente!: Cliente;
   funcionario!: Funcionario;
-
   /* Fazer login no Sistema*/
   login(login: Login) {
+    this.usuarioService
+      .getClienteLogin(login.email, login.senha)
+      .subscribe((item) => {
+        // Precisa transformar em JSON para funcionar
+        this.jsonData = item;
+        this.cliente = this.jsonData;
 
+        if (this.cliente) {
+          this.mostrarMenuEmitter.emit(true);
+          this.usuarioAutenticado = true;
+          this.usuarioService.setUserId(this.cliente.id);
+          this.router.navigate(['/perfil']);
+        } else {
+          this.usuarioAutenticado = false;
+          this.mostrarMenuEmitter.emit(false);
+        }
+      });
 
-    this.usuarioService.getClienteLogin(login.email, login.senha).subscribe((item) => {
-      // Precisa transformar em JSON para funcionar
-      this.jsonData = item;
-      this.cliente = this.jsonData;
-  
-      if (this.cliente) {
-        this.usuarioAutenticado = true;
-        this.mostrarMenuEmitter.emit(true);
-        this.usuarioService.setUserId(this.cliente.id);
-        this.router.navigate(['/home']);
-      }
-      
-    });
+    this.funcionarioService
+      .getFuncionarioLogin(login.email, login.senha)
+      .subscribe((item) => {
+        this.jsonData = item;
+        this.funcionario = this.jsonData;
 
-    this.funcionarioService.getFuncionarioLogin(login.email, login.senha).subscribe((item) => {
-      
-      this.jsonData = item;
-      this.funcionario = this.jsonData;
-  
-      if (this.funcionario) {
-        this.usuarioAutenticado = true;
-        this.mostrarMenuEmitter.emit(true);
-        this.funcionarioService.setFuncionarioId(this.funcionario.id);
-        this.router.navigate(['/home']);
-      } else {
-        this.usuarioAutenticado = false;
-        this.mostrarMenuEmitter.emit(false);
-      }
-    });
+        if (this.funcionario) {
+          this.usuarioAutenticado = true;
+          this.mostrarMenuEmitter.emit(true);
+          this.funcionarioService.setFuncionarioId(this.funcionario.id);
+          this.router.navigate(['/home']);
+        } else {
+          this.usuarioAutenticado = false;
+          this.mostrarMenuEmitter.emit(false);
+        }
+      });
   }
-  
 
-  usuarioEstaAutenticado(){
+  setUsuarioAutenticado(valor: boolean) {
+    this.usuarioAutenticado = valor;
+  }
+
+  usuarioEstaAutenticado() {
     return this.usuarioAutenticado;
   }
-
 }
