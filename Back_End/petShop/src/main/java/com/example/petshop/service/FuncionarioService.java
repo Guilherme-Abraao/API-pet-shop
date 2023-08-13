@@ -1,6 +1,7 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cargo;
+import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static com.example.petshop.base.Role.FUNC;
@@ -125,5 +127,17 @@ public class FuncionarioService {
         }
 
         return funcionarioRepository.save(funcionario);
+    }
+
+    public Funcionario login(String email, String senha) throws UserException {
+
+        Funcionario funcionario = funcionarioRepository.findFuncionarioByEmail(email)
+                .orElseThrow(() -> new UserException("Email não encontrado."));
+
+        if (!Objects.equals(funcionario.getSenha(), senha)) {
+            throw new UserException("Senha incorreta.");
+        }
+
+        return funcionario;
     }
 }

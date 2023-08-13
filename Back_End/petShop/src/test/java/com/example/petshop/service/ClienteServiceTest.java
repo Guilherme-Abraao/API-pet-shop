@@ -2,7 +2,7 @@ package com.example.petshop.service;
 
 import com.example.petshop.base.Cargo;
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.base.CliRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.ClienteRepository;
 import com.example.petshop.service.ClienteService;
@@ -142,12 +142,22 @@ class ClienteServiceTest {
         verify(clienteRepository, times(1)).findClienteByEmail(email);
     }
 
+
     @Test
     void login_IncorrectPassword_ThrowsUserException() {
         String email = "test@example.com";
         String senha = "password";
         Cliente cliente = new Cliente();
         cliente.setSenha("wrongpassword");
+
+        CliRequest registerCliente = new CliRequest();
+        registerCliente.setNome(cliente.getNome());
+        registerCliente.setEmail(cliente.getEmail());
+        registerCliente.setCpf(cliente.getCpf());
+        registerCliente.setTelefone(cliente.getTelefone());
+        registerCliente.setSenha(cliente.getSenha());
+        registerCliente.setDataNascimento(cliente.getDataNascimento());
+
 
         when(clienteRepository.findClienteByEmail(email)).thenReturn(Optional.of(cliente));
 

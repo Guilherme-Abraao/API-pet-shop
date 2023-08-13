@@ -3,6 +3,10 @@ package com.example.petshop.service;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.AnimalRegisterRequest;
 import com.example.petshop.base.Cliente;
+
+
+import com.example.petshop.base.CliRequest;
+
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
@@ -66,12 +70,22 @@ class AnimalServiceTest{
         assertThrows(UserException.class, () -> animalService.findAnimalById(nonExistingId));
     }
 
+
     @Test
     void cadastrarAnimal_ValidRequestAndExistingCliente_Success() throws UserException {
         Long clienteId = 1L;
         AnimalRegisterRequest request = new AnimalRegisterRequest();
         Cliente cliente = new Cliente();
         request.setCliente(cliente);
+
+        CliRequest registerBilly = new CliRequest();
+        registerBilly.setNome(billy.getNome());
+        registerBilly.setEmail(billy.getEmail());
+        registerBilly.setCpf(billy.getCpf());
+        registerBilly.setTelefone(billy.getTelefone());
+        registerBilly.setSenha(billy.getSenha());
+        registerBilly.setDataNascimento(billy.getDataNascimento());
+
 
         when(clienteRepository.findById(clienteId)).thenReturn(Optional.of(cliente));
 

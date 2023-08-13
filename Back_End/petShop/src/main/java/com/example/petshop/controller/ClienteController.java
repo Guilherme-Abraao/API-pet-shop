@@ -1,7 +1,7 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.RegisterRequest;
+import com.example.petshop.base.CliRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.service.ClienteService;
 import jakarta.validation.Valid;
@@ -64,14 +64,14 @@ public class ClienteController {
 //    Cadastrar um cliente
     @PostMapping(path = "/cadastrarCliente")
     public ResponseEntity<Cliente> adicionarCliente(
-            @RequestBody @Valid RegisterRequest registerRequest
+            @RequestBody @Valid CliRequest cliRequest
             ) throws UserException {
-        Cliente novoCliente = clienteService.adicionarCliente(registerRequest);
+        Cliente novoCliente = clienteService.adicionarCliente(cliRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
 //    Deletar um cliente
-    @DeleteMapping(path = "/deletarCliente/{clienteId}")
+    @DeleteMapping(path = "/{clienteId}")
     public ResponseEntity<Cliente> deleteCliente(
             @PathVariable("clienteId") Long ClienteId
     ) throws UserException {
@@ -80,12 +80,12 @@ public class ClienteController {
     }
 
 //    Atualizar um cliente
-    @PutMapping(path = "/atualizarCliente/{clienteId}")
+    @PutMapping(path = "/{clienteId}")
     public ResponseEntity<Cliente> atualizarCliente(
             @PathVariable("clienteId") Long clienteId,
-            @RequestBody RegisterRequest registerRequest
+            @RequestBody CliRequest cliRequest
     ) throws UserException {
-        Cliente novoCliente = clienteService.atualizarCliente(clienteId, registerRequest);
+        Cliente novoCliente = clienteService.atualizarCliente(clienteId, cliRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.OK);
     }
 
