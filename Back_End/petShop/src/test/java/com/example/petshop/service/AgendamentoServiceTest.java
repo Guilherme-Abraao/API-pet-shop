@@ -99,6 +99,5 @@ public class AgendamentoServiceTest {
         verify(agendamentoRepository, never()).deleteById(agendamentoId);
     }
 
-    // Adicione mais testes para os demais métodos da classe AgendamentoService
-
+   
 }
