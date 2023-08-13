@@ -19,7 +19,7 @@ export class AnimalService {
   
   /* Especificando */
 
-  private apiUrl = `${this.baseApiUrl}/animal/cadastrarAnimal/4`;
+  private apiUrl = "";
 
   //Falta passar o id do usuário na URL
   //private id = Number(this.route.snapshot.paramMap.get('id'));
@@ -28,13 +28,16 @@ export class AnimalService {
   constructor(private http: HttpClient, private usuarioService: UsuarioService, private route: ActivatedRoute) { }
 
   /* Criar Animal no sistema */
-  createAnimal(animal: any): Observable<any>{
+  createAnimal(animal: any, id: number): Observable<any>{
     const data = {
       nome: animal.nome,
       dataNascimento: animal.dataNascimento,
       especie: animal.especie,
       raca: animal.raca,
     };
+
+    this.apiUrl = `${this.baseApiUrl}/animal/cadastrarAnimal/${id}`;
+
     const result = this.http.post(this.apiUrl, data);
     return result;
   }
