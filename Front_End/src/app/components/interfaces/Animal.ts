@@ -1,5 +1,6 @@
 export interface Animal {
-    id?: number;
+    id: number;
+    idade: number; 
     nome: string;
     dataNascimento: string;
     especie: string;

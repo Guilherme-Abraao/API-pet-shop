@@ -12,12 +12,14 @@ import { AgendamentoComponent } from './components/pages/agendamento/agendamento
 import { ScheduleComponent } from '@syncfusion/ej2-angular-schedule';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { UpdateClientComponent } from './components/singular-components/update-client/update-client.component';
+import { LogoutComponent } from './components/pages/logout/logout.component';
 
 const routes: Routes = [
   { path: '', canActivate: [AuthGuardService], component: HomeComponent },
   { path: 'cliente', component: NewClientComponent },
   { path: 'agendamento', component: AgendamentoComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   
   {
     path: 'perfil',
