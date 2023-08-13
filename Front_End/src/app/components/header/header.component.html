@@ -15,6 +15,10 @@
             <li><a [routerLink]="['/']">Home</a></li>
         </div>
 
+        <div *ngIf="funcionario && validarFuncionario()">
+            <li><a [routerLink]="['/']">Home</a></li>
+        </div>
+
         <div *ngIf="cliente && !validarCliente()">
             <li><a [routerLink]="['/funcionario/:id']">Funcionários</a></li>
         </div>
@@ -28,6 +32,10 @@
         </div>
 
         <div *ngIf="cliente && !validarCliente()">
+            <li><a [routerLink]="['/tabela-agendamentos']">Tabela de agendamentos</a></li> <!--temporário-->
+        </div>
+
+        <div *ngIf="funcionario && validarFuncionario()">
             <li><a [routerLink]="['/tabela-agendamentos']">Tabela de agendamentos</a></li> <!--temporário-->
         </div>
     </ul>
