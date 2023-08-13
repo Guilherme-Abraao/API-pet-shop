@@ -99,5 +99,5 @@ public class AgendamentoServiceTest {
         verify(agendamentoRepository, never()).deleteById(agendamentoId);
     }
 
-   
+
 }
