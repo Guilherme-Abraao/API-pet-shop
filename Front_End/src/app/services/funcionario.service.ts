@@ -42,4 +42,20 @@ export class FuncionarioService {
     return this.http.get<Response<Funcionario>>(url);
   }
 
+   /* Pegar um Funcionario no sistema pelo email e senha */
+   getFuncionarioLogin(email: string, senha: string): Observable<Response<Funcionario>> {
+    const url = `${this.apiUrl}/${email}/${senha}`;
+    return this.http.get<Response<Funcionario>>(url);
+  }
+
+    /* Armazenar o ID do funcionário para Navegar com os dados dele*/
+    private funcionarioId: number=0;
+
+    setFuncionarioId(id: number) {
+      this.funcionarioId = id;
+    }
+  
+    getFuncionarioId() {
+      return this.funcionarioId;
+    }
 }
