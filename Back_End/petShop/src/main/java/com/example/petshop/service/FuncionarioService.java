@@ -1,8 +1,9 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cargo;
-import com.example.petshop.base.EmployeeRequest;
+import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.FuncionarioRepository;
 import jakarta.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static com.example.petshop.base.Role.FUNC;
@@ -29,22 +31,22 @@ public class FuncionarioService {
         return funcionarioRepository.findAll();
     }
 
-    public Funcionario adicionarFuncionario(EmployeeRequest employeeRequest) throws UserException {
-        Optional<Funcionario> funcionarioOptional = funcionarioRepository.findFuncionarioByEmail(employeeRequest.getEmail());
+    public Funcionario adicionarFuncionario(RegisterRequest registerRequest) throws UserException {
+        Optional<Funcionario> funcionarioOptional = funcionarioRepository.findFuncionarioByEmail(registerRequest.getEmail());
         if (funcionarioOptional.isPresent()) {
             throw new UserException("O email informado já existe");
         }
 
         Funcionario funcionario = new Funcionario();
-        funcionario.setNome(employeeRequest.getNome());
-        funcionario.setEmail(employeeRequest.getEmail());
-        funcionario.setCpf(employeeRequest.getCpf());
-        funcionario.setTelefone(employeeRequest.getTelefone());
-        funcionario.setSenha(employeeRequest.getSenha());
-        funcionario.setDataNascimento(employeeRequest.getDataNascimento());
+        funcionario.setNome(registerRequest.getNome());
+        funcionario.setEmail(registerRequest.getEmail());
+        funcionario.setCpf(registerRequest.getCpf());
+        funcionario.setTelefone(registerRequest.getTelefone());
+        funcionario.setSenha(registerRequest.getSenha());
+        funcionario.setDataNascimento(registerRequest.getDataNascimento());
         funcionario.setRole(FUNC);
-        funcionario.setCargo(employeeRequest.getCargo());
-        funcionario.setSalario(employeeRequest.getSalario());
+        funcionario.setCargo(registerRequest.getCargo());
+        funcionario.setSalario(registerRequest.getSalario());
 
         return funcionarioRepository.save(funcionario);
     }
@@ -67,21 +69,21 @@ public class FuncionarioService {
     @Transactional
     public Funcionario atualizarFuncionario(
             Long funcionarioId,
-            EmployeeRequest employeeRequest
+            RegisterRequest registerRequest
     ) throws UserException {
         Funcionario funcionario = funcionarioRepository.findById(funcionarioId)
                 .orElseThrow(() -> new UserException(
                         "Funcionario com id " + funcionarioId + " não existe."
                 ));
 
-        String nome = employeeRequest.getNome();
-        String email = employeeRequest.getEmail();
-        String cpf = employeeRequest.getCpf();
-        String telefone = employeeRequest.getTelefone();
-        String senha = employeeRequest.getSenha();
-        LocalDate dataNascimento = employeeRequest.getDataNascimento();
-        Cargo cargo = employeeRequest.getCargo();
-        Double salario = employeeRequest.getSalario();
+        String nome = registerRequest.getNome();
+        String email = registerRequest.getEmail();
+        String cpf = registerRequest.getCpf();
+        String telefone = registerRequest.getTelefone();
+        String senha = registerRequest.getSenha();
+        LocalDate dataNascimento = registerRequest.getDataNascimento();
+        Cargo cargo = registerRequest.getCargo();
+        Double salario = registerRequest.getSalario();
 
 
         if (nome != null && !nome.isEmpty()) {
@@ -125,5 +127,17 @@ public class FuncionarioService {
         }
 
         return funcionarioRepository.save(funcionario);
+    }
+
+    public Funcionario login(String email, String senha) throws UserException {
+
+        Funcionario funcionario = funcionarioRepository.findFuncionarioByEmail(email)
+                .orElseThrow(() -> new UserException("Email não encontrado."));
+
+        if (!Objects.equals(funcionario.getSenha(), senha)) {
+            throw new UserException("Senha incorreta.");
+        }
+
+        return funcionario;
     }
 }
