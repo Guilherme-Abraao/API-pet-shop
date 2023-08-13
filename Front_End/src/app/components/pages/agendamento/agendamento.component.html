@@ -1,37 +1,145 @@
 
-<form (ngSubmit)="submit()" [formGroup]="agendamentoForm">
+  <div *ngIf="cliente">
+    <form (ngSubmit)="submit()" [formGroup]="agendamentoForm">
+      <h2>Agende um horário para seu Pet!</h2>
 
-    <h2> Agende um horário para seu Pet!  </h2>
-
-  <div class="linha">
-    <div class="column1">
-        <div class="form-group">
+      <div class="linha">
+        <div class="column1">
+          <div class="form-group">
             <label class="labels">Data do Agendamento: </label>
             <input type="date" formControlName="dataHoraStart" required />
         </div>
-    </div>
 
-    <div class="column2">
-      <div class="form-group">
-        <label class="labels">Qual o horário da visita? </label>
-        <input class="horario" type="time" formControlName="horario" required>
-      </div>
-    </div>
+        <div class="column2">
+          <div class="form-group">
+            <label class="labels">Qual o horário da visita? </label>
+            <input
+              class="horario"
+              type="time"
+              formControlName="horario"
+              required
+            />
+          </div>
+        </div>
 
-    <div class="column3">
-        <div class="form-group">
+        <div class="column3">
+          <div class="form-group">
             <label class="labels">Qual fofura vai vir?</label>
-            <select class="comboBoxAnimais" name="frutas" formControlName="animal" required>
-                <option value="maca">Maçã</option>
-                <option value="laranja">Laranja</option>
-                <option value="banana">Banana</option>
-                <option value="uva">Uva</option>
-              </select>
+            <select
+              class="comboBoxAnimais"
+              name="frutas"
+              formControlName="animal"
+              required
+            >
+            <option *ngFor="let animal of cliente.animais" [value]="animal.nome">{{ animal.nome }}</option>
+            </select>
+          </div>
         </div>
       </div>
 
+      <div class="servicos">
+        <label class="labels"> Selecione os serviços que deseja: </label>
+
+        <div class="checkBoxs">
+          <input
+            type="checkbox"
+            id="banho"
+            formControlName="banho"
+            value="banho"
+          />
+          <label for="banho">Banho</label>
+
+          <input
+            type="checkbox"
+            id="hidratacao"
+            formControlName="hidratacao"
+            value="hidratacao"
+          />
+          <label for="banho">Hidratação</label>
+
+          <input
+            type="checkbox"
+            id="desembolo"
+            formControlName="desembolo"
+            value="desembolo"
+          />
+          <label for="banho">Desembolo</label>
+
+          <input
+            type="checkbox"
+            id="tosaHigienica"
+            formControlName="tosaHigienica"
+            value="tosaHigienica"
+          />
+          <label for="tosa">Tosa Higiênica</label>
+
+          <input
+            type="checkbox"
+            id="tosaGeral"
+            formControlName="tosaGeral"
+            value="tosaGeral"
+          />
+          <label for="tosa">Tosa Geral</label>
+
+          <input
+            type="checkbox"
+            id="tosaBaixa"
+            formControlName="tosaBaixa"
+            value="tosaBaixa"
+          />
+          <label for="tosa">Tosa Baixa</label>
+
+          <input
+            type="checkbox"
+            id="tosaAlta"
+            formControlName="tosaAlta"
+            value="tosaAlta"
+          />
+          <label for="tosa">Tosa Alta</label>
+
+          <input
+            type="checkbox"
+            id="tosaTesoura"
+            formControlName="tosaTesoura"
+            value="tosaTesoura"
+          />
+          <label for="tosa">Tosa na Tesoura</label>
+
+          <input
+            type="checkbox"
+            id="unha"
+            formControlName="unha"
+            value="unha"
+          />
+          <label for="tosa">Unha</label>
+
+          <input
+            type="checkbox"
+            id="dentes"
+            formControlName="dentes"
+            value="dentes"
+          />
+          <label for="tosa">Dentes</label>
+        </div>
+      </div>
+
+      <div class="observacao">
+        <label class="labels">Observações:</label>
+        <textarea
+          class="obs"
+          formControlName="obs"
+          rows="3"
+          cols="140%"
+        ></textarea>
+      </div>
+
+      <input type="submit" value="Confirmar" />
+    </form>
+
+    <app-visualizar-agendamento></app-visualizar-agendamento>
   </div>
 
+<<<<<<< HEAD
   <div class="servicos">
     <label class="labels"> Selecione os serviços que deseja: </label>
 
@@ -78,3 +186,5 @@
 </form>
 
 <app-visualizar-agendamento></app-visualizar-agendamento>
+=======
+>>>>>>> guilherme
