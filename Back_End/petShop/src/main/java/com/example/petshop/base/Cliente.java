@@ -1,6 +1,7 @@
 package com.example.petshop.base;
 
 import com.example.petshop.agendamento.Agendamento;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,9 @@ public class Cliente extends Usuario {
     @OneToMany(mappedBy = "cliente")
     private List<Animal> animais;
 
-    @OneToMany(mappedBy = "clienteId")
+//    @OneToMany(mappedBy = "clienteId")
+    @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<Agendamento> agendamentos;
 
     public Cliente(

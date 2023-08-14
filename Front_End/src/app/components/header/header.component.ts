@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
+import { Component, EventEmitter, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Cliente } from '../interfaces/Cliente';
 import { MensagemService } from 'src/app/services/mensagem.service';
@@ -22,10 +23,15 @@ export class HeaderComponent {
   /* Campo para validar */
   verificaCliente: boolean = false;
 
+  /* Esconder o menu quando fizer logout*/
+  mostrarMenuEmitter = new EventEmitter<boolean>(); 
+
   constructor(
     private messagemService: MensagemService,
     private usuarioService: UsuarioService,
-    private funcionarioService: FuncionarioService
+    private funcionarioService: FuncionarioService,
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +61,12 @@ export class HeaderComponent {
     if(this.funcionario.role == "FUNC"){
        return true;
     } return false;
+  }
+
+  logout(){
+    this.authService.mostrarMenuEmitter.emit(false);
+    this.authService.setUsuarioAutenticado(false);
+    this.usuarioService.setUserId(0);
   }
 
   

@@ -1,10 +1,14 @@
 package com.example.petshop.controller;
 
+import com.example.petshop.agendamento.Agendamento;
+import com.example.petshop.agendamento.AgendamentoService;
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.CliRequest;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.service.ClienteService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +17,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping(path = "api/petshop/cliente")
 public class ClienteController {
 
     private final ClienteService clienteService;
+    private final AgendamentoService agendamentoService;
 
-    @Autowired
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
-    }
+//    @Autowired
+//    public ClienteController(ClienteService clienteService) {
+//        this.clienteService = clienteService;
+//    }
 
 //    Encontrar todos os usuários
     @GetMapping
@@ -49,6 +55,22 @@ public class ClienteController {
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
+//    Histórico de Agendamentos
+    @GetMapping(path = "/agendamentos/{clienteId}")
+    public ResponseEntity<List<Agendamento>> getAgendamentos(
+            @PathVariable("clienteId") Long clienteId
+    ) {
+        try {
+            Cliente cliente = clienteService.findClienteById(clienteId);
+            List<Agendamento> agendamentos = agendamentoService.getAgendamentosByCliente(cliente);
+            return new ResponseEntity<>(agendamentos, HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (UserException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /*
     @PostMapping(path = "/{email}/{senha}")
     public ResponseEntity<Cliente> login(
@@ -64,9 +86,9 @@ public class ClienteController {
 //    Cadastrar um cliente
     @PostMapping(path = "/cadastrarCliente")
     public ResponseEntity<Cliente> adicionarCliente(
-            @RequestBody @Valid CliRequest cliRequest
+            @RequestBody @Valid RegisterRequest registerRequest
             ) throws UserException {
-        Cliente novoCliente = clienteService.adicionarCliente(cliRequest);
+        Cliente novoCliente = clienteService.adicionarCliente(registerRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
@@ -83,9 +105,9 @@ public class ClienteController {
     @PutMapping(path = "/{clienteId}")
     public ResponseEntity<Cliente> atualizarCliente(
             @PathVariable("clienteId") Long clienteId,
-            @RequestBody CliRequest cliRequest
+            @RequestBody RegisterRequest registerRequest
     ) throws UserException {
-        Cliente novoCliente = clienteService.atualizarCliente(clienteId, cliRequest);
+        Cliente novoCliente = clienteService.atualizarCliente(clienteId, registerRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.OK);
     }
 

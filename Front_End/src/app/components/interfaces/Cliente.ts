@@ -1,3 +1,4 @@
+import { Animal } from './Animal';
 export interface Cliente {
     id: number;
     role: string;
@@ -7,5 +8,6 @@ export interface Cliente {
     senha:string;
     dataNascimento: string;
     telefone: string;
+    animais: Animal[];
 }
 

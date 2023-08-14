@@ -1,0 +1,35 @@
+<h1 *ngIf="cliente">Meus Animais</h1>
+
+<div *ngIf="cliente" class="form-container">
+  
+  <div *ngFor="let animal of cliente.animais; let i = index" class="form-left">
+    <form>
+      <div class="form-group">
+        <label class="labels"> Nome: </label>
+        <input class="dados" type="text" value="{{ animal.nome }}" readonly />
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> Espécie: </label>
+        <input
+          class="dados"
+          type="text"
+          value="{{ animal.especie }}"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> Raça: </label>
+        <input class="dados" type="text" value="{{ animal.raca }}" readonly />
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> Idade: </label>
+        <input class="dados" type="text" value="{{ animal.idade }}" readonly />
+      </div>
+
+      <input (click)="excluirAnimal(animal.id)" type="submit" value="Excluir"/>
+    </form>
+  </div>
+</div>
