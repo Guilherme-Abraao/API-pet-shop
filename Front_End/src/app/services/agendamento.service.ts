@@ -22,9 +22,9 @@ export class AgendamentoService {
     const data = {
       
       dataHoraStart: agendamento.dataHoraStart,
-      animalId: agendamento.animal,
-      banho: agendamento.banho,
-      servicos: agendamento.servicos, // Enviando a lista de serviços criada acima
+      clienteId: agendamento.clienteId,
+      animalId: agendamento.animal, // Por enquanto está enviando o nome do animal, não o ID
+      servicos: agendamento.servicos, // Enviando a lista de serviços criada no agendamento.component
       observacoes: agendamento.observacoes,
     };
 
