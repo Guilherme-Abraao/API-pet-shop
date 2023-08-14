@@ -131,10 +131,10 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFumaca = new AgendamentoRequest(
-                    hector.getId(),
-                    barry.getId(),
+                    hector,
+                    barry,
                     List.of(banho, dentes),
-                    fumaca.getId(),
+                    fumaca,
                     LocalDateTime.of(2023, JUNE, 10, 14, 30),
                     "Ele tem carrapicho."
             );
@@ -149,10 +149,10 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    aquiles.getId(),
-                    barry.getId(),
+                    aquiles,
+                    barry,
                     List.of(hidratacao, unha),
-                    floquinho.getId(),
+                    floquinho,
                     LocalDateTime.of(2023, JUNE, 10, 13, 30)
             );
 

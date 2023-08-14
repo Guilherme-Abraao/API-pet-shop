@@ -1,7 +1,7 @@
 package com.example.petshop.controller;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.CliRequest;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.service.ClienteService;
 import jakarta.validation.Valid;
@@ -64,9 +64,9 @@ public class ClienteController {
 //    Cadastrar um cliente
     @PostMapping(path = "/cadastrarCliente")
     public ResponseEntity<Cliente> adicionarCliente(
-            @RequestBody @Valid CliRequest cliRequest
+            @RequestBody @Valid RegisterRequest registerRequest
             ) throws UserException {
-        Cliente novoCliente = clienteService.adicionarCliente(cliRequest);
+        Cliente novoCliente = clienteService.adicionarCliente(registerRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
@@ -83,9 +83,9 @@ public class ClienteController {
     @PutMapping(path = "/{clienteId}")
     public ResponseEntity<Cliente> atualizarCliente(
             @PathVariable("clienteId") Long clienteId,
-            @RequestBody CliRequest cliRequest
+            @RequestBody RegisterRequest registerRequest
     ) throws UserException {
-        Cliente novoCliente = clienteService.atualizarCliente(clienteId, cliRequest);
+        Cliente novoCliente = clienteService.atualizarCliente(clienteId, registerRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.OK);
     }
 

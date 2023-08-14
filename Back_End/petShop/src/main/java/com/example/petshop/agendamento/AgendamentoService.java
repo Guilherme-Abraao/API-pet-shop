@@ -32,8 +32,8 @@ public class AgendamentoService {
 //        return quantidadeAgendamentos > 0;
 //    }
 
-    public boolean agendamentoExisteParaFuncionario(Long funcionarioId, LocalDateTime horario) {
-        int quantidadeAgendamentos = agendamentoRepository.countByFuncionarioAndDataHora(funcionarioId, horario);
+    public boolean agendamentoExisteParaFuncionario(Funcionario funcionario/*Long funcionarioId*/, LocalDateTime horario) {
+        int quantidadeAgendamentos = agendamentoRepository.countByFuncionarioAndDataHora(funcionario, horario);
         return quantidadeAgendamentos > 0;
     }
 
@@ -41,24 +41,33 @@ public class AgendamentoService {
             List<AgendamentoRequest> requests
     ) {
         List<Agendamento> agendamentos = new ArrayList<>();
-        Cliente cliente = clienteRepository.findById(requests.get(0).getClienteId()).orElseThrow();
-        Funcionario funcionario = funcionarioRepository.findById(requests.get(0).getFuncionarioId()).orElseThrow();
-        Animal animal = animalRepository.findById(requests.get(0).getAnimalId()).orElseThrow();
 
         for (AgendamentoRequest request : requests) {
-            LocalDateTime horario = request.getDataHoraStart();
-            Long funcionarioId = request.getFuncionarioId();
 
-            if (agendamentoExisteParaFuncionario(funcionarioId, horario)) {
+//            Cliente cliente = clienteRepository.findById(requests.get(requests.indexOf(request)).getCliente()).orElseThrow();
+//            Funcionario funcionario = funcionarioRepository.findById(requests.get(requests.indexOf(request)).getFuncionario()).orElseThrow();
+//            Animal animal = animalRepository.findById(requests.get(requests.indexOf(request)).getAnimal()).orElseThrow();
+
+            LocalDateTime horario = request.getDataHoraStart();
+//            Cliente cliente = clienteRepository.findById(request.getClienteId()).orElseThrow();
+//            Funcionario funcionario = funcionarioRepository.findById(request.getFuncionarioId()).orElseThrow();
+//            Animal animal = animalRepository.findById(request.getAnimalId()).orElseThrow();
+//            Long funcionarioId = request.getFuncionarioId();
+            Funcionario funcionario = request.getFuncionario();
+
+            if (agendamentoExisteParaFuncionario(funcionario/*funcionario.getId()*/, horario)) {
                 throw new AgendamentoException("O funcionário já possui um agendamento neste horário.");
             }
 
             // Crie um objeto Agendamento a partir dos dados da requisição
             Agendamento agendamento = new Agendamento();
-            agendamento.setClienteId(request.getClienteId());
-            agendamento.setFuncionarioId(request.getFuncionarioId());
+            agendamento.setCliente(request.getCliente());
+//            agendamento.setClienteId(cliente.getId());
+            agendamento.setFuncionario(request.getFuncionario());
+//            agendamento.setFuncionarioId(funcionario.getId());
             agendamento.setServicos(request.getServicos());
-            agendamento.setAnimalId(request.getAnimalId());
+            agendamento.setAnimal(request.getAnimal());
+//            agendamento.setAnimalId(animal.getId());
             agendamento.setDataHoraStart(request.getDataHoraStart());
             agendamento.setObservacoes(request.getObservacoes());
 
