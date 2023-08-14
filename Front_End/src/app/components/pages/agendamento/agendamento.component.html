@@ -1,13 +1,12 @@
+<div *ngIf="cliente">
+  <form (ngSubmit)="submit()" [formGroup]="agendamentoForm">
+    <h2>Agende um horário para seu Pet!</h2>
 
-  <div *ngIf="cliente">
-    <form (ngSubmit)="submit()" [formGroup]="agendamentoForm">
-      <h2>Agende um horário para seu Pet!</h2>
-
-      <div class="linha">
-        <div class="column1">
-          <div class="form-group">
-            <label class="labels">Data do Agendamento: </label>
-            <input type="date" formControlName="dataHoraStart" required />
+    <div class="linha">
+      <div class="column1">
+        <div class="form-group">
+          <label class="labels">Data do Agendamento: </label>
+          <input type="date" formControlName="dataHoraStart" required />
         </div>
       </div>
       
@@ -28,7 +27,12 @@
               formControlName="animal"
               required
             >
-            <option *ngFor="let animal of cliente.animais" [value]="animal.nome">{{ animal.nome }}</option>
+              <option
+                *ngFor="let animal of cliente.animais"
+                [value]="animal.nome"
+              >
+                {{ animal.nome }}
+              </option>
             </select>
           </div>
         </div>
@@ -76,6 +80,7 @@
       </div>
 
       <input type="submit" value="Confirmar" />
+
     </form>
 
 <app-visualizar-agendamento></app-visualizar-agendamento>

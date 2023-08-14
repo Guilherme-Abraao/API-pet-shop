@@ -18,8 +18,15 @@ export class AnimalViewComponent {
   }
 
   excluirAnimal(idAnimal: number){
-    console.log("teste");
-    console.log(idAnimal);
-    this.usuarioService.deleteAnimal(this.cliente, idAnimal); 
+    this.usuarioService.deleteAnimal(this.cliente, idAnimal).subscribe(
+      (response) => {
+        // Aqui você pode lidar com a resposta da API, se necessário
+        console.log('Animal excluído com sucesso:', response);
+      },
+      (error) => {
+        // Lida com erros da chamada à API
+        console.error('Erro ao excluir animal:', error);
+      }
+    );
   }
 }

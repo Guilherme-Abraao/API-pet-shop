@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Cliente } from '../interfaces/Cliente';
 
 @Component({
@@ -6,19 +7,18 @@ import { Cliente } from '../interfaces/Cliente';
   templateUrl: './client-form-column.component.html',
   styleUrls: ['./client-form-column.component.css']
 })
-export class ClientFormColumnComponent implements OnInit{
+export class ClientFormColumnComponent implements OnInit {
 
-  /* Receber do componente pai */
   @Input() btnText!: string;
   @Input() titulo!: string;
   @Input() cliente!: Cliente;
 
-  constructor(){ }
+  isEditing = false;
+  clienteForm!: FormGroup; // Reactive Form
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     
   }
-
-  
-
 }
