@@ -1,0 +1,27 @@
+.form-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os elementos quebrem a linha quando necessário */
+    justify-content: space-between;
+    padding-inline: 80px;
+    padding-top: 15px;
+  }
+  
+  .form-left {
+    width: calc(53% - 65px); /* Ajuste conforme necessário para controlar a largura */
+    margin-bottom: 20px; /* Ajuste conforme necessário para controlar o espaçamento vertical */
+    margin-inline: 10px;
+
+  }
+  
+  .line-break {
+    flex-basis: 100%; /* Força uma nova linha */
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .labels{
+    padding-bottom: 0.5em;
+    font-weight: bold;
+  }
+  

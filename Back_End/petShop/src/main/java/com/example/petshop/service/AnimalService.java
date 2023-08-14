@@ -113,13 +113,14 @@ public class AnimalService {
             animal.setEspecie(especie);
         }
 
+        //revisar a necessidade de atualizar o cliente, pois a existencia do animal está vinculada ao cliente
         if (cliente != null &&
                 clienteId != null &&
                 !Objects.equals(animal.getCliente(), cliente)) {
             Optional<Cliente> clienteOptional = clienteRepository.findById(clienteId);
-            if (clienteOptional.isPresent()) {
+            /*if (clienteOptional.isPresent()) {
                 throw new IllegalStateException("Cliente já está vinculado ao seu animal");
-            }
+            }*/
             animal.setCliente(cliente);
         }
         return animalRepository.save(animal);
