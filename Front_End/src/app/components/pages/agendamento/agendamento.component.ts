@@ -7,6 +7,7 @@ import { AgendamentoService } from 'src/app/services/agendamento.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Cliente } from '../../interfaces/Cliente';
+import { Servico } from '../../interfaces/Servico';
 
 @Component({
   selector: 'app-agendamento',
@@ -75,28 +76,29 @@ export class AgendamentoComponent {
     /* Criando um FormData com o formulário completo válidado*/
       if (this.agendamentoForm.valid) {
 
-        const servicosSelecionados = [];
+        const servicosSelecionados: Servico [] = [];
         
         const dataAgendamento = this.agendamentoForm.value.dataHoraStart.split('T')[0];
         const horaAgendamento = this.agendamentoForm.value.horario;
         const dataHoraStart = `${dataAgendamento}T${horaAgendamento}:00`;
 
-        if (this.agendamentoForm.value.banho) servicosSelecionados.push('banho');
-        if (this.agendamentoForm.value.hidratacao) servicosSelecionados.push('hidratacao');
-        if (this.agendamentoForm.value.desembolo) servicosSelecionados.push('desembolo');
-        if (this.agendamentoForm.value.tosaHigienica) servicosSelecionados.push('tosaHigienica');
-        if (this.agendamentoForm.value.tosaGeral) servicosSelecionados.push('tosaGeral');
-        if (this.agendamentoForm.value.tosaBaixa) servicosSelecionados.push('tosaBaixa');
-        if (this.agendamentoForm.value.tosaAlta) servicosSelecionados.push('tosaAlta');
-        if (this.agendamentoForm.value.tosaTesoura) servicosSelecionados.push('tosaTesoura');
-        if (this.agendamentoForm.value.unha) servicosSelecionados.push('unha');
-        if (this.agendamentoForm.value.dentes) servicosSelecionados.push('dentes');
+        if (this.agendamentoForm.value.banho) servicosSelecionados.push(0);
+        if (this.agendamentoForm.value.hidratacao) servicosSelecionados.push(1);
+        if (this.agendamentoForm.value.desembolo) servicosSelecionados.push(2);
+        if (this.agendamentoForm.value.tosaHigienica) servicosSelecionados.push(3);
+        if (this.agendamentoForm.value.tosaGeral) servicosSelecionados.push(4);
+        if (this.agendamentoForm.value.tosaBaixa) servicosSelecionados.push(5);
+        if (this.agendamentoForm.value.tosaAlta) servicosSelecionados.push(6);
+        if (this.agendamentoForm.value.tosaTesoura) servicosSelecionados.push(7);
+        if (this.agendamentoForm.value.unha) servicosSelecionados.push(8);
+        if (this.agendamentoForm.value.dentes) servicosSelecionados.push(9);
 
         const formData = {
           dataHoraStart: dataHoraStart,
           animal: this.agendamentoForm.value.animal,
           servicos: servicosSelecionados,
           observacoes: this.agendamentoForm.value.observacoes,
+          clienteId: this.cliente?.id,
         };
   
         // /* Mudando tipo de dado para JSON */
@@ -114,7 +116,6 @@ export class AgendamentoComponent {
         )
         .subscribe(() => {
           this.messagemService.add('Agendamento realizado com sucesso! ');
-          this.router.navigate(['/home']);
         });
       }
   }

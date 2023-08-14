@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'cliente', component: NewClientComponent },
   { path: 'agendamento', component: AgendamentoComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent},
   
   {
     path: 'perfil',
