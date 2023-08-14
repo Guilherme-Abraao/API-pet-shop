@@ -1,45 +1,46 @@
-<form *ngIf="cliente">
+<form *ngIf="cliente" [formGroup]="clienteForm">
+
   <h2> {{ titulo }}  </h2>
 
   <div class="linha">
     <div class="column1">
       <div class="form-group">
         <label class="labels"> Nome: </label>
-        <input class="dados" type="text" value="{{ cliente.nome }}" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ cliente.nome }}" formControlName="nome" [readonly]="!isEditing">
       </div>
 
       <div class="form-group">
         <label class="labels"> CPF: </label>
-        <input class="dados" type="text" value="{{ cliente.cpf }}" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ cliente.cpf }}" formControlName="cpf" readonly>
       </div>
 
       <div class="form-group">
         <label class="labels"> Data de Nascimento: </label>
-        <input class="dados" type="text" value="{{ cliente.dataNascimento }}" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ cliente.dataNascimento }}" formControlName="dataNascimento" [readonly]="!isEditing">
       </div>
     </div>
 
     <div class="column2">
       <div class="form-group">
         <label class="labels"> Telefone: </label>
-        <input class="dados" type="text" value="{{ cliente.telefone }}" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ cliente.telefone }}" formControlName="telefone" [readonly]="!isEditing">
       </div>
 
       <div class="form-group">
         <label class="labels"> E-mail: </label>
-        <input class="dados" type="text" value="{{ cliente.email }}" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ cliente.email }}" formControlName="email" [readonly]="!isEditing">
       </div>
 
       <div class="form-group">
         <label class="labels"> Senha: </label>
-        <input class="dados"type="text" value="{{ cliente.senha }}" [readonly]="!isEditing">
+        <input class="dados"type="text" value="{{ cliente.senha }}" formControlName="senha" [readonly]="!isEditing">
       </div>
     </div>
   </div>
 
   
   <button *ngIf="!isEditing" (click)="isEditing = true">Editar</button>
-  <button class="salvar" *ngIf="isEditing" (click)="isEditing = false"  >Salvar</button>
+  <button class="salvar" *ngIf="isEditing" (click)="salvarEdicao()"  >Salvar</button>
 
 </form>
 
