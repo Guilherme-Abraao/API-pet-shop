@@ -41,7 +41,7 @@ class AnimalServiceTest {
     @BeforeEach
 
     void seUp(){
-        underTestClient = new ClienteService(clienteRepository);
+//        underTestClient = new ClienteService(clienteRepository);
         underTestAnimal = new AnimalService(clienteRepository,animalRepository);
 
     }

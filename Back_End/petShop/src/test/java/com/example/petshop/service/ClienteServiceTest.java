@@ -29,7 +29,7 @@ class ClienteServiceTest {
     @BeforeEach
     void setUp() {
 
-        underTest = new ClienteService(clienteRepository);
+//        underTest = new ClienteService(clienteRepository);
     }
 
 
