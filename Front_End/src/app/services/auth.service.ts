@@ -38,7 +38,7 @@ export class AuthService {
           this.mostrarMenuEmitter.emit(true);
           this.usuarioAutenticado = true;
           this.usuarioService.setUserId(this.cliente.id);
-          this.router.navigate(['/perfil']);
+          this.router.navigate(['/home']);
         } else {
           this.usuarioAutenticado = false;
           this.mostrarMenuEmitter.emit(false);
@@ -55,7 +55,7 @@ export class AuthService {
           this.usuarioAutenticado = true;
           this.mostrarMenuEmitter.emit(true);
           this.funcionarioService.setFuncionarioId(this.funcionario.id);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/perfil']);
         } else {
           this.usuarioAutenticado = false;
           this.mostrarMenuEmitter.emit(false);

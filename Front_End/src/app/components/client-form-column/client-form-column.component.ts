@@ -2,6 +2,7 @@ import { UsuarioService } from './../../services/usuario.service';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Cliente } from '../interfaces/Cliente';
+import { Funcionario } from '../interfaces/Funcionario';
 import { catchError } from 'rxjs';
 import { MensagemService } from 'src/app/services/mensagem.service';
 
@@ -15,11 +16,12 @@ export class ClientFormColumnComponent implements OnChanges {
   @Input() btnText!: string;
   @Input() titulo!: string;
   @Input() cliente!: Cliente;
+  @Input() funcionario!: Funcionario;
 
   isEditing = false;
   clienteForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
               private messagemService: MensagemService,
               private usuarioService: UsuarioService) {}
 

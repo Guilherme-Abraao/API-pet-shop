@@ -1,6 +1,5 @@
-
-
 <form *ngIf="cliente" [formGroup]="clienteForm">
+
   <h2> {{ titulo }}  </h2>
 
   <div class="linha">
@@ -43,5 +42,51 @@
   <button *ngIf="!isEditing" (click)="isEditing = true">Editar</button>
   <button class="salvar" *ngIf="isEditing" (click)="salvarEdicao()"  >Salvar</button>
 
+</form>
+
+
+
+<form *ngIf="funcionario">
+  <h2> {{ titulo }}  </h2>
+
+  <div class="linha">
+    <div class="column1">
+      <div class="form-group">
+        <label class="labels"> Nome: </label>
+        <input class="dados" type="text" value="{{ funcionario.nome }}" readonly>
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> CPF: </label>
+        <input class="dados" type="text" value="{{ funcionario.cpf }}" readonly>
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> Data de Nascimento: </label>
+        <input class="dados" type="text" value="{{ funcionario.dataNascimento }}" readonly>
+      </div>
+    </div>
+
+    <div class="column2">
+      <div class="form-group">
+        <label class="labels"> Telefone: </label>
+        <input class="dados" type="text" value="{{ funcionario.telefone }}" readonly>
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> E-mail: </label>
+        <input class="dados" type="text" value="{{ funcionario.email }}" readonly>
+      </div>
+
+      <div class="form-group">
+        <label class="labels"> Senha: </label>
+        <input class="dados"type="text" value="{{ funcionario.senha }}" readonly>
+      </div>
+    </div>
+  </div>
+
+  <a routerLink="/editar-perfil">
+    <input type="submit" value="{{ btnText }}" />
+  </a>
 
 </form>

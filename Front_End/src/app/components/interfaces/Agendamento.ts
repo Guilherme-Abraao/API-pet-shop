@@ -4,8 +4,8 @@ export interface Agendamento {
     id?: number;
     dataHoraStart: string;
     horario: string;
-    idAnimal: number;
-    idCliente: number;
+    animal_id: number;
+    cliente_id: number;
     servicos: Servico[];
     observacoes: string;
 }
