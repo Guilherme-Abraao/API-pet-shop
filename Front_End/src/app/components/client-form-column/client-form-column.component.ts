@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Cliente } from '../interfaces/Cliente';
+import { Funcionario } from '../interfaces/Funcionario';
 
 @Component({
   selector: 'app-client-form-column',
@@ -12,6 +13,7 @@ export class ClientFormColumnComponent implements OnInit {
   @Input() btnText!: string;
   @Input() titulo!: string;
   @Input() cliente!: Cliente;
+  @Input() funcionario!: Funcionario;
 
   isEditing = false;
   clienteForm!: FormGroup; // Reactive Form
@@ -19,6 +21,6 @@ export class ClientFormColumnComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    
+    console.log('Funcionário recebido no ClientFormColumnComponent:', this.funcionario);
   }
 }

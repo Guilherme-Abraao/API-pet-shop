@@ -1,7 +1,4 @@
-
-
-
-<nav *ngIf="cliente && validarCliente()">
+<nav>
     <a class="brand" routerLink="/">
         <img src="/assets/images/pata2.png" alt="image" class="logo"/>
         <h2>Cerberus Paw</h2>
@@ -15,15 +12,15 @@
             <li><a [routerLink]="['/home']">Home</a></li>
         </div>
 
-        <div *ngIf="funcionario && validarFuncionario()">
-            <li><a [routerLink]="['/home']">Home</a></li>
-        </div>
-
         <div *ngIf="cliente && !validarCliente()">
             <li><a [routerLink]="['/funcionario']">Funcionários</a></li>
         </div>
 
         <div *ngIf="cliente && validarCliente()">
+            <li><a [routerLink]="['/perfil']">Perfil</a></li>
+        </div>
+        
+        <div *ngIf="funcionario && validarFuncionario()">
             <li><a [routerLink]="['/perfil']">Perfil</a></li>
         </div>
 

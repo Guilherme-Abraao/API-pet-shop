@@ -48,4 +48,10 @@ export class AnimalService {
     return this.http.get<Response<Animal>>(url);
   }
 
+  /* Pegar o Id de um Animal no sistema pelo nome */
+  getAnimalId(cliente: Cliente, nomeAnimal: string): number | undefined {
+    const animalEncontrado = cliente.animais.find(animal => animal.nome === nomeAnimal);
+    return animalEncontrado?.id;
+  }
+
 }
