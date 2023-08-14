@@ -38,7 +38,7 @@ public class FuncionarioService {
         }
 
         Funcionario funcionario = new Funcionario();
-        funcionario.setId(registerRequest.getId());
+//        funcionario.setId(registerRequest.getId());
         funcionario.setNome(registerRequest.getNome());
         funcionario.setEmail(registerRequest.getEmail());
         funcionario.setCpf(registerRequest.getCpf());
