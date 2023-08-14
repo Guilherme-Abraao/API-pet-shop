@@ -107,7 +107,7 @@ export class AgendamentoComponent {
         console.log(jsonData);
 
         /* Enviando cliente para o Service */
-        this.agendamentoService.createAgendamento(jsonData)
+        this.agendamentoService.createAgendamento(formData)
         .pipe(
           catchError((error) => {
             this.messagemService.add('Erro ao agendar: ' + error.error.message);
