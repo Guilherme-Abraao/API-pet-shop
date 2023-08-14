@@ -1,7 +1,7 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.CliRequest;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.ClienteRepository;
 import org.junit.jupiter.api.*;
@@ -61,7 +61,7 @@ class ClienteServiceTest {
                 LocalDate.of(1998, Month.MARCH, 24)
         );
 
-        CliRequest registerCliente = new CliRequest();
+        RegisterRequest registerCliente = new RegisterRequest();
         registerCliente.setNome(cliente.getNome());
         registerCliente.setEmail(cliente.getEmail());
         registerCliente.setCpf(cliente.getCpf());
