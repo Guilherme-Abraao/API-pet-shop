@@ -105,6 +105,14 @@ public class UsuarioConfig {
                     bruce
             );
 
+            AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
+                    bruce,
+                    barry,
+                    List.of(hidratacao, unha),
+                    floquinho,
+                    LocalDateTime.of(2023, JUNE, 10, 13, 30)
+            );
+
             Animal luke = new Animal(
                     "Luke",
                     of(2014, NOVEMBER, 5),
@@ -146,14 +154,6 @@ public class UsuarioConfig {
                     "(11) 42852-9122",
                     "1l5O0mb4AN",
                     of(2000, JANUARY, 25)
-            );
-
-            AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    aquiles,
-                    barry,
-                    List.of(hidratacao, unha),
-                    floquinho,
-                    LocalDateTime.of(2023, JUNE, 10, 13, 30)
             );
 
             Cliente billy = new Cliente(

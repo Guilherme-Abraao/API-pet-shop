@@ -41,8 +41,16 @@ class AnimalServiceTest{
     private AnimalService animalService;
 
     @BeforeEach
+<<<<<<< HEAD
     void setUp() {
         MockitoAnnotations.openMocks(this);
+=======
+
+    void seUp(){
+//        underTestClient = new ClienteService(clienteRepository);
+        underTestAnimal = new AnimalService(clienteRepository,animalRepository);
+
+>>>>>>> wendel
     }
 
     @Test

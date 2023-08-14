@@ -99,5 +99,9 @@ public class AgendamentoService {
 
         agendamentoRepository.deleteById(agendamentoId);
     }
+
+    public List<Agendamento> getAgendamentosByCliente(Cliente cliente) {
+        return agendamentoRepository.findClienteById(cliente.getId());
+    }
 }
 
