@@ -40,7 +40,7 @@ public class AgendamentoController {
     @PostMapping //Não sei se temos que manter o path (path = "/agendar")
     public ResponseEntity<List<Agendamento>> agendarServicos(
             @RequestBody List<AgendamentoRequest> requests
-    ) throws BodyException {
+    ) throws BodyException, UserException {
         List<Agendamento> agendamento = agendamentoService.agendarServicos(requests);
         return new ResponseEntity<>(agendamento, HttpStatus.CREATED);
     }

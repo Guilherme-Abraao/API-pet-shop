@@ -14,33 +14,25 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AgendamentoRequest {
-    private Cliente cliente;
-//    private Long clienteId;
-    private Funcionario funcionario;
-//    private Long funcionarioId;
-    private List<Servico> servicos;
-    private Animal animal;
-//    private Long animalId;
     private LocalDateTime dataHoraStart;
+    private Long clienteId;
+    private Long animalId;
+    private List<Servico> servicos;
     private String observacoes;
+    private Long funcionarioId;
 
     public AgendamentoRequest(
-            Cliente cliente,
-//            Long clienteId,
-            Funcionario funcionario,
-//            Long funcionarioId,
+            LocalDateTime dataHoraStart,
+            Long clienteId,
+            Long animalId,
             List<Servico> servicos,
-            Animal animal,
-//            Long animalId,
-            LocalDateTime dataHoraStart) {
-        this.cliente = cliente;
-//        this.clienteId = clienteId;
-        this.funcionario = funcionario;
-//        this.funcionarioId = funcionarioId;
-        this.servicos = servicos;
-        this.animal = animal;
-//        this.animalId = animalId;
+            Long funcionarioId
+    ) {
         this.dataHoraStart = dataHoraStart;
+        this.clienteId = clienteId;
+        this.animalId = animalId;
+        this.servicos = servicos;
+        this.funcionarioId = funcionarioId;
     }
 }
 
