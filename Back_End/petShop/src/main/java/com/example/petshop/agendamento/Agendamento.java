@@ -3,8 +3,9 @@ package com.example.petshop.agendamento;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,8 +14,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class Agendamento {
@@ -31,22 +32,22 @@ public class Agendamento {
     )
     private Long id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", shape = JsonFormat.Shape.STRING)
     @Column(nullable = false)
     private LocalDateTime dataHoraStart;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", shape = JsonFormat.Shape.STRING)
     @Column(nullable = false)
     @Transient
     private LocalDateTime dataHoraEnd;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
 
@@ -58,12 +59,27 @@ public class Agendamento {
     private String observacoes;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "funcionario_id", nullable = false)
     private Funcionario funcionario;
 
     public LocalDateTime getDataHoraEnd() {
         return dataHoraStart.plusMinutes(30);
+    }
+
+    @JsonProperty("clienteId")
+    public Long getClienteId() {
+        return cliente.getId();
+    }
+
+    @JsonProperty("animalId")
+    public Long getAnimalId() {
+        return animal.getId();
+    }
+
+    @JsonProperty("funcionarioId")
+    public Long getFuncionarioId() {
+        return funcionario.getId();
     }
 }
 

@@ -8,7 +8,6 @@ import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import com.example.petshop.repository.FuncionarioRepository;
-import com.example.petshop.service.ClienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

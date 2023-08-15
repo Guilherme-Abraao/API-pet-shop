@@ -2,6 +2,8 @@ package com.example.petshop.base;
 
 import com.example.petshop.agendamento.Agendamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -21,11 +23,19 @@ import static com.example.petshop.base.Role.USER;
 @Data
 public class Cliente extends Usuario {
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "cliente"
+    )
+    @JsonManagedReference
     private List<Animal> animais;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "cliente"
+    )
     @JsonIgnore
+    @JsonManagedReference
     private List<Agendamento> agendamentos;
 
     public Cliente(
@@ -50,9 +60,5 @@ public class Cliente extends Usuario {
     ) {
         super(nome, email, cpf, telefone, senha, dataNascimento, USER);
         this.animais = animais;
-    }
-
-    public void adicionarAnimal(Animal animal) {
-        animais.add(animal);
     }
 }
