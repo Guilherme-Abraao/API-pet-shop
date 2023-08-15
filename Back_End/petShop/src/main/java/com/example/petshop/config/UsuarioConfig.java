@@ -17,6 +17,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static com.example.petshop.agendamento.Servico.*;
 import static com.example.petshop.base.Cargo.gerentePetshop;
@@ -105,13 +106,13 @@ public class UsuarioConfig {
                     bruce
             );
 
-            AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    bruce,
-                    barry,
+            /*AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
+                    bruce.getId(),
+                    barry.getId(),
                     List.of(hidratacao, unha),
-                    floquinho,
+                    floquinho.getId(),
                     LocalDateTime.of(2023, JUNE, 10, 13, 30)
-            );
+            );*/
 
             Animal luke = new Animal(
                     "Luke",
@@ -138,14 +139,14 @@ public class UsuarioConfig {
                     hector
             );
 
-            AgendamentoRequest agendarFumaca = new AgendamentoRequest(
-                    hector,
-                    barry,
+            /*AgendamentoRequest agendarFumaca = new AgendamentoRequest(
+                    hector.getId(),
+                    barry.getId(),
                     List.of(banho, dentes),
-                    fumaca,
+                    fumaca.getId(),
                     LocalDateTime.of(2023, JUNE, 10, 14, 30),
                     "Ele tem carrapicho."
-            );
+            );*/
 
             Cliente aquiles = new Cliente(
                     "Aquiles",
@@ -155,6 +156,10 @@ public class UsuarioConfig {
                     "1l5O0mb4AN",
                     of(2000, JANUARY, 25)
             );
+
+            Logger logger = Logger.getLogger(Cliente.class.getName());
+            logger.info("aquiles: " + aquiles.getId());
+            logger.info("aquiles: " + aquiles.getNome());
 
             Cliente billy = new Cliente(
                     "Billy",
@@ -181,7 +186,7 @@ public class UsuarioConfig {
             animalRepository.saveAll(
                     List.of(floquinho, soneca, luke, fumaca)
             );
-            agendamentoService.agendarServicos(List.of(agendarFloquinho, agendarFumaca));
+//            agendamentoService.agendarServicos(List.of(agendarFloquinho, agendarFumaca));
 //            agendamentoService.agendarServicos(agendarFumaca);
 
         };

@@ -15,8 +15,8 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
 //    int countByDataHora(LocalDateTime horario);
 //
 //    @Query("SELECT COUNT(a) FROM Agendamento a WHERE a.funcionarioId = :funcionarioId AND a.dataHoraStart = :horario")
-    @Query("SELECT COUNT(a) FROM Agendamento a WHERE a.funcionario = :funcionario AND a.dataHoraStart = :horario")
-    int countByFuncionarioAndDataHora(Funcionario funcionario, LocalDateTime horario);
+    @Query("SELECT COUNT(a) FROM Agendamento a WHERE a.funcionario.id = :funcionarioId AND a.dataHoraStart = :horario")
+    int countByFuncionarioAndDataHora(Long funcionarioId, LocalDateTime horario);
 
     @Query("SELECT a FROM Agendamento a WHERE a.cliente.id = :clienteId")
     List<Agendamento> findClienteById(Long clienteId);
