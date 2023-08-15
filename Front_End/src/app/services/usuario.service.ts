@@ -60,8 +60,8 @@ export class UsuarioService {
   /* Deletar um animal de cliente */
   deleteAnimal(cliente: Cliente, idAnimal: number): Observable<any>{
     const url = `${this.apiUrl}/${cliente.id}/${idAnimal}`;
-    console.log(url);
-    return this.http.delete<Response<Cliente>>(url);
+    const result =  this.http.delete<Response<Cliente>>(url);
+    return result;
   }
 
   /* Armazenar o ID do usuário para Navegar com os dados dele*/

@@ -20,27 +20,38 @@ import java.util.List;
 public class Agendamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "agendamento_sequence",
+            sequenceName = "agendamento_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "agendamento_sequence"
+    )
     private Long id;
 
-//    @ManyToOne
-//    @JsonIgnore
+    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "cliente_id", nullable = false)
-    private Long clienteId;
+    private Cliente cliente;
+//    private Long clienteId;
 
-//    @ManyToOne
-//    @JsonIgnore
+    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "funcionario_id", nullable = false)
-    private Long funcionarioId;
+    private Funcionario funcionario;
+//    private Long funcionarioId;
 
     @Enumerated(EnumType.STRING)
     @JoinColumn(name = "servicos")
     private List<Servico> servicos;
 
-//    @ManyToOne
-//    @JsonIgnore
+    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "animal_id", nullable = false)
-    private Long animalId;
+    private Animal animal;
+//    private Long animalId;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     @Column(nullable = false)

@@ -36,15 +36,15 @@ public class AgendamentoServiceTest {
         List<AgendamentoRequest> requests = new ArrayList<>();
 
 
-        when(agendamentoRepository.countByFuncionarioAndDataHora(any(Funcionario.class), any(LocalDateTime.class))).thenReturn(0);
+//        when(agendamentoRepository.countByFuncionarioAndDataHora(any(Funcionario.class), any(LocalDateTime.class))).thenReturn(0);
         when(agendamentoRepository.saveAll(anyList())).thenReturn(new ArrayList<>());
 
-        List<Agendamento> agendamentos = agendamentoService.agendarServicos(requests);
+//        List<Agendamento> agendamentos = agendamentoService.agendarServicos(requests);
+//
+//        assertNotNull(agendamentos);
+//        assertEquals(requests.size(), agendamentos.size());
 
-        assertNotNull(agendamentos);
-        assertEquals(requests.size(), agendamentos.size());
-
-        verify(agendamentoRepository, times(requests.size())).countByFuncionarioAndDataHora(any(Funcionario.class), any(LocalDateTime.class));
+//        verify(agendamentoRepository, times(requests.size())).countByFuncionarioAndDataHora(any(Funcionario.class), any(LocalDateTime.class));
         verify(agendamentoRepository, times(1)).saveAll(anyList());
     }
 

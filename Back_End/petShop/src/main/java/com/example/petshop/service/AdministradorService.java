@@ -2,8 +2,7 @@ package com.example.petshop.service;
 
 import com.example.petshop.base.Administrador;
 import com.example.petshop.base.Cargo;
-import com.example.petshop.base.CliRequest;
-import com.example.petshop.base.EmployeeRequest;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AdministradorRepository;
 import jakarta.transaction.Transactional;
@@ -30,22 +29,23 @@ public class AdministradorService {
         return administradorRepository.findAll();
     }
 
-    public Administrador adicionarAdministrador(EmployeeRequest employeeRequest) throws UserException {
-        Optional<Administrador> administradorOptional = administradorRepository.findAdministradorByEmail(employeeRequest.getEmail());
+    public Administrador adicionarAdministrador(RegisterRequest registerRequest) throws UserException {
+        Optional<Administrador> administradorOptional = administradorRepository.findAdministradorByEmail(registerRequest.getEmail());
         if (administradorOptional.isPresent()) {
             throw new UserException("O email informado já existe");
         }
 
         Administrador admin = new Administrador();
-        admin.setNome(employeeRequest.getNome());
-        admin.setEmail(employeeRequest.getEmail());
-        admin.setCpf(employeeRequest.getCpf());
-        admin.setTelefone(employeeRequest.getTelefone());
-        admin.setSenha(employeeRequest.getSenha());
-        admin.setDataNascimento(employeeRequest.getDataNascimento());
+//        admin.setId(registerRequest.getId());
+        admin.setNome(registerRequest.getNome());
+        admin.setEmail(registerRequest.getEmail());
+        admin.setCpf(registerRequest.getCpf());
+        admin.setTelefone(registerRequest.getTelefone());
+        admin.setSenha(registerRequest.getSenha());
+        admin.setDataNascimento(registerRequest.getDataNascimento());
         admin.setRole(ADMIN);
-        admin.setCargo(employeeRequest.getCargo());
-        admin.setSalario(employeeRequest.getSalario());
+        admin.setCargo(registerRequest.getCargo());
+        admin.setSalario(registerRequest.getSalario());
 
         return administradorRepository.save(admin);
     }
@@ -68,21 +68,21 @@ public class AdministradorService {
     @Transactional
     public Administrador atualizarAdministrador(
             Long administradorId,
-            EmployeeRequest employeeRequest
+            RegisterRequest registerRequest
     ) throws UserException {
         Administrador administrador = administradorRepository.findById(administradorId)
                 .orElseThrow(() -> new UserException(
                         "Administrador com id " + administradorId + " não existe."
                 ));
 
-        String nome = employeeRequest.getNome();
-        String email = employeeRequest.getEmail();
-        String cpf = employeeRequest.getCpf();
-        String telefone = employeeRequest.getTelefone();
-        String senha = employeeRequest.getSenha();
-        LocalDate dataNascimento = employeeRequest.getDataNascimento();
-        Cargo cargo = employeeRequest.getCargo();
-        Double salario = employeeRequest.getSalario();
+        String nome = registerRequest.getNome();
+        String email = registerRequest.getEmail();
+        String cpf = registerRequest.getCpf();
+        String telefone = registerRequest.getTelefone();
+        String senha = registerRequest.getSenha();
+        LocalDate dataNascimento = registerRequest.getDataNascimento();
+        Cargo cargo = registerRequest.getCargo();
+        Double salario = registerRequest.getSalario();
 
 
         if (nome != null && !nome.isEmpty()) {

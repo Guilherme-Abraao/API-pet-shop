@@ -1,6 +1,6 @@
 package com.example.petshop.controller;
 import com.example.petshop.base.Administrador;
-import com.example.petshop.base.EmployeeRequest;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.service.AdministradorService;
 import jakarta.validation.Valid;
@@ -40,9 +40,9 @@ public class AdministradorController {
 
     @PostMapping(path = "/cadastrarAdministrador")
     public ResponseEntity<Administrador> adicionarAdministrador(
-            @RequestBody @Valid EmployeeRequest employeeRequest
+            @RequestBody @Valid RegisterRequest registerRequest
     ) throws UserException {
-        Administrador novoAdministrador = administradorService.adicionarAdministrador(employeeRequest);
+        Administrador novoAdministrador = administradorService.adicionarAdministrador(registerRequest);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.CREATED);
     }
 
@@ -57,9 +57,9 @@ public class AdministradorController {
     @PutMapping(path = "/{administradorId}")
     public ResponseEntity<Administrador> atualizarAdministrador(
             @PathVariable("administradorId") Long administradorId,
-            @RequestBody EmployeeRequest employeeRequest
+            @RequestBody RegisterRequest registerRequest
     ) throws UserException {
-        Administrador novoAdministrador = administradorService.atualizarAdministrador(administradorId, employeeRequest);
+        Administrador novoAdministrador = administradorService.atualizarAdministrador(administradorId, registerRequest);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.OK);
     }
 

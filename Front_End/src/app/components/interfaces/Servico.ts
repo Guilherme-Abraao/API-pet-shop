@@ -1,14 +1,14 @@
-export interface Servico {
+export enum Servico {
     
-    banho: string;
-    hidratacao: string;
-    desembolo: string;
-    tosaHigienica: string;
-    tosaGeral: string;
-    tosaBaixa: string;
-    tosaAlta: string;
-    tosaTesoura: string;
-    unha: string;
-    dentes: string;
+    banho,
+    hidratacao,
+    desembolo,
+    tosaHigienica,
+    tosaGeral,
+    tosaBaixa,
+    tosaAlta,
+    tosaTesoura,
+    unha,
+    dentes,
 
 }

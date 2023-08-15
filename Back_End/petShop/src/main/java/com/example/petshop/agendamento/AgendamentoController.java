@@ -1,6 +1,7 @@
 package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Cliente;
+//import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.exception.BodyException;
 import com.example.petshop.exception.UserException;
@@ -39,7 +40,7 @@ public class AgendamentoController {
     @PostMapping(path = "/agendar") //Não sei se temos que manter este path
     public ResponseEntity<List<Agendamento>> agendarServicos(
             @RequestBody List<AgendamentoRequest> requests
-    ) throws BodyException {
+    ) throws BodyException, UserException {
         List<Agendamento> agendamento = agendamentoService.agendarServicos(requests);
         return new ResponseEntity<>(agendamento, HttpStatus.CREATED);
     }
@@ -52,40 +53,40 @@ public class AgendamentoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Autowired
-    private AgendamentoRepository agendamentoRepository;
+//    @Autowired
+//    private AgendamentoRepository agendamentoRepository;
 
-    @GetMapping("/eventos") // Endpoint para buscar os eventos/agendamentos
-    public ResponseEntity<String> obterEventosCalendario() {
-        List<Agendamento> agendamentos = agendamentoRepository.findAll();
-
-        List<EventoCalendario> eventosCalendario = new ArrayList<>();
-
-        //Associa os atributos do EventoCalendario com os atributos de Agendamento
-        for (Agendamento agendamento : agendamentos) {
-            EventoCalendario evento = new EventoCalendario();
-            evento.setId(agendamento.getId()); //id do agendamento
-            evento.setSubject(agendamento.getAnimal().getNome()); //nome do animal = subject
-            evento.setStartTime(agendamento.getDataHoraStart());
-            evento.setEndTime(agendamento.getDataHoraEnd());
-            evento.setObservacoes("Serviços:" +
-            agendamento.getServicos().toString() +
-            ", Raça:" + agendamento. getAnimal().getRaca() +
-            ", Funcionário:" + agendamento.getFuncionario().getNome() +
-            ", Objetos deixados e outras informações:" +
-            agendamento.getObservacoes() );
-
-            eventosCalendario.add(evento);
-        }
-
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            String urlJson = objectMapper.writeValueAsString(eventosCalendario);
-            return ResponseEntity.ok(urlJson);
-            
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Erro ao formatar os eventos para o calendário de eventos.");
-        }
-    }
+//    @GetMapping("/eventos") // Endpoint para buscar os eventos/agendamentos
+//    public ResponseEntity<String> obterEventosCalendario() {
+//        List<Agendamento> agendamentos = agendamentoRepository.findAll();
+//
+//        List<EventoCalendario> eventosCalendario = new ArrayList<>();
+//
+//        //Associa os atributos do EventoCalendario com os atributos de Agendamento
+//        for (Agendamento agendamento : agendamentos) {
+//            EventoCalendario evento = new EventoCalendario();
+//            evento.setId(agendamento.getId()); //id do agendamento
+//            evento.setSubject(agendamento.getAnimal().getNome()); //nome do animal = subject
+//            evento.setStartTime(agendamento.getDataHoraStart());
+//            evento.setEndTime(agendamento.getDataHoraEnd());
+//            evento.setObservacoes("Serviços:" +
+//            agendamento.getServicos().toString() +
+//            ", Raça:" + agendamento. getAnimal().getRaca() +
+//            ", Funcionário:" + agendamento.getFuncionario().getNome() +
+//            ", Objetos deixados e outras informações:" +
+//            agendamento.getObservacoes() );
+//
+//            eventosCalendario.add(evento);
+//        }
+//
+//        try {
+//            ObjectMapper objectMapper = new ObjectMapper();
+//
+//            String urlJson = objectMapper.writeValueAsString(eventosCalendario);
+//            return ResponseEntity.ok(urlJson);
+//
+//        } catch (Exception e) {
+//            return ResponseEntity.status(500).body("Erro ao formatar os eventos para o calendário de eventos.");
+//        }
+//    }
 }

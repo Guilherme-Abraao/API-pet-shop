@@ -3,10 +3,14 @@ package com.example.petshop.service;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.AnimalRegisterRequest;
 import com.example.petshop.base.Cliente;
+<<<<<<< HEAD
 
 
 import com.example.petshop.base.CliRequest;
 
+=======
+import com.example.petshop.base.RegisterRequest;
+>>>>>>> wendel
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
@@ -37,8 +41,16 @@ class AnimalServiceTest{
     private AnimalService animalService;
 
     @BeforeEach
+<<<<<<< HEAD
     void setUp() {
         MockitoAnnotations.openMocks(this);
+=======
+
+    void seUp(){
+//        underTestClient = new ClienteService(clienteRepository);
+        underTestAnimal = new AnimalService(clienteRepository,animalRepository);
+
+>>>>>>> wendel
     }
 
     @Test
@@ -78,7 +90,7 @@ class AnimalServiceTest{
         Cliente cliente = new Cliente();
         request.setCliente(cliente);
 
-        CliRequest registerBilly = new CliRequest();
+        RegisterRequest registerBilly = new RegisterRequest();
         registerBilly.setNome(billy.getNome());
         registerBilly.setEmail(billy.getEmail());
         registerBilly.setCpf(billy.getCpf());
