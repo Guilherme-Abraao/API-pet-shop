@@ -8,6 +8,7 @@ import { MensagemService } from 'src/app/services/mensagem.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Cliente } from '../../interfaces/Cliente';
 import { Servico } from '../../interfaces/Servico';
+import { AnimalService } from 'src/app/services/animal.service';
 
 @Component({
   selector: 'app-agendamento',
@@ -29,7 +30,8 @@ export class AgendamentoComponent {
     private http: HttpClient,
     private messagemService: MensagemService,
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private animalService: AnimalService,
     ) {}
 
   /* Inicialização do formulário */
@@ -93,14 +95,17 @@ export class AgendamentoComponent {
         if (this.agendamentoForm.value.unha) servicosSelecionados.push(8);
         if (this.agendamentoForm.value.dentes) servicosSelecionados.push(9);
 
+        if (this.cliente) {
+          
         const formData = {
           dataHoraStart: dataHoraStart,
-          animal: this.agendamentoForm.value.animal,
           servicos: servicosSelecionados,
           observacoes: this.agendamentoForm.value.observacoes,
-          clienteId: this.cliente?.id,
+          cliente_id: this.cliente?.id,
+          animal_id: this.animalService.getAnimalId(this.cliente, this.agendamentoForm.value.animal),
         };
-  
+      
+
         // /* Mudando tipo de dado para JSON */
         const jsonData = JSON.stringify(formData);
 
@@ -119,4 +124,5 @@ export class AgendamentoComponent {
         });
       }
   }
+}
 }
