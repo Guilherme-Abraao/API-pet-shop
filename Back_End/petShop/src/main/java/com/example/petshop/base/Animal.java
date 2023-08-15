@@ -33,7 +33,7 @@ public class Animal {
     @Column(name = "id")
     private Long id;
 
-    @NotBlank(message = "name.not.blank")
+    @NotBlank(message = "{name.not.blank}")
     @Column(name = "nome")
     private String nome;
 
@@ -54,7 +54,6 @@ public class Animal {
     )
     private Cliente cliente;
 
-//    @OneToMany(mappedBy = "animalId")
     @OneToMany(mappedBy = "animal")
     private List<Agendamento> agendamentos;
 

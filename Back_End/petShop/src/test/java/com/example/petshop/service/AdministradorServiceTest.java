@@ -1,10 +1,9 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Administrador;
-import com.example.petshop.base.EmployeeRequest;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AdministradorRepository;
-import com.example.petshop.service.AdministradorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,9 +11,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,7 +33,7 @@ public class AdministradorServiceTest {
 
     @Test
     void adicionarAdministrador_ValidRequest_Success() throws UserException {
-        EmployeeRequest request = new EmployeeRequest();
+        RegisterRequest request = new RegisterRequest();
         request.setEmail("test@example.com");
         request.setCpf("12345678901");
 
@@ -107,7 +103,7 @@ public class AdministradorServiceTest {
     @Test
     void atualizarAdministrador_ValidRequest_Success() throws UserException {
         Long administradorId = 1L;
-        EmployeeRequest request = new EmployeeRequest();
+        RegisterRequest request = new RegisterRequest();
         request.setNome("Novo Nome");
         request.setEmail("novo.email@example.com");
         request.setCpf("12345678901");

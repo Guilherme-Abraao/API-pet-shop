@@ -31,13 +31,13 @@ public class AgendamentoController {
         return new ResponseEntity<>(agendamentos, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Agendamento> obterAgendamento(@PathVariable Long id) {
         Agendamento agendamento = agendamentoService.obterAgendamentoPorId(id);
         return ResponseEntity.ok(agendamento);
     }
 
-    @PostMapping //Não sei se temos que manter o path (path = "/agendar")
+    @PostMapping(path = "/agendar")//Não sei se temos que manter o path (path = "/agendar")
     public ResponseEntity<List<Agendamento>> agendarServicos(
             @RequestBody List<AgendamentoRequest> requests
     ) throws BodyException, UserException {
