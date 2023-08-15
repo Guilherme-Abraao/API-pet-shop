@@ -24,11 +24,12 @@ export class AgendamentoService {
     const data = {
       
       dataHoraStart: agendamento.dataHoraStart,
-      cliente_id: agendamento.cliente_id,
+      clienteId: agendamento.cliente_id,
       //animal: agendamento.animal, // Caso seja necessário passar o nome do animal
       servicos: agendamento.servicos, // Enviando a lista de serviços criada no agendamento.component
       observacoes: agendamento.observacoes,
-      animal_id: agendamento.animal_id,
+      animalId: agendamento.animal_id,
+      funcionarioId: agendamento.funcionario_id, // Provalvelmente isso será feito no back-end
     };
 
     const httpOptions = {
@@ -37,13 +38,7 @@ export class AgendamentoService {
       })
     };
 
-    console.log(data);
-    
-    const jsonData = JSON.stringify(data);
-    console.log(jsonData);
-
     listaAgendamentos.push(agendamento);
-    console.log(listaAgendamentos);
     
     const result = this.http.post(this.apiUrl, listaAgendamentos, httpOptions);
     return result;
