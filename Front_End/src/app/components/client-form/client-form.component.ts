@@ -27,8 +27,8 @@ export class ClientFormComponent implements OnInit {
   faTimes = faTimes;
 
   /* Construtor chamando os serviços */
-  constructor(private usuarioService: UsuarioService, 
-              private http: HttpClient, 
+  constructor(private usuarioService: UsuarioService,
+              private http: HttpClient,
               private messagemService: MensagemService) {}
 
 
@@ -68,7 +68,7 @@ export class ClientFormComponent implements OnInit {
     return this.userForm.get('confirmacaoSenha')!;
   }
 
-  /* Submissão do formulário */ 
+  /* Submissão do formulário */
   submit() {
     if (this.userForm.invalid) { // Se for inválido invalida a submissão
       return this.messagemService.add('Formulário Inválido, verifique se os dados estão corretos!'); ;
@@ -91,7 +91,7 @@ export class ClientFormComponent implements OnInit {
         };
   
         // console.log(this.userForm.value);
-        this.onSubmit.emit(this.userForm.value); 
+        this.onSubmit.emit(this.userForm.value);
       }
     }
     

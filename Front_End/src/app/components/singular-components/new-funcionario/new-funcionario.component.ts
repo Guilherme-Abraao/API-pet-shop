@@ -4,6 +4,7 @@ import { Funcionario } from '../../interfaces/Funcionario';
 import { MensagemService } from 'src/app/services/mensagem.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
+import { Cliente } from '../../interfaces/Cliente';
 
 @Component({
   selector: 'app-new-funcionario',

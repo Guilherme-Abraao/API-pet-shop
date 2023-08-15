@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.example.petshop.base.Role.USER;
 
 @DataJpaTest
 class ClienteRepositoryTest {
