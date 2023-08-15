@@ -1,7 +1,6 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cargo;
-import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
@@ -38,7 +37,6 @@ public class FuncionarioService {
         }
 
         Funcionario funcionario = new Funcionario();
-//        funcionario.setId(registerRequest.getId());
         funcionario.setNome(registerRequest.getNome());
         funcionario.setEmail(registerRequest.getEmail());
         funcionario.setCpf(registerRequest.getCpf());

@@ -1,12 +1,9 @@
 package com.example.petshop.agendamento;
 
-import com.example.petshop.base.Cliente;
 import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.exception.BodyException;
 import com.example.petshop.exception.UserException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("api/petshop/agendamentos")
 public class AgendamentoController {
 
     private final AgendamentoService agendamentoService;
-
-    public AgendamentoController(AgendamentoService agendamentoService) {
-        this.agendamentoService = agendamentoService;
-    }
+    private final AgendamentoRepository agendamentoRepository;
 
     @GetMapping
     public ResponseEntity<List<Agendamento>> getAllAgendamentos() {
@@ -52,9 +47,6 @@ public class AgendamentoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-   @Autowired
-   private AgendamentoRepository agendamentoRepository;
-
    @GetMapping(path = "/eventos")
    public ResponseEntity<List<EventoCalendario>> obterEventosCalendario() {
        List<Agendamento> agendamentos = agendamentoRepository.findAll();
@@ -63,6 +55,9 @@ public class AgendamentoController {
    
        for (Agendamento agendamento : agendamentos) {
            EventoCalendario evento = new EventoCalendario();
+//           SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm:ss'Z'");
+//           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy'T'HH:mm:ss'Z'");
+//           formatter.withZone(TimeZone.getTimeZone("UTC").toZoneId());
            evento.setId(agendamento.getId());
            evento.setSubject(agendamento.getAnimal().getNome());
            evento.setStartTime(agendamento.getDataHoraStart());

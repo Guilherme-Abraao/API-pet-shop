@@ -12,7 +12,6 @@ import java.time.Month;
 import java.util.Optional;
 
 import static com.example.petshop.base.Cargo.*;
-import static com.example.petshop.base.Role.FUNC;
 
 @DataJpaTest
 class AdministradorRepositoryTest {
