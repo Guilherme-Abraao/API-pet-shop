@@ -67,6 +67,8 @@ public class UsuarioConfig {
                     10000.00
             );
 
+            administradorRepository.save(clark);
+
             Funcionario barry = new Funcionario(
                     "Barry",
                     "barry.allen@gmail.com",
@@ -89,6 +91,8 @@ public class UsuarioConfig {
                     15000.00
             );
 
+            funcionarioRepository.saveAll(List.of(barry, james));
+
             Cliente bruce = new Cliente(
                     "Bruce",
                     "bruce.wayne@gmail.com",
@@ -96,30 +100,6 @@ public class UsuarioConfig {
                     "(11) 42852-9122",
                     "1l5O0mb4AN",
                     of(2000, JANUARY, 25)
-            );
-
-            Animal floquinho = new Animal(
-                    "Floquinho",
-                    of(2015, FEBRUARY, 13),
-                    "Basset hound",
-                    "Cachorro",
-                    bruce
-            );
-
-            /*AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    bruce.getId(),
-                    barry.getId(),
-                    List.of(hidratacao, unha),
-                    floquinho.getId(),
-                    LocalDateTime.of(2023, JUNE, 10, 13, 30)
-            );*/
-
-            Animal luke = new Animal(
-                    "Luke",
-                    of(2014, NOVEMBER, 5),
-                    "Basenji",
-                    "Cachorro",
-                    bruce
             );
 
             Cliente hector = new Cliente(
@@ -131,23 +111,6 @@ public class UsuarioConfig {
                     of(2000, JANUARY, 25)
             );
 
-            Animal fumaca = new Animal(
-                    "Fumaça",
-                    of(2013, OCTOBER, 10),
-                    "Akita",
-                    "Cachorro",
-                    hector
-            );
-
-            /*AgendamentoRequest agendarFumaca = new AgendamentoRequest(
-                    hector.getId(),
-                    barry.getId(),
-                    List.of(banho, dentes),
-                    fumaca.getId(),
-                    LocalDateTime.of(2023, JUNE, 10, 14, 30),
-                    "Ele tem carrapicho."
-            );*/
-
             Cliente aquiles = new Cliente(
                     "Aquiles",
                     "aquiles@gmail.com",
@@ -156,10 +119,6 @@ public class UsuarioConfig {
                     "1l5O0mb4AN",
                     of(2000, JANUARY, 25)
             );
-
-            Logger logger = Logger.getLogger(Cliente.class.getName());
-            logger.info("aquiles: " + aquiles.getId());
-            logger.info("aquiles: " + aquiles.getNome());
 
             Cliente billy = new Cliente(
                     "Billy",
@@ -170,6 +129,50 @@ public class UsuarioConfig {
                     of(1998, MARCH, 24)
             );
 
+            clienteRepository.saveAll(
+                    List.of(bruce, billy, hector, aquiles)
+            );
+
+            Logger loggerBruce = Logger.getLogger(Cliente.class.getName());
+            loggerBruce.info("bruce: " + bruce.getId());
+            loggerBruce.info("bruce: " + bruce.getNome());
+
+            Logger loggerBilly = Logger.getLogger(Cliente.class.getName());
+            loggerBilly.info("billy: " + billy.getId());
+            loggerBilly.info("billy: " + billy.getNome());
+
+            Logger loggerHector = Logger.getLogger(Cliente.class.getName());
+            loggerHector.info("hector: " + hector.getId());
+            loggerHector.info("hector: " + hector.getNome());
+
+            Logger loggerAquiles = Logger.getLogger(Cliente.class.getName());
+            loggerAquiles.info("aquiles: " + aquiles.getId());
+            loggerAquiles.info("aquiles: " + aquiles.getNome());
+
+            Animal floquinho = new Animal(
+                    "Floquinho",
+                    of(2015, FEBRUARY, 13),
+                    "Basset hound",
+                    "Cachorro",
+                    bruce
+            );
+
+            Animal luke = new Animal(
+                    "Luke",
+                    of(2014, NOVEMBER, 5),
+                    "Basenji",
+                    "Cachorro",
+                    bruce
+            );
+
+            Animal fumaca = new Animal(
+                    "Fumaça",
+                    of(2013, OCTOBER, 10),
+                    "Akita",
+                    "Cachorro",
+                    hector
+            );
+
             Animal soneca = new Animal(
                     "Soneca",
                     of(2010, APRIL, 15),
@@ -178,15 +181,36 @@ public class UsuarioConfig {
                     billy
             );
 
-            administradorRepository.save(clark);
-            funcionarioRepository.saveAll(List.of(barry, james));
-            clienteRepository.saveAll(
-                    List.of(bruce, billy, hector, aquiles)
+            Animal ace = new Animal(
+                    "Ace",
+                    of(2010, APRIL, 15),
+                    "American Bully",
+                    "Cachorro",
+                    aquiles
             );
+
             animalRepository.saveAll(
-                    List.of(floquinho, soneca, luke, fumaca)
+                    List.of(floquinho, soneca, luke, fumaca, ace)
             );
-//            agendamentoService.agendarServicos(List.of(agendarFloquinho, agendarFumaca));
+
+            AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
+                    LocalDateTime.of(2023, JUNE, 10, 13, 30), // dataHoraStart
+                    bruce.getId(), // clienteId
+                    floquinho.getId(), // animalId
+                    List.of(hidratacao, unha),
+                    barry.getId() // funcionarioId
+            );
+
+            AgendamentoRequest agendarFumaca = new AgendamentoRequest(
+                    LocalDateTime.of(2023, JUNE, 10, 14, 30), // dataHoraStart
+                    hector.getId(), // clienteId
+                    fumaca.getId(), // animalId
+                    List.of(banho, dentes),
+                    "Ele tem carrapicho.",
+                    barry.getId() // funcionarioId
+            );
+
+            agendamentoService.agendarServicos(List.of(agendarFloquinho, agendarFumaca));
 //            agendamentoService.agendarServicos(agendarFumaca);
 
         };
