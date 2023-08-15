@@ -55,14 +55,11 @@ class ClienteServiceTest {
 
         when(clienteRepository.findById(clienteId)).thenReturn(Optional.of(expectedCliente));
 
-<<<<<<< HEAD
         Cliente actualCliente = clienteService.findClienteById(clienteId);
 
         assertEquals(expectedCliente, actualCliente);
         verify(clienteRepository, times(1)).findById(clienteId);
-=======
 //        underTest = new ClienteService(clienteRepository);
->>>>>>> wendel
     }
 
     @Test

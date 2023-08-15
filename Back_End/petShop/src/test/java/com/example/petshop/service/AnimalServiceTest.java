@@ -3,14 +3,7 @@ package com.example.petshop.service;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.AnimalRegisterRequest;
 import com.example.petshop.base.Cliente;
-<<<<<<< HEAD
-
-
-import com.example.petshop.base.CliRequest;
-
-=======
 import com.example.petshop.base.RegisterRequest;
->>>>>>> wendel
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
@@ -41,17 +34,15 @@ class AnimalServiceTest{
     private AnimalService animalService;
 
     @BeforeEach
-<<<<<<< HEAD
     void setUp() {
         MockitoAnnotations.openMocks(this);
-=======
-
-    void seUp(){
-//        underTestClient = new ClienteService(clienteRepository);
-        underTestAnimal = new AnimalService(clienteRepository,animalRepository);
-
->>>>>>> wendel
     }
+
+//    void seUp(){
+////        underTestClient = new ClienteService(clienteRepository);
+//        underTestAnimal = new AnimalService(clienteRepository,animalRepository);
+//
+//    }
 
     @Test
     void getAnimais_Funciona() {
@@ -91,12 +82,12 @@ class AnimalServiceTest{
         request.setCliente(cliente);
 
         RegisterRequest registerBilly = new RegisterRequest();
-        registerBilly.setNome(billy.getNome());
-        registerBilly.setEmail(billy.getEmail());
-        registerBilly.setCpf(billy.getCpf());
-        registerBilly.setTelefone(billy.getTelefone());
-        registerBilly.setSenha(billy.getSenha());
-        registerBilly.setDataNascimento(billy.getDataNascimento());
+        registerBilly.setNome(cliente.getNome());
+        registerBilly.setEmail(cliente.getEmail());
+        registerBilly.setCpf(cliente.getCpf());
+        registerBilly.setTelefone(cliente.getTelefone());
+        registerBilly.setSenha(cliente.getSenha());
+        registerBilly.setDataNascimento(cliente.getDataNascimento());
 
 
         when(clienteRepository.findById(clienteId)).thenReturn(Optional.of(cliente));

@@ -24,7 +24,14 @@ public class AgendamentoService {
     private final ClienteRepository clienteRepository;
     private final FuncionarioRepository funcionarioRepository;
     private final AnimalRepository animalRepository;
-    private final ClienteService clienteService;
+
+    public List<Agendamento> getAgendamentos() {
+        return agendamentoRepository.findAll();
+    }
+
+    public List<Agendamento> getAgendamentosByCliente(Cliente cliente) {
+        return agendamentoRepository.findClienteById(cliente.getId());
+    }
 
 //    public AgendamentoService(AgendamentoRepository agendamentoRepository) {
 //        this.agendamentoRepository = agendamentoRepository;
@@ -36,7 +43,7 @@ public class AgendamentoService {
 //    }
 
     public boolean agendamentoExisteParaFuncionario(
-            /*Funcionario funcionario*/Funcionario funcionario, LocalDateTime horario
+            Funcionario funcionario, LocalDateTime horario
     ) {
         int quantidadeAgendamentos = agendamentoRepository.countByFuncionarioAndDataHora(funcionario.getId(), horario);
         return quantidadeAgendamentos > 0;
@@ -61,12 +68,12 @@ public class AgendamentoService {
 
             // Crie um objeto Agendamento a partir dos dados da requisição
             Agendamento agendamento = new Agendamento();
-            agendamento.setCliente(cliente);
-            agendamento.setFuncionario(funcionario);
-            agendamento.setServicos(request.getServicos());
-            agendamento.setAnimal(animal);
             agendamento.setDataHoraStart(request.getDataHoraStart());
+            agendamento.setCliente(cliente);
+            agendamento.setAnimal(animal);
+            agendamento.setServicos(request.getServicos());
             agendamento.setObservacoes(request.getObservacoes());
+            agendamento.setFuncionario(funcionario);
 
             agendamentos.add(agendamento);
 
@@ -83,10 +90,6 @@ public class AgendamentoService {
                 ));
     }
 
-    public List<Agendamento> getAgendamentos() {
-        return agendamentoRepository.findAll();
-    }
-
     public void deleteAgendamento(Long agendamentoId) throws AgendamentoException {
         boolean exists = agendamentoRepository.existsById(agendamentoId);
 
@@ -95,10 +98,6 @@ public class AgendamentoService {
         }
 
         agendamentoRepository.deleteById(agendamentoId);
-    }
-
-    public List<Agendamento> getAgendamentosByCliente(Cliente cliente) {
-        return agendamentoRepository.findClienteById(cliente.getId());
     }
 }
 
