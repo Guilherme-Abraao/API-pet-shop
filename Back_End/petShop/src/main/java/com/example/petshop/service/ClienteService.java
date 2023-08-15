@@ -1,7 +1,7 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.CliRequest;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
@@ -36,24 +36,24 @@ public class ClienteService {
                 ));
     }
 
-    public Cliente adicionarCliente(CliRequest cliRequest) throws UserException {
-        Optional<Cliente> clienteEmailOptional = clienteRepository.findClienteByEmail(cliRequest.getEmail());
+    public Cliente adicionarCliente(RegisterRequest registerRequest) throws UserException {
+        Optional<Cliente> clienteEmailOptional = clienteRepository.findClienteByEmail(registerRequest.getEmail());
         if (clienteEmailOptional.isPresent()) {
             throw new UserException("O email informado já existe");
         }
 
-        Optional<Cliente> clienteCpfOptional = clienteRepository.findClienteByCpf(cliRequest.getCpf());
+        Optional<Cliente> clienteCpfOptional = clienteRepository.findClienteByCpf(registerRequest.getCpf());
         if (clienteCpfOptional.isPresent()) {
             throw new UserException("O CPF informado já existe.");
         }
 
         Cliente cliente = new Cliente();
-        cliente.setNome(cliRequest.getNome());
-        cliente.setEmail(cliRequest.getEmail());
-        cliente.setCpf(cliRequest.getCpf());
-        cliente.setTelefone(cliRequest.getTelefone());
-        cliente.setSenha(cliRequest.getSenha());
-        cliente.setDataNascimento(cliRequest.getDataNascimento());
+        cliente.setNome(registerRequest.getNome());
+        cliente.setEmail(registerRequest.getEmail());
+        cliente.setCpf(registerRequest.getCpf());
+        cliente.setTelefone(registerRequest.getTelefone());
+        cliente.setSenha(registerRequest.getSenha());
+        cliente.setDataNascimento(registerRequest.getDataNascimento());
         cliente.setRole(USER);
 
         return clienteRepository.save(cliente);
@@ -80,18 +80,18 @@ public class ClienteService {
     }
 
     @Transactional
-    public Cliente atualizarCliente(Long clienteId, CliRequest cliRequest) throws UserException {
+    public Cliente atualizarCliente(Long clienteId, RegisterRequest registerRequest) throws UserException {
         Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new UserException(
                         "Cliente com id " + clienteId + " não existe."
                 ));
 
-        String nome = cliRequest.getNome();
-        String email = cliRequest.getEmail();
-        String cpf = cliRequest.getCpf();
-        String telefone = cliRequest.getTelefone();
-        String senha = cliRequest.getSenha();
-        LocalDate dataNascimento = cliRequest.getDataNascimento();
+        String nome = registerRequest.getNome();
+        String email = registerRequest.getEmail();
+        String cpf = registerRequest.getCpf();
+        String telefone = registerRequest.getTelefone();
+        String senha = registerRequest.getSenha();
+        LocalDate dataNascimento = registerRequest.getDataNascimento();
 
         if (nome != null && !nome.isEmpty()) {
             cliente.setNome(nome);

@@ -1,10 +1,8 @@
+import { Cliente } from 'src/app/components/interfaces/Cliente';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../components/interfaces/MensagemSistema';
-import { Cliente } from '../components/interfaces/Cliente';
-import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +20,7 @@ export class UsuarioService {
 
   /* Criar Cliente no sistema */
   createCliente(cliente: any): Observable<any>{
+    const url = `${this.apiUrl}/cadastrarCliente`;
     const data = {
       nome: cliente.nome,
       cpf: cliente.cpf,
@@ -30,7 +29,7 @@ export class UsuarioService {
       email: cliente.email,
       senha: cliente.senha,
     };
-    const result = this.http.post(this.apiUrl, data);
+    const result = this.http.post(url, data);
     return result;
   }
 
@@ -47,6 +46,9 @@ export class UsuarioService {
   }
   
   updateCliente(cliente: any): Observable<any>{
+
+    const url = `${this.apiUrl}/${cliente.id}`;
+
     const data = {
       nome: cliente.nome,
       cpf: cliente.cpf,
@@ -55,7 +57,14 @@ export class UsuarioService {
       email: cliente.email,
       senha: cliente.senha,
     };
-    const result = this.http.put(this.apiUrl, data);
+    const result = this.http.put(url, data);
+    return result;
+  }
+
+  /* Deletar um animal de cliente */
+  deleteAnimal(cliente: Cliente, idAnimal: number): Observable<any>{
+    const url = `${this.baseApiUrl}/animal/deletarAnimal/${idAnimal}`;
+    const result =  this.http.delete<Response<Cliente>>(url);
     return result;
   }
 

@@ -46,3 +46,23 @@ h2 {
  left:15em;
  border-radius: 0.5em;
 }
+
+/* Botão confirmar */
+button {
+  background-color: #194389;
+  color: #ffffff;
+  border: none;
+  padding: 0.6em 2em;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: 0.4s;
+  border-radius: 15px;
+
+  display: block;
+  text-align: center;
+  margin: 0 auto; /* Centralizar */
+}
+
+.salvar{
+  background-color: #dc3545;
+}

@@ -4,6 +4,7 @@ import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.exception.AgendamentoException;
+import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import com.example.petshop.repository.FuncionarioRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -32,33 +34,51 @@ public class AgendamentoService {
 //        return quantidadeAgendamentos > 0;
 //    }
 
-    public boolean agendamentoExisteParaFuncionario(Long funcionarioId, LocalDateTime horario) {
-        int quantidadeAgendamentos = agendamentoRepository.countByFuncionarioAndDataHora(funcionarioId, horario);
+    public boolean agendamentoExisteParaFuncionario(
+            Funcionario funcionario, LocalDateTime horario
+    ) {
+        int quantidadeAgendamentos = agendamentoRepository.countByFuncionarioAndDataHora(funcionario.getId(), horario);
         return quantidadeAgendamentos > 0;
     }
 
+    private Funcionario selecionarFuncionarioAleatorio(List<Funcionario> funcionarios) {
+        Random random = new Random();
+        int index = random.nextInt(funcionarios.size());
+        return funcionarios.get(index);
+    }
+
+
     public List<Agendamento> agendarServicos(
             List<AgendamentoRequest> requests
-    ) {
+    ) throws UserException {
         List<Agendamento> agendamentos = new ArrayList<>();
-        Cliente cliente = clienteRepository.findById(requests.get(0).getClienteId()).orElseThrow();
-        Funcionario funcionario = funcionarioRepository.findById(requests.get(0).getFuncionarioId()).orElseThrow();
-        Animal animal = animalRepository.findById(requests.get(0).getAnimalId()).orElseThrow();
 
         for (AgendamentoRequest request : requests) {
             LocalDateTime horario = request.getDataHoraStart();
-            Long funcionarioId = request.getFuncionarioId();
 
-            if (agendamentoExisteParaFuncionario(funcionarioId, horario)) {
+
+            Cliente cliente = clienteRepository.findById(request.getClienteId()).orElseThrow();
+
+            Animal animal = animalRepository.findById(request.getAnimalId()).orElseThrow();
+
+            List<Funcionario> funcionariosDisponiveis = funcionarioRepository.findFuncionariosDisponiveis(horario);
+
+            if (funcionariosDisponiveis.isEmpty()) {
+                throw new AgendamentoException("Não há funcionários disponíveis neste horário.");
+            }
+
+            Funcionario funcionarioSelecionado = selecionarFuncionarioAleatorio(funcionariosDisponiveis);
+
+            if (agendamentoExisteParaFuncionario(funcionarioSelecionado, horario)) {
                 throw new AgendamentoException("O funcionário já possui um agendamento neste horário.");
             }
 
             // Crie um objeto Agendamento a partir dos dados da requisição
             Agendamento agendamento = new Agendamento();
-            agendamento.setClienteId(request.getClienteId());
-            agendamento.setFuncionarioId(request.getFuncionarioId());
+            agendamento.setCliente(cliente);
+            agendamento.setFuncionario(funcionarioSelecionado);
             agendamento.setServicos(request.getServicos());
-            agendamento.setAnimalId(request.getAnimalId());
+            agendamento.setAnimal(animal);
             agendamento.setDataHoraStart(request.getDataHoraStart());
             agendamento.setObservacoes(request.getObservacoes());
 
@@ -89,6 +109,10 @@ public class AgendamentoService {
         }
 
         agendamentoRepository.deleteById(agendamentoId);
+    }
+
+    public List<Agendamento> getAgendamentosByCliente(Cliente cliente) {
+        return agendamentoRepository.findClienteById(cliente.getId());
     }
 }
 

@@ -1,9 +1,8 @@
 package com.example.petshop.service;
 
 import com.example.petshop.base.Cargo;
-import com.example.petshop.base.Cliente;
-import com.example.petshop.base.EmployeeRequest;
 import com.example.petshop.base.Funcionario;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.FuncionarioRepository;
 import jakarta.transaction.Transactional;
@@ -31,7 +30,7 @@ public class FuncionarioService {
         return funcionarioRepository.findAll();
     }
 
-    public Funcionario adicionarFuncionario(EmployeeRequest registerRequest) throws UserException {
+    public Funcionario adicionarFuncionario(RegisterRequest registerRequest) throws UserException {
         Optional<Funcionario> funcionarioOptional = funcionarioRepository.findFuncionarioByEmail(registerRequest.getEmail());
         if (funcionarioOptional.isPresent()) {
             throw new UserException("O email informado já existe");
@@ -69,7 +68,7 @@ public class FuncionarioService {
     @Transactional
     public Funcionario atualizarFuncionario(
             Long funcionarioId,
-            EmployeeRequest registerRequest
+            RegisterRequest registerRequest
     ) throws UserException {
         Funcionario funcionario = funcionarioRepository.findById(funcionarioId)
                 .orElseThrow(() -> new UserException(

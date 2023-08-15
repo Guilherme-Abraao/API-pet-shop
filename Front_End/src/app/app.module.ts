@@ -31,7 +31,9 @@ import { ClientFormUpdateComponent } from './components/client-form-update/clien
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AgendaService, TimelineViewsService, TimelineMonthService } from '@syncfusion/ej2-angular-schedule';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { UpdateClientComponent } from './components/singular-components/update-client/update-client.component';
-import { VisualizarAgendamentoComponent } from './components/visualizar-agendamento/visualizar-agendamento.component'
+import { VisualizarAgendamentoComponent } from './components/visualizar-agendamento/visualizar-agendamento.component';
+import { LogoutComponent } from './components/pages/logout/logout.component';
+import { AnimalViewComponent } from './components/animal-view/animal-view.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { VisualizarAgendamentoComponent } from './components/visualizar-agendame
     CalendarioComponent,
     UpdateClientComponent,
     VisualizarAgendamentoComponent,
+    LogoutComponent,
+    AnimalViewComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,128 +3,164 @@ package com.example.petshop.service;
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.AnimalRegisterRequest;
 import com.example.petshop.base.Cliente;
-import com.example.petshop.base.CliRequest;
+import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
+import com.example.petshop.service.AnimalService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-import static java.time.LocalDate.of;
-import static java.time.Month.APRIL;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-import static org.mockito.Mockito.verify;
-
-
-@ExtendWith(MockitoExtension.class)
-
-class AnimalServiceTest {
+class AnimalServiceTest{
 
     @Mock
     private ClienteRepository clienteRepository;
 
-    private ClienteService underTestClient;
-
+    @Mock
     private AnimalRepository animalRepository;
 
-    private AnimalService underTestAnimal;
-
-
+    @InjectMocks
+    private AnimalService animalService;
 
     @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-    void seUp(){
-        underTestClient = new ClienteService(clienteRepository);
-        underTestAnimal = new AnimalService(clienteRepository,animalRepository);
+//    void seUp(){
+////        underTestClient = new ClienteService(clienteRepository);
+//        underTestAnimal = new AnimalService(clienteRepository,animalRepository);
+//
+//    }
 
+    @Test
+    void getAnimais_Funciona() {
+        List<Animal> mockAnimais = new ArrayList<>();
+        when(animalRepository.findAll()).thenReturn(mockAnimais);
+
+        List<Animal> animais = animalService.getAnimais();
+
+        assertEquals(mockAnimais, animais);
+    }
+
+    @Test
+    void findAnimalById_Id_existe() throws UserException {
+        Long animalId = 1L;
+        Animal mockAnimal = new Animal();
+        when(animalRepository.findById(animalId)).thenReturn(Optional.of(mockAnimal));
+
+        Animal animal = animalService.findAnimalById(animalId);
+
+        assertEquals(mockAnimal, animal);
+    }
+
+    @Test
+    void findAnimalById_Id_nao_existe_ThrowsUserException() {
+        Long nonExistingId = 100L;
+        when(animalRepository.findById(nonExistingId)).thenReturn(Optional.empty());
+
+        assertThrows(UserException.class, () -> animalService.findAnimalById(nonExistingId));
     }
 
 
     @Test
-    void getAnimais() {
+    void cadastrarAnimal_ValidRequestAndExistingCliente_Success() throws UserException {
+        Long clienteId = 1L;
+        AnimalRegisterRequest request = new AnimalRegisterRequest();
+        Cliente cliente = new Cliente();
+        request.setCliente(cliente);
 
-        //when
-        underTestAnimal.getAnimais();
+        RegisterRequest registerBilly = new RegisterRequest();
+        registerBilly.setNome(cliente.getNome());
+        registerBilly.setEmail(cliente.getEmail());
+        registerBilly.setCpf(cliente.getCpf());
+        registerBilly.setTelefone(cliente.getTelefone());
+        registerBilly.setSenha(cliente.getSenha());
+        registerBilly.setDataNascimento(cliente.getDataNascimento());
 
-        //then
-        verify(animalRepository).findAll();
+
+        when(clienteRepository.findById(clienteId)).thenReturn(Optional.of(cliente));
+
+        when(animalRepository.save(any(Animal.class))).thenReturn(new Animal());
+
+        Animal animal = animalService.cadastrarAnimal(request, clienteId);
+
+        assertNotNull(animal);
+
+
+        verify(clienteRepository, times(1)).findById(clienteId);
+        verify(animalRepository, times(1)).save(any(Animal.class));
     }
 
     @Test
-    @Disabled
-    void findAnimalById() {
+    void cadastrarAnimal_Cliente_Nao_Existe_ThrowsUserException() {
+        Long nonExistingClienteId = 100L;
+        AnimalRegisterRequest request = new AnimalRegisterRequest();
 
+        when(clienteRepository.findById(nonExistingClienteId)).thenReturn(Optional.empty());
+
+        assertThrows(UserException.class, () -> animalService.cadastrarAnimal(request, nonExistingClienteId));
     }
 
     @Test
+    void deletarAnimal_Animal_Existe_Success() {
+        Long animalId = 1L;
+        when(animalRepository.existsById(animalId)).thenReturn(true);
 
-    void cadastrarAnimal() throws UserException {
-        //given
-
-        Cliente billy = new Cliente(
-                "Billy",
-                "billy.batson@gmail.com",
-                "38060025090",
-                "(62) 39020-1931",
-                "iihzNM37gF",
-                LocalDate.of(1998, Month.MARCH, 24)
-        );
-
-        CliRequest registerBilly = new CliRequest();
-        registerBilly.setNome(billy.getNome());
-        registerBilly.setEmail(billy.getEmail());
-        registerBilly.setCpf(billy.getCpf());
-        registerBilly.setTelefone(billy.getTelefone());
-        registerBilly.setSenha(billy.getSenha());
-        registerBilly.setDataNascimento(billy.getDataNascimento());
-
-        Animal soneca = new Animal(
-                "Soneca",
-                of(2010, APRIL, 15),
-                "Cachorro",
-                "American Bully",
-                billy
-        );
-
-        AnimalRegisterRequest registerSoneca = new AnimalRegisterRequest();
-        registerSoneca.setNome(soneca.getNome());
-        registerSoneca.setDataNascimento(soneca.getDataNascimento());
-        registerSoneca.setEspecie(soneca.getEspecie());
-        registerSoneca.setRaca(soneca.getRaca());
-        registerSoneca.setCliente(soneca.getCliente());
-
-        //when
-
-        underTestClient.adicionarCliente(registerBilly);
-        underTestAnimal.cadastrarAnimal(registerSoneca, billy.getId());
-
-        //then
-
-
-
-
-
-
-
-
+        assertDoesNotThrow(() -> animalService.deletarAnimal(animalId));
+        verify(animalRepository, times(1)).deleteById(animalId);
     }
 
     @Test
-    @Disabled
-    void deleteAnimal() {
+    void deletarAnimal_Animal_Nao_Existe_ThrowsIllegalStateException() {
+        Long nonExistingAnimalId = 100L;
+        when(animalRepository.existsById(nonExistingAnimalId)).thenReturn(false);
+
+        assertThrows(IllegalStateException.class, () -> animalService.deletarAnimal(nonExistingAnimalId));
     }
 
     @Test
-    @Disabled
-    void atualizarAnimal() {
+    void atualizarAnimal_ExistingAnimal_Success() {
+        Long animalId = 1L;
+        Long clienteId = 1L;
+        AnimalRegisterRequest request = new AnimalRegisterRequest();
+        Animal existingAnimal = new Animal();
+        Cliente cliente = new Cliente();
+        request.setCliente(cliente);
+
+        when(animalRepository.findById(animalId)).thenReturn(Optional.of(existingAnimal));
+        when(clienteRepository.findById(clienteId)).thenReturn(Optional.of(cliente));
+        when(animalRepository.save(any(Animal.class))).thenReturn(existingAnimal);
+
+        Animal updatedAnimal = animalService.atualizarAnimal(animalId, clienteId, request);
+
+        assertNotNull(updatedAnimal);
+        assertEquals(existingAnimal, updatedAnimal);
+
+        verify(animalRepository, times(1)).findById(animalId);
+        verify(clienteRepository, times(1)).findById(clienteId);
+        verify(animalRepository, times(1)).save(any(Animal.class));
     }
 
+    @Test
+    void atualizarAnimal_NonExistingAnimal_ThrowsIllegalStateException() {
+        Long nonExistingAnimalId = 100L;
+        Long clienteId = 1L;
+        AnimalRegisterRequest request = new AnimalRegisterRequest();
+
+        when(animalRepository.findById(nonExistingAnimalId)).thenReturn(Optional.empty());
+
+        assertThrows(IllegalStateException.class, () -> animalService.atualizarAnimal(nonExistingAnimalId, clienteId, request));
+    }
 
 }
