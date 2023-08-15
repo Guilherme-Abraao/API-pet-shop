@@ -11,11 +11,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("api/petshop/agendamentos")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AgendamentoController {
 
     private final AgendamentoService agendamentoService;
@@ -55,28 +59,32 @@ public class AgendamentoController {
    @Autowired
    private AgendamentoRepository agendamentoRepository;
 
-   @GetMapping(path = "/eventos")
-   public ResponseEntity<List<EventoCalendario>> obterEventosCalendario() {
-       List<Agendamento> agendamentos = agendamentoRepository.findAll();
-   
-       List<EventoCalendario> eventosCalendario = new ArrayList<>();
-   
-       for (Agendamento agendamento : agendamentos) {
-           EventoCalendario evento = new EventoCalendario();
-           evento.setId(agendamento.getId());
-           evento.setSubject(agendamento.getAnimal().getNome());
-           evento.setStartTime(agendamento.getDataHoraStart());
-           evento.setEndTime(agendamento.getDataHoraEnd());
-           evento.setObservacoes("Serviços: " +
-               agendamento.getServicos().toString() +
-               ", Raça: " + agendamento.getAnimal().getRaca() +
-               ", Funcionário: " + agendamento.getFuncionario().getNome() +
-               ", Objetos deixados e outras informações: " +
-               agendamento.getObservacoes());
-   
-           eventosCalendario.add(evento);
-       }
-   
-       return ResponseEntity.ok(eventosCalendario);
-   }
+   @GetMapping(path = {"/eventos", "/eventos/"})
+    public ResponseEntity<List<EventoCalendario>> obterEventosCalendario(
+) {
+
+    List<Agendamento> agendamentos;
+    agendamentos = agendamentoRepository.findAll();
+
+    List<EventoCalendario> eventosCalendario = new ArrayList<>();
+
+    for (Agendamento agendamento : agendamentos) {
+        EventoCalendario evento = new EventoCalendario();
+        evento.setId(agendamento.getId());
+        evento.setSubject(agendamento.getAnimal().getNome());
+        evento.setStartTime(agendamento.getDataHoraStart().toString()+":00"+'Z');
+        evento.setEndTime(agendamento.getDataHoraEnd().toString()+":00"+'Z');
+        evento.setObservacoes("Serviços: " +
+            agendamento.getServicos().toString() +
+            ", Raça: " + agendamento.getAnimal().getRaca() +
+            ", Funcionário: " + agendamento.getFuncionario().getNome() +
+            ", Objetos deixados e outras informações: " +
+            agendamento.getObservacoes());
+
+        eventosCalendario.add(evento);
+    }
+
+    return ResponseEntity.ok(eventosCalendario);
+}
+
 }
