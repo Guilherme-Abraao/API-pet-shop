@@ -20,7 +20,15 @@ import java.util.List;
 public class Agendamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "agendamento_sequence",
+            sequenceName = "agendamento_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "agendamento_sequence"
+    )
     private Long id;
 
     @ManyToOne
