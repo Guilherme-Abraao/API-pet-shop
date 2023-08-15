@@ -3,6 +3,7 @@ package com.example.petshop.service;
 import com.example.petshop.agendamento.*;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.exception.AgendamentoException;
+import com.example.petshop.exception.UserException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -32,19 +33,19 @@ public class AgendamentoServiceTest {
     }
 
     @Test
-    void agendarServicos_Success() {
+    void agendarServicos_Success() throws UserException {
         List<AgendamentoRequest> requests = new ArrayList<>();
 
 
-//        when(agendamentoRepository.countByFuncionarioAndDataHora(any(Funcionario.class), any(LocalDateTime.class))).thenReturn(0);
+        when(agendamentoRepository.countByFuncionarioAndDataHora(any(Funcionario.class).getId(), any(LocalDateTime.class))).thenReturn(0);
         when(agendamentoRepository.saveAll(anyList())).thenReturn(new ArrayList<>());
 
-//        List<Agendamento> agendamentos = agendamentoService.agendarServicos(requests);
-//
-//        assertNotNull(agendamentos);
-//        assertEquals(requests.size(), agendamentos.size());
+        List<Agendamento> agendamentos = agendamentoService.agendarServicos(requests);
 
-//        verify(agendamentoRepository, times(requests.size())).countByFuncionarioAndDataHora(any(Funcionario.class), any(LocalDateTime.class));
+        assertNotNull(agendamentos);
+        assertEquals(requests.size(), agendamentos.size());
+
+        verify(agendamentoRepository, times(requests.size())).countByFuncionarioAndDataHora(any(Funcionario.class).getId(), any(LocalDateTime.class));
         verify(agendamentoRepository, times(1)).saveAll(anyList());
     }
 
