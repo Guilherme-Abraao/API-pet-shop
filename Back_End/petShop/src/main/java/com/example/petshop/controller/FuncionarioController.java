@@ -1,6 +1,5 @@
 package com.example.petshop.controller;
 
-import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;

@@ -14,9 +14,6 @@ import java.time.Month;
 import java.util.Optional;
 
 import static com.example.petshop.base.Cargo.*;
-import static com.example.petshop.base.Role.FUNC;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 class FuncionarioRepositoryTest {
@@ -30,7 +27,7 @@ class FuncionarioRepositoryTest {
     }
 
     @Test
-    void TestfindFuncionarioByEmail() {
+    void TestFindFuncionarioByEmail() {
         //given
 
         String email = "Catatas@gmail.com";

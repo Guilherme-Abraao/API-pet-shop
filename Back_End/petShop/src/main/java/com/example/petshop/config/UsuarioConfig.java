@@ -22,7 +22,6 @@ import java.util.logging.Logger;
 import static com.example.petshop.agendamento.Servico.*;
 import static com.example.petshop.base.Cargo.gerentePetshop;
 import static com.example.petshop.base.Cargo.recepcionistaVeterinario;
-import static com.example.petshop.base.Role.*;
 import static java.time.LocalDate.of;
 import static java.time.Month.*;
 

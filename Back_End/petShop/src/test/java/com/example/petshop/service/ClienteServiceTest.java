@@ -1,6 +1,5 @@
 package com.example.petshop.service;
 
-import com.example.petshop.base.Cargo;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
@@ -18,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class ClienteServiceTest {
