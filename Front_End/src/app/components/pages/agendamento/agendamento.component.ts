@@ -101,15 +101,14 @@ export class AgendamentoComponent {
           dataHoraStart: dataHoraStart,
           servicos: servicosSelecionados,
           observacoes: this.agendamentoForm.value.observacoes,
-          cliente_id: this.cliente?.id,
-          animal_id: this.animalService.getAnimalId(this.cliente, this.agendamentoForm.value.animal),
+          clienteId: this.cliente?.id,
+          animalId: this.animalService.getAnimalId(this.cliente, this.agendamentoForm.value.animal),
+          funcionarioId: 2, // Passando um id fixo por enquanto pois o cliente não escolhe, o back que irá selecionar aleatoriamente
         };
       
 
         // /* Mudando tipo de dado para JSON */
         const jsonData = JSON.stringify(formData);
-
-        console.log(jsonData);
 
         /* Enviando cliente para o Service */
         this.agendamentoService.createAgendamento(formData)
