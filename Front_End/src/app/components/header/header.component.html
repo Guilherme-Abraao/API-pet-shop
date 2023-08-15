@@ -5,7 +5,7 @@
       </a>
     <ul>
         <div *ngIf="cliente && validarCliente()">
-            <li><a [routerLink]="['/animal']">Animais</a></li>
+            <li><a [routerLink]="['/animal']">Novo Animal</a></li>
         </div>
 
         <div *ngIf="cliente && validarCliente()">
@@ -13,22 +13,26 @@
         </div>
 
         <div *ngIf="funcionario && validarAdministrador()">
-            <li><a [routerLink]="['/funcionario']">Funcionários</a></li>
+            <li><a [routerLink]="['/funcionario']">Novo Fncionário</a></li>
         </div>
 
         <div *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
-            <li><a [routerLink]="['/perfil']">Perfil</a></li>
+            <li><a [routerLink]="['/perfil']">Meu Perfil</a></li>
         </div>
         
         <div *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
-            <li><a [routerLink]="['/agendamento']">Agendamento</a></li>
+            <li><a [routerLink]="['/agendamento']">Agendar</a></li>
+        </div>
+
+        <div *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
+            <li><a [routerLink]="['/historico']">Histórico</a></li>
         </div>
 
         <div *ngIf="(funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
             <li><a [routerLink]="['/tabela-agendamentos']">Tabela de agendamentos</a></li> <!--temporário-->
         </div>
 
-        <div *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
+        <div (click)="logout()" *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
             <li><a [routerLink]="['']">Sair</a></li>
         </div>
     </ul>
