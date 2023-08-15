@@ -36,7 +36,6 @@ public class AdministradorService {
         }
 
         Administrador admin = new Administrador();
-//        admin.setId(registerRequest.getId());
         admin.setNome(registerRequest.getNome());
         admin.setEmail(registerRequest.getEmail());
         admin.setCpf(registerRequest.getCpf());

@@ -1,7 +1,6 @@
 package com.example.petshop.repository;
 
 
-import com.example.petshop.base.Cliente;
 import com.example.petshop.base.Funcionario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

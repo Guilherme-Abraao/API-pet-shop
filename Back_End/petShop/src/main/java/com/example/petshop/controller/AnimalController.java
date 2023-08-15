@@ -20,12 +20,6 @@ public class AnimalController {
     private final AnimalService animalService;
 
     @Autowired
-    private AnimalRepository animalRepository;
-
-    @Autowired
-    private ClienteRepository clienteRepository;
-
-    @Autowired
     public AnimalController(AnimalService animalService) {
         this.animalService = animalService;
     }

@@ -48,7 +48,6 @@ public class ClienteService {
         }
 
         Cliente cliente = new Cliente();
-//        cliente.setId(registerRequest.getId());
         cliente.setNome(registerRequest.getNome());
         cliente.setEmail(registerRequest.getEmail());
         cliente.setCpf(registerRequest.getCpf());
