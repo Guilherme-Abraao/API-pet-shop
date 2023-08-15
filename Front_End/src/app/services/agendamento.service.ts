@@ -20,6 +20,7 @@ export class AgendamentoService {
   /* Criar Agendamento no sistema */
   createAgendamento(agendamento: any): Observable<any>{
 
+    const url = `${this.apiUrl}/agendar`;
     const listaAgendamentos: Agendamento [] = []; //Cria um array de agendamentos (necessário se o back exigir essa estrutura)
     const data = {
       
@@ -40,8 +41,12 @@ export class AgendamentoService {
 
     listaAgendamentos.push(agendamento);
     
-    const result = this.http.post(this.apiUrl, listaAgendamentos, httpOptions);
+    const result = this.http.post(url, listaAgendamentos, httpOptions);
     return result;
+  }
+
+  obterEventosCalendario(): Observable<any> {
+    return this.http.get(`${this.baseApiUrl}/agendamentos/eventos`);
   }
 
   
