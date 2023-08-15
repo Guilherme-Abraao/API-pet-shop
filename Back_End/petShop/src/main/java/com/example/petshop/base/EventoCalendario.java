@@ -4,40 +4,42 @@ import java.time.LocalDateTime;
 
 public class EventoCalendario {
 
-    private Long Id;
-    private String Subject;
-    private LocalDateTime StartTime;
-    private LocalDateTime EndTime;
-    private String Observacoes;
-
+    private Long id;
+    private String subject;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String observacoes;
+    
     public Long getId() {
-        return Id;
+        return id;
     }
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
     public String getSubject() {
-        return Subject;
+        return subject;
     }
     public void setSubject(String subject) {
-        Subject = subject;
+        this.subject = subject;
     }
     public LocalDateTime getStartTime() {
-        return StartTime;
+        return startTime;
     }
     public void setStartTime(LocalDateTime startTime) {
-        StartTime = startTime;
+        this.startTime = startTime;
     }
     public LocalDateTime getEndTime() {
-        return EndTime;
+        return endTime;
     }
     public void setEndTime(LocalDateTime endTime) {
-        EndTime = endTime;
+        this.endTime = endTime;
     }
     public String getObservacoes() {
-        return Observacoes;
+        return observacoes;
     }
     public void setObservacoes(String observacoes) {
-        Observacoes = observacoes;
+        this.observacoes = observacoes;
     }
+
+   
 }
