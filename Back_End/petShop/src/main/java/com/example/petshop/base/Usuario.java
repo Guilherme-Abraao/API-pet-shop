@@ -11,7 +11,6 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import lombok.Data;
 
-@NoArgsConstructor
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -59,22 +58,14 @@ public class Usuario {
     @NotNull(message = "{dataNascimento.not.null}")
     private LocalDate dataNascimento;
 
-<<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/Usuario.java
-<<<<<<< HEAD:Back_End/petShop/src/main/java/com/example/petshop/usuarios/Usuario.java
     public Usuario() {
     }
 
-    public Usuario(String nome, String email, String CPF, String telefone, String senha, LocalDate dataNascimento) {
-=======
-    public Usuario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento) {
->>>>>>> parent of 67731d8... Merge pull request #48 from gilmarUFG/guilherme:Back_End/petShop/src/main/java/com/example/petshop/base/Usuario.java
-=======
 
     //    Falta analisar como iremos diferenciar os tipos de usuário
     //    private TipoUsuario tipoUsuario;
 
     public Usuario(String nome, String email, String cpf, String telefone, String senha, LocalDate dataNascimento) {
->>>>>>> main:Back_End/petShop/src/main/java/com/example/petshop/base/Usuario.java
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
