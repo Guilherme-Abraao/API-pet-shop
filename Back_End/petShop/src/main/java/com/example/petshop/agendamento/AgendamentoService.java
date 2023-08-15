@@ -24,7 +24,6 @@ public class AgendamentoService {
     private final ClienteRepository clienteRepository;
     private final FuncionarioRepository funcionarioRepository;
     private final AnimalRepository animalRepository;
-    private final ClienteService clienteService;
 
 //    public AgendamentoService(AgendamentoRepository agendamentoRepository) {
 //        this.agendamentoRepository = agendamentoRepository;
@@ -36,7 +35,7 @@ public class AgendamentoService {
 //    }
 
     public boolean agendamentoExisteParaFuncionario(
-            /*Funcionario funcionario*/Funcionario funcionario, LocalDateTime horario
+            Funcionario funcionario, LocalDateTime horario
     ) {
         int quantidadeAgendamentos = agendamentoRepository.countByFuncionarioAndDataHora(funcionario.getId(), horario);
         return quantidadeAgendamentos > 0;
@@ -61,11 +60,6 @@ public class AgendamentoService {
             Cliente cliente = clienteRepository.findById(request.getClienteId()).orElseThrow();
 
             Animal animal = animalRepository.findById(request.getAnimalId()).orElseThrow();
-
-//            Funcionario funcionario = funcionarioRepository.findById(request.getFuncionarioId()).orElseThrow();
-//            if (agendamentoExisteParaFuncionario(funcionario, horario)) {
-//                throw new AgendamentoException("O funcionário já possui um agendamento neste horário.");
-//            }
 
             List<Funcionario> funcionariosDisponiveis = funcionarioRepository.findFuncionariosDisponiveis(horario);
 
