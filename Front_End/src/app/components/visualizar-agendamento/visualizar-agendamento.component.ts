@@ -1,9 +1,12 @@
 import { Funcionario } from './../interfaces/Funcionario';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Cliente } from '../interfaces/Cliente';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
+import { MensagemService } from 'src/app/services/mensagem.service';
+import { AgendamentoService } from 'src/app/services/agendamento.service';
+import { Agendamento } from '../interfaces/Agendamento';
 
 @Component({
   selector: 'app-visualizar-agendamento',
@@ -11,12 +14,12 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
   styleUrls: ['./visualizar-agendamento.component.css'],
 })
 export class VisualizarAgendamentoComponent {
-  
+
   cliente!: Cliente;
-  funcionario!: Funcionario; 
+  funcionario!: Funcionario;
   jsonData: any;
 
-  constructor(private usuarioService: UsuarioService, private route: ActivatedRoute, private funcionarioService: FuncionarioService){}
+  constructor(private usuarioService: UsuarioService, private route: ActivatedRoute, private funcionarioService: FuncionarioService, private agendamentoService: AgendamentoService, private mensagemService: MensagemService){}
 
 
   ngOnInit(): void {
@@ -28,6 +31,24 @@ export class VisualizarAgendamentoComponent {
         this.jsonData = item;
         this.cliente = this.jsonData;
       });
-    } 
+    }
+  }
+
+  excluirAgendamento(idAgendamento: number) {
+    this.agendamentoService.deleteAgendamento(idAgendamento).subscribe(
+      () => {
+       
+        this.cliente.animais.forEach((animal) => {
+          animal.agendamentos = animal.agendamentos.filter(
+            (agendamento) => agendamento.id !== idAgendamento
+          );
+        });
+  
+        this.mensagemService.add('Agendamento excluído com sucesso.');
+      },
+      (error) => {
+        this.mensagemService.add('Erro ao tentar excluir o agendamento.');
+      }
+    );
   }
 }

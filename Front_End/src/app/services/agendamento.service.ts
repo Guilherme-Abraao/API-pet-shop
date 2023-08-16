@@ -49,5 +49,9 @@ export class AgendamentoService {
     return this.http.get(`${this.baseApiUrl}/agendamentos/eventos`);
   }
 
+  deleteAgendamento(agendamentoId: number): Observable<any> {
+    const url = `${this.apiUrl}/${agendamentoId}`;
+    return this.http.delete(url);
+  }
   
 }
