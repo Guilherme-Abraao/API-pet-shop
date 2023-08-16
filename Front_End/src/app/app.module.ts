@@ -34,6 +34,9 @@ import { UpdateClientComponent } from './components/singular-components/update-c
 import { VisualizarAgendamentoComponent } from './components/visualizar-agendamento/visualizar-agendamento.component';
 import { LogoutComponent } from './components/pages/logout/logout.component';
 import { AnimalViewComponent } from './components/animal-view/animal-view.component';
+import { UpdateFuncionarioComponent } from './components/singular-components/update-funcionario/update-funcionario.component';
+import { FuncionarioFormUpdateComponent } from './components/funcionario-form-update/funcionario-form-update.component';
+import { FuncionarioFormColumnComponent } from './components/funcionario-form-column/funcionario-form-column.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,9 @@ import { AnimalViewComponent } from './components/animal-view/animal-view.compon
     VisualizarAgendamentoComponent,
     LogoutComponent,
     AnimalViewComponent,
+    UpdateFuncionarioComponent,
+    FuncionarioFormUpdateComponent,
+    FuncionarioFormColumnComponent,
   ],
   imports: [
     BrowserModule,
