@@ -81,5 +81,10 @@ public class Agendamento {
     public Long getFuncionarioId() {
         return funcionario.getId();
     }
+
+    @JsonProperty("funcionarioNome")
+    public String getFuncionarioNome() {
+        return funcionario.getNome();
+    }
 }
 

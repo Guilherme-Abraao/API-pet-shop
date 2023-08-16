@@ -5,7 +5,6 @@ import com.example.petshop.base.Cliente;
 import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.exception.AgendamentoException;
-import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import com.example.petshop.repository.FuncionarioRepository;
