@@ -39,7 +39,7 @@ class FuncionarioRepositoryTest {
                 "6290028922",
                 "Senha123",
                 LocalDate.of(1969, Month.APRIL,20),
-                auxiliarVeterinario,
+                auxiliarTosador,
                 2000.00
         );
 
