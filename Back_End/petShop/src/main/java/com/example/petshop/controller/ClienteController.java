@@ -35,8 +35,8 @@ public class ClienteController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Cliente> getClienteById(
             @PathVariable("id") Long id
-    ) throws UserException {
-        Cliente cliente = clienteService.findClienteById(id);
+    ) throws UserNotFoundException {
+        Cliente cliente = clienteService.getClienteById(id);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
@@ -56,13 +56,11 @@ public class ClienteController {
             @PathVariable("clienteId") Long clienteId
     ) {
         try {
-            Cliente cliente = clienteService.findClienteById(clienteId);
+            Cliente cliente = clienteService.getClienteById(clienteId);
             List<Agendamento> agendamentos = agendamentoService.getAgendamentosByCliente(cliente);
             return new ResponseEntity<>(agendamentos, HttpStatus.OK);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (UserException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -79,7 +77,7 @@ public class ClienteController {
     @DeleteMapping(path = "/{clienteId}")
     public ResponseEntity<Cliente> deleteCliente(
             @PathVariable("clienteId") Long ClienteId
-    ) throws UserException {
+    ) throws UserNotFoundException {
         clienteService.deleteCliente(ClienteId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -89,7 +87,7 @@ public class ClienteController {
     public ResponseEntity<Cliente> atualizarCliente(
             @PathVariable("clienteId") Long clienteId,
             @RequestBody RegisterRequest registerRequest
-    ) throws UserException {
+    ) throws UserNotFoundException, UserException {
         Cliente novoCliente = clienteService.atualizarCliente(clienteId, registerRequest);
         return new ResponseEntity<>(novoCliente, HttpStatus.OK);
     }

@@ -4,6 +4,7 @@ import com.example.petshop.base.Cargo;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.FuncionarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,17 +51,17 @@ public class FuncionarioService {
         return funcionarioRepository.save(funcionario);
     }
 
-    public void deleteFuncionario(Long funcionarioId) throws UserException {
+    public void deleteFuncionario(Long funcionarioId) throws UserNotFoundException {
         boolean exists = funcionarioRepository.existsById(funcionarioId);
         if (!exists) {
-            throw new UserException("Funcionário com id " + funcionarioId + " não existe.");
+            throw new UserNotFoundException("Funcionário com id " + funcionarioId + " não existe.");
         }
         funcionarioRepository.deleteById(funcionarioId);
     }
 
-    public Funcionario findFuncionarioById(Long id) throws UserException {
+    public Funcionario findFuncionarioById(Long id) throws UserNotFoundException {
         return funcionarioRepository.findById(id)
-                .orElseThrow(() -> new UserException(
+                .orElseThrow(() -> new UserNotFoundException(
                         "Funcionário com id " + id + " não existe."
                 ));
     }
@@ -69,9 +70,9 @@ public class FuncionarioService {
     public Funcionario atualizarFuncionario(
             Long funcionarioId,
             RegisterRequest registerRequest
-    ) throws UserException {
+    ) throws UserNotFoundException, UserException {
         Funcionario funcionario = funcionarioRepository.findById(funcionarioId)
-                .orElseThrow(() -> new UserException(
+                .orElseThrow(() -> new UserNotFoundException(
                         "Funcionario com id " + funcionarioId + " não existe."
                 ));
 
