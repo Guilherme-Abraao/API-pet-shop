@@ -80,7 +80,7 @@ public class UsuarioConfig {
             );
 
             Funcionario james = new Funcionario(
-                    "James da Salada de Fruta",
+                    "James",
                     "james@gmail.com",
                     "53583299000",
                     "(62) 984237092",
@@ -151,40 +151,40 @@ public class UsuarioConfig {
             Animal floquinho = new Animal(
                     "Floquinho",
                     of(2015, FEBRUARY, 13),
-                    "Basset hound",
                     "Cachorro",
+                    "Basset hound",
                     bruce
             );
 
             Animal luke = new Animal(
                     "Luke",
                     of(2014, NOVEMBER, 5),
-                    "Basenji",
                     "Cachorro",
+                    "Basenji",
                     bruce
             );
 
             Animal fumaca = new Animal(
                     "Fumaça",
                     of(2013, OCTOBER, 10),
-                    "Akita",
                     "Cachorro",
+                    "Akita",
                     hector
             );
 
             Animal soneca = new Animal(
                     "Soneca",
                     of(2010, APRIL, 15),
-                    "American Bully",
                     "Cachorro",
+                    "American Bully",
                     billy
             );
 
             Animal ace = new Animal(
                     "Ace",
                     of(2010, APRIL, 15),
-                    "American Bully",
                     "Cachorro",
+                    "American Bully",
                     aquiles
             );
 

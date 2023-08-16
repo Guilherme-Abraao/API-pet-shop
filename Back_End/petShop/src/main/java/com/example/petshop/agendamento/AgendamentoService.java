@@ -44,7 +44,7 @@ public class AgendamentoService {
             evento.setEndTime(agendamento.getDataHoraEnd().atZone(of("America/Sao_Paulo")).toLocalDateTime());
             evento.setObservacoes("Serviços: " +
                     agendamento.getServicos().toString() +
-                    ", Raça: " + agendamento.getAnimal().getEspecie() +
+                    ", Raça: " + agendamento.getAnimal().getRaca() +
                     ", Funcionário: " + agendamento.getFuncionario().getNome() +
                     ", Objetos deixados e outras informações: " +
                     agendamento.getObservacoes());
