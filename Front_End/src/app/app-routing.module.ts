@@ -13,6 +13,7 @@ import { ScheduleComponent } from '@syncfusion/ej2-angular-schedule';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { UpdateClientComponent } from './components/singular-components/update-client/update-client.component';
 import { LogoutComponent } from './components/pages/logout/logout.component';
+import { VisualizarAgendamentoComponent } from './components/visualizar-agendamento/visualizar-agendamento.component';
 
 const routes: Routes = [
   { path: 'home', canActivate: [AuthGuardService], component: HomeComponent },
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'logout',
     canActivate: [AuthGuardService], // Proteger rotas
     component: LogoutComponent,
+  },
+  {
+    path: 'historico',
+    canActivate: [AuthGuardService], // Proteger rotas
+    component: VisualizarAgendamentoComponent,
   },
 
   {

@@ -1,3 +1,4 @@
+import { Agendamento } from './Agendamento';
 export interface Animal {
     id: number;
     idade: number; 
@@ -5,5 +6,6 @@ export interface Animal {
     dataNascimento: string;
     especie: string;
     raca: string;
+    agendamentos: Agendamento[];
 }
 

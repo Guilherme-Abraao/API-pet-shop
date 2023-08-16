@@ -8,13 +8,13 @@ import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import com.example.petshop.repository.FuncionarioRepository;
-import com.example.petshop.service.ClienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -24,14 +24,6 @@ public class AgendamentoService {
     private final ClienteRepository clienteRepository;
     private final FuncionarioRepository funcionarioRepository;
     private final AnimalRepository animalRepository;
-
-    public List<Agendamento> getAgendamentos() {
-        return agendamentoRepository.findAll();
-    }
-
-    public List<Agendamento> getAgendamentosByCliente(Cliente cliente) {
-        return agendamentoRepository.findClienteById(cliente.getId());
-    }
 
 //    public AgendamentoService(AgendamentoRepository agendamentoRepository) {
 //        this.agendamentoRepository = agendamentoRepository;
@@ -49,6 +41,13 @@ public class AgendamentoService {
         return quantidadeAgendamentos > 0;
     }
 
+    private Funcionario selecionarFuncionarioAleatorio(List<Funcionario> funcionarios) {
+        Random random = new Random();
+        int index = random.nextInt(funcionarios.size());
+        return funcionarios.get(index);
+    }
+
+
     public List<Agendamento> agendarServicos(
             List<AgendamentoRequest> requests
     ) throws UserException {
@@ -59,21 +58,29 @@ public class AgendamentoService {
 
 
             Cliente cliente = clienteRepository.findById(request.getClienteId()).orElseThrow();
-            Funcionario funcionario = funcionarioRepository.findById(request.getFuncionarioId()).orElseThrow();
+
             Animal animal = animalRepository.findById(request.getAnimalId()).orElseThrow();
 
-            if (agendamentoExisteParaFuncionario(funcionario, horario)) {
+            List<Funcionario> funcionariosDisponiveis = funcionarioRepository.findFuncionariosDisponiveis(horario);
+
+            if (funcionariosDisponiveis.isEmpty()) {
+                throw new AgendamentoException("Não há funcionários disponíveis neste horário.");
+            }
+
+            Funcionario funcionarioSelecionado = selecionarFuncionarioAleatorio(funcionariosDisponiveis);
+
+            if (agendamentoExisteParaFuncionario(funcionarioSelecionado, horario)) {
                 throw new AgendamentoException("O funcionário já possui um agendamento neste horário.");
             }
 
             // Crie um objeto Agendamento a partir dos dados da requisição
             Agendamento agendamento = new Agendamento();
-            agendamento.setDataHoraStart(request.getDataHoraStart());
             agendamento.setCliente(cliente);
-            agendamento.setAnimal(animal);
+            agendamento.setFuncionario(funcionarioSelecionado);
             agendamento.setServicos(request.getServicos());
+            agendamento.setAnimal(animal);
+            agendamento.setDataHoraStart(request.getDataHoraStart());
             agendamento.setObservacoes(request.getObservacoes());
-            agendamento.setFuncionario(funcionario);
 
             agendamentos.add(agendamento);
 
@@ -90,6 +97,10 @@ public class AgendamentoService {
                 ));
     }
 
+    public List<Agendamento> getAgendamentos() {
+        return agendamentoRepository.findAll();
+    }
+
     public void deleteAgendamento(Long agendamentoId) throws AgendamentoException {
         boolean exists = agendamentoRepository.existsById(agendamentoId);
 
@@ -98,6 +109,10 @@ public class AgendamentoService {
         }
 
         agendamentoRepository.deleteById(agendamentoId);
+    }
+
+    public List<Agendamento> getAgendamentosByCliente(Cliente cliente) {
+        return agendamentoRepository.findClienteById(cliente.getId());
     }
 }
 

@@ -1,8 +1,5 @@
 package com.example.petshop.agendamento;
 
-import com.example.petshop.base.Animal;
-import com.example.petshop.base.Cliente;
-import com.example.petshop.base.Funcionario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

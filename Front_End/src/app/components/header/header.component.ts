@@ -63,6 +63,12 @@ export class HeaderComponent {
     } return false;
   }
 
+  validarAdministrador(): boolean{
+    if(this.funcionario.role == "ADMIN"){
+       return true;
+    } return false;
+  }
+
   logout(){
     this.authService.mostrarMenuEmitter.emit(false);
     this.authService.setUsuarioAutenticado(false);

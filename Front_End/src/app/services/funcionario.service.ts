@@ -22,6 +22,7 @@ export class FuncionarioService {
 
   /* Criar Funcionario no sistema */
   createFuncionario(funcionario: any): Observable<any>{
+    const url = `${this.apiUrl}/cadastrarFuncionario`;
     const data = {
       nome: funcionario.nome,
       cpf: funcionario.cpf,
@@ -32,7 +33,7 @@ export class FuncionarioService {
       role: funcionario.role,
       salario: funcionario.salario,
     };
-    const result = this.http.post(this.apiUrl, data);
+    const result = this.http.post(url, data);
     return result;
   }
 
