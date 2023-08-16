@@ -63,9 +63,8 @@ public class Agendamento {
     @JoinColumn(name = "funcionario_id", nullable = false)
     private Funcionario funcionario;
 
-    public LocalDateTime getDataHoraEnd(Agendamento agendamento) {
-        int tempoExtra = (agendamento.servicos.size() * 20);
-        return dataHoraStart.plusMinutes(30 + tempoExtra);
+    public LocalDateTime getDataHoraEnd() {
+        return dataHoraStart.plusMinutes(30);
     }
 
     @JsonProperty("clienteId")
