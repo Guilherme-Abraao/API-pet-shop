@@ -20,11 +20,11 @@
             <li><a [routerLink]="['/perfil']">Meu Perfil</a></li>
         </div>
         
-        <div *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
+        <div *ngIf="(cliente && validarCliente())">
             <li><a [routerLink]="['/agendamento']">Agendar</a></li>
         </div>
 
-        <div *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
+        <div *ngIf="(cliente && validarCliente())">
             <li><a [routerLink]="['/historico']">Histórico</a></li>
         </div>
 
