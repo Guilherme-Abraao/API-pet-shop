@@ -1,10 +1,10 @@
 package com.example.petshop.base;
 
 import lombok.Getter;
-
-import java.time.LocalDateTime;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class EventoCalendario {
 
     private Long Id;
@@ -12,40 +12,4 @@ public class EventoCalendario {
     private String StartTime;
     private String EndTime;
     private String Observacoes;
-
-    public Long getId() {
-        return Id;
-    }
-
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getSubject() {
-        return Subject;
-    }
-
-
-    public void setSubject(String subject) {
-        Subject = subject;
-    }
-    public String getStartTime() {
-        return StartTime;
-    }
-    public void setStartTime(String startTime) {
-        StartTime = startTime;
-    }
-    public String getEndTime() {
-        return EndTime;
-    }
-    public void setEndTime(String endTime) {
-        EndTime = endTime;
-    }
-    public String getObservacoes() {
-        return Observacoes;
-    }
-    public void setObservacoes(String observacoes) {
-        Observacoes = observacoes;
-    }
 }
