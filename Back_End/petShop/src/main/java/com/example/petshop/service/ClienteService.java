@@ -3,6 +3,7 @@ package com.example.petshop.service;
 import com.example.petshop.base.Cliente;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente findClienteById(Long id) throws UserException {
+    public Cliente getClienteById(Long id) throws UserNotFoundException {
         return clienteRepository.findById(id)
-                .orElseThrow(() -> new UserException(
+                .orElseThrow(() -> new UserNotFoundException(
                         "Cliente com id " + id + " não existe."
                 ));
     }
@@ -71,18 +72,18 @@ public class ClienteService {
         return cliente;
     }
 
-    public void deleteCliente(Long clienteId) throws UserException {
+    public void deleteCliente(Long clienteId) throws UserNotFoundException {
         boolean exists = clienteRepository.existsById(clienteId);
         if (!exists) {
-            throw new UserException("Cliente com id " + clienteId + " não existe.");
+            throw new UserNotFoundException("Cliente com id " + clienteId + " não existe.");
         }
         clienteRepository.deleteById(clienteId);
     }
 
     @Transactional
-    public Cliente atualizarCliente(Long clienteId, RegisterRequest registerRequest) throws UserException {
+    public Cliente atualizarCliente(Long clienteId, RegisterRequest registerRequest) throws UserNotFoundException, UserException {
         Cliente cliente = clienteRepository.findById(clienteId)
-                .orElseThrow(() -> new UserException(
+                .orElseThrow(() -> new UserNotFoundException(
                         "Cliente com id " + clienteId + " não existe."
                 ));
 

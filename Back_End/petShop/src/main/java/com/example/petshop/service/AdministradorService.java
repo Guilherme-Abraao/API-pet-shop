@@ -4,6 +4,7 @@ import com.example.petshop.base.Administrador;
 import com.example.petshop.base.Cargo;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.repository.AdministradorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,13 @@ public class AdministradorService {
         return administradorRepository.findAll();
     }
 
+    public Administrador getAdministradorById(Long id) throws UserNotFoundException {
+        return administradorRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(
+                        "Funcionário com id " + id + " não existe."
+                ));
+    }
+
     public Administrador adicionarAdministrador(RegisterRequest registerRequest) throws UserException {
         Optional<Administrador> administradorOptional = administradorRepository.findAdministradorByEmail(registerRequest.getEmail());
         if (administradorOptional.isPresent()) {
@@ -49,28 +57,21 @@ public class AdministradorService {
         return administradorRepository.save(admin);
     }
 
-    public void deleteAdministrador(Long administradorId) throws UserException {
+    public void deleteAdministrador(Long administradorId) throws UserNotFoundException {
         boolean exists = administradorRepository.existsById(administradorId);
         if (!exists) {
-            throw new UserException("Funcionário com id " + administradorId + " não existe.");
+            throw new UserNotFoundException("Funcionário com id " + administradorId + " não existe.");
         }
         administradorRepository.deleteById(administradorId);
-    }
-
-    public Administrador findAdministradorById(Long id) throws UserException {
-        return administradorRepository.findById(id)
-                .orElseThrow(() -> new UserException(
-                        "Funcionário com id " + id + " não existe."
-                ));
     }
 
     @Transactional
     public Administrador atualizarAdministrador(
             Long administradorId,
             RegisterRequest registerRequest
-    ) throws UserException {
+    ) throws UserNotFoundException, UserException {
         Administrador administrador = administradorRepository.findById(administradorId)
-                .orElseThrow(() -> new UserException(
+                .orElseThrow(() -> new UserNotFoundException (
                         "Administrador com id " + administradorId + " não existe."
                 ));
 

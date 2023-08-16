@@ -2,6 +2,7 @@ package com.example.petshop.controller;
 import com.example.petshop.base.Administrador;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.service.AdministradorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class AdministradorController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Administrador> getAdministradorById(
             @PathVariable("id") Long id
-    ) throws UserException {
-        Administrador administrador = administradorService.findAdministradorById(id);
+    ) throws UserNotFoundException {
+        Administrador administrador = administradorService.getAdministradorById(id);
         return new ResponseEntity<>(administrador, HttpStatus.OK);
     }
 
@@ -49,7 +50,7 @@ public class AdministradorController {
     @DeleteMapping(path = "/{administradorId}")
     public ResponseEntity<Administrador> deleteAdministrador(
             @PathVariable("administradorId") Long AdministradorId
-    ) throws UserException {
+    ) throws UserNotFoundException {
         administradorService.deleteAdministrador(AdministradorId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -58,7 +59,7 @@ public class AdministradorController {
     public ResponseEntity<Administrador> atualizarAdministrador(
             @PathVariable("administradorId") Long administradorId,
             @RequestBody RegisterRequest registerRequest
-    ) throws UserException {
+    ) throws UserNotFoundException, UserException {
         Administrador novoAdministrador = administradorService.atualizarAdministrador(administradorId, registerRequest);
         return new ResponseEntity<>(novoAdministrador, HttpStatus.OK);
     }
