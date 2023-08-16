@@ -56,7 +56,7 @@ public class AgendamentoServiceTest {
 
         when(agendamentoRepository.findById(agendamentoId)).thenReturn(Optional.of(agendamento));
 
-        Agendamento result = agendamentoService.obterAgendamentoPorId(agendamentoId);
+        Agendamento result = agendamentoService.getAgendamentoPorId(agendamentoId);
 
         assertNotNull(result);
         assertEquals(agendamento, result);
@@ -70,7 +70,7 @@ public class AgendamentoServiceTest {
 
         when(agendamentoRepository.findById(agendamentoId)).thenReturn(Optional.empty());
 
-        assertThrows(AgendamentoException.class, () -> agendamentoService.obterAgendamentoPorId(agendamentoId));
+        assertThrows(AgendamentoException.class, () -> agendamentoService.getAgendamentoPorId(agendamentoId));
 
         verify(agendamentoRepository, times(1)).findById(agendamentoId);
     }

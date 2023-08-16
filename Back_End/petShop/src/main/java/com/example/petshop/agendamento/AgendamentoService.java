@@ -2,6 +2,7 @@ package com.example.petshop.agendamento;
 
 import com.example.petshop.base.Animal;
 import com.example.petshop.base.Cliente;
+import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.exception.AgendamentoException;
 import com.example.petshop.exception.UserException;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.time.ZoneId.of;
+
 @Service
 @AllArgsConstructor
 public class AgendamentoService {
@@ -25,14 +28,43 @@ public class AgendamentoService {
     private final FuncionarioRepository funcionarioRepository;
     private final AnimalRepository animalRepository;
 
-//    public AgendamentoService(AgendamentoRepository agendamentoRepository) {
-//        this.agendamentoRepository = agendamentoRepository;
-//    }
+    public List<Agendamento> getAgendamentosByCliente(Cliente cliente) {
+        return agendamentoRepository.findClienteById(cliente.getId());
+    }
 
-//    public boolean horarioJaAgendado(LocalDateTime horario) {
-//        int quantidadeAgendamentos = agendamentoRepository.countByDataHora(horario);
-//        return quantidadeAgendamentos > 0;
-//    }
+    public List<EventoCalendario> getEventosCalendario() {
+        List<Agendamento> agendamentos = agendamentoRepository.findAll();
+        List<EventoCalendario> eventosCalendario = new ArrayList<>();
+
+        for (Agendamento agendamento : agendamentos) {
+            EventoCalendario evento = new EventoCalendario();
+            evento.setId(agendamento.getId());
+            evento.setSubject(agendamento.getAnimal().getNome());
+            evento.setStartTime(agendamento.getDataHoraStart().atZone(of("America/Sao_Paulo")).toLocalDateTime());
+            evento.setEndTime(agendamento.getDataHoraEnd().atZone(of("America/Sao_Paulo")).toLocalDateTime());
+            evento.setObservacoes("Serviços: " +
+                    agendamento.getServicos().toString() +
+                    ", Raça: " + agendamento.getAnimal().getRaca() +
+                    ", Funcionário: " + agendamento.getFuncionario().getNome() +
+                    ", Objetos deixados e outras informações: " +
+                    agendamento.getObservacoes());
+
+            eventosCalendario.add(evento);
+        }
+
+        return eventosCalendario;
+    }
+
+    public Agendamento getAgendamentoPorId(Long id) {
+        return agendamentoRepository.findById(id)
+                .orElseThrow(() -> new AgendamentoException(
+                        "Agendamento com id " + id + " não existe."
+                ));
+    }
+
+    public List<Agendamento> getAgendamentos() {
+        return agendamentoRepository.findAll();
+    }
 
     public boolean agendamentoExisteParaFuncionario(
             Funcionario funcionario, LocalDateTime horario
@@ -90,17 +122,6 @@ public class AgendamentoService {
         return agendamentoRepository.saveAll(agendamentos);
     }
 
-    public Agendamento obterAgendamentoPorId(Long id) {
-        return agendamentoRepository.findById(id)
-                .orElseThrow(() -> new AgendamentoException(
-                        "Agendamento com id " + id + " não existe."
-                ));
-    }
-
-    public List<Agendamento> getAgendamentos() {
-        return agendamentoRepository.findAll();
-    }
-
     public void deleteAgendamento(Long agendamentoId) throws AgendamentoException {
         boolean exists = agendamentoRepository.existsById(agendamentoId);
 
@@ -111,8 +132,5 @@ public class AgendamentoService {
         agendamentoRepository.deleteById(agendamentoId);
     }
 
-    public List<Agendamento> getAgendamentosByCliente(Cliente cliente) {
-        return agendamentoRepository.findClienteById(cliente.getId());
-    }
 }
 

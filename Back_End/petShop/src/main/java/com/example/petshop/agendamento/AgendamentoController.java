@@ -4,13 +4,13 @@ import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.exception.BodyException;
 import com.example.petshop.exception.UserException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.time.ZoneId.of;
 
 @RestController
 @AllArgsConstructor
@@ -19,7 +19,6 @@ import java.util.List;
 public class AgendamentoController {
 
     private final AgendamentoService agendamentoService;
-    private final AgendamentoRepository agendamentoRepository;
 
     @GetMapping
     public ResponseEntity<List<Agendamento>> getAllAgendamentos() {
@@ -29,8 +28,8 @@ public class AgendamentoController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Agendamento> obterAgendamento(@PathVariable Long id) {
-        Agendamento agendamento = agendamentoService.obterAgendamentoPorId(id);
-        return ResponseEntity.ok(agendamento);
+        Agendamento agendamento = agendamentoService.getAgendamentoPorId(id);
+        return new ResponseEntity<>(agendamento, HttpStatus.OK);
     }
 
     @PostMapping(path = "/agendar")
@@ -50,31 +49,11 @@ public class AgendamentoController {
     }
 
    @GetMapping(path = {"/eventos", "/eventos/"})
-    public ResponseEntity<List<EventoCalendario>> obterEventosCalendario(
-) {
+   public ResponseEntity<List<EventoCalendario>> obterEventosCalendario() {
 
-    List<Agendamento> agendamentos;
-    agendamentos = agendamentoRepository.findAll();
+        List<EventoCalendario> eventosCalendario = agendamentoService.getEventosCalendario();
 
-    List<EventoCalendario> eventosCalendario = new ArrayList<>();
-
-    for (Agendamento agendamento : agendamentos) {
-        EventoCalendario evento = new EventoCalendario();
-        evento.setId(agendamento.getId());
-        evento.setSubject(agendamento.getAnimal().getNome());
-        evento.setStartTime(agendamento.getDataHoraStart().toString()+":00"+'Z');
-        evento.setEndTime(agendamento.getDataHoraEnd().toString()+":00"+'Z');
-        evento.setObservacoes("Serviços: " +
-            agendamento.getServicos().toString() +
-            ", Raça: " + agendamento.getAnimal().getRaca() +
-            ", Funcionário: " + agendamento.getFuncionario().getNome() +
-            ", Objetos deixados e outras informações: " +
-            agendamento.getObservacoes());
-
-        eventosCalendario.add(evento);
-    }
-
-    return ResponseEntity.ok(eventosCalendario);
+        return ResponseEntity.ok(eventosCalendario);
   }
   
 }
