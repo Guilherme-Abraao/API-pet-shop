@@ -4,13 +4,11 @@ import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.exception.BodyException;
 import com.example.petshop.exception.UserException;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,9 +48,6 @@ public class AgendamentoController {
         agendamentoService.deleteAgendamento(agendamentoId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-   @Autowired
-   private AgendamentoRepository agendamentoRepository;
 
    @GetMapping(path = {"/eventos", "/eventos/"})
     public ResponseEntity<List<EventoCalendario>> obterEventosCalendario(
