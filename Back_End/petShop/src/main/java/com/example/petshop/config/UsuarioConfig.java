@@ -15,13 +15,13 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.time.LocalDateTime;
+
+import static com.example.petshop.base.Cargo.*;
 import static java.time.ZoneId.of;
 import java.util.List;
 import java.util.logging.Logger;
 
 import static com.example.petshop.agendamento.Servico.*;
-import static com.example.petshop.base.Cargo.gerente;
-import static com.example.petshop.base.Cargo.recepcionista;
 import static java.time.LocalDate.of;
 import static java.time.Month.*;
 import static java.time.ZoneId.*;
@@ -86,7 +86,7 @@ public class UsuarioConfig {
                     "(62) 984237092",
                     "9XklIxxOsRZ2pe",
                     of(1969, APRIL, 20),
-                    Cargo.auxiliarEstoque,
+                    auxiliarEstoque,
                     15000.00
             );
 
