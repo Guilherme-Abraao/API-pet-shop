@@ -32,6 +32,7 @@ export class FuncionarioService {
       senha: funcionario.senha,
       role: funcionario.role,
       salario: funcionario.salario,
+      cargo: funcionario.cargo,
     };
     const result = this.http.post(url, data);
     return result;
