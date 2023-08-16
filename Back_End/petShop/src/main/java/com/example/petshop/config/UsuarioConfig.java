@@ -1,6 +1,5 @@
 package com.example.petshop.config;
 
-import com.example.petshop.agendamento.AgendamentoRepository;
 import com.example.petshop.agendamento.AgendamentoRequest;
 import com.example.petshop.agendamento.AgendamentoService;
 import com.example.petshop.base.*;
@@ -16,14 +15,16 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.time.LocalDateTime;
+import static java.time.ZoneId.of;
 import java.util.List;
 import java.util.logging.Logger;
 
 import static com.example.petshop.agendamento.Servico.*;
-import static com.example.petshop.base.Cargo.gerentePetshop;
-import static com.example.petshop.base.Cargo.recepcionistaVeterinario;
+import static com.example.petshop.base.Cargo.gerente;
+import static com.example.petshop.base.Cargo.recepcionista;
 import static java.time.LocalDate.of;
 import static java.time.Month.*;
+import static java.time.ZoneId.*;
 
 @Configuration
 public class UsuarioConfig {
@@ -51,8 +52,7 @@ public class UsuarioConfig {
             FuncionarioRepository funcionarioRepository,
             AdministradorRepository administradorRepository,
             AnimalRepository animalRepository,
-            AgendamentoService agendamentoService,
-            AgendamentoRepository agendamentoRepository
+            AgendamentoService agendamentoService
     ) {
         return args -> {
             Administrador clark = new Administrador(
@@ -62,7 +62,7 @@ public class UsuarioConfig {
                     "(62) 3731-6206",
                     "abcder",
                     of(1972, AUGUST, 3),
-                    gerentePetshop,
+                    gerente,
                     10000.00
             );
 
@@ -75,7 +75,7 @@ public class UsuarioConfig {
                     "(62) 22097-8318",
                     "PuZfPjDQo6",
                     of(1995, JULY, 14),
-                    recepcionistaVeterinario,
+                    recepcionista,
                     1045.65
             );
 
@@ -193,7 +193,7 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    LocalDateTime.of(2023, JUNE, 10, 13, 30), // dataHoraStart
+                    LocalDateTime.of(2023, JUNE, 10, 13, 30).atZone(of("America/Sao_Paulo")).toLocalDateTime(), // dataHoraStart
                     bruce.getId(), // clienteId
                     floquinho.getId(), // animalId
                     List.of(hidratacao, unha),
@@ -201,7 +201,7 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFumaca = new AgendamentoRequest(
-                    LocalDateTime.of(2023, JUNE, 10, 14, 30), // dataHoraStart
+                    LocalDateTime.of(2023, JUNE, 10, 14, 30).atZone(of("America/Sao_Paulo")).toLocalDateTime(), // dataHoraStart
                     hector.getId(), // clienteId
                     fumaca.getId(), // animalId
                     List.of(banho, dentes),
@@ -210,7 +210,6 @@ public class UsuarioConfig {
             );
 
             agendamentoService.agendarServicos(List.of(agendarFloquinho, agendarFumaca));
-//            agendamentoService.agendarServicos(agendarFumaca);
 
         };
     }

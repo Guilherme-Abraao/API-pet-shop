@@ -4,13 +4,14 @@ import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.exception.BodyException;
 import com.example.petshop.exception.UserException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.time.ZoneId.of;
 
 @RestController
 @AllArgsConstructor
@@ -62,8 +63,8 @@ public class AgendamentoController {
         EventoCalendario evento = new EventoCalendario();
         evento.setId(agendamento.getId());
         evento.setSubject(agendamento.getAnimal().getNome());
-        evento.setStartTime(agendamento.getDataHoraStart().toString()+":00"+'Z');
-        evento.setEndTime(agendamento.getDataHoraEnd().toString()+":00"+'Z');
+        evento.setStartTime(agendamento.getDataHoraStart().atZone(of("America/Sao_Paulo")).toLocalDateTime());
+        evento.setEndTime(agendamento.getDataHoraEnd().atZone(of("America/Sao_Paulo")).toLocalDateTime());
         evento.setObservacoes("Serviços: " +
             agendamento.getServicos().toString() +
             ", Raça: " + agendamento.getAnimal().getRaca() +
