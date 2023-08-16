@@ -24,11 +24,6 @@ public class ClienteController {
     private final ClienteService clienteService;
     private final AgendamentoService agendamentoService;
 
-//    @Autowired
-//    public ClienteController(ClienteService clienteService) {
-//        this.clienteService = clienteService;
-//    }
-
 //    Encontrar todos os usuários
     @GetMapping
     public ResponseEntity<List<Cliente>> getAllClientes() {
@@ -70,18 +65,6 @@ public class ClienteController {
             throw new RuntimeException(e);
         }
     }
-
-    /*
-    @PostMapping(path = "/{email}/{senha}")
-    public ResponseEntity<Cliente> login(
-            @RequestBody LoginRequest loginRequest,
-            @PathVariable("email") String email,
-            @PathVariable("senha") String senha
-    ) throws UserException {
-        Cliente cliente = clienteService.login(loginRequest.setEmail(email), loginRequest.setSenha(senha));
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
-    }
-    * */
 
 //    Cadastrar um cliente
     @PostMapping(path = "/cadastrarCliente")

@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.time.ZoneId.of;
@@ -20,7 +19,6 @@ import static java.time.ZoneId.of;
 public class AgendamentoController {
 
     private final AgendamentoService agendamentoService;
-    private final AgendamentoRepository agendamentoRepository;
 
     @GetMapping
     public ResponseEntity<List<Agendamento>> getAllAgendamentos() {
@@ -30,7 +28,7 @@ public class AgendamentoController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Agendamento> obterAgendamento(@PathVariable Long id) {
-        Agendamento agendamento = agendamentoService.obterAgendamentoPorId(id);
+        Agendamento agendamento = agendamentoService.getAgendamentoPorId(id);
         return new ResponseEntity<>(agendamento, HttpStatus.OK);
     }
 
@@ -53,7 +51,7 @@ public class AgendamentoController {
    @GetMapping(path = {"/eventos", "/eventos/"})
    public ResponseEntity<List<EventoCalendario>> obterEventosCalendario() {
 
-        List<EventoCalendario> eventosCalendario = agendamentoService.obterEventosCalendario();
+        List<EventoCalendario> eventosCalendario = agendamentoService.getEventosCalendario();
 
         return ResponseEntity.ok(eventosCalendario);
   }
