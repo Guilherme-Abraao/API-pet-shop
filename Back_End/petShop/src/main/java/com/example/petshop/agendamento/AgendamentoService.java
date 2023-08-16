@@ -5,7 +5,6 @@ import com.example.petshop.base.Cliente;
 import com.example.petshop.base.EventoCalendario;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.exception.AgendamentoException;
-import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.AnimalRepository;
 import com.example.petshop.repository.ClienteRepository;
 import com.example.petshop.repository.FuncionarioRepository;
@@ -40,8 +39,14 @@ public class AgendamentoService {
             EventoCalendario evento = new EventoCalendario();
             evento.setId(agendamento.getId());
             evento.setSubject(agendamento.getAnimal().getNome());
-            evento.setStartTime(agendamento.getDataHoraStart().atZone(of("America/Sao_Paulo")).toLocalDateTime());
-            evento.setEndTime(agendamento.getDataHoraEnd().atZone(of("America/Sao_Paulo")).toLocalDateTime());
+            evento.setStartTime(agendamento.getDataHoraStart()
+                    .atZone(of("America/Sao_Paulo"))
+                    .toLocalDateTime()
+            );
+            evento.setEndTime(agendamento.getDataHoraEnd()
+                    .atZone(of("America/Sao_Paulo"))
+                    .toLocalDateTime()
+            );
             evento.setObservacoes("Serviços: " +
                     agendamento.getServicos().toString() +
                     ", Raça: " + agendamento.getAnimal().getRaca() +
@@ -82,7 +87,7 @@ public class AgendamentoService {
 
     public List<Agendamento> agendarServicos(
             List<AgendamentoRequest> requests
-    ) throws UserException {
+    ) {
         List<Agendamento> agendamentos = new ArrayList<>();
 
         for (AgendamentoRequest request : requests) {

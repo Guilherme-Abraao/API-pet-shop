@@ -3,6 +3,7 @@ package com.example.petshop.controller;
 import com.example.petshop.base.Funcionario;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
+import com.example.petshop.exception.UserNotFoundException;
 import com.example.petshop.service.FuncionarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class FuncionarioController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Funcionario> getFuncionarioById(
             @PathVariable("id") Long id
-    ) throws UserException {
+    ) throws UserNotFoundException {
         Funcionario Funcionario = funcionarioService.findFuncionarioById(id);
         return new ResponseEntity<>(Funcionario, HttpStatus.OK);
     }
@@ -59,7 +60,7 @@ public class FuncionarioController {
     @DeleteMapping(path = "/{funcionarioId}")
     public ResponseEntity<Funcionario> deleteFuncionario(
             @PathVariable("funcionarioId") Long FuncionarioId
-    ) throws UserException {
+    ) throws UserNotFoundException {
         funcionarioService.deleteFuncionario(FuncionarioId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -68,7 +69,7 @@ public class FuncionarioController {
     public ResponseEntity<Funcionario> atualizarFuncionario(
             @PathVariable("funcionarioId") Long funcionarioId,
             @RequestBody RegisterRequest registerRequest
-    ) throws UserException {
+    ) throws UserNotFoundException, UserException {
         Funcionario novoFuncionario = funcionarioService.atualizarFuncionario(funcionarioId, registerRequest);
         return new ResponseEntity<>(novoFuncionario, HttpStatus.OK);
     }

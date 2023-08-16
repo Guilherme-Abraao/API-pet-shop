@@ -38,7 +38,7 @@ export class NewClientComponent implements OnInit{
     )
     .subscribe(() => {
       this.messagemService.add('Cadastro realizado com sucesso!');
-      this.router.navigate(['/login']);
+      this.router.navigate(['']);
     });
   }
 

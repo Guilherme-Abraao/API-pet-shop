@@ -50,7 +50,7 @@
 
     <div class="form-group">
       <label class="labels">Funcionário: </label>
-      <input type="input" formControlName="funcionario" readonly />
+      <input type="input" formControlName="funcionario" [value]="cliente.animais[i].agendamentos[j].funcionarioNome" readonly />
     </div>
 
     <div class="botoes">

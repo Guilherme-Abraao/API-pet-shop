@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Cliente } from '../interfaces/Cliente';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { MensagemService } from 'src/app/services/mensagem.service';
 
 @Component({
   selector: 'app-animal-view',
@@ -11,7 +12,7 @@ export class AnimalViewComponent {
 
   @Input() cliente!: Cliente;
 
-  constructor(private usuarioService: UsuarioService){ }
+  constructor(private usuarioService: UsuarioService,  private messagemService: MensagemService){ }
 
   ngOnInit(): void {
     
@@ -20,12 +21,13 @@ export class AnimalViewComponent {
   excluirAnimal(idAnimal: number){
     this.usuarioService.deleteAnimal(this.cliente, idAnimal).subscribe(
       (response) => {
-        // Aqui você pode lidar com a resposta da API, se necessário
-        console.log('Animal excluído com sucesso:', response);
+        // Remova o animal excluído da lista
+        this.cliente.animais = this.cliente.animais.filter(animal => animal.id !== idAnimal);
+  
+        this.messagemService.add('Animal excluído com sucesso. ');
       },
       (error) => {
-        // Lida com erros da chamada à API
-        console.error('Erro ao excluir animal:', error);
+        this.messagemService.add('Erro ao tentar excluir. ');
       }
     );
   }

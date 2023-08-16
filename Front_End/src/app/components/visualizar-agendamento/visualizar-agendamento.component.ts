@@ -1,7 +1,9 @@
+import { Funcionario } from './../interfaces/Funcionario';
 import { Component } from '@angular/core';
 import { Cliente } from '../interfaces/Cliente';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { FuncionarioService } from 'src/app/services/funcionario.service';
 
 @Component({
   selector: 'app-visualizar-agendamento',
@@ -11,9 +13,10 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class VisualizarAgendamentoComponent {
   
   cliente!: Cliente;
+  funcionario!: Funcionario; 
   jsonData: any;
 
-  constructor(private usuarioService: UsuarioService, private route: ActivatedRoute){}
+  constructor(private usuarioService: UsuarioService, private route: ActivatedRoute, private funcionarioService: FuncionarioService){}
 
 
   ngOnInit(): void {
@@ -26,6 +29,5 @@ export class VisualizarAgendamentoComponent {
         this.cliente = this.jsonData;
       });
     } 
-
   }
 }

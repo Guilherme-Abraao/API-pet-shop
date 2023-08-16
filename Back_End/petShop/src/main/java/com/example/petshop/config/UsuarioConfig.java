@@ -193,7 +193,9 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFloquinho = new AgendamentoRequest(
-                    LocalDateTime.of(2023, JUNE, 10, 13, 30).atZone(of("America/Sao_Paulo")).toLocalDateTime(), // dataHoraStart
+                    LocalDateTime.of(2023, JUNE, 10, 13, 30)
+                            .atZone(of("America/Sao_Paulo"))
+                            .toLocalDateTime(), // dataHoraStart
                     bruce.getId(), // clienteId
                     floquinho.getId(), // animalId
                     List.of(hidratacao, unha),
@@ -201,7 +203,9 @@ public class UsuarioConfig {
             );
 
             AgendamentoRequest agendarFumaca = new AgendamentoRequest(
-                    LocalDateTime.of(2023, JUNE, 10, 14, 30).atZone(of("America/Sao_Paulo")).toLocalDateTime(), // dataHoraStart
+                    LocalDateTime.of(2023, JUNE, 10, 14, 30)
+                            .atZone(of("America/Sao_Paulo"))
+                            .toLocalDateTime(), // dataHoraStart
                     hector.getId(), // clienteId
                     fumaca.getId(), // animalId
                     List.of(banho, dentes),

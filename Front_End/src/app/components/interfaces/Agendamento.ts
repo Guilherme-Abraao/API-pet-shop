@@ -9,5 +9,6 @@ export interface Agendamento {
     servicos: Servico[];
     observacoes: string;
     funcionarioId: number;
+    funcionarioNome: string;
 }
 
