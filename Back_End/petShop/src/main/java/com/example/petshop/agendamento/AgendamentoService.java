@@ -43,7 +43,7 @@ public class AgendamentoService {
                     .atZone(of("America/Sao_Paulo"))
                     .toLocalDateTime()
             );
-            evento.setEndTime(agendamento.getDataHoraEnd()
+            evento.setEndTime(agendamento.getDataHoraEnd(agendamento)
                     .atZone(of("America/Sao_Paulo"))
                     .toLocalDateTime()
             );
