@@ -11,7 +11,7 @@ import { Funcionario } from '../../interfaces/Funcionario';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit{
-  /* Passar o cliente2 para o componente client-form-column */
+  /* Passar o cliente2 e o funcionario2 para os componentes client-form-column e funcionario-form-column */
   @Output() cliente2!: Cliente;
   @Output() funcionario2!: Funcionario;
 

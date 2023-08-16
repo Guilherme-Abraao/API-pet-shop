@@ -43,6 +43,22 @@ export class FuncionarioService {
     return this.http.get<Response<Funcionario>>(url);
   }
 
+  updateFuncionario(funcionario: any): Observable<any>{
+
+    const url = `${this.apiUrl}/${funcionario.id}`;
+
+    const data = {
+      nome: funcionario.nome,
+      cpf: funcionario.cpf,
+      dataNascimento: funcionario.dataNascimento,
+      telefone: funcionario.telefone,
+      email: funcionario.email,
+      senha: funcionario.senha,
+    };
+    const result = this.http.put(url, data);
+    return result;
+  }
+
    /* Pegar um Funcionario no sistema pelo email e senha */
    getFuncionarioLogin(email: string, senha: string): Observable<Response<Funcionario>> {
     const url = `${this.apiUrl}/${email}/${senha}`;

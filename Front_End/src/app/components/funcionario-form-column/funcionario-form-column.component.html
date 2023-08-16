@@ -1,4 +1,4 @@
-<form *ngIf="cliente" [formGroup]="clienteForm">
+<form *ngIf="funcionario" [formGroup]="funcionarioForm">
 
   <h2> {{ titulo }}  </h2>
 
@@ -6,34 +6,34 @@
     <div class="column1">
       <div class="form-group">
         <label class="labels"> Nome: </label>
-        <input class="dados" type="text" value="{{ cliente.nome }}" formControlName="nome" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ funcionario.nome }}" formControlName="nome" [readonly]="!isEditing">
       </div>
 
       <div class="form-group">
         <label class="labels"> CPF: </label>
-        <input class="dados" type="text" value="{{ cliente.cpf }}" formControlName="cpf" readonly>
+        <input class="dados" type="text" value="{{ funcionario.cpf }}" formControlName="cpf" readonly>
       </div>
 
       <div class="form-group">
         <label class="labels"> Data de Nascimento: </label>
-        <input class="dados" type="text" value="{{ cliente.dataNascimento }}" formControlName="dataNascimento" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ funcionario.dataNascimento }}" formControlName="dataNascimento" [readonly]="!isEditing">
       </div>
     </div>
 
     <div class="column2">
       <div class="form-group">
         <label class="labels"> Telefone: </label>
-        <input class="dados" type="text" value="{{ cliente.telefone }}" formControlName="telefone" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ funcionario.telefone }}" formControlName="telefone" [readonly]="!isEditing">
       </div>
 
       <div class="form-group">
         <label class="labels"> E-mail: </label>
-        <input class="dados" type="text" value="{{ cliente.email }}" formControlName="email" [readonly]="!isEditing">
+        <input class="dados" type="text" value="{{ funcionario.email }}" formControlName="email" [readonly]="!isEditing">
       </div>
 
       <div class="form-group">
         <label class="labels"> Senha: </label>
-        <input class="dados"type="text" value="{{ cliente.senha }}" formControlName="senha" [readonly]="!isEditing">
+        <input class="dados"type="text" value="{{ funcionario.senha }}" formControlName="senha" [readonly]="!isEditing">
       </div>
     </div>
   </div>
