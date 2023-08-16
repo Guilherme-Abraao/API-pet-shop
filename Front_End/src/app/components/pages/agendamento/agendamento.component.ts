@@ -53,7 +53,7 @@ export class AgendamentoComponent {
       unha: new FormControl(''),
       dentes: new FormControl(''),
 
-      observacoes: new FormControl('', [Validators.required]),
+      observacoes: new FormControl(''),
     });
 
     this.agendamentoForm.patchValue({
