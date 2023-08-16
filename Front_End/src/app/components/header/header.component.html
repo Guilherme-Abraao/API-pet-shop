@@ -13,7 +13,7 @@
         </div>
 
         <div *ngIf="funcionario && validarAdministrador()">
-            <li><a [routerLink]="['/funcionario']">Novo Fncionário</a></li>
+            <li><a [routerLink]="['/funcionario']">Novo Funcionário</a></li>
         </div>
 
         <div *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
@@ -29,7 +29,7 @@
         </div>
 
         <div *ngIf="(funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
-            <li><a [routerLink]="['/tabela-agendamentos']">Tabela de agendamentos</a></li> <!--temporário-->
+            <li><a [routerLink]="['/tabela-agendamentos']">Tabela de agendamentos</a></li>
         </div>
 
         <div (click)="logout()" *ngIf="(cliente && validarCliente()) || (funcionario && validarFuncionario()) || (funcionario && validarAdministrador())">
