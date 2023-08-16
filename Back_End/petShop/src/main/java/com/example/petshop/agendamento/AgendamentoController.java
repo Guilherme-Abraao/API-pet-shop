@@ -31,7 +31,7 @@ public class AgendamentoController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Agendamento> obterAgendamento(@PathVariable Long id) {
         Agendamento agendamento = agendamentoService.obterAgendamentoPorId(id);
-        return ResponseEntity.ok(agendamento);
+        return new ResponseEntity<>(agendamento, HttpStatus.OK);
     }
 
     @PostMapping(path = "/agendar")
@@ -51,31 +51,11 @@ public class AgendamentoController {
     }
 
    @GetMapping(path = {"/eventos", "/eventos/"})
-    public ResponseEntity<List<EventoCalendario>> obterEventosCalendario(
-) {
+   public ResponseEntity<List<EventoCalendario>> obterEventosCalendario() {
 
-    List<Agendamento> agendamentos;
-    agendamentos = agendamentoRepository.findAll();
+        List<EventoCalendario> eventosCalendario = agendamentoService.obterEventosCalendario();
 
-    List<EventoCalendario> eventosCalendario = new ArrayList<>();
-
-    for (Agendamento agendamento : agendamentos) {
-        EventoCalendario evento = new EventoCalendario();
-        evento.setId(agendamento.getId());
-        evento.setSubject(agendamento.getAnimal().getNome());
-        evento.setStartTime(agendamento.getDataHoraStart().atZone(of("America/Sao_Paulo")).toLocalDateTime());
-        evento.setEndTime(agendamento.getDataHoraEnd().atZone(of("America/Sao_Paulo")).toLocalDateTime());
-        evento.setObservacoes("Serviços: " +
-            agendamento.getServicos().toString() +
-            ", Raça: " + agendamento.getAnimal().getRaca() +
-            ", Funcionário: " + agendamento.getFuncionario().getNome() +
-            ", Objetos deixados e outras informações: " +
-            agendamento.getObservacoes());
-
-        eventosCalendario.add(evento);
-    }
-
-    return ResponseEntity.ok(eventosCalendario);
+        return ResponseEntity.ok(eventosCalendario);
   }
   
 }
