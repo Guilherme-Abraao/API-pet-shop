@@ -63,7 +63,7 @@ export class UsuarioService {
 
   /* Deletar um animal de cliente */
   deleteAnimal(cliente: Cliente, idAnimal: number): Observable<any>{
-    const url = `${this.apiUrl}/${cliente.id}/${idAnimal}`;
+    const url = `${this.baseApiUrl}/animal/deletarAnimal/${idAnimal}`;
     const result =  this.http.delete<Response<Cliente>>(url);
     return result;
   }
