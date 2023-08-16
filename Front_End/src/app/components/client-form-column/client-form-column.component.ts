@@ -16,7 +16,6 @@ export class ClientFormColumnComponent implements OnChanges {
   @Input() btnText!: string;
   @Input() titulo!: string;
   @Input() cliente!: Cliente;
-  @Input() funcionario!: Funcionario;
 
   isEditing = false;
   clienteForm!: FormGroup;
@@ -55,10 +54,10 @@ export class ClientFormColumnComponent implements OnChanges {
         senha: this.clienteForm.get('senha')?.value
       };
 
-      this.cliente.nome = novosValores.nome; 
-      this.cliente.dataNascimento = novosValores.dataNascimento; 
-      this.cliente.telefone = novosValores.telefone; 
-      this.cliente.email = novosValores.email; 
+      this.cliente.nome = novosValores.nome;
+      this.cliente.dataNascimento = novosValores.dataNascimento;
+      this.cliente.telefone = novosValores.telefone;
+      this.cliente.email = novosValores.email;
       this.cliente.senha = novosValores.senha;
 
       this.usuarioService.updateCliente(this.cliente)

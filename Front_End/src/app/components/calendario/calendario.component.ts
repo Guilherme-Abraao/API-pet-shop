@@ -17,7 +17,7 @@ export class CalendarioComponent implements OnInit {
   title = 'tabela-agendamentos';
   //formatos de data e horário do calendário
   public dateFormat: string = 'yyyy-MM-dd';
-  public timeFormat: string = 'HH:mm:ss';
+  public timeFormat: string = 'HH:mm';
   public timeScaleModel = {enable: true, interval: 30, slotCount: 2};
 
    // Adaptador OData
