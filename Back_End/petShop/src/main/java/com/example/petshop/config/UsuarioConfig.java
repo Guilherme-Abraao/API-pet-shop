@@ -70,10 +70,10 @@ public class UsuarioConfig {
 
             Funcionario barry = new Funcionario(
                     "Barry",
-                    "barry.allen@gmail.com",
+                    "barry@gmail.com",
                     "14180500086",
                     "(62) 22097-8318",
-                    "PuZfPjDQo6",
+                    "teste",
                     of(1995, JULY, 14),
                     recepcionista,
                     1045.65
@@ -94,10 +94,10 @@ public class UsuarioConfig {
 
             Cliente bruce = new Cliente(
                     "Bruce",
-                    "bruce.wayne@gmail.com",
+                    "bruce@gmail.com",
                     "71561133051",
                     "(11) 42852-9122",
-                    "1l5O0mb4AN",
+                    "teste",
                     of(2000, JANUARY, 25)
             );
 

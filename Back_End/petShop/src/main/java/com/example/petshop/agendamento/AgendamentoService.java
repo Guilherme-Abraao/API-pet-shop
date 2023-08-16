@@ -36,6 +36,7 @@ public class AgendamentoService {
         List<EventoCalendario> eventosCalendario = new ArrayList<>();
 
         for (Agendamento agendamento : agendamentos) {
+            int tempoExtra = agendamento.getServicos().size() * 20;
             EventoCalendario evento = new EventoCalendario();
             evento.setId(agendamento.getId());
             evento.setSubject(agendamento.getAnimal().getNome());
@@ -43,10 +44,10 @@ public class AgendamentoService {
                     .atZone(of("America/Sao_Paulo"))
                     .toLocalDateTime()
             );
-            evento.setEndTime(agendamento.getDataHoraEnd(agendamento)
+            evento.setEndTime((agendamento.getDataHoraStart().plusMinutes(tempoExtra))
                     .atZone(of("America/Sao_Paulo"))
-                    .toLocalDateTime()
-            );
+                    .toLocalDateTime());
+//            );
             evento.setObservacoes("Serviços: " +
                     agendamento.getServicos().toString() +
                     ", Raça: " + agendamento.getAnimal().getRaca() +
