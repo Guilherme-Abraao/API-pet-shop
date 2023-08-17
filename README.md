@@ -69,7 +69,11 @@ Java (Spring Boot)
 Banco de dados relacional (PostgreSQL)
 
 ### Local do _Deploy_
-Heroku
+Deploy foi feito na AWS e Railway
+
+Nossa API foi construída em angular(front), java(back) e necessitamos de um banco de dados para o armazenamento e persistência das informações. Dessa forma, na AWS hospedamos o front e o back, usando a EC2 em conjunto com a S3, já nosso banco de dados PostgreSQL foi hospedado na Railway.\
+Segue o link para a vizualização do site: [Cerberus Paw](http://fpscs.s3-website-us-east-1.amazonaws.com/)
+____
 
 ![Checklist banho e tosa](./imagens/checklist.png)
 
