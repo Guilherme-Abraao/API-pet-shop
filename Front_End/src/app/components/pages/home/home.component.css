@@ -10,6 +10,7 @@ h2 {
   bottom: 0.8em;
   src: url("src/assets/fonts/Poppins-Bold.ttf") format("truetype");
   position: relative;
+  line-height: 1.3em;
 }
 h3 {
   font-style: italic;
@@ -47,6 +48,6 @@ h3 {
   width: 35em;
   height: 36em;
   margin-left: 33.75em;
-  bottom: 36.5em;
+  bottom: 37.8em;
   position: relative;
 }

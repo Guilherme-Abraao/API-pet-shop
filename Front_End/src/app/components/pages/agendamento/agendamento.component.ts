@@ -7,6 +7,8 @@ import { AgendamentoService } from 'src/app/services/agendamento.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Cliente } from '../../interfaces/Cliente';
+import { Servico } from '../../interfaces/Servico';
+import { AnimalService } from 'src/app/services/animal.service';
 
 @Component({
   selector: 'app-agendamento',
@@ -18,23 +20,25 @@ export class AgendamentoComponent {
   /* FormGroup do formulario */
   agendamentoForm!: FormGroup;
 
-  /* Um cliente do tipo cliente para pegar os dados do Login,json para auxiliar */
-  cliente?: Cliente; 
+  /* Um cliente do tipo cliente para pegar os dados do Login, json para auxiliar */
+  cliente?: Cliente;
   jsonData: any;
-  Animais:string[]=['']; 
+  Animais:string[]=[''];
 
   /* Construtor chamando os serviços */
   constructor(private agendamentoService: AgendamentoService,
     private http: HttpClient,
     private messagemService: MensagemService,
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private animalService: AnimalService,
     ) {}
 
   /* Inicialização do formulário */
   ngOnInit(): void {
     this.agendamentoForm = new FormGroup({
-      dataAgendamento: new FormControl('', [Validators.required]),
+
+      dataHoraStart: new FormControl('', [Validators.required]),
       horario: new FormControl('', [Validators.required]),
       animal: new FormControl('', [Validators.required]),
 
@@ -49,7 +53,11 @@ export class AgendamentoComponent {
       unha: new FormControl(''),
       dentes: new FormControl(''),
 
-      obs: new FormControl('', [Validators.required]),
+      observacoes: new FormControl(''),
+    });
+
+    this.agendamentoForm.patchValue({
+      dataHoraStart: new Date().toISOString(),
     });
 
     /* Pegar dados de quem fez login no sistema e armazenando em cliente*/
@@ -58,8 +66,6 @@ export class AgendamentoComponent {
 
       this.jsonData = item;
       this.cliente = this.jsonData;
-
-      
     });
   }
 
@@ -71,32 +77,41 @@ export class AgendamentoComponent {
 
     /* Criando um FormData com o formulário completo válidado*/
       if (this.agendamentoForm.valid) {
+
+        const servicosSelecionados: Servico [] = [];
+        
+        const dataAgendamento = this.agendamentoForm.value.dataHoraStart.split('T')[0];
+        const horaAgendamento = this.agendamentoForm.value.horario;
+        const dataHoraStart = `${dataAgendamento}T${horaAgendamento}`;
+
+        if (this.agendamentoForm.value.banho) servicosSelecionados.push(0);
+        if (this.agendamentoForm.value.hidratacao) servicosSelecionados.push(1);
+        if (this.agendamentoForm.value.desembolo) servicosSelecionados.push(2);
+        if (this.agendamentoForm.value.tosaHigienica) servicosSelecionados.push(3);
+        if (this.agendamentoForm.value.tosaGeral) servicosSelecionados.push(4);
+        if (this.agendamentoForm.value.tosaBaixa) servicosSelecionados.push(5);
+        if (this.agendamentoForm.value.tosaAlta) servicosSelecionados.push(6);
+        if (this.agendamentoForm.value.tosaTesoura) servicosSelecionados.push(7);
+        if (this.agendamentoForm.value.unha) servicosSelecionados.push(8);
+        if (this.agendamentoForm.value.dentes) servicosSelecionados.push(9);
+
+        if (this.cliente) {
+          
         const formData = {
-          dataAgendamento: this.agendamentoForm.value.dataAgendamento,
-          horario: this.agendamentoForm.value.horario,
-          animal: this.agendamentoForm.value.animal,
-
-          banho: this.agendamentoForm.value.banho,
-          hidratacao: this.agendamentoForm.value.hidratacao,
-          desembolo: this.agendamentoForm.value.desembolo,
-          tosaHigienica: this.agendamentoForm.value.tosaHigienica,
-          tosaGeral: this.agendamentoForm.value.tosaGeral,
-          tosaBaixa: this.agendamentoForm.value.tosaBaixa,
-          tosaAlta: this.agendamentoForm.value.tosaAlta,
-          tosaTesoura: this.agendamentoForm.value.tosaTesoura,
-          unha: this.agendamentoForm.value.unha,
-          dentes: this.agendamentoForm.value.dentes,
-
-          obs: this.agendamentoForm.value.obs,
+          dataHoraStart: dataHoraStart,
+          servicos: servicosSelecionados,
+          observacoes: this.agendamentoForm.value.observacoes,
+          clienteId: this.cliente?.id,
+          animalId: this.animalService.getAnimalId(this.cliente, this.agendamentoForm.value.animal),
+          funcionarioId: 2, // Passando um id fixo por enquanto pois o cliente não escolhe, o back que irá selecionar aleatoriamente
         };
-  
-        /* Mudando tipo de dado para JSON */
-        const jsonData = JSON.stringify(this.agendamentoForm.value);
+      
 
-        console.log(jsonData);
+        // /* Mudando tipo de dado para JSON */
+        const jsonData = JSON.stringify(formData);
 
         /* Enviando cliente para o Service */
-        this.agendamentoService.createAgendamento(jsonData)
+        this.agendamentoService.createAgendamento(formData)
         .pipe(
           catchError((error) => {
             this.messagemService.add('Erro ao agendar: ' + error.error.message);
@@ -105,9 +120,8 @@ export class AgendamentoComponent {
         )
         .subscribe(() => {
           this.messagemService.add('Agendamento realizado com sucesso! ');
-          this.router.navigate(['/home']);
         });
       }
   }
-
+}
 }

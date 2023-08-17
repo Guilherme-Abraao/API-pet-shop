@@ -1,0 +1,43 @@
+
+<form [formGroup]="funcForm" (ngSubmit)="submit()" #formDir="ngForm">
+    <h2> {{ "Editar perfil" }}  </h2>
+  
+    <div class="linha">
+      <div class="column1">
+        <div class="form-group">
+          <label class="labels"> Nome: </label>
+          <input class="dados" type="text" formControlName="nome">
+        </div>
+  
+        <div class="form-group">
+          <label class="labels"> CPF: </label>
+          <input class="dados" type="text" formControlName="cpf">
+        </div>
+  
+        <div class="form-group">
+          <label class="labels"> Data de Nascimento: </label>
+          <input class="dados" type="date" formControlName="dataNascimento">
+        </div>
+      </div>
+  
+      <div class="column2">
+        <div class="form-group">
+          <label class="labels"> Telefone: </label>
+          <input class="dados" type="text" formControlName="telefone">
+        </div>
+  
+        <div class="form-group">
+          <label class="labels"> E-mail: </label>
+          <input class="dados" type="text"  formControlName="email">
+        </div>
+  
+        <div class="form-group">
+          <label class="labels"> Senha: </label>
+          <input class="dados"type="text" formControlName="senha">
+        </div>
+      </div>
+    </div>
+  
+      <input type="submit" value="Enviar" />
+  
+  </form>

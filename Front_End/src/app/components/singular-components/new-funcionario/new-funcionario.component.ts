@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Funcionario } from '../../interfaces/Funcionario';
 import { MensagemService } from 'src/app/services/mensagem.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
-import { Cliente } from '../../interfaces/Cliente';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-new-funcionario',
@@ -31,13 +30,17 @@ export class NewFuncionarioComponent implements OnInit {
      const jsonData = JSON.stringify(funcionario);
  
      /* Enviando funcionario para o Service */
-     await this.funcionarioService.createFuncionario(funcionario).subscribe();
-   
-     /* Mensagem de retorno do sistema */
-     this.messagemService.add('Cadastro realizado com sucesso!');
- 
-     /* Redirect */
-     this.router.navigate(['/login']);
+     this.funcionarioService.createFuncionario(funcionario)
+    .pipe(
+      catchError((error) => {
+        this.messagemService.add('Erro ao criar o funcionário: ' + error.error.message);
+        throw error;
+      })
+    )
+    .subscribe(() => {
+      this.messagemService.add('Cadastro realizado com sucesso!');
+      this.router.navigate(['/perfil']);
+    });
    }
  
 }

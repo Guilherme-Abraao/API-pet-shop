@@ -70,7 +70,6 @@ public class AnimalService {
         animalRepository.deleteById(animalId);
     }
 
-   //Falta realizar testes com esse método
     @Transactional
     public Animal atualizarAnimal(
             Long animalId,
@@ -86,8 +85,6 @@ public class AnimalService {
         LocalDate dataNascimento = animalRequest.getDataNascimento();
         String raca = animalRequest.getRaca();
         String especie = animalRequest.getEspecie();
-        Cliente cliente = animalRequest.getCliente();
-
 
         if (nome != null &&
                 clienteId != null &&
@@ -113,15 +110,6 @@ public class AnimalService {
             animal.setEspecie(especie);
         }
 
-        if (cliente != null &&
-                clienteId != null &&
-                !Objects.equals(animal.getCliente(), cliente)) {
-            Optional<Cliente> clienteOptional = clienteRepository.findById(clienteId);
-            if (clienteOptional.isPresent()) {
-                throw new IllegalStateException("Cliente já está vinculado ao seu animal");
-            }
-            animal.setCliente(cliente);
-        }
         return animalRepository.save(animal);
     }
 

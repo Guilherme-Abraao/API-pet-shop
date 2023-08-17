@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
-import static com.example.petshop.base.Role.USER;
-
 @DataJpaTest
 class ClienteRepositoryTest {
 
@@ -26,7 +24,7 @@ class ClienteRepositoryTest {
     }
 
     @Test
-    void TestfindClienteByEmail() {
+    void TestFindClienteByEmail() {
 
         String email = "barry.allen@gmail.com";
 

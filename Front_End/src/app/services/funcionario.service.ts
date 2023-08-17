@@ -22,6 +22,7 @@ export class FuncionarioService {
 
   /* Criar Funcionario no sistema */
   createFuncionario(funcionario: any): Observable<any>{
+    const url = `${this.apiUrl}/cadastrarFuncionario`;
     const data = {
       nome: funcionario.nome,
       cpf: funcionario.cpf,
@@ -31,8 +32,9 @@ export class FuncionarioService {
       senha: funcionario.senha,
       role: funcionario.role,
       salario: funcionario.salario,
+      cargo: funcionario.cargo,
     };
-    const result = this.http.post(this.apiUrl, data);
+    const result = this.http.post(url, data);
     return result;
   }
 
@@ -42,4 +44,36 @@ export class FuncionarioService {
     return this.http.get<Response<Funcionario>>(url);
   }
 
+  updateFuncionario(funcionario: any): Observable<any>{
+
+    const url = `${this.apiUrl}/${funcionario.id}`;
+
+    const data = {
+      nome: funcionario.nome,
+      cpf: funcionario.cpf,
+      dataNascimento: funcionario.dataNascimento,
+      telefone: funcionario.telefone,
+      email: funcionario.email,
+      senha: funcionario.senha,
+    };
+    const result = this.http.put(url, data);
+    return result;
+  }
+
+   /* Pegar um Funcionario no sistema pelo email e senha */
+   getFuncionarioLogin(email: string, senha: string): Observable<Response<Funcionario>> {
+    const url = `${this.apiUrl}/${email}/${senha}`;
+    return this.http.get<Response<Funcionario>>(url);
+  }
+
+    /* Armazenar o ID do funcionário para Navegar com os dados dele*/
+    private funcionarioId: number=0;
+
+    setFuncionarioId(id: number) {
+      this.funcionarioId = id;
+    }
+  
+    getFuncionarioId() {
+      return this.funcionarioId;
+    }
 }

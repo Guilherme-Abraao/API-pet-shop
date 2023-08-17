@@ -1,7 +1,9 @@
 package com.example.petshop.base;
 
 import com.example.petshop.agendamento.Agendamento;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -33,28 +35,31 @@ public class Animal {
     @Column(name = "id")
     private Long id;
 
-    @NotBlank(message = "name.not.blank")
+    @NotBlank(message = "{name.not.blank}")
     @Column(name = "nome")
     private String nome;
 
-    @NotNull
-    @Column(name = "idade")
-    @Transient
-    private int idade;
-
+    @NotNull(message = "{dataNascimento.not.null}")
     private LocalDate dataNascimento;
 
+    @NotBlank(message = "{raca.not.blank}")
     private String raca;
+
+    @NotBlank(message = "{especie.not.blank}")
     private String especie;
 
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(
             name = "cliente_id"
     )
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "animal")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "animal"
+    )
+    @JsonManagedReference
     private List<Agendamento> agendamentos;
 
     public Animal(String nome, LocalDate dataNascimento, String especie, String raca, Cliente cliente) {
@@ -67,5 +72,15 @@ public class Animal {
 
     public int getIdade() {
         return Period.between(this.dataNascimento, LocalDate.now()).getYears();
+    }
+
+    @JsonProperty("clienteId")
+    public Long getClienteId() {
+        return cliente.getId();
+    }
+
+    @JsonProperty("clienteNome")
+    public String getClienteNome() {
+        return cliente.getNome();
     }
 }

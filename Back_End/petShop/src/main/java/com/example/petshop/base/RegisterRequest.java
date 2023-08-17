@@ -12,6 +12,17 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
+    /*@Id
+    @SequenceGenerator(
+            name = "register_sequence",
+            sequenceName = "register_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "register_sequence"
+    )
+    private Long id;*/
     private String nome;
     private String email;
     private String cpf;

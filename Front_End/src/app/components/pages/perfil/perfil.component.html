@@ -1,9 +1,22 @@
-<app-client-form-column
+<app-client-form-column *ngIf="this.cliente"
     [btnText]="btnText"
     [titulo]="titulo"
     [cliente]="cliente"
     >
 </app-client-form-column>
+
+<app-funcionario-form-column *ngIf="this.funcionario"
+    [btnText]="btnText"
+    [titulo]="titulo"
+    [funcionario]="funcionario"
+>
+</app-funcionario-form-column>
+
+<app-animal-view [cliente]="cliente">
+
+</app-animal-view>
+
+
 
 
 

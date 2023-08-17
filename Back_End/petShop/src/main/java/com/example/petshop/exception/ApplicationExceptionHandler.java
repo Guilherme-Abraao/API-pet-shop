@@ -29,14 +29,13 @@ public class ApplicationExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    /*@ExceptionHandler(value = {BodyException.class})
-    public ResponseEntity<Object> handleBodyException(BodyException ex) {
-
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("message", ex.getMessage());
-        body.put("status", HttpStatus.BAD_REQUEST);
+        body.put("status", HttpStatus.NOT_FOUND);
 
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
-    }*/
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
 
 }

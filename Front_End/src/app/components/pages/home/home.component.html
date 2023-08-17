@@ -13,7 +13,7 @@ body {
 #box1 {
 	width:84em;
 	height:37.5em;
-	margin:2.5em;
+	margin: 2.5em 0em 2.5em 5.7em;
 	padding:0.5em;
 }
 
@@ -38,7 +38,7 @@ h2, p  {
 <div id="box1">
 	<h2>O melhor <br> cuidado <br> para seu <br> <div id = "t1"> melhor amigo</div></h2>
     <h3>está esperando o que para fazer seu pet mais <br> feliz? Aqui você encontra o cuidado que seu <br> pet merece.</h3>
-    <input type="submit" value="Agendar serviço" id="agendar" />
+    <input [routerLink]="['/agendamento']" type="submit" value="Agendar serviço" id="agendar" />
     <img src="/assets/images/corgi.png" alt="image" class="dog-home"/>
 </div>
 </body>

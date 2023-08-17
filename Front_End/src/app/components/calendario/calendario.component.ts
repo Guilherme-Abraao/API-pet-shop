@@ -1,74 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService, AgendaService, ResizeService, DragAndDropService, WorkHoursModel } from '@syncfusion/ej2-angular-schedule';
+import { DataManager, ODataV4Adaptor  } from '@syncfusion/ej2-data';
 
 @Component({
   selector: 'app-calendario',
   providers: [DayService, WeekService, WorkWeekService, MonthService, AgendaService, ResizeService, DragAndDropService],
   //template de calendário
-  template: `<ejs-schedule width='100%' height='550px' [timeFormat]="timeFormat"[eventSettings]="eventSettings" [dateFormat]="dateFormat" startHour='08:00' endHour='18:00'> </ejs-schedule>`,
-
+  template: `<ejs-schedule width='100%' height='550px' [readonly]=true [timeFormat]="timeFormat"[eventSettings]="eventSettings" [dateFormat]="dateFormat" startHour='08:00' endHour='18:00'> </ejs-schedule>`,
 })
-export class CalendarioComponent {
+
+export class CalendarioComponent implements OnInit {
+
+  ngOnInit(): void {
+  }
 
   title = 'tabela-agendamentos';
   //formatos de data e horário do calendário
-  public dateFormat: string = "dd/MM/yyyy";
-  public timeFormat: string = "HH:mm";
+  public dateFormat: string = 'yyyy-MM-dd';
+  public timeFormat: string = 'HH:mm';
   public timeScaleModel = {enable: true, interval: 30, slotCount: 2};
-  
-  //cria um array de objetos que será lido pelo EventSettings para gerar os Appointments, como nos exemplos abaixo
-  public data: object[] = [
-    {
-      //nome do animal como título (subject)
-      Subject: 'Peter',
-      //new Date(Ano, Mês (0 ao 11), Dia, Horas, Minutos)
-      StartTime: new Date(2023,5,20,7,30),
-      EndTime: new Date(2023,5,20,8,30),
-      Serviço: 'Banho e Hidratação',
-      Raça: 'Corgi',
-      Funcionário: 'Patrick',
-      Observações: 'Serviços: Banho e Hidratação \n Raça: Corgi \n Funcionário: Felipe \n Objetos deixados: nenhum\n ',
-      
-    },
-    {
-      Subject: 'Thom',
-      StartTime: new Date(2023,5,21,14,0),
-      EndTime: new Date(2023,5,21,15,30),
-      Serviço: 'Banho e Tosa na Tesoura',
-      Raça: 'Zwergspitz',
-      Funcionário: 'Patrick',
-      Observações: 'Serviços: Banho e Tosa na Tesoura \n Raça: Zwergspitz \n Funcionário: Patrick \n Objetos deixados: coleira\n ',
-      
-    },
-    {
-      Subject: 'Cacau',
-      StartTime: new Date(2023,5,20,16,0),
-      EndTime: new Date(2023,5,20,18,0),
-      Serviço: 'Banho, Hidratação, Unha e Tosa Geral',
-      Raça: 'Persa',
-      Funcionário: 'James',
-      Observações: 'Serviços: Banho, Hidratação, Unha e Tosa Geral \n Raça: Persa \n Funcionário: James \n Objetos deixados: coleira e shampoo \n ',
-    }
 
-  ];
+   // Adaptador OData
+  private dataManager: DataManager = new DataManager({
+    url: "http://localhost:8080/api/petshop/agendamentos/eventos",
+    adaptor: new ODataV4Adaptor(),
+    crossDomain: true
+ });
 
   public eventSettings: EventSettingsModel = {
-    dataSource: this.data,
+    dataSource: this.dataManager,
     fields: {
       //renomeando os atributos default de um evento
-      startTime: {title: 'Horário marcado'},
-      endTime: {title: 'Previsão de término'},
-      description: {name:'Observações', title: 'Observações'}
+      id: 'id',
+      subject: { name: 'subject'},
+      startTime: { name: 'startTime' , title: 'Horário marcado'},
+      endTime: { name: 'endTime', title: 'Previsão de término'},
+      description: {name:'observacoes', title: 'Observações'}
 
     }
   };
 
-    /* POSSÍVEL IMPLEMENTAÇÃO DE REMOTE DATA BINDING
-    
-    private data: DataManager = new DataManager ({
-    url:'http://localhost:8080/api/petshop',
-    adaptor: new JsonAdaptor,
-    crossDomain: true
-  })
-  */
 }

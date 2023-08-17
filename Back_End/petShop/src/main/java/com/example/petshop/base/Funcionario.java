@@ -1,6 +1,7 @@
 package com.example.petshop.base;
 
 import com.example.petshop.agendamento.Agendamento;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -24,7 +25,11 @@ public class Funcionario extends Usuario {
     @NotNull
     private Double salario;
 
-    @OneToMany(mappedBy = "funcionario")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "funcionario"
+    )
+    @JsonManagedReference
     private List<Agendamento> agendamentos;
 
 
