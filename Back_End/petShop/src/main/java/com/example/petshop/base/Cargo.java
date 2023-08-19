@@ -1,14 +1,19 @@
 package com.example.petshop.base;
 
 public enum Cargo {
-    atendentePetshop,
+    gerente,
+    recepcionista,
+    atendente,
     tosador,
-    auxiliarVeterinario,
-    recepcionistaVeterinario,
-    medicoVeterinario,
+    banhista,
+    auxiliarBanhista,
+    auxiliarTosador,
     esteticistaAnimal,
-    auxiliarEstoque,
+    gerenteLimpeza,
     auxiliarLimpeza,
-    gerentePetshop,
+    gerenteEstoque,
+    auxiliarEstoque,
+    medicoVeterinario,
+    auxiliarVeterinario,
     tecnicoVeterinario
 }

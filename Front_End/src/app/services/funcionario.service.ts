@@ -32,6 +32,7 @@ export class FuncionarioService {
       senha: funcionario.senha,
       role: funcionario.role,
       salario: funcionario.salario,
+      cargo: funcionario.cargo,
     };
     const result = this.http.post(url, data);
     return result;
@@ -41,6 +42,22 @@ export class FuncionarioService {
   getFuncionario(id: number): Observable<Response<Funcionario>> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Response<Funcionario>>(url);
+  }
+
+  updateFuncionario(funcionario: any): Observable<any>{
+
+    const url = `${this.apiUrl}/${funcionario.id}`;
+
+    const data = {
+      nome: funcionario.nome,
+      cpf: funcionario.cpf,
+      dataNascimento: funcionario.dataNascimento,
+      telefone: funcionario.telefone,
+      email: funcionario.email,
+      senha: funcionario.senha,
+    };
+    const result = this.http.put(url, data);
+    return result;
   }
 
    /* Pegar um Funcionario no sistema pelo email e senha */

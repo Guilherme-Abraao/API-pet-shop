@@ -4,7 +4,6 @@ import com.example.petshop.base.Cliente;
 import com.example.petshop.base.RegisterRequest;
 import com.example.petshop.exception.UserException;
 import com.example.petshop.repository.ClienteRepository;
-import com.example.petshop.service.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -53,7 +52,7 @@ class ClienteServiceTest {
 
         when(clienteRepository.findById(clienteId)).thenReturn(Optional.of(expectedCliente));
 
-        Cliente actualCliente = clienteService.findClienteById(clienteId);
+        Cliente actualCliente = clienteService.getClienteById(clienteId);
 
         assertEquals(expectedCliente, actualCliente);
         verify(clienteRepository, times(1)).findById(clienteId);
@@ -66,7 +65,7 @@ class ClienteServiceTest {
 
         when(clienteRepository.findById(clienteId)).thenReturn(Optional.empty());
 
-        assertThrows(UserException.class, () -> clienteService.findClienteById(clienteId));
+        assertThrows(UserException.class, () -> clienteService.getClienteById(clienteId));
         verify(clienteRepository, times(1)).findById(clienteId);
     }
 

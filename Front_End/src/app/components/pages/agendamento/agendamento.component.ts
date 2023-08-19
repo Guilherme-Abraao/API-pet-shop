@@ -53,7 +53,7 @@ export class AgendamentoComponent {
       unha: new FormControl(''),
       dentes: new FormControl(''),
 
-      observacoes: new FormControl('', [Validators.required]),
+      observacoes: new FormControl(''),
     });
 
     this.agendamentoForm.patchValue({
@@ -82,7 +82,7 @@ export class AgendamentoComponent {
         
         const dataAgendamento = this.agendamentoForm.value.dataHoraStart.split('T')[0];
         const horaAgendamento = this.agendamentoForm.value.horario;
-        const dataHoraStart = `${dataAgendamento}T${horaAgendamento}:00`;
+        const dataHoraStart = `${dataAgendamento}T${horaAgendamento}`;
 
         if (this.agendamentoForm.value.banho) servicosSelecionados.push(0);
         if (this.agendamentoForm.value.hidratacao) servicosSelecionados.push(1);

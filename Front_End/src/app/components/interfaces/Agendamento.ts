@@ -1,7 +1,7 @@
 import { Servico } from "./Servico";
 
 export interface Agendamento {
-    id?: number;
+    id: number;
     dataHoraStart: string;
     dataHoraEnd: string;
     horario: string;
@@ -9,5 +9,6 @@ export interface Agendamento {
     servicos: Servico[];
     observacoes: string;
     funcionarioId: number;
+    funcionarioNome: string;
 }
 

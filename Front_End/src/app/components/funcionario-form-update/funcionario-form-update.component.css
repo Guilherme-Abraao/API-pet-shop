@@ -1,0 +1,47 @@
+/* Tamanho do forms e distancia do footer */
+form {
+    display: block;
+    width: 78em;
+    margin-bottom: 3em;
+  }
+  
+  /* deixar uma coluna do lado da outra */
+  .linha {
+    display: flex;
+  }
+  
+  .column1 {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .column2 {
+    flex: 1;
+    margin-left: 10px;
+  }
+  
+  /* Label estáticos */
+  .labels{
+    padding-bottom: 0.5em;
+    font-weight: bold;
+  }
+  
+  .form-group{
+    margin-bottom: 1.5em;
+  }
+  
+  /* Titulo 2 */
+  h2 {
+    font-family: "Poppins";
+    text-align: center;
+    color: #194389;
+    margin-bottom: 1em; /* Espaço após o título */
+  }
+  
+  .edit-btn {
+   size: 15em;
+   color:white;
+   background-color: #194389;
+   left:15em;
+   border-radius: 0.5em;
+  }

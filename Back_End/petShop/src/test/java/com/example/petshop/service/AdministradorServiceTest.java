@@ -80,7 +80,7 @@ public class AdministradorServiceTest {
 
         when(administradorRepository.findById(administradorId)).thenReturn(Optional.of(existingAdministrador));
 
-        Administrador administrador = administradorService.findAdministradorById(administradorId);
+        Administrador administrador = administradorService.getAdministradorById(administradorId);
 
         assertNotNull(administrador);
         assertEquals(existingAdministrador, administrador);
@@ -94,7 +94,7 @@ public class AdministradorServiceTest {
 
         when(administradorRepository.findById(administradorId)).thenReturn(Optional.empty());
 
-        assertThrows(UserException.class, () -> administradorService.findAdministradorById(administradorId));
+        assertThrows(UserException.class, () -> administradorService.getAdministradorById(administradorId));
 
         verify(administradorRepository, times(1)).findById(administradorId);
     }

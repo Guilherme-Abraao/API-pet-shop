@@ -33,7 +33,7 @@ export class NewFuncionarioComponent implements OnInit {
      this.funcionarioService.createFuncionario(funcionario)
     .pipe(
       catchError((error) => {
-        this.messagemService.add('Erro ao criar o fncionário: ' + error.error.message);
+        this.messagemService.add('Erro ao criar o funcionário: ' + error.error.message);
         throw error;
       })
     )
